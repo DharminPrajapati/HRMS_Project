@@ -1,0 +1,163 @@
+﻿@{
+    ViewBag.Title = Resource.Department;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .colSrno {
+        width: 40px !important;
+        min-width: 40px !important;
+        max-width: 40px !important;
+    }
+
+    .colPosition {
+        width: 400px !important;
+        min-width: 400px !important;
+        max-width: 400px !important;
+    }
+
+    .colActive {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+
+    .colAction {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+</style>
+<div ng-controller="DepartmentCtrl" novalidate>
+    <!--Start Title Section-->
+    <div class="main-page-title title-icon relative l">
+        <i class="ti-id-badge icon-position" style="padding-top:8px;"></i>
+        <h4 class="header-title-sub l">@Resource.Department</h4>
+        <div class="pull-right">
+
+        </div>
+    </div>
+    
+    <!--End Title Section-->
+    <!--Start Body Section-->
+    <div class="card-box">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- start Department form -->
+                <form name="frmDepartments" ng-submit=" SaveDepartmentDetails(departmentDetailScope,frmDepartments)" novalidate>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    @Resource.Department <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="txtDepartments" id="txtDepartments" required ng-focus="true" ng-model="departmentDetailScope.DepartmentName" tabindex="1" placeholder="@Resource.Department" maxlength="250" />
+                                <div class="c">
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
+                                    <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <!--IsActive -->
+                            <div class="form-group">
+                                <label>
+                                </label>
+                                <div class="form-control-static">
+                                    <div class="checkbox checkbox-info">
+                                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="departmentDetailScope.IsActive"
+                                               tabindex="2" />
+                                        <label for="chkDesignationActive">
+                                            @Resource.IsActive
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                                        ng-disabled="frmDepartments.txtDepartments.$invalid" tabindex="3">
+                                    {{departmentDetailScope.DepartmentId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                                </button>
+                                <button type="button" ng-click="ClearFormData(frmDepartments)" class="btn btn-info waves-effect w-md waves-light m-b-5"
+                                        tabindex="4">
+                                    @Resource.Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- End Department form -->
+                <hr />
+                <!--Start Department Details List-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <label class="table-title">
+                                    @Resource.Department @Resource.Details
+                                </label>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="input-group">
+                                    <input type="text" tabindex="104" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1} {2}",Resource.Search,Resource.Department,Resource.Details)" />
+                                    <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked=true;tableParams.page(1);tableParams.reload();"> <i class="fa fa-search"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="form-control-static">
+                                <scrollable-table scroll-height="427">
+                                    <table ng-table="tableParams" id="datatable" class="table table-striped table-bordered table-hover">
+                                        <tr ng-repeat="dt in $data" >@*ng-hide="!dt.IsActive">*@
+                                            <td data-titile="'@Resource.SrNo'" header-class="'colSrno'" ng-class="'colSrno text-right'">
+                                                {{(tableParams.$params.page-1)*tableParams.$params.count+($index + 1)}}
+                                            </td>
+                                            <td data-title="'@Resource.Department'" sortable="'DepartmentName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DepartmentName}}">
+                                                {{dt.DepartmentName}}
+                                            </td>
+                                            <td data-title="'@Resource.Active'" sortable="'IsActive'" header-class="'colActive'" ng-class="'colActive text-center'">
+                                                <input type="checkbox" class="js-switch" ui-switch options="switchOptions"  ng-model="dt.IsActive"
+                                                       ng-disabled="true" />
+                                            </td>
+                                            <td data-title="'@Resource.Action'" header-class="'colAction'" ng-class="'colAction text-center'">
+                                                <a class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit" title="Edit"
+                                                   ng-click="EditDepartmentDetails(dt.DepartmentId)">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr ng-if="$data.length==0">
+                                            <td colspan="4" class="no-record">
+                                                @Resource.NoRecordFound
+                                                <span ng-if="search!=''">
+                                                    <br /> @Resource.YourSearch -'{{search}}'@Resource.DidNotMatchAnyRecord
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </scrollable-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--End Department Details List-->
+
+            </div>
+        </div>
+    </div>
+    <!--End Body Section-->
+
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/Configuration/Department")
+}
+
