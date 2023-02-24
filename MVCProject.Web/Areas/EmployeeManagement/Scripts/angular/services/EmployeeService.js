@@ -3,12 +3,13 @@
         var list = [];
 
         //Get All Employees
-        list.GetAllEmployees = function (employeeDetailsParams)
+        list.GetAllEmployees = function (/*employeeDetailsParams*/)
         {
             return $http({
-                method: 'POST',
+                method: 'GET',
+                //method:'POST',
                 url: $rootScope.apiURL + '/Employee/GetAllEmployees/',
-                data:JSON.stringify(employeeDetailsParams)
+                /*data:JSON.stringify(employeeDetailsParams)*/
             });
         }
 

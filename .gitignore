@@ -1,0 +1,7 @@
+
+*.dll
+MVCProject.Api/bin/
+*.pdb
+*.cache
+*.txt
+MVCProject.Api/obj/Debug/

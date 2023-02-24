@@ -43,10 +43,14 @@ namespace System.Web.Mvc
 
                     menuString.Append(GetSubMenu(Resource.Designations, "ti-id-badge", "/Configuration/Designation"));
                     menuString.Append(GetSubMenu(Resource.Department, "ti-id-badge", "/Configuration/Department"));
-                    menuString.Append(GetSubMenu(Resource.Employee, "ti-id-badge", "/Configuration/Employee"));
                     menuString.Append("</ul></li>");
-                
-                    menuString.Append("</ul></div></div>");
+                    
+                    menuString.Append("<li>");
+                    menuString.AppendFormat(GetParentMenu(Resource.Employee, "ti-id-badge"));
+                    menuString.Append("<ul class='nav child_menu'>");
+                    menuString.Append(GetSubMenu(Resource.Employee, "ti-id-badge", "/EmployeeManagement/Employee"));
+                    menuString.Append("</ul></li>");
+            menuString.Append("</ul></div></div>");
 
                 string menu = menuString.ToString();
                 return new MvcHtmlString(menu);

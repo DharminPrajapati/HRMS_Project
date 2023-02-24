@@ -169,7 +169,7 @@
     <Compile Include="Controllers\Configuration\DepartmentController.cs" />
     <Compile Include="Controllers\Configuration\DesignationsController.cs" />
     <Compile Include="Controllers\Common\UploadController.cs" />
-    <Compile Include="Controllers\Configuration\EmployeeController.cs" />
+    <Compile Include="Controllers\EmployeeManagement\EmployeeController.cs" />
     <Compile Include="Filters\CompressContentAttribute.cs" />
     <Compile Include="Filters\ContactNumberAnnotation.cs" />
     <Compile Include="Filters\EmailAnnotation.cs" />

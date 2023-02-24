@@ -92,10 +92,7 @@ namespace MVCProject.Areas.Configuration
                 .Include("~/Areas/Configuration/Scripts/angular/services/DepartmentService.js")
                 .Include("~/Areas/Configuration/Scripts/angular/controllers/DepartmentCtrl.js"));
 
-            // Employee 
-            bundles.Add(new ScriptBundle("~/bundles/Configuration/Employee")
-                .Include("~/Areas/Configuration/Scripts/angular/services/EmployeeService.js")
-                .Include("~/Areas/Configuration/Scripts/angular/controllers/EmployeeCtrl.js"));
+           
         }
     }
 }

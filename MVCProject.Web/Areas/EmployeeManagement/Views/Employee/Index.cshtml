@@ -1,37 +1,40 @@
 ﻿@{ 
     ViewBag.Title = Resource.Employee;
-                Layout = "~/Views/Shared/_Layout.cshtml"; 
-    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <style>
     .colSrno {
-        width: 40px !important;
-        min-width: 40px !important;
-        max-width: 40px !important;
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
     }
 
     .colPosition {
-        width: 400px !important;
-        min-width: 400px !important;
-        max-width: 400px !important;
+        width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
     }
 
     .colActive {
-        width: 50px !important;
-        min-width: 50px !important;
-        max-width: 50px !important;
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
     }
 
     .colAction {
-        width: 50px !important;
-        min-width: 50px !important;
-        max-width: 50px !important;
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
     }
 </style>
 <div ng-controller="EmployeeCtrl" novalidate>
     <!-- start title section-->
     <div class="main-page-title title-icon relative l">
         <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
-        <h4 class="header-title-sub l">@Resource.Employee</h4>
+        <h4 class="header-title-sub l">
+          
+                @Resource.Employee
+            </h4>
         <!-- start button-->
         <div class="pull-right">
         </div>
@@ -207,7 +210,7 @@
                                                 {{emp.Password}}
                                             </td>
                                             <td data-title="'JoiningDate'" sortable="'JoiningDate'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{emp.JoiningDate}}">
-                                                {{emp.JoiningDate}}
+                                                {{emp.JoiningDate | date}}
                                             </td>
                                             <td data-title="'PhoneNumber'" sortable="'PhoneNumber'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{emp.PhoneNumber}}">
                                                 {{emp.PhoneNumber}}
@@ -247,5 +250,5 @@
     <!-- end body section-->
 </div>
 @section scripts {
-    @Scripts.Render("~/bundles/Configuration/Employee")
+    @Scripts.Render("~/bundles/EmployeeManagement/Employee")
 }

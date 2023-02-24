@@ -4,12 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MVCProject.Areas.Configuration.Controllers
+namespace MVCProject.Areas.EmployeeManagement.Controllers
 {
     public class EmployeeController : Controller
     {
-        //
-        // GET: /Configuration/Employee/
+     
 
         public ActionResult Index()
         {

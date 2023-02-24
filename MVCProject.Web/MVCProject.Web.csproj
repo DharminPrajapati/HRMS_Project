@@ -159,10 +159,11 @@
     <Compile Include="Areas\Configuration\Controllers\ApplicationController.cs" />
     <Compile Include="Areas\Configuration\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Configuration\Controllers\DesignationController.cs" />
-    <Compile Include="Areas\Configuration\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\EmployeeManagement\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ResetLoginController.cs" />
     <Compile Include="Areas\Configuration\Controllers\RoleController.cs" />
     <Compile Include="Areas\Configuration\Controllers\UsersController.cs" />
+    <Compile Include="Areas\EmployeeManagement\EmployeeManagementAreaRegistration.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -210,13 +211,13 @@
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ApplicationCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DepartmentCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DesignationCtrl.js" />
-    <Content Include="Areas\Configuration\Scripts\angular\controllers\EmployeeCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ResetToLoginCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ApplicationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DepartmentService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DesignationService.js" />
-    <Content Include="Areas\Configuration\Scripts\angular\services\EmployeeService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ResetToLoginService.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\angular\controllers\EmployeeCtrl.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\angular\services\EmployeeService.js" />
     <Content Include="Areas\Public\Content\css\css\blank.gif" />
     <Content Include="Areas\Public\Content\css\HomePageStyle.css" />
     <Content Include="Areas\Public\Content\css\skins\fullwidth\loading.gif" />
@@ -421,6 +422,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Configuration\Models\" />
     <Folder Include="Areas\Configuration\Views\Shared\" />
+    <Folder Include="Areas\EmployeeManagement\Models\" />
+    <Folder Include="Areas\EmployeeManagement\Views\Shared\" />
     <Folder Include="Areas\Public\Controllers\" />
     <Folder Include="Areas\Public\Models\" />
     <Folder Include="Areas\Public\Scripts\angular\controllers\" />
@@ -458,7 +461,8 @@
     <Content Include="Content\fonts\Calibri.ttf" />
     <Content Include="Areas\Configuration\Views\Designation\Index.cshtml" />
     <Content Include="Areas\Configuration\Views\Department\Index.cshtml" />
-    <Content Include="Areas\Configuration\Views\Employee\Index.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Employee\Index.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\Web.config" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />
