@@ -46,12 +46,12 @@ namespace MVCProject.Api.Controllers.Configuration
         /// Get Designations for dropdown
         /// </summary>
         /// <returns>Returns response of type <see cref="ApiResonse"/> class.</returns>
-        [HttpGet]
-        public ApiResponse GetForDropdown()
-        {
-            var data = this.entities.Designations.Where(x => x.IsActive.Value).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
-            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
-        }
+        //[HttpGet]
+        //public ApiResponse GetDesignationDropDown()
+        //{
+        //    var data = this.entities.Designations.Where(x => x.IsActive.Value).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
+        //    return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+        //}
 
         /// <summary>
         /// Gets all Designation details. 

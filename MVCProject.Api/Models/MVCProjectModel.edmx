@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="Designation">
           <Key>
             <PropertyRef Name="DesignationId" />
@@ -39,13 +39,65 @@
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="AlternatePhoneNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="DesignationId" Type="int" />
+          <Property Name="ProfileImageName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DepartmentId" Type="int" />
+          <Property Name="BirthDate" Type="date" />
+          <Property Name="PermanentAddress" Type="nvarchar(max)" />
+          <Property Name="TemporaryAddress" Type="nvarchar(max)" />
+          <Property Name="Pincode" Type="int" />
+          <Property Name="InstitutionName" Type="nvarchar(max)" />
+          <Property Name="CourseName" Type="nvarchar(max)" />
+          <Property Name="CourseStartDate" Type="date" />
+          <Property Name="CourseEndDate" Type="date" />
+          <Property Name="Grade" Type="nvarchar(max)" />
+          <Property Name="Degree" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="nvarchar(max)" />
+          <Property Name="LastJobLocation" Type="nvarchar(max)" />
+          <Property Name="JobPosition" Type="nvarchar(max)" />
+          <Property Name="FromPeriod" Type="date" />
+          <Property Name="ToPeriod" Type="date" />
+          <Property Name="Gender" Type="int" />
         </EntityType>
+        <Association Name="fk_designationId">
+          <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
+          <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designation">
+              <PropertyRef Name="DesignationId" />
+            </Principal>
+            <Dependent Role="TblEmployee">
+              <PropertyRef Name="DesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_despartmentId">
+          <End Role="TblDepartment" Type="Self.TblDepartment" Multiplicity="0..1" />
+          <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblDepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="TblEmployee">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MVCProjectModelStoreContainer">
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDepartment" EntityType="Self.TblDepartment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblEmployee" EntityType="Self.TblEmployee" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_designationId" Association="Self.fk_designationId">
+            <End Role="Designation" EntitySet="Designation" />
+            <End Role="TblEmployee" EntitySet="TblEmployee" />
+          </AssociationSet>
+          <AssociationSet Name="fk_despartmentId" Association="Self.fk_despartmentId">
+            <End Role="TblDepartment" EntitySet="TblDepartment" />
+            <End Role="TblEmployee" EntitySet="TblEmployee" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MVCProjectModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -57,6 +109,7 @@
           <Property Name="DesignationName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TblEmployees" Relationship="Self.fk_designationId" FromRole="Designation" ToRole="TblEmployee" />
         </EntityType>
         <EntityType Name="TblDepartment">
           <Key>
@@ -69,12 +122,8 @@
           <Property Name="UpdateBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="IsActive" Type="Boolean" />
+          <NavigationProperty Name="TblEmployees" Relationship="Self.fk_despartmentId" FromRole="TblDepartment" ToRole="TblEmployee" />
         </EntityType>
-        <EntityContainer Name="MVCProjectEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Designations" EntityType="Self.Designation" />
-          <EntitySet Name="TblDepartments" EntityType="Self.TblDepartment" />
-          <EntitySet Name="TblEmployee" EntityType="MVCProjectModel.TblEmployee" />
-        </EntityContainer>
         <EntityType Name="TblEmployee">
           <Key>
             <PropertyRef Name="EmployeeId" />
@@ -88,7 +137,65 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AlternatePhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
+          <Property Name="DesignationId" Type="Int32" />
+          <Property Name="ProfileImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DepartmentId" Type="Int32" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="PermanentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TemporaryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Pincode" Type="Int32" />
+          <Property Name="InstitutionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CourseStartDate" Type="DateTime" Precision="0" />
+          <Property Name="CourseEndDate" Type="DateTime" Precision="0" />
+          <Property Name="Grade" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastJobLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JobPosition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FromPeriod" Type="DateTime" Precision="0" />
+          <Property Name="ToPeriod" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="Int32" />
+          <NavigationProperty Name="Designation" Relationship="Self.fk_designationId" FromRole="TblEmployee" ToRole="Designation" />
+          <NavigationProperty Name="TblDepartment" Relationship="Self.fk_despartmentId" FromRole="TblEmployee" ToRole="TblDepartment" />
         </EntityType>
+        <Association Name="fk_designationId">
+          <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
+          <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designation">
+              <PropertyRef Name="DesignationId" />
+            </Principal>
+            <Dependent Role="TblEmployee">
+              <PropertyRef Name="DesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_despartmentId">
+          <End Role="TblDepartment" Type="Self.TblDepartment" Multiplicity="0..1" />
+          <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblDepartment">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="TblEmployee">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MVCProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Designations" EntityType="Self.Designation" />
+          <EntitySet Name="TblDepartments" EntityType="Self.TblDepartment" />
+          <EntitySet Name="TblEmployees" EntityType="Self.TblEmployee" />
+          <AssociationSet Name="fk_designationId" Association="Self.fk_designationId">
+            <End Role="Designation" EntitySet="Designations" />
+            <End Role="TblEmployee" EntitySet="TblEmployees" />
+          </AssociationSet>
+          <AssociationSet Name="fk_despartmentId" Association="Self.fk_despartmentId">
+            <End Role="TblDepartment" EntitySet="TblDepartments" />
+            <End Role="TblEmployee" EntitySet="TblEmployees" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -118,18 +225,37 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TblEmployee">
+          <EntitySetMapping Name="TblEmployees">
             <EntityTypeMapping TypeName="MVCProjectModel.TblEmployee">
               <MappingFragment StoreEntitySet="TblEmployee">
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="AlternatePhoneNumber" ColumnName="AlternatePhoneNumber" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AlternatePhoneNumber" ColumnName="AlternatePhoneNumber" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+                <ScalarProperty Name="ProfileImageName" ColumnName="ProfileImageName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="InstitutionName" ColumnName="InstitutionName" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseStartDate" ColumnName="CourseStartDate" />
+                <ScalarProperty Name="CourseEndDate" ColumnName="CourseEndDate" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="LastJobLocation" ColumnName="LastJobLocation" />
+                <ScalarProperty Name="JobPosition" ColumnName="JobPosition" />
+                <ScalarProperty Name="FromPeriod" ColumnName="FromPeriod" />
+                <ScalarProperty Name="ToPeriod" ColumnName="ToPeriod" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

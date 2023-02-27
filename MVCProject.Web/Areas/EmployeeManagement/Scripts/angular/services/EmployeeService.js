@@ -7,9 +7,7 @@
         {
             return $http({
                 method: 'GET',
-                //method:'POST',
-                url: $rootScope.apiURL + '/Employee/GetAllEmployees/',
-                /*data:JSON.stringify(employeeDetailsParams)*/
+                url: $rootScope.apiURL + '/Employee/GetAllEmployees/'
             });
         }
 
@@ -36,6 +34,24 @@
             return $http({
                 method: 'GET',
                 url: $rootScope.apiURL + '/Employee/GetEmployeeById?employeeId=' + employeeId
+            });
+        };
+
+        //Get Designation DropDown
+        list.GetDesignationlist = function () {
+            
+            return $http({
+                methd: 'GET',
+                url: $rootScope.apiURL + '/Employee/GetDesignationDropDown'
+            });
+        };
+
+        //Get Department DropDown
+        list.GetDepartmentlist = function () {
+
+            return $http({
+                methd: 'GET',
+                url: $rootScope.apiURL + '/Employee/GetDepartmentDropDown'
             });
         };
 

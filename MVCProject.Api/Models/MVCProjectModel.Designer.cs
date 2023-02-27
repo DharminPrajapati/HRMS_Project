@@ -17,6 +17,13 @@ using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region EDM Relationship Metadata
+
+[assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_designationId", "Designation", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.Designation), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
+[assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_despartmentId", "TblDepartment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.TblDepartment), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
+
+#endregion
+
 namespace MVCProject.Api.Models
 {
     #region Contexts
@@ -100,18 +107,18 @@ namespace MVCProject.Api.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<TblEmployee> TblEmployee
+        public ObjectSet<TblEmployee> TblEmployees
         {
             get
             {
-                if ((_TblEmployee == null))
+                if ((_TblEmployees == null))
                 {
-                    _TblEmployee = base.CreateObjectSet<TblEmployee>("TblEmployee");
+                    _TblEmployees = base.CreateObjectSet<TblEmployee>("TblEmployees");
                 }
-                return _TblEmployee;
+                return _TblEmployees;
             }
         }
-        private ObjectSet<TblEmployee> _TblEmployee;
+        private ObjectSet<TblEmployee> _TblEmployees;
 
         #endregion
 
@@ -134,11 +141,11 @@ namespace MVCProject.Api.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the TblEmployee EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the TblEmployees EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToTblEmployee(TblEmployee tblEmployee)
+        public void AddToTblEmployees(TblEmployee tblEmployee)
         {
-            base.AddObject("TblEmployee", tblEmployee);
+            base.AddObject("TblEmployees", tblEmployee);
         }
 
         #endregion
@@ -276,6 +283,32 @@ namespace MVCProject.Api.Models
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_designationId", "TblEmployee")]
+        public EntityCollection<TblEmployee> TblEmployees
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TblEmployee>("MVCProjectModel.fk_designationId", "TblEmployee");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TblEmployee>("MVCProjectModel.fk_designationId", "TblEmployee", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -479,6 +512,32 @@ namespace MVCProject.Api.Models
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_despartmentId", "TblEmployee")]
+        public EntityCollection<TblEmployee> TblEmployees
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<TblEmployee>("MVCProjectModel.fk_despartmentId", "TblEmployee");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TblEmployee>("MVCProjectModel.fk_despartmentId", "TblEmployee", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -724,10 +783,546 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.Boolean> _IsActive;
         partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
         partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DesignationId
+        {
+            get
+            {
+                return _DesignationId;
+            }
+            set
+            {
+                OnDesignationIdChanging(value);
+                ReportPropertyChanging("DesignationId");
+                _DesignationId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DesignationId");
+                OnDesignationIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DesignationId;
+        partial void OnDesignationIdChanging(Nullable<global::System.Int32> value);
+        partial void OnDesignationIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ProfileImageName
+        {
+            get
+            {
+                return _ProfileImageName;
+            }
+            set
+            {
+                OnProfileImageNameChanging(value);
+                ReportPropertyChanging("ProfileImageName");
+                _ProfileImageName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ProfileImageName");
+                OnProfileImageNameChanged();
+            }
+        }
+        private global::System.String _ProfileImageName;
+        partial void OnProfileImageNameChanging(global::System.String value);
+        partial void OnProfileImageNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DepartmentId
+        {
+            get
+            {
+                return _DepartmentId;
+            }
+            set
+            {
+                OnDepartmentIdChanging(value);
+                ReportPropertyChanging("DepartmentId");
+                _DepartmentId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DepartmentId");
+                OnDepartmentIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DepartmentId;
+        partial void OnDepartmentIdChanging(Nullable<global::System.Int32> value);
+        partial void OnDepartmentIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> BirthDate
+        {
+            get
+            {
+                return _BirthDate;
+            }
+            set
+            {
+                OnBirthDateChanging(value);
+                ReportPropertyChanging("BirthDate");
+                _BirthDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("BirthDate");
+                OnBirthDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _BirthDate;
+        partial void OnBirthDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnBirthDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PermanentAddress
+        {
+            get
+            {
+                return _PermanentAddress;
+            }
+            set
+            {
+                OnPermanentAddressChanging(value);
+                ReportPropertyChanging("PermanentAddress");
+                _PermanentAddress = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PermanentAddress");
+                OnPermanentAddressChanged();
+            }
+        }
+        private global::System.String _PermanentAddress;
+        partial void OnPermanentAddressChanging(global::System.String value);
+        partial void OnPermanentAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TemporaryAddress
+        {
+            get
+            {
+                return _TemporaryAddress;
+            }
+            set
+            {
+                OnTemporaryAddressChanging(value);
+                ReportPropertyChanging("TemporaryAddress");
+                _TemporaryAddress = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TemporaryAddress");
+                OnTemporaryAddressChanged();
+            }
+        }
+        private global::System.String _TemporaryAddress;
+        partial void OnTemporaryAddressChanging(global::System.String value);
+        partial void OnTemporaryAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Pincode
+        {
+            get
+            {
+                return _Pincode;
+            }
+            set
+            {
+                OnPincodeChanging(value);
+                ReportPropertyChanging("Pincode");
+                _Pincode = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Pincode");
+                OnPincodeChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Pincode;
+        partial void OnPincodeChanging(Nullable<global::System.Int32> value);
+        partial void OnPincodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String InstitutionName
+        {
+            get
+            {
+                return _InstitutionName;
+            }
+            set
+            {
+                OnInstitutionNameChanging(value);
+                ReportPropertyChanging("InstitutionName");
+                _InstitutionName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("InstitutionName");
+                OnInstitutionNameChanged();
+            }
+        }
+        private global::System.String _InstitutionName;
+        partial void OnInstitutionNameChanging(global::System.String value);
+        partial void OnInstitutionNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CourseName
+        {
+            get
+            {
+                return _CourseName;
+            }
+            set
+            {
+                OnCourseNameChanging(value);
+                ReportPropertyChanging("CourseName");
+                _CourseName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CourseName");
+                OnCourseNameChanged();
+            }
+        }
+        private global::System.String _CourseName;
+        partial void OnCourseNameChanging(global::System.String value);
+        partial void OnCourseNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> CourseStartDate
+        {
+            get
+            {
+                return _CourseStartDate;
+            }
+            set
+            {
+                OnCourseStartDateChanging(value);
+                ReportPropertyChanging("CourseStartDate");
+                _CourseStartDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CourseStartDate");
+                OnCourseStartDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _CourseStartDate;
+        partial void OnCourseStartDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnCourseStartDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> CourseEndDate
+        {
+            get
+            {
+                return _CourseEndDate;
+            }
+            set
+            {
+                OnCourseEndDateChanging(value);
+                ReportPropertyChanging("CourseEndDate");
+                _CourseEndDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CourseEndDate");
+                OnCourseEndDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _CourseEndDate;
+        partial void OnCourseEndDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnCourseEndDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Grade
+        {
+            get
+            {
+                return _Grade;
+            }
+            set
+            {
+                OnGradeChanging(value);
+                ReportPropertyChanging("Grade");
+                _Grade = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Grade");
+                OnGradeChanged();
+            }
+        }
+        private global::System.String _Grade;
+        partial void OnGradeChanging(global::System.String value);
+        partial void OnGradeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Degree
+        {
+            get
+            {
+                return _Degree;
+            }
+            set
+            {
+                OnDegreeChanging(value);
+                ReportPropertyChanging("Degree");
+                _Degree = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Degree");
+                OnDegreeChanged();
+            }
+        }
+        private global::System.String _Degree;
+        partial void OnDegreeChanging(global::System.String value);
+        partial void OnDegreeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String CompanyName
+        {
+            get
+            {
+                return _CompanyName;
+            }
+            set
+            {
+                OnCompanyNameChanging(value);
+                ReportPropertyChanging("CompanyName");
+                _CompanyName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("CompanyName");
+                OnCompanyNameChanged();
+            }
+        }
+        private global::System.String _CompanyName;
+        partial void OnCompanyNameChanging(global::System.String value);
+        partial void OnCompanyNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String LastJobLocation
+        {
+            get
+            {
+                return _LastJobLocation;
+            }
+            set
+            {
+                OnLastJobLocationChanging(value);
+                ReportPropertyChanging("LastJobLocation");
+                _LastJobLocation = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LastJobLocation");
+                OnLastJobLocationChanged();
+            }
+        }
+        private global::System.String _LastJobLocation;
+        partial void OnLastJobLocationChanging(global::System.String value);
+        partial void OnLastJobLocationChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String JobPosition
+        {
+            get
+            {
+                return _JobPosition;
+            }
+            set
+            {
+                OnJobPositionChanging(value);
+                ReportPropertyChanging("JobPosition");
+                _JobPosition = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("JobPosition");
+                OnJobPositionChanged();
+            }
+        }
+        private global::System.String _JobPosition;
+        partial void OnJobPositionChanging(global::System.String value);
+        partial void OnJobPositionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> FromPeriod
+        {
+            get
+            {
+                return _FromPeriod;
+            }
+            set
+            {
+                OnFromPeriodChanging(value);
+                ReportPropertyChanging("FromPeriod");
+                _FromPeriod = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("FromPeriod");
+                OnFromPeriodChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _FromPeriod;
+        partial void OnFromPeriodChanging(Nullable<global::System.DateTime> value);
+        partial void OnFromPeriodChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> ToPeriod
+        {
+            get
+            {
+                return _ToPeriod;
+            }
+            set
+            {
+                OnToPeriodChanging(value);
+                ReportPropertyChanging("ToPeriod");
+                _ToPeriod = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ToPeriod");
+                OnToPeriodChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _ToPeriod;
+        partial void OnToPeriodChanging(Nullable<global::System.DateTime> value);
+        partial void OnToPeriodChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Gender
+        {
+            get
+            {
+                return _Gender;
+            }
+            set
+            {
+                OnGenderChanging(value);
+                ReportPropertyChanging("Gender");
+                _Gender = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Gender");
+                OnGenderChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Gender;
+        partial void OnGenderChanging(Nullable<global::System.Int32> value);
+        partial void OnGenderChanged();
 
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_designationId", "Designation")]
+        public Designation Designation
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Designation> DesignationReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_despartmentId", "TblDepartment")]
+        public TblDepartment TblDepartment
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TblDepartment>("MVCProjectModel.fk_despartmentId", "TblDepartment").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TblDepartment>("MVCProjectModel.fk_despartmentId", "TblDepartment").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<TblDepartment> TblDepartmentReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<TblDepartment>("MVCProjectModel.fk_despartmentId", "TblDepartment");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TblDepartment>("MVCProjectModel.fk_despartmentId", "TblDepartment", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
 
     #endregion

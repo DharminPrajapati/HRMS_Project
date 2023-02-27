@@ -14,10 +14,27 @@
             FirstName : '',
             LastName : '',
             Email : '',
-            Password : '',
             JoiningDate : '',
             PhoneNumber : null,
-            AlternatePhoneNumber : null,
+            AlternatePhoneNumber: null,
+            DesignationId: 0,
+            DepartmentId: 0,
+            BirthDate: null,
+            Gender: 1,
+            PermanentAddress :'',
+            TemporaryAddress :'',
+            Pincode: null,
+            InstitutionName: '',
+            CourseName: '',
+            CourseStartDate: null,
+            CourseEndDate: null,
+            Grade: '',
+            Degree: '',
+            CompanyName:'',
+            LastJobLocation:'',
+            JobPosition:'',
+            FromPeriod:null,
+            ToPeriod:null,
             IsActive : true
         };
 
@@ -34,6 +51,7 @@
         {
             if (frmEmployees.$valid)
             {
+                debugger;
                 EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res)
                 {
                     if (res)
@@ -54,6 +72,7 @@
                             toastr.warning(data.Message, warningTitle);
                         }
                     }
+                
                 });
             }
         }
@@ -64,8 +83,14 @@
                 if (res) {
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success) {
+                        debugger;
                         $scope.emplyeeDetailScope = data.Result;
                         $scope.emplyeeDetailScope.JoiningDate = new Date($scope.emplyeeDetailScope.JoiningDate);
+                        $scope.emplyeeDetailScope.BirthDate = new Date($scope.emplyeeDetailScope.BirthDate);
+                        $scope.emplyeeDetailScope.CourseStartDate = new Date($scope.emplyeeDetailScope.CourseStartDate);
+                        $scope.emplyeeDetailScope.CourseEndDate = new Date($scope.emplyeeDetailScope.CourseEndDate);
+                        $scope.emplyeeDetailScope.FromPeriod = new Date($scope.emplyeeDetailScope.FromPeriod);
+                        $scope.emplyeeDetailScope.ToPeriod = new Date($scope.emplyeeDetailScope.ToPeriod);
                         $scope.lastStorageAudit = angular.copy(data.Result);
                         CommonFunctions.ScrollUpAndFocus("txtEmployee");
                     }
@@ -89,7 +114,7 @@
                 }
 
                 employeeDetailsParams.Paging = CommonFunctions.GetPagingParams(params);
-                employeeDetailsParams.Paging.Search = $scope.isSearchClicked ? $scope.search : '';
+                employeeDetailsParams.Paging.Search = $scope.isSearchClicked ? $scope.search : ''; 
 
                 EmployeeService.GetAllEmployees(employeeDetailsParams.Paging).then(function (res)
                 {
@@ -126,16 +151,54 @@
                 FirstName: '',
                 LastName: '',
                 Email: '',
-                Password: '',
                 JoiningDate: '',
                 PhoneNumber: null,
                 AlternatePhoneNumber: null,
+                DesignationId: 0,
+                DepartmentId: 0,
+                BirthDate: null,
+                Gender: 1,
+                PermanentAddress: '',
+                TemporaryAddress: '',
+                Pincode: null,
+                InstitutionName:'',
+                CourseName:'',
+                CourseStartDate :null,
+                CourseEndDate:null,
+                Grade:'',
+                Degree: '',
+                CompanyName: '',
+                LastJobLocation: '',
+                JobPosition: '',
+                FromPeriod: null,
+                ToPeriod: null,
                 IsActive: true
             };
 
             frmEmployees.$setPristine();
             $("#txtEmployee").focus();
             CommonFunctions.ScrollToTop();
+        };
+
+        $scope.Init = function (){
+            $scope.designationScope();
+            $scope.departmentsScope();
+            $scope.emplyeeDetailScope.Gender;
+        }
+
+        $scope.designationScope = function () {
+            EmployeeService.GetDesignationlist().then(function (res) {
+                $scope.Designation = res.data.Result;
+                console.log($scope.Designation);
+            });
+        };
+
+
+        $scope.departmentsScope = function () {
+            EmployeeService.GetDepartmentlist().then(function (res) {
+                $scope.Departments = res.data.Result;
+                console.log($scope.Departments);
+            });
         };
     }
     
