@@ -9,6 +9,8 @@
           //Initial Declaration
         var employeeDetailsParams = {};
       
+
+
         $scope.emplyeeDetailScope = {
             EmployeeId : 0,
             FirstName : '',
