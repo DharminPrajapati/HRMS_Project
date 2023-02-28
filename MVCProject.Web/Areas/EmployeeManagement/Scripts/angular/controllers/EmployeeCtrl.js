@@ -127,6 +127,7 @@
                             $defer.resolve(res.data.Result);
                             if (res.data.Result.length == 0) { }
                             else { params.total(res.data.Result[0].TotalRecords); }
+                           
                         }
                     }
                     else if (res.data.MessageType == messageTypes.Error) {// Error
