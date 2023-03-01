@@ -34,9 +34,10 @@ h3,
 h4,
 h5,
 h6 {
-    color: #505458;
+    color: #ffffff;
     font-weight: normal; /*font-family: 'Karla', sans-serif;*/
     margin: 10px 0;
+    font-size:16px;
 }
 
 h1 {
@@ -49,6 +50,7 @@ h2 {
 
 h3 {
     line-height: 30px;
+    background: linear-gradient(to left, #ffffff 0%, #0166d4 100%);
 }
 
     h3 small {
@@ -78,7 +80,7 @@ p {
 
 * {
     outline: none !important;
-    font-size: 15px;
+    font-size: 13px;
 }
 
 b {
@@ -426,7 +428,7 @@ a:focus {
 /* Card Box */
 .card-box {
     padding: 20px;
-    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.06), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
+    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.90), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
     -webkit-border-radius: 5px;
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -611,7 +613,7 @@ a:focus {
 
 
 .uib-datepicker-popup {
-    padding: 10px;
+    padding: 50px;
     border: 1px solid #E2E2E2;
 }
 
@@ -5448,14 +5450,14 @@ table.dataTable td.focus {
     padding: 0px;
     margin: 0px;
     font-size: 20px;
-    color: white;
+    color: #f7f2f2;
 }
 
 
 .main-page-title { /* position: absolute; */ /* left:0px; */ /* top:0; */
     width: 100%;
     margin: 0 0 -2px 0;
-    background: #050505;
+    background: gray;
     padding: 1em 1em 1em 1.5em;
     border-left: 4px solid #DDD;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);

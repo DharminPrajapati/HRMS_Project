@@ -28,7 +28,7 @@
 <div ng-controller="EmployeeCtrl" novalidate>
     <!-- start title section-->
     <div class="main-page-title title-icon relative l">
-        <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+        <i class="fa fa-user icon-position" style="padding-top: 8px;"></i>
         <h4 class="header-title-sub l">
 
             @Resource.Employee
@@ -49,6 +49,7 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <h3>
+                                    <i class="fa fa-id-card "></i>
                                     Profile Details
                                 </h3>
                             </div>
@@ -60,7 +61,7 @@
                                 <label>
                                     First Name <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="txtEmployee" ng-focus="true" name="txtEmployee"  ng-model="emplyeeDetailScope.FirstName" required tabindex="1" placeholder="First Name" maxlength="250">
+                                <input type="text" class="form-control" id="txtEmployee" ng-focus="true" name="txtEmployee" ng-model="emplyeeDetailScope.FirstName" required tabindex="1" placeholder="First Name" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.txtEmployee.$dirty">
@@ -96,44 +97,44 @@
                             </div>
                         </div>
                         <div class="row-offcanvas">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    Joining Date <span class="required-field">*</span>
-                                </label>
-                                <input type="date" class="form-control" id="joindate" ng-focus="true" name="joindate" ng-model="emplyeeDetailScope.JoiningDate" required tabindex="1" placeholder="Select JoinDate" maxlength="250">
-                                <div class="c">
-                                </div>
-                                <div class="label label-danger" data-ng-show="frmEmployees.joindate.$dirty && frmEmployees.joindate.$invalid">
-                                    <span data-ng-show="frmEmployees.joindate.$error.required">Join date required</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    PhoneNumber <span class="required-field">*</span>
-                                </label>
-                                <input type="text" class="form-control" id="phno" ng-focus="true" name="phno" integer   ng-model="emplyeeDetailScope.PhoneNumber" required tabindex="1" placeholder="Phone Number" maxlength="10">
-                                <div class="c">
-                                </div>
-                                <div class="label label-danger" data-ng-show="frmEmployees.phno.$dirty && frmEmployees.phno.$invalid">
-                                    <span data-ng-show="frmEmployees.phno.$error.required">Phone Number required</span>
-                                    <span data-ng-show="frmEmployees.phno.$error.integer">Phone Number Needs to be Integer</span>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        Joining Date <span class="required-field">*</span>
+                                    </label>
+                                    <input type="date" class="form-control" id="joindate" ng-focus="true" name="joindate" ng-model="emplyeeDetailScope.JoiningDate" required tabindex="1" placeholder="Select JoinDate" maxlength="250">
+                                    <div class="c">
+                                    </div>
+                                    <div class="label label-danger" data-ng-show="frmEmployees.joindate.$dirty && frmEmployees.joindate.$invalid">
+                                        <span data-ng-show="frmEmployees.joindate.$error.required">Join date required</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    AlternatePhoneNumber
-                                </label>
-                                <input type="text" class="form-control" id="alphno" ng-focus="true" name="alphno" integer @*minlength="10"*@ ng-model="emplyeeDetailScope.AlternatePhoneNumber" required tabindex="1" placeholder="Phone Number" maxlength="10">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        PhoneNumber <span class="required-field">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="phno" ng-focus="true" name="phno" integer ng-model="emplyeeDetailScope.PhoneNumber" required tabindex="1" placeholder="Phone Number" maxlength="10">
+                                    <div class="c">
+                                    </div>
+                                    <div class="label label-danger" data-ng-show="frmEmployees.phno.$dirty && frmEmployees.phno.$invalid">
+                                        <span data-ng-show="frmEmployees.phno.$error.required">Phone Number required</span>
+                                        <span data-ng-show="frmEmployees.phno.$error.integer">Phone Number Needs to be Integer</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="label label-danger" data-ng-show="frmEmployees.alphno.$dirty && frmEmployees.alphno.$invalid">                                
-                                <span data-ng-show="frmEmployees.alphno.$error.integer">Alternate Phone Number Needs to be Number</span>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        AlternatePhoneNumber
+                                    </label>
+                                    <input type="text" class="form-control" id="alphno" ng-focus="true" name="alphno" integer @*minlength="10"*@ ng-model="emplyeeDetailScope.AlternatePhoneNumber" required tabindex="1" placeholder="Phone Number" maxlength="10">
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmEmployees.alphno.$dirty && frmEmployees.alphno.$invalid">
+                                    <span data-ng-show="frmEmployees.alphno.$error.integer">Alternate Phone Number Needs to be Number</span>
+                                </div>
                             </div>
-                        </div>
                         </div>
                         <div class="row-offcanvas">
                             <div class="col-md-4">
@@ -175,17 +176,18 @@
                         </div>
                     </div>
                     @*<div class="main-page-title title-icon relative l">
-            <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
-            <h4 class="header-title-sub l">
+                            <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+                            <h4 class="header-title-sub l">
 
-                Personal Details
-            </h4>
-        </div>*@
+                                Personal Details
+                            </h4>
+                        </div>*@
                     <!-- Personal Details Form -->
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
                                 <h3>
+                                    <i class="fa fa-address-book-o"></i>
                                     Personal Details
                                 </h3>
                             </div>
@@ -260,16 +262,17 @@
 
                     <!-- Education Details Form -->
                     @*<div class="main-page-title title-icon relative l">
-            <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
-            <h4 class="header-title-sub l">
+                            <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+                            <h4 class="header-title-sub l">
 
-                Education Details
-            </h4>
-        </div>*@
+                                Education Details
+                            </h4>
+                        </div>*@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
                                 <h3>
+                                    <i class="fa fa-university"></i>
                                     Education Details
                                 </h3>
                             </div>
@@ -357,15 +360,16 @@
                     </div>
                     <!--Experience Details  Form-->
                     @*<div class="main-page-title title-icon relative l">
-            <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
-            <h4 class="header-title-sub l">
-                Experience Details
-            </h4>
-        </div>*@
+                            <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+                            <h4 class="header-title-sub l">
+                                Experience Details
+                            </h4>
+                        </div>*@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
                                 <h3>
+                                    <i class="fa fa-history"></i>
                                     Experience Details
                                 </h3>
                             </div>
@@ -588,3 +592,4 @@
 @section scripts {
     @Scripts.Render("~/bundles/EmployeeManagement/Employee")
 }
+<script src="https://kit.fontawesome.com/73e0cf2663.js" crossorigin="anonymous"></script>
