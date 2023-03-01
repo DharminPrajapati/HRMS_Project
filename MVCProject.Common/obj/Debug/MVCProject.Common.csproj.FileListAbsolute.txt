@@ -47,3 +47,11 @@ E:\HRMS_WEB-main\MVCProject.Common\obj\Debug\MVCProject.Common.csproj.GenerateRe
 E:\HRMS_WEB-main\MVCProject.Common\obj\Debug\MVCProject.Common.csproj.CoreCompileInputs.cache
 E:\HRMS_WEB-main\MVCProject.Common\obj\Debug\MVCProject.Common.dll
 E:\HRMS_WEB-main\MVCProject.Common\obj\Debug\MVCProject.Common.pdb
+D:\git1\HRMS_Project\MVCProject.Common\bin\Debug\MVCProject.Common.dll
+D:\git1\HRMS_Project\MVCProject.Common\bin\Debug\MVCProject.Common.pdb
+D:\git1\HRMS_Project\MVCProject.Common\obj\Debug\MVCProject.Common.csproj.AssemblyReference.cache
+D:\git1\HRMS_Project\MVCProject.Common\obj\Debug\MVCProject.Common.Resources.Resource.resources
+D:\git1\HRMS_Project\MVCProject.Common\obj\Debug\MVCProject.Common.csproj.GenerateResource.cache
+D:\git1\HRMS_Project\MVCProject.Common\obj\Debug\MVCProject.Common.csproj.CoreCompileInputs.cache
+D:\git1\HRMS_Project\MVCProject.Common\obj\Debug\MVCProject.Common.dll
+D:\git1\HRMS_Project\MVCProject.Common\obj\Debug\MVCProject.Common.pdb

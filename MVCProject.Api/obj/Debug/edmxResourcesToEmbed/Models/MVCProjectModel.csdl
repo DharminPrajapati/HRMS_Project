@@ -8,6 +8,7 @@
     <Property Name="DesignationName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="IsActive" Type="Boolean" />
     <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TblEmployees" Relationship="Self.fk_designationId" FromRole="Designation" ToRole="TblEmployee" />
   </EntityType>
   <EntityType Name="TblDepartment">
     <Key>
@@ -20,12 +21,8 @@
     <Property Name="UpdateBy" Type="Int32" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
     <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="TblEmployees" Relationship="Self.fk_despartmentId" FromRole="TblDepartment" ToRole="TblEmployee" />
   </EntityType>
-  <EntityContainer Name="MVCProjectEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Designations" EntityType="Self.Designation" />
-    <EntitySet Name="TblDepartments" EntityType="Self.TblDepartment" />
-    <EntitySet Name="TblEmployee" EntityType="MVCProjectModel.TblEmployee" />
-  </EntityContainer>
   <EntityType Name="TblEmployee">
     <Key>
       <PropertyRef Name="EmployeeId" />
@@ -39,5 +36,63 @@
     <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="AlternatePhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="IsActive" Type="Boolean" />
+    <Property Name="DesignationId" Type="Int32" />
+    <Property Name="ProfileImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DepartmentId" Type="Int32" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="PermanentAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TemporaryAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Pincode" Type="Int32" />
+    <Property Name="InstitutionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CourseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CourseStartDate" Type="DateTime" Precision="0" />
+    <Property Name="CourseEndDate" Type="DateTime" Precision="0" />
+    <Property Name="Grade" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Degree" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CompanyName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastJobLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobPosition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FromPeriod" Type="DateTime" Precision="0" />
+    <Property Name="ToPeriod" Type="DateTime" Precision="0" />
+    <Property Name="Gender" Type="Int32" />
+    <NavigationProperty Name="Designation" Relationship="Self.fk_designationId" FromRole="TblEmployee" ToRole="Designation" />
+    <NavigationProperty Name="TblDepartment" Relationship="Self.fk_despartmentId" FromRole="TblEmployee" ToRole="TblDepartment" />
   </EntityType>
+  <Association Name="fk_designationId">
+    <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
+    <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Designation">
+        <PropertyRef Name="DesignationId" />
+      </Principal>
+      <Dependent Role="TblEmployee">
+        <PropertyRef Name="DesignationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_despartmentId">
+    <End Role="TblDepartment" Type="Self.TblDepartment" Multiplicity="0..1" />
+    <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblDepartment">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="TblEmployee">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MVCProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Designations" EntityType="Self.Designation" />
+    <EntitySet Name="TblDepartments" EntityType="Self.TblDepartment" />
+    <EntitySet Name="TblEmployees" EntityType="Self.TblEmployee" />
+    <AssociationSet Name="fk_designationId" Association="Self.fk_designationId">
+      <End Role="Designation" EntitySet="Designations" />
+      <End Role="TblEmployee" EntitySet="TblEmployees" />
+    </AssociationSet>
+    <AssociationSet Name="fk_despartmentId" Association="Self.fk_despartmentId">
+      <End Role="TblDepartment" EntitySet="TblDepartments" />
+      <End Role="TblEmployee" EntitySet="TblEmployees" />
+    </AssociationSet>
+  </EntityContainer>
 </Schema>

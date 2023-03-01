@@ -34,10 +34,61 @@
     <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
     <Property Name="AlternatePhoneNumber" Type="nvarchar" MaxLength="50" />
     <Property Name="IsActive" Type="bit" />
+    <Property Name="DesignationId" Type="int" />
+    <Property Name="ProfileImageName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DepartmentId" Type="int" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="PermanentAddress" Type="nvarchar(max)" />
+    <Property Name="TemporaryAddress" Type="nvarchar(max)" />
+    <Property Name="Pincode" Type="int" />
+    <Property Name="InstitutionName" Type="nvarchar(max)" />
+    <Property Name="CourseName" Type="nvarchar(max)" />
+    <Property Name="CourseStartDate" Type="date" />
+    <Property Name="CourseEndDate" Type="date" />
+    <Property Name="Grade" Type="nvarchar(max)" />
+    <Property Name="Degree" Type="nvarchar" MaxLength="50" />
+    <Property Name="CompanyName" Type="nvarchar(max)" />
+    <Property Name="LastJobLocation" Type="nvarchar(max)" />
+    <Property Name="JobPosition" Type="nvarchar(max)" />
+    <Property Name="FromPeriod" Type="date" />
+    <Property Name="ToPeriod" Type="date" />
+    <Property Name="Gender" Type="int" />
   </EntityType>
+  <Association Name="fk_designationId">
+    <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
+    <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Designation">
+        <PropertyRef Name="DesignationId" />
+      </Principal>
+      <Dependent Role="TblEmployee">
+        <PropertyRef Name="DesignationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_despartmentId">
+    <End Role="TblDepartment" Type="Self.TblDepartment" Multiplicity="0..1" />
+    <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TblDepartment">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="TblEmployee">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="MVCProjectModelStoreContainer">
     <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblDepartment" EntityType="Self.TblDepartment" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TblEmployee" EntityType="Self.TblEmployee" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_designationId" Association="Self.fk_designationId">
+      <End Role="Designation" EntitySet="Designation" />
+      <End Role="TblEmployee" EntitySet="TblEmployee" />
+    </AssociationSet>
+    <AssociationSet Name="fk_despartmentId" Association="Self.fk_despartmentId">
+      <End Role="TblDepartment" EntitySet="TblDepartment" />
+      <End Role="TblEmployee" EntitySet="TblEmployee" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>
