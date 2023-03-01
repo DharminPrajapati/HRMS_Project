@@ -220,6 +220,8 @@
         height: 100%;
         position: fixed;
         z-index: 998;
+        background: linear-gradient(#010101, #324aa0), #1d2544;
+        ;
     }
 
 body .container.body .right_col {
@@ -236,7 +238,7 @@ body .container.body .right_col {
 .nav_title {
     width: 230px;
     float: left;
-    background: #fff;
+    background: #00c5fb;
     border-bottom: 1px solid #D9DEE4;
     border-radius: 0;
     height: 57px;
@@ -247,10 +249,12 @@ body .container.body .right_col {
 }
 
     .nav_title a img {
-    margin-left: 5px;
-    max-height: 50px;
-    max-width: 170px;
-}
+        margin-left: 45px;
+        max-height: 43px;
+        max-width: 155px;
+        background: #00c5fb;
+        margin-top: -6px;
+    }
 
 @media (max-width: 1200px) {
     .x_title h2 {
@@ -391,7 +395,7 @@ body .container.body .right_col {
 .main_container .top_nav {
     display: block;
     margin-left: 230px;
-    background: #fff;
+    background: linear-gradient(to right, #00c5fb 0%, #0253cc 100%);
     border-bottom: 1px solid #D9DEE4;
     position: fixed;
     z-index: 997;
@@ -528,7 +532,7 @@ table.no-margin .progress {
 
 @media (max-width: 491px) {
     .top_nav .navbar-right {
-       /* width: 50%;*/
+        /* width: 50%;*/
     }
 }
 
@@ -574,7 +578,7 @@ table.no-margin .progress {
 }
 
     .nav.side-menu > li > a i {
-        width: 16px;
+        width: 31px;
     }
 
     .nav.side-menu > li > a:hover {
@@ -589,7 +593,6 @@ table.no-margin .progress {
 
 .nav.child_menu {
     display: none;
-    border-bottom: 1px solid #4a5a96;
 }
 
     .nav.child_menu li {
@@ -597,7 +600,7 @@ table.no-margin .progress {
     }
 
 .nav-md ul.nav.child_menu li:before {
-    background: #323750;
+    background: linear-gradient(#010101, #324aa0), #1d2544;
     bottom: auto;
     content: "";
     height: 8px;
@@ -623,7 +626,7 @@ table.no-margin .progress {
 .nav.child_menu > li > a {
     color: #E7E7E7;
     font-weight: 500;
-    border-bottom: 1px solid #292e46;
+    padding: 22px;
 }
 
     .nav.child_menu > li > a i {
@@ -666,8 +669,8 @@ table.no-margin .progress {
 
 .nav.side-menu > li.active > a {
     text-shadow: rgba(0,0,0,0.25) 0 -1px 0;
-    background: linear-gradient(#313d6b, #313e6d), #1d2544;
-    box-shadow: rgba(0,0,0,0.25) 0 1px 0, inset rgba(255,255,255,0.16) 0 1px 0;
+    background: linear-gradient(#000000, #313e6d), #1d2544;
+    margin-top: 6px;
 }
 
 .navbar-brand,
@@ -729,17 +732,16 @@ table.no-margin .progress {
     }
 
         .toggle a i {
-            font-size: 16px;
-            color: #1d2544;
-            BORDER: 1PX SOLID #1d2544;
-            PADDING: 7PX;
+            font-size: 24px;
+            color: #ffffff;
+            PADDING: 16PX;
             border-radius: 3px;
         }
 
 .nav.child_menu > li > a {
     color: rgba(255,255,255,0.75);
     font-size: 12px;
-    padding: 9px;
+    padding: 13px;
 }
 
 .panel_toolbox {
@@ -1416,7 +1418,6 @@ ul.project_files li {
 .vmenuright {
     float: right;
     margin: 0px 0px 0px 0px;
-    border-right: 1px solid #d9dee4;
     padding: 3px 0 0 10px;
 }
 
@@ -1468,7 +1469,6 @@ ul.project_files li {
 
 .nav-sm .toggle a i {
     color: #FFF;
-    BORDER: 1PX SOLID #FFF;
 }
 
 .nicescroll-rails {
