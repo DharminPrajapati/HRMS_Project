@@ -7,13 +7,15 @@
         using System.Linq;
         using System.Net;
         using System.Net.Http;
-        using System.Web.Http;
+    using System.Text;
+    using System.Web.Http;
         using MVCProject.Api.Models;
         using MVCProject.Api.Utilities;
         using MVCProject.Api.ViewModel;
         using MVCProject.Common.Resources;
-        #endregion
-        public class EmployeeController : BaseController
+    using Newtonsoft.Json;
+    #endregion
+    public class EmployeeController : BaseController
         {
             private MVCProjectEntities entities;
 
@@ -44,44 +46,88 @@
         ///Get All Employee Details
 
 
-        [HttpGet]
-        public ApiResponse GetAllEmployees()
+        [HttpPost]
+        public ApiResponse GetAllEmployees(PagingParams employeeDetailsParams)
         {
-            //var employeelist = this.entities.TblEmployee.ToList();
-            var employeelist = this.entities.TblEmployees.Select(d => new {
-                EmployeeId = d.EmployeeId,
-                FirstName = d.FirstName,
-                LastName = d.LastName,
-                Email = d.Email,
-                Password=d.Password,
-                JoiningDate = d.JoiningDate,
-                PhoneNumber = d.PhoneNumber,
-                AlternatePhoneNumber = d.AlternatePhoneNumber,
-                Designation = d.DesignationId,
-                Department=d.DepartmentId,
-                BirthDate=d.BirthDate,
-                Gender=d.Gender,
-                PermanentAddress = d.PermanentAddress,
-                TemporaryAddress = d.TemporaryAddress,
-                Pincode = d.Pincode,
-                InstitutionName = d.InstitutionName,
-                CourseName = d.CourseName,
-                CourseStartDate = d.CourseStartDate,
-                CourseEndDate = d.CourseEndDate,
-                Grade = d.Grade,
-                Degree = d.Degree,
-                CompanyName = d.CompanyName,
-                LastJobLocation = d.LastJobLocation,
-                JobPosition = d.JobPosition,
-                FromPeriod = d.FromPeriod,
-                ToPeriod = d.ToPeriod,
-                IsActive = d.IsActive
-            }) ;
+            //if (string.IsNullOrWhiteSpace(employeeDetailParams.Search))
+            //{
+            //    employeeDetailParams.Search = string.Empty;
+            //}
+
+            var employeelist = (from d in this.entities.TblEmployees.AsEnumerable()
+                                   let TotalRecords = this.entities.TblEmployees.AsEnumerable().Count()
+                                   select new
+                                   {
+                                       //var employeelist = this.entities.TblEmployee.ToList();
+                                      
+                                        EmployeeId = d.EmployeeId,
+                                        FirstName = d.FirstName,
+                                        LastName = d.LastName,
+                                        Email = d.Email,
+                                        Password=d.Password,
+                                        JoiningDate = d.JoiningDate,
+                                        PhoneNumber = d.PhoneNumber,
+                                        AlternatePhoneNumber = d.AlternatePhoneNumber,
+                                        Designation = d.DesignationId,
+                                        Department=d.DepartmentId,
+                                        BirthDate=d.BirthDate,
+                                        Gender=d.Gender,
+                                        PermanentAddress = d.PermanentAddress,
+                                        TemporaryAddress = d.TemporaryAddress,
+                                        Pincode = d.Pincode,
+                                        InstitutionName = d.InstitutionName,
+                                        CourseName = d.CourseName,
+                                        CourseStartDate = d.CourseStartDate,
+                                        CourseEndDate = d.CourseEndDate,
+                                        Grade = d.Grade,
+                                        Degree = d.Degree,
+                                        CompanyName = d.CompanyName,
+                                        LastJobLocation = d.LastJobLocation,
+                                        JobPosition = d.JobPosition,
+                                        FromPeriod = d.FromPeriod,
+                                        ToPeriod = d.ToPeriod,
+                                        IsActive = d.IsActive
+                             }).AsQueryable().Skip((employeeDetailsParams.CurrentPageNumber - 1) * employeeDetailsParams.PageSize).Take(employeeDetailsParams.PageSize);
            
             return this.Response(Utilities.MessageTypes.Success, string.Empty, employeelist);
 
         }
+        // [HttpGet]
+        //public ApiResponse GetAllEmployees()
+        //{
+            //var employeelist = this.entities.TblEmployees.Select(d => new {
+            //    EmployeeId = d.EmployeeId,
+            //    FirstName = d.FirstName,
+            //    LastName = d.LastName,
+            //    Email = d.Email,
+            //    Password = d.Password,
+            //    JoiningDate = d.JoiningDate,
+            //    PhoneNumber = d.PhoneNumber,
+            //    AlternatePhoneNumber = d.AlternatePhoneNumber,
+            //    Designation = d.DesignationId,
+            //    Department = d.DepartmentId,
+            //    BirthDate = d.BirthDate,
+            //    Gender = d.Gender,
+            //    PermanentAddress = d.PermanentAddress,
+            //    TemporaryAddress = d.TemporaryAddress,
+            //    Pincode = d.Pincode,
+            //    InstitutionName = d.InstitutionName,
+            //    CourseName = d.CourseName,
+            //    CourseStartDate = d.CourseStartDate,
+            //    CourseEndDate = d.CourseEndDate,
+            //    Grade = d.Grade,
+            //    Degree = d.Degree,
+            //    CompanyName = d.CompanyName,
+            //    LastJobLocation = d.LastJobLocation,
+            //    JobPosition = d.JobPosition,
+            //    FromPeriod = d.FromPeriod,
+            //    ToPeriod = d.ToPeriod,
+            //    IsActive = d.IsActive
+            //});
+    //         return this.Response(Utilities.MessageTypes.Success, string.Empty, employeelist);
 
+    //}
+   
         [HttpGet]
 
             public ApiResponse GetEmployeeList(bool isGetAll = false)
@@ -90,10 +136,54 @@
                 return this.Response(Utilities.MessageTypes.Success, string.Empty, result);
             }
 
-            /// <summary>
-            /// Get Employees By Id
-            /// </summary>
-            [HttpGet]
+        [HttpGet]
+       
+        public ApiResponse CreateEmployeeListReport()
+        {
+            var employeeDetail = this.entities.TblEmployees.Select(d => new
+                      {
+                          EmployeeId = d.EmployeeId,
+                          FirstName = d.FirstName,
+                          LastName = d.LastName,
+                          Email = d.Email,
+                          Password = d.Password,
+                          JoiningDate = d.JoiningDate,
+                          PhoneNumber = d.PhoneNumber,
+                          AlternatePhoneNumber = d.AlternatePhoneNumber,
+                          DesignationId = d.DesignationId,
+                          DepartmentId = d.DepartmentId,
+                          BirthDate = d.BirthDate,
+                          Gender = d.Gender,
+                          PermanentAddress = d.PermanentAddress,
+                          TemporaryAddress = d.TemporaryAddress,
+                          Pincode = d.Pincode,
+                          InstitutionName = d.InstitutionName,
+                          CourseName = d.CourseName,
+                          CourseStartDate = d.CourseStartDate,
+                          CourseEndDate = d.CourseEndDate,
+                          Grade = d.Grade,
+                          Degree = d.Degree,
+                          CompanyName = d.CompanyName,
+                          LastJobLocation = d.LastJobLocation,
+                          JobPosition = d.JobPosition,
+                          FromPeriod = d.FromPeriod,
+                          ToPeriod = d.ToPeriod,
+                          IsActive = d.IsActive
+                      }).SingleOrDefault();
+
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+
+            
+            response.Content = new StringContent(JsonConvert.SerializeObject(employeeDetail), Encoding.UTF8, "application/json");
+
+            return  this.Response(Utilities.MessageTypes.Success, string.Empty, response);
+        }
+
+
+        /// <summary>
+        /// Get Employees By Id
+        /// </summary>
+        [HttpGet]
 
             public ApiResponse GetEmployeeById(int employeeId)
             {

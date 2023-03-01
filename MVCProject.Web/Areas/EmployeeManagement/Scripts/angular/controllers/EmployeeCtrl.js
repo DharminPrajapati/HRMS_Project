@@ -51,32 +51,29 @@
 
         $scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees)
         {
-            if (frmEmployees.$valid)
-            {
+            if (frmEmployees.$valid) {
                 debugger;
-                EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res)
-                {
-                    if (res)
-                    {
+                EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res) {
+                    if (res) {
                         var data = res.data;
-                        if (data.MessageType == messageTypes.Success && data.IsAuthenticated)
-                        {
+                        if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
                             $scope.ClearFormData(frmEmployees);
                             toastr.success(data.Message, successTitle);
                             $scope.tableParams.reload();
                         }
-                        else if (data.MessageType == messageTypes.Error)
-                        {
+                        else if (data.MessageType == messageTypes.Error) {
                             toastr.error(data.Message, errorTitle);
                         }
-                        else if (data.MessageType == messageTypes.Warning)
-                        {
+                        else if (data.MessageType == messageTypes.Warning) {
                             toastr.warning(data.Message, warningTitle);
                         }
                     }
-                
+
                 });
             }
+            //else {
+            //    toastr.error("Please fill All Fields", errorTitle);
+            //}
         }
 
         $scope.EditEmployeeDetails = function (employeeId)
@@ -126,7 +123,8 @@
                         if (res.data.MessageType == messageTypes.Success) {
                             $defer.resolve(res.data.Result);
                             if (res.data.Result.length == 0) { }
-                            else { params.total(res.data.Result[0].TotalRecords); }
+                            else { params.total(50); }
+                            /*else { params.total(res.data.Result[0].TotalRecords); }*/
                            
                         }
                     }
@@ -196,6 +194,7 @@
             });
         };
         $scope.uploadFile = function () {
+            debugger;
             var fileInput = document.getElementById('file');
             //fileInput.click();
 
@@ -207,9 +206,9 @@
             var payload = new FormData();
             payload.append("stuff", "some string");
             payload.append("file", file);
-           // var url = $rootScope.apiURL + '/Upload/UploadImage'
+           var url = $rootScope.apiURL + '/Upload/UploadImage'
 
-            var url = $rootScope.apiURL +'/UploadPrec/UploadFile'
+            //var url = $rootScope.apiURL +'/UploadPrec/UploadFile'
             //use the service to upload the file
             FileService.uploadFile(url, payload).then(function (response) {
 
@@ -228,8 +227,16 @@
                 console.log($scope.Departments);
             });
         };
+
+        //Create Excel Report of Employees
+        $scope.createReport = function () {
+            if (!$rootScope.permission.CanWrite) { return; }
+            var filename = "Employee_" + $rootScope.fileDateName + ".xls";
+            CommonFunctions.DownloadReport('/Employee/CreateEmployeeListReport', filename);
+        };
     }
     angular.module("MVCApp").factory('FileService', ['$http', function ($http) {
+      /*  debugger;*/
         return {
             uploadFile: function (url, file) {
                 return $http({
@@ -245,6 +252,9 @@
             }
         };
     }]);
+
+
+      
 })();
 
 
