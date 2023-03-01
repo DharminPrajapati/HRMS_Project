@@ -50,7 +50,7 @@ h2 {
 
 h3 {
     line-height: 30px;
-    background: linear-gradient(to left, #ffffff 0%, #0166d4 100%);
+    background: linear-gradient(to left, #a0def1 0%, #0166d4 100%);
 }
 
     h3 small {
@@ -430,7 +430,7 @@ a:focus {
     padding: 20px;
     box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.90), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
     -webkit-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     -moz-border-radius: 5px;
     background-clip: padding-box;
     margin-bottom: 60px;
@@ -7348,8 +7348,13 @@ multilevel-accordion uib-accordion .panel-group {
     max-width: 270px;
 }
 
-
-
+.strip i{
+    margin-left:6px;
+    
+}
+.gender{
+   margin-left:90px;
+}
 @media (max-width: 999px) {
     .div-timeline, .div-status, .div-action-type, .div-priority, .div-action-type, .div-type {
         margin-bottom: 10px;

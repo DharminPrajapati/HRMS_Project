@@ -46,10 +46,10 @@
                 <!-- start Employee form -->
                 <form name="frmEmployees" ng-submit="SaveEmployeeDetails(emplyeeDetailScope,frmEmployees)" ng-init="Init()" novalidate>
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <h3>
-                                    <i class="fa fa-id-card "></i>
+                                <h3 class="strip">
+                                    <i class="fa fa-id-card" ></i>
                                     Profile Details
                                 </h3>
                             </div>
@@ -184,9 +184,9 @@
                         </div>*@
                     <!-- Personal Details Form -->
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <h3>
+                                <h3 class="strip">
                                     <i class="fa fa-address-book-o"></i>
                                     Personal Details
                                 </h3>
@@ -209,11 +209,11 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>
+                            <label class="gender">
                                 @Resource.Gender
                             </label>
 
-                            <div class="radio-custom">
+                            <div class="radio-custom gender">
                                 <input type="radio" name="rdGender" id="rdMale" ng-value="1" ng-model="emplyeeDetailScope.Gender" ng-required="true" ng-disabled="isDisabled" />
                                 <label for="rdMale">
                                     Male
@@ -269,9 +269,9 @@
                             </h4>
                         </div>*@
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <h3>
+                                <h3 class="strip">
                                     <i class="fa fa-university"></i>
                                     Education Details
                                 </h3>
@@ -366,9 +366,9 @@
                             </h4>
                         </div>*@
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <h3>
+                                <h3 class="strip">
                                     <i class="fa fa-history"></i>
                                     Experience Details
                                 </h3>
