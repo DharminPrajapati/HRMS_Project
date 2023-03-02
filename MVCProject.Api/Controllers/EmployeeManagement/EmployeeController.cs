@@ -49,9 +49,9 @@
         [HttpPost]
         public ApiResponse GetAllEmployees(PagingParams employeeDetailsParams)
         {
-            //if (string.IsNullOrWhiteSpace(employeeDetailsParams.Search))
+            //if (string.IsNullOrWhiteSpace(employeeDetailParams.Search))
             //{
-            //    employeeDetailsParams.Search = string.Empty;
+            //    employeeDetailParams.Search = string.Empty;
             //}
 
             var employeelist = (from d in this.entities.TblEmployees.AsEnumerable()
@@ -137,6 +137,7 @@
             }
 
         [HttpGet]
+       
         public ApiResponse CreateEmployeeListReport()
         {
             var employeeDetail = this.entities.TblEmployees.Select(d => new
@@ -144,7 +145,30 @@
                           EmployeeId = d.EmployeeId,
                           FirstName = d.FirstName,
                           LastName = d.LastName,
-                          Email = d.Email
+                          Email = d.Email,
+                          Password = d.Password,
+                          JoiningDate = d.JoiningDate,
+                          PhoneNumber = d.PhoneNumber,
+                          AlternatePhoneNumber = d.AlternatePhoneNumber,
+                          DesignationId = d.DesignationId,
+                          DepartmentId = d.DepartmentId,
+                          BirthDate = d.BirthDate,
+                          Gender = d.Gender,
+                          PermanentAddress = d.PermanentAddress,
+                          TemporaryAddress = d.TemporaryAddress,
+                          Pincode = d.Pincode,
+                          InstitutionName = d.InstitutionName,
+                          CourseName = d.CourseName,
+                          CourseStartDate = d.CourseStartDate,
+                          CourseEndDate = d.CourseEndDate,
+                          Grade = d.Grade,
+                          Degree = d.Degree,
+                          CompanyName = d.CompanyName,
+                          LastJobLocation = d.LastJobLocation,
+                          JobPosition = d.JobPosition,
+                          FromPeriod = d.FromPeriod,
+                          ToPeriod = d.ToPeriod,
+                          IsActive = d.IsActive
                       }).SingleOrDefault();
 
             var response = new HttpResponseMessage(HttpStatusCode.OK);

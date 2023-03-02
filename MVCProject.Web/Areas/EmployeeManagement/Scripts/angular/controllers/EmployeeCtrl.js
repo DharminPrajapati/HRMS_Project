@@ -51,11 +51,7 @@
 
         $scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees)
         {
-            
             if (frmEmployees.$valid) {
-                //$("#txtEmployee").focus();
-                //CommonFunctions.ScrollToTop();
-                //toastr.error("Please fill All Fields", errorTitle);
                 debugger;
                 EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res) {
                     if (res) {

@@ -67,7 +67,7 @@
                                 <input type="text" class="form-control" id="txtEmployee" ng-focus="true" name="txtEmployee" ng-model="emplyeeDetailScope.FirstName" required tabindex="1" placeholder="First Name" maxlength="250">
                                 <div class="c">
                                 </div>
-                                <div class="label label-danger" data-ng-show="frmEmployees.txtEmployee.$dirty && frmEmployees.txtEmployee.$invalid">
+                                <div class="label label-danger" data-ng-show="frmEmployees.txtEmployee.$dirty">
                                     <span data-ng-show="frmEmployees.txtEmployee.$error.required">@Resource.FirstNameRequired</span>
                                 </div>
                             </div>
@@ -176,11 +176,7 @@
                     </div>
                         </div>
                     <div class="row">
-                       
                         <div class="col-md-10">
-                            <label>
-                                Profile Image
-                            </label>
                             <input type="file" id="file" name="file" tabindex="27" />
                         </div>
                     </div>
@@ -508,7 +504,7 @@
                                             {{emp.Email}}
                                         </td>
                                         <td data-title="'Gender'" sortable="'Gender'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{emp.Gender}}">
-                                            {{emp.Gender == 1 ? 'Male' : 'Female'}}
+                                            {{emp.Gender}}
                                         </td>
                                         <td data-title="'Phone Number'" sortable="'PhoneNumber'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{emp.PhoneNumber}}">
                                             {{emp.PhoneNumber}}
