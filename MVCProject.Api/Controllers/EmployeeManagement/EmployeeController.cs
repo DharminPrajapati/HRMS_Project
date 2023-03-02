@@ -46,7 +46,7 @@
         ///Get All Employee Details
 
 
-        [HttpPost]
+        [HttpPost   ]
         public ApiResponse GetAllEmployees(PagingParams employeeDetailsParams)
         {
             //if (string.IsNullOrWhiteSpace(employeeDetailParams.Search))

@@ -873,4 +873,7 @@
   <data name="LastNameRequired" xml:space="preserve">
     <value>LastName Required</value>
   </data>
+  <data name="Attendance" xml:space="preserve">
+    <value>Attendance</value>
+  </data>
 </root>
