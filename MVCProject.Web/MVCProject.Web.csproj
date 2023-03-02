@@ -157,6 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Areas\Attendance\AttendanceAreaRegistration.cs" />
+    <Compile Include="Areas\Attendance\Controllers\AttendanceController.cs" />
     <Compile Include="Areas\Configuration\ConfigurationAreaRegistration.cs" />
     <Compile Include="Areas\Configuration\Controllers\ApplicationController.cs" />
     <Compile Include="Areas\Configuration\Controllers\DepartmentController.cs" />
@@ -210,6 +212,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\WebApiConfig.cs" />
+    <Content Include="Areas\Attendance\Scripts\angular\controllers\AttendanceCtrl.js" />
+    <Content Include="Areas\Attendance\Scripts\angular\services\AttendanceService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ApplicationCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DepartmentCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DesignationCtrl.js" />
@@ -422,6 +426,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Attendance\Models\" />
+    <Folder Include="Areas\Attendance\Views\Shared\" />
     <Folder Include="Areas\Configuration\Models\" />
     <Folder Include="Areas\Configuration\Views\Shared\" />
     <Folder Include="Areas\EmployeeManagement\Models\" />
@@ -465,6 +471,9 @@
     <Content Include="Areas\Configuration\Views\Department\Index.cshtml" />
     <Content Include="Areas\EmployeeManagement\Views\Employee\Index.cshtml" />
     <Content Include="Areas\EmployeeManagement\Views\Web.config" />
+    <Content Include="Areas\Attendance\Views\Web.config" />
+    <Content Include="Areas\Attendance\Views\Attendance\HRAttendanceView.cshtml" />
+    <Content Include="Areas\Attendance\Views\Attendance\EmployeeAttendanceView.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />
