@@ -48,9 +48,71 @@
         };
 
         // Add/Update Employee Details
-
-        $scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees)
-        {
+        $scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees) {
+            if (!$("#txtEmployee").val()) {
+                toastr.warning("Please fill the First Name", warningTitle);
+                $("#txtEmployee").focus();
+            }
+            else if (!$("#txtEmpln").val()) {
+                toastr.warning("Please fill the Last Name", warningTitle);
+                $("#txtEmpln").focus();
+            }
+            else if (!$("#email").val()) {
+                toastr.warning("Please fill Email", warningTitle);
+                $("#email").focus();
+            }
+            else if (!$("#joindate").val()) {
+                toastr.warning("Please fill the Joining Date", warningTitle);
+                $("#joindate").focus();
+            }
+            else if (!$("#phno").val()) {
+                toastr.warning("Please fill Phone Number", warningTitle);
+                $("#phno").focus();
+            }
+            else if (!$("#selectDesignation").val()) {
+                toastr.warning("Please fill Designation", warningTitle);
+                $("#selectDesignation").focus();
+            }
+            else if (!$("#selectDepartments").val()) {
+                toastr.warning("Please fill Department", warningTitle);
+                $("#selectDepartments").focus();
+            }
+            else if (!$("#birthdate").val()) {
+                toastr.warning("Please fill Birth Date", warningTitle);
+                $("#birthdate").focus();
+            }
+            else if (!$("#pincode").val()) {
+                toastr.warning("Please fill Pincode", warningTitle);
+                $("#pincode").focus();
+            }
+            else if (!$("#permanentAddress").val()) {
+                toastr.warning("Please fill Address", warningTitle);
+                $("#permanentAddress").focus();
+            }
+            else if (!$("#institutename").val()) {
+                toastr.warning("Please fill Institution Name", warningTitle);
+                $("#institutename").focus();
+            }
+            else if (!$("#coursename").val()) {
+                toastr.warning("Please fill Course Name", warningTitle);
+                $("#coursename").focus();
+            }
+            else if (!$("#coursestartdate").val()) {
+                toastr.warning("Please fill Course Start Date", warningTitle);
+                $("#coursestartdate").focus();
+            }
+            else if (!$("#courseEnddate").val()) {
+                toastr.warning("Please fill Course End Date", warningTitle);
+                $("#courseEnddate").focus();
+            }
+            else if (!$("#grade").val()) {
+                toastr.warning("Please fill Grade", warningTitle);
+                $("#grade").focus();
+            }
+            else if (!$("#degree").val()) {
+                toastr.warning("Please fill Degree", warningTitle);
+                $("#degree").focus();
+            }
             if (frmEmployees.$valid) {
                 debugger;
                 EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res) {
@@ -71,10 +133,34 @@
 
                 });
             }
-            //else {
-            //    toastr.error("Please fill All Fields", errorTitle);
-            //}
+            
         }
+        //$scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees)
+        //{
+        //    if (frmEmployees.$valid) {
+        //        debugger;
+        //        EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res) {
+        //            if (res) {
+        //                var data = res.data;
+        //                if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
+        //                    $scope.ClearFormData(frmEmployees);
+        //                    toastr.success(data.Message, successTitle);
+        //                    $scope.tableParams.reload();
+        //                }
+        //                else if (data.MessageType == messageTypes.Error) {
+        //                    toastr.error(data.Message, errorTitle);
+        //                }
+        //                else if (data.MessageType == messageTypes.Warning) {
+        //                    toastr.warning(data.Message, warningTitle);
+        //                }
+        //            }
+
+        //        });
+        //    }
+        //    //else {
+        //    //    toastr.error("Please fill All Fields", errorTitle);
+        //    //}
+        //}
 
         $scope.EditEmployeeDetails = function (employeeId)
         {

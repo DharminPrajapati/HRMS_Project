@@ -405,66 +405,55 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        Company Name <span class="required-field">*</span>
+                                        Company Name 
                                     </label>
-                                    <input type="text" class="form-control" id="companyname" ng-focus="true" name="companyname" ng-model="emplyeeDetailScope.CompanyName" required tabindex="22" placeholder="Company Name" maxlength="250">
+                                    <input type="text" class="form-control" id="companyname" ng-focus="true" name="companyname" ng-model="emplyeeDetailScope.CompanyName" @*required*@ tabindex="22" placeholder="Company Name" maxlength="250">
                                     <div class="c">
-                                    </div>
-                                    <div class="label label-danger" data-ng-show="frmEmployees.companyname.$dirty && frmEmployees.companyname.$invalid">
-                                        <span data-ng-show="frmEmployees.companyname.$error.required">Company Name Required</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        Last Job Location <span class="required-field">*</span>
+                                        Last Job Location 
                                     </label>
-                                    <input type="text" class="form-control" id="lastjoblocation" ng-focus="true" name="lastjoblocation" ng-model="emplyeeDetailScope.LastJobLocation" required tabindex="23" placeholder="Last job Location" maxlength="250">
+                                    <input type="text" class="form-control" id="lastjoblocation" ng-focus="true" name="lastjoblocation" ng-model="emplyeeDetailScope.LastJobLocation"  tabindex="23" placeholder="Last job Location" maxlength="250">
                                     <div class="c">
                                     </div>
-                                    <div class="label label-danger" data-ng-show="frmEmployees.lastjoblocation.$dirty && frmEmployees.lastjoblocation.$invalid">
-                                        <span data-ng-show="frmEmployees.lastjoblocation.$error.required">Degree Required</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        Job Position <span class="required-field">*</span>
+                                        Job Position 
                                     </label>
-                                    <input type="text" class="form-control" id="jobposition" ng-focus="true" name="jobposition" ng-model="emplyeeDetailScope.JobPosition" required tabindex="24" placeholder="Job Position" maxlength="250">
+                                    <input type="text" class="form-control" id="jobposition" ng-focus="true" name="jobposition" ng-model="emplyeeDetailScope.JobPosition"  tabindex="24" placeholder="Job Position" maxlength="250">
                                     <div class="c">
                                     </div>
-                                    <div class="label label-danger" data-ng-show="frmEmployees.jobposition.$dirty && frmEmployees.jobposition.$invalid">
-                                        <span data-ng-show="frmEmployees.jobposition.$error.required">Grade Required</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        From Period <span class="required-field">*</span>
+                                        From Period 
                                     </label>
-                                    <input type="date" class="form-control" id="fromperiod" ng-focus="true" name="fromperiod" ng-model="emplyeeDetailScope.FromPeriod" required tabindex="25" placeholder="Select From Period">
+                                    <input type="date" class="form-control" id="fromperiod" ng-focus="true" name="fromperiod" ng-model="emplyeeDetailScope.FromPeriod"  tabindex="25" placeholder="Select From Period">
                                     <div class="c">
                                     </div>
-                                    <div class="label label-danger" data-ng-show="frmEmployees.fromperiod.$dirty && frmEmployees.fromperiod.$invalid">
-                                        <span data-ng-show="frmEmployees.fromperiod.$error.required">From Period Required</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        To Period <span class="required-field">*</span>
+                                        To Period
                                     </label>
-                                    <input type="date" class="form-control" id="toperiod" ng-focus="true" name="toperiod" ng-model="emplyeeDetailScope.ToPeriod" required tabindex="26" placeholder="Select From Period">
+                                    <input type="date" class="form-control" id="toperiod" ng-focus="true" name="toperiod" ng-model="emplyeeDetailScope.ToPeriod"  tabindex="26" placeholder="Select From Period">
                                     <div class="c">
                                     </div>
-                                    <div class="label label-danger" data-ng-show="frmEmployees.toperiod.$dirty && frmEmployees.toperiod.$invalid">
-                                        <span data-ng-show="frmEmployees.toperiod.$error.required">To Period Required</span>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -473,7 +462,7 @@
                             <div class="col-md-10">
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
-                                            ng-disabled="frmEmployees.txtEmployee.$invalid" tabindex="28" @*ng-click="uploadFile()"*@>
+                                            @*ng-disabled="frmEmployees.txtEmployee.$invalid"*@ tabindex="28">
                                         {{emplyeeDetailScope.EmployeeId > 0 ? '@Resource.Update' : '@Resource.Save'}}
                                     </button>
                                     <button type="button" ng-click="ClearFormData(frmEmployees)" class="btn btn-info waves-effect w-md waves-light m-b-5"
