@@ -50,7 +50,7 @@ h2 {
 
 h3 {
     line-height: 30px;
-    background: linear-gradient(to left, #a0def1 0%, #0166d4 100%);
+    background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%);
 }
 
     h3 small {
@@ -80,7 +80,7 @@ p {
 
 * {
     outline: none !important;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 b {
@@ -428,7 +428,7 @@ a:focus {
 /* Card Box */
 .card-box {
     padding: 20px;
-    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.90), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
+    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.20), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
     -webkit-border-radius: 5px;
     border-radius: 10px;
     -moz-border-radius: 5px;
@@ -730,21 +730,25 @@ textarea.form-control {
 }
 
 .form-control {
-    background-color: #FFFFFF;
-    border: 1px solid #E3E3E3;
-    border-radius: 4px;
-    color: #565656;
-    padding: 7px 12px;
-    font-size: 12px;
-    /*height: 38px;*/
-    max-width: 100%;
-    -webkit-box-shadow: none;
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.375rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    border-color: #e3e3e3;
     box-shadow: none;
-    -webkit-transition: all 300ms linear;
-    -moz-transition: all 300ms linear;
-    -o-transition: all 300ms linear;
-    -ms-transition: all 300ms linear;
-    transition: all 300ms linear;
+    font-size: 15px;
+    height: 44px;
 }
 
     .form-control:focus {
@@ -5028,6 +5032,46 @@ table.dataTable td.focus {
     box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
+.loader-wrapper {
+    background: #fff;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loder-crcil {
+    box-shadow: 3px 0 0px #000;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    animation: loader 0.5s linear infinite;
+}
+
+.text {
+    box-shadow: 0 0 2px #afaaaa;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 0;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 100px;
+    font-family: fantasy;
+    font-size: 20px;
+    letter-spacing: 0.5px;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    0% {
+        transform: rotate(-360deg);
+    }
+}
+
 /*==============ANIMATIONS=================*/
 
 /*==============ROTATE=====================*/
@@ -5450,7 +5494,8 @@ table.dataTable td.focus {
     padding: 0px;
     margin: 0px;
     font-size: 20px;
-    color: #f7f2f2;
+    color: black;
+    
 }
 
 
@@ -5462,14 +5507,22 @@ table.dataTable td.focus {
     border-left: 4px solid #DDD;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
     color: white;
+    + filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FDFCFC', endColorstr='#FBF9F9');
+    background-color: #F2F0F0;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FDFCFC), to(#F2F0F0), color-stop(0.5, #FBF9F9), color-stop(0.5, #F7F5F6));
+    background-image: -webkit-linear-gradient(top, #FDFCFC, #FBF9F9 50%, #F7F5F6 50%, #F2F0F0);
+    background-image: -moz-linear-gradient(top, #FDFCFC, #FBF9F9 50%, #F7F5F6 50%, #F2F0F0);
+    background-image: -o-linear-gradient(top, #FDFCFC, #FBF9F9 50%, #F7F5F6 50%, #F2F0F0);
+    background-image: -ms-linear-gradient(top, #FDFCFC, #FBF9F9 50%, #F7F5F6 50%, #F2F0F0);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .title-icon {
-    border-color: #0264d3;
+    border-color: #34444c;
 }
 
 .icon-position {
-    background-color: #1D2544;
+    background-color: #fe8655;
     position: absolute;
     top: 50%;
     margin-top: -14px;
@@ -5677,10 +5730,12 @@ aside.left-panel.collapsed .navigation > ul > li > a .badge {
 
 .navigation ul li a .nav-label {
     vertical-align: middle;
+    font-size: 15px;
 }
 
 .collapsed .navigation ul li a i {
     float: none;
+
 }
 /*aside.left-panel.collapsed .navigation ul li ul { display:none !important;}*/
 
@@ -7364,3 +7419,53 @@ multilevel-accordion uib-accordion .panel-group {
         margin-top: 10px;
     }
 }
+
+.required {
+    width: 50px;
+    margin-bottom: 50px;
+}
+
+.input-datepicker,
+.input-daterange,
+.input-daterange .input-group-addon {
+    position: relative;
+}
+
+    .input-datepicker .form-control,
+    .input-daterange .form-control {
+        padding-left: 32px;
+    }
+
+    .input-datepicker:before,
+    .input-daterange:before,
+    .input-daterange .input-group-addon:before {
+        content: "\e916";
+        font-family: 'Material Icons' !important;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 16px;
+        line-height: 1;
+        letter-spacing: normal;
+        text-transform: none;
+        white-space: nowrap;
+        word-wrap: normal;
+        position: absolute;
+        z-index: 9;
+        pointer-events: none;
+    }
+
+    .input-datepicker:before {
+        top: 9px;
+        left: 8px;
+    }
+
+    .input-daterange:before {
+        top: 9px;
+        left: 8px;
+    }
+
+    .input-daterange .input-group-addon:before {
+        top: 9px;
+        left: 100%;
+        margin-left: 8px;
+    }

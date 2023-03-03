@@ -31,8 +31,8 @@
 
 .nav-sm .navbar.nav_title {
     width: 70px;
-    background-color: #1d2544;
-    border-bottom: 1px solid #292E45 !important;
+    background-color: #34444c;
+   
 }
 
     .nav-sm .navbar.nav_title a span {
@@ -89,7 +89,7 @@
     top: 0;
     width: 210px;
     z-index: 999;
-    background: #2d3861;
+    background: #34444c;
     display: none;
 }
 
@@ -221,7 +221,7 @@
         position: fixed;
         z-index: 998;
         background: linear-gradient(#010101, #324aa0), #1d2544;
-        ;
+        
     }
 
 body .container.body .right_col {
@@ -238,21 +238,22 @@ body .container.body .right_col {
 .nav_title {
     width: 230px;
     float: left;
-    background: #00c5fb;
+    background: #ff9a45;
     border-bottom: 1px solid #D9DEE4;
     border-radius: 0;
     height: 57px;
     line-height: 57px;
     position: fixed;
-    z-index: 999;
+    z-index: 1;
     top: 0;
+    height: 60px;
 }
 
     .nav_title a img {
         margin-left: 45px;
         max-height: 43px;
         max-width: 155px;
-        background: #00c5fb;
+        background: #ff9a45;
         margin-top: -6px;
     }
 
@@ -395,13 +396,14 @@ body .container.body .right_col {
 .main_container .top_nav {
     display: block;
     margin-left: 230px;
-    background: linear-gradient(to right, #00c5fb 0%, #0253cc 100%);
+    background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%);
     border-bottom: 1px solid #D9DEE4;
     position: fixed;
     z-index: 997;
     left: 0;
     right: 0;
     padding-right: 20px;
+    height: 60px;
 }
 
 .no-padding {
@@ -600,7 +602,7 @@ table.no-margin .progress {
     }
 
 .nav-md ul.nav.child_menu li:before {
-    background: linear-gradient(#010101, #324aa0), #1d2544;
+    background: white;
     bottom: auto;
     content: "";
     height: 8px;
@@ -1427,6 +1429,7 @@ ul.project_files li {
     border-right: 1px solid #292e46;
     padding: 3px 0 0 0;
     border-bottom: 1px solid #292e46;
+    margin-right: 9px;
 }
 
 .nav-sm .left_col .nav_title a img {
@@ -1436,7 +1439,7 @@ ul.project_files li {
 .scroll-view {
     width: 100%;
     height: 100%;
-    background: #2a426d;
+    background: #34444c;
 }
 
 .l {

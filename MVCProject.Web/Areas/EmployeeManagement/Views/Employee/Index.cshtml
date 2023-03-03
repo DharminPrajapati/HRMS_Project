@@ -52,7 +52,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <h3 class="strip">
-                                    <i class="fa fa-id-card" ></i>
+                                    <i class="fa fa-id-card"></i>
                                     Profile Details
                                 </h3>
                             </div>
@@ -99,82 +99,83 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row-offcanvas">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        Joining Date <span class="required-field">*</span>
-                                    </label>
-                                    <input type="date" class="form-control" id="joindate" ng-focus="true" name="joindate" ng-model="emplyeeDetailScope.JoiningDate" required tabindex="4" placeholder="Select JoinDate" maxlength="250">
-                                    <div class="c">
-                                    </div>
-                                    <div class="label label-danger" data-ng-show="frmEmployees.joindate.$dirty && frmEmployees.joindate.$invalid">
-                                        <span data-ng-show="frmEmployees.joindate.$error.required">Join date required</span>
-                                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Joining Date <span class="required-field">*</span>
+                                </label>
+                                <input type="date" class="form-control" id="joindate" ng-focus="true" name="joindate" ng-model="emplyeeDetailScope.JoiningDate" required tabindex="4" placeholder="Select JoinDate" maxlength="250">
+                                <div class="c">
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        Phone Number <span class="required-field">*</span>
-                                    </label>
-                                    <input type="text" class="form-control" id="phno" ng-focus="true" name="phno" integer tabindex="5" ng-model="emplyeeDetailScope.PhoneNumber" onkeypress="return event.charCode >=48 && event.charCode <=57" required placeholder="Phone Number" maxlength="10">
-                                    <div class="c">
-                                    </div>
-                                    <div class="label label-danger" data-ng-show="frmEmployees.phno.$dirty && frmEmployees.phno.$invalid">
-                                        <span data-ng-show="frmEmployees.phno.$error.required">Phone Number required</span>
-                                        <span data-ng-show="frmEmployees.phno.$error.integer">Phone Number Needs to be Integer</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        Alternate Phone Number
-                                    </label>
-                                    <input type="text" class="form-control" id="alphno" ng-focus="true" name="alphno" integer @*minlength="10"*@ ng-model="emplyeeDetailScope.AlternatePhoneNumber" onkeypress="return event.charCode >=48 && event.charCode <=57" tabindex="6" placeholder="Alternate Phone Number" maxlength="10">
-                                </div>
-                            </div>
-                            <div class="row-offcanvas">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>
-                                            Designation <span class="required-field">*</span>
-                                        </label>
-                                        <select class="form-control" id="selectDesignation" ng-model="emplyeeDetailScope.DesignationId" ng-options="a.Id as a.Name for a in Designation" ng-focus="true" name="selectDesignation" tabindex="7" required>
-                                            <option value="">Select Designation</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>
-                                            Department <span class="required-field">*</span>
-                                        </label>
-                                        <select class="form-control" id="selectDepartments" ng-model="emplyeeDetailScope.DepartmentId" ng-options="a.DeptId as a.DeptName for a in Departments" ng-focus="true" name="selectDepartments" tabindex="8" required>
-                                            <option value="">Select Department</option>
-                                        </select>
-                                    </div>
+                                <div class="label label-danger" data-ng-show="frmEmployees.joindate.$dirty && frmEmployees.joindate.$invalid">
+                                    <span data-ng-show="frmEmployees.joindate.$error.required">Join date required</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <!--IsActive -->
                             <div class="form-group">
                                 <label>
+                                    Phone Number <span class="required-field">*</span>
                                 </label>
-                                <div class="form-control-static">
-                                    <div class="checkbox checkbox-info">
-                                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="emplyeeDetailScope.IsActive"
-                                               tabindex="9" />
-                                        <label for="chkDesignationActive">
-                                            @Resource.IsActive
-                                        </label>
-                                    </div>
+                                <input type="text" class="form-control" id="phno" ng-focus="true" name="phno" integer tabindex="5" ng-model="emplyeeDetailScope.PhoneNumber" onkeypress="return event.charCode >=48 && event.charCode <=57" required placeholder="Phone Number" maxlength="10">
+                                <div class="c">
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmEmployees.phno.$dirty && frmEmployees.phno.$invalid">
+                                    <span data-ng-show="frmEmployees.phno.$error.required">Phone Number required</span>
+                                    <span data-ng-show="frmEmployees.phno.$error.integer">Phone Number Needs to be Integer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Alternate Phone Number
+                                </label>
+                                <input type="text" class="form-control" id="alphno" ng-focus="true" name="alphno" integer @*minlength="10"*@ ng-model="emplyeeDetailScope.AlternatePhoneNumber" onkeypress="return event.charCode >=48 && event.charCode <=57" tabindex="6" placeholder="Alternate Phone Number" maxlength="10">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        Designation <span class="required-field">*</span>
+                                    </label>
+                                    <select class="form-control" id="selectDesignation" ng-model="emplyeeDetailScope.DesignationId" ng-options="a.Id as a.Name for a in Designation" ng-focus="true" name="selectDesignation" tabindex="7" required>
+                                        <option value="">Select Designation</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        Department <span class="required-field">*</span>
+                                    </label>
+                                    <select class="form-control" id="selectDepartments" ng-model="emplyeeDetailScope.DepartmentId" ng-options="a.DeptId as a.DeptName for a in Departments" ng-focus="true" name="selectDepartments" tabindex="8" required>
+                                        <option value="">Select Department</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <!--IsActive -->
+                        <div class="form-group">
+                            <label>
+                            </label>
+                            <div class="form-control-static">
+                                <div class="checkbox checkbox-info">
+                                    <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="emplyeeDetailScope.IsActive"
+                                           tabindex="9" />
+                                    <label for="chkDesignationActive">
+                                        @Resource.IsActive
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+</div>
                     <div class="row">
 
                         <div class="col-md-12">
@@ -540,97 +541,98 @@
                                 <h3 class="strip">
                                     <i class="fa fa-history"></i>
 
-                        <!--Experience Details  Form-->
-                        @*<div class="main-page-title title-icon relative l">
-                                <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
-                                <h4 class="header-title-sub l">
+                                    <!--Experience Details  Form-->
+                                    @*<div class="main-page-title title-icon relative l">
+                    <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+                    <h4 class="header-title-sub l">
 
-                                    Experience Details
-                                </h4>
-                            </div>*@
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <h3>
-                                        <i class="fa fa-history"></i>
-                                        Experience Details
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        Company Name 
-                                    </label>
-                                    <input type="text" class="form-control" id="companyname" ng-focus="true" name="companyname" ng-model="emplyeeDetailScope.CompanyName" @*required*@ tabindex="22" placeholder="Company Name" maxlength="250">
-                                    <div class="c">
+                        Experience Details
+                    </h4>
+                </div>*@
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <h3>
+                                                    <i class="fa fa-history"></i>
+                                                    Experience Details
+                                                </h3>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        Last Job Location 
-                                    </label>
-                                    <input type="text" class="form-control" id="lastjoblocation" ng-focus="true" name="lastjoblocation" ng-model="emplyeeDetailScope.LastJobLocation"  tabindex="23" placeholder="Last job Location" maxlength="250">
-                                    <div class="c">
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        Job Position 
-                                    </label>
-                                    <input type="text" class="form-control" id="jobposition" ng-focus="true" name="jobposition" ng-model="emplyeeDetailScope.JobPosition"  tabindex="24" placeholder="Job Position" maxlength="250">
-                                    <div class="c">
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        From Period 
-                                    </label>
-                                    <input type="date" class="form-control" id="fromperiod" ng-focus="true" name="fromperiod" ng-model="emplyeeDetailScope.FromPeriod"  tabindex="25" placeholder="Select From Period">
-                                    <div class="c">
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>
-                                        To Period
-                                    </label>
-                                    <input type="date" class="form-control" id="toperiod" ng-focus="true" name="toperiod" ng-model="emplyeeDetailScope.ToPeriod"  tabindex="26" placeholder="Select From Period">
-                                    <div class="c">
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>
+                                                    Company Name
+                                                </label>
+                                                <input type="text" class="form-control" id="companyname" ng-focus="true" name="companyname" ng-model="emplyeeDetailScope.CompanyName" @*required*@ tabindex="22" placeholder="Company Name" maxlength="250">
+                                                <div class="c">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>
+                                                    Last Job Location
+                                                </label>
+                                                <input type="text" class="form-control" id="lastjoblocation" ng-focus="true" name="lastjoblocation" ng-model="emplyeeDetailScope.LastJobLocation" tabindex="23" placeholder="Last job Location" maxlength="250">
+                                                <div class="c">
+                                                </div>
 
-                        <div class="row">
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
-                                            @*ng-disabled="frmEmployees.txtEmployee.$invalid"*@ tabindex="28">
-                                        {{emplyeeDetailScope.EmployeeId > 0 ? '@Resource.Update' : '@Resource.Save'}}
-                                    </button>
-                                    <button type="button" ng-click="ClearFormData(frmEmployees)" class="btn btn-info waves-effect w-md waves-light m-b-5"
-                                            tabindex="29">
-                                        @Resource.Clear
-                                    </button>
-                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>
+                                                    Job Position
+                                                </label>
+                                                <input type="text" class="form-control" id="jobposition" ng-focus="true" name="jobposition" ng-model="emplyeeDetailScope.JobPosition" tabindex="24" placeholder="Job Position" maxlength="250">
+                                                <div class="c">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>
+                                                    From Period
+                                                </label>
+                                                <input type="date" class="form-control" id="fromperiod" ng-focus="true" name="fromperiod" ng-model="emplyeeDetailScope.FromPeriod" tabindex="25" placeholder="Select From Period">
+                                                <div class="c">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>
+                                                    To Period
+                                                </label>
+                                                <input type="date" class="form-control" id="toperiod" ng-focus="true" name="toperiod" ng-model="emplyeeDetailScope.ToPeriod" tabindex="26" placeholder="Select From Period">
+                                                <div class="c">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                                                        @*ng-disabled="frmEmployees.txtEmployee.$invalid"*@ tabindex="28">
+                                                    {{emplyeeDetailScope.EmployeeId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                                                </button>
+                                                <button type="button" ng-click="ClearFormData(frmEmployees)" class="btn btn-info waves-effect w-md waves-light m-b-5"
+                                                        tabindex="29">
+                                                    @Resource.Clear
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </form>
                             </div>
                         </div>
-                </form>
-            </div>
             <!-- end Employee form -->
             <hr />
             <!-- start Employee details list -->
@@ -655,6 +657,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
                 <div class="col-md-12">
                     <div class="form-group">
                         <div class="form-control-static">
@@ -751,7 +754,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+           
             <!-- end Employee details list -->
         </div>
     </div>
