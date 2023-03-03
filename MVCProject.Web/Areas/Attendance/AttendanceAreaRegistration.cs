@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Optimization;
 
-namespace MVCProject.Web.Areas.Attendance
+namespace MVCProject.Areas.Attendance
 {
     public class AttendanceAreaRegistration : AreaRegistration
     {
@@ -31,7 +31,7 @@ namespace MVCProject.Web.Areas.Attendance
         private void RegisterBundles(BundleCollection bundles)
         {
             // Attendance
-            bundles.Add(new ScriptBundle("~/bundles/Attendance/Attendance")
+            bundles.Add(new ScriptBundle("~/bundles/Attendance/Attendance/EmployeeAttendanceView")
                 .Include("~/Areas/Attendance/Scripts/angular/services/AttendanceService.js")
                 .Include("~/Areas/Attendance/Scripts/angular/controllers/AttendanceCtrl.js"));
         }

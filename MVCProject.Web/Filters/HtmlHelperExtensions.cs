@@ -46,11 +46,19 @@ namespace System.Web.Mvc
                     menuString.Append("</ul></li>");
                     
                     menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Employee, "fa fa-user"));
+                    menuString.AppendFormat(GetParentMenu(Resource.EmployeeManagement, "fa fa-user"));
                     menuString.Append("<ul class='nav child_menu'>");
                     menuString.Append(GetSubMenu(Resource.Employee, "fa fa-user", "/EmployeeManagement/Employee"));
                     menuString.Append("</ul></li>");
-            menuString.Append("</ul></div></div>");
+
+                    menuString.Append("<li>");
+                    menuString.AppendFormat(GetParentMenu(Resource.Attendance, "fa fa-user"));
+                    menuString.Append("<ul class='nav child_menu'>");
+                    menuString.Append(GetSubMenu(Resource.EmployeeAttendance, "fa fa-user", "/Attendance/Attendance/EmployeeAttendanceView"));
+                    menuString.Append("</ul></li>");
+                    menuString.Append("</ul></div></div>");
+
+
 
                 string menu = menuString.ToString();
                 return new MvcHtmlString(menu);

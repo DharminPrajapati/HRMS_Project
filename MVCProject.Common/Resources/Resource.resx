@@ -876,4 +876,10 @@
   <data name="Attendance" xml:space="preserve">
     <value>Attendance</value>
   </data>
+  <data name="EmployeeAttendance" xml:space="preserve">
+    <value>EmployeeAttendance</value>
+  </data>
+  <data name="EmployeeManagement" xml:space="preserve">
+    <value>EmployeeManagement</value>
+  </data>
 </root>
