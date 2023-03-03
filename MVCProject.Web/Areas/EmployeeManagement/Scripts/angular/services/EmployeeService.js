@@ -3,11 +3,18 @@
         var list = [];
 
         //Get All Employees
-        list.GetAllEmployees = function (/*employeeDetailsParams*/)
-        {
+        //list.GetAllEmployees = function (/*employeeDetailsParams*/)
+        //{
+        //    return $http({
+        //        method: 'GET',
+        //        url: $rootScope.apiURL + '/Employee/GetAllEmployees/'
+        //    });
+        //}
+        list.GetAllEmployees = function (employeeDetailsParams) {
             return $http({
-                method: 'GET',
-                url: $rootScope.apiURL + '/Employee/GetAllEmployees/'
+                method: 'POST',
+                url: $rootScope.apiURL + '/Employee/GetAllEmployees/',
+                data: JSON.stringify(employeeDetailsParams)
             });
         }
 
@@ -52,6 +59,15 @@
             return $http({
                 methd: 'GET',
                 url: $rootScope.apiURL + '/Employee/GetDepartmentDropDown'
+            });
+        };
+
+        //Create Excel Report For Employees
+        list.CreateExcelReport = function () {
+            return $http({
+                method: 'GET',
+                responseType: 'blob',
+                url: $rootScope.apiURL + '/Employee/CreateEmployeeListReport'
             });
         };
 

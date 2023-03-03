@@ -48,36 +48,119 @@
         };
 
         // Add/Update Employee Details
-
-        $scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees)
-        {
-            if (frmEmployees.$valid)
-            {
+        $scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees) {
+            if (!$("#txtEmployee").val()) {
+                toastr.warning("Please fill the First Name", warningTitle);
+                $("#txtEmployee").focus();
+            }
+            else if (!$("#txtEmpln").val()) {
+                toastr.warning("Please fill the Last Name", warningTitle);
+                $("#txtEmpln").focus();
+            }
+            else if (!$("#email").val()) {
+                toastr.warning("Please fill Email", warningTitle);
+                $("#email").focus();
+            }
+            else if (!$("#joindate").val()) {
+                toastr.warning("Please fill the Joining Date", warningTitle);
+                $("#joindate").focus();
+            }
+            else if (!$("#phno").val()) {
+                toastr.warning("Please fill Phone Number", warningTitle);
+                $("#phno").focus();
+            }
+            else if (!$("#selectDesignation").val()) {
+                toastr.warning("Please fill Designation", warningTitle);
+                $("#selectDesignation").focus();
+            }
+            else if (!$("#selectDepartments").val()) {
+                toastr.warning("Please fill Department", warningTitle);
+                $("#selectDepartments").focus();
+            }
+            else if (!$("#birthdate").val()) {
+                toastr.warning("Please fill Birth Date", warningTitle);
+                $("#birthdate").focus();
+            }
+            else if (!$("#pincode").val()) {
+                toastr.warning("Please fill Pincode", warningTitle);
+                $("#pincode").focus();
+            }
+            else if (!$("#permanentAddress").val()) {
+                toastr.warning("Please fill Address", warningTitle);
+                $("#permanentAddress").focus();
+            }
+            else if (!$("#institutename").val()) {
+                toastr.warning("Please fill Institution Name", warningTitle);
+                $("#institutename").focus();
+            }
+            else if (!$("#coursename").val()) {
+                toastr.warning("Please fill Course Name", warningTitle);
+                $("#coursename").focus();
+            }
+            else if (!$("#coursestartdate").val()) {
+                toastr.warning("Please fill Course Start Date", warningTitle);
+                $("#coursestartdate").focus();
+            }
+            else if (!$("#courseEnddate").val()) {
+                toastr.warning("Please fill Course End Date", warningTitle);
+                $("#courseEnddate").focus();
+            }
+            else if (!$("#grade").val()) {
+                toastr.warning("Please fill Grade", warningTitle);
+                $("#grade").focus();
+            }
+            else if (!$("#degree").val()) {
+                toastr.warning("Please fill Degree", warningTitle);
+                $("#degree").focus();
+            }
+            if (frmEmployees.$valid) {
                 debugger;
-                EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res)
-                {
-                    if (res)
-                    {
+                EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res) {
+                    if (res) {
                         var data = res.data;
-                        if (data.MessageType == messageTypes.Success && data.IsAuthenticated)
-                        {
+                        if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
                             $scope.ClearFormData(frmEmployees);
                             toastr.success(data.Message, successTitle);
                             $scope.tableParams.reload();
                         }
-                        else if (data.MessageType == messageTypes.Error)
-                        {
+                        else if (data.MessageType == messageTypes.Error) {
                             toastr.error(data.Message, errorTitle);
                         }
-                        else if (data.MessageType == messageTypes.Warning)
-                        {
+                        else if (data.MessageType == messageTypes.Warning) {
                             toastr.warning(data.Message, warningTitle);
                         }
                     }
-                
+
                 });
             }
+            
         }
+        //$scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees)
+        //{
+        //    if (frmEmployees.$valid) {
+        //        debugger;
+        //        EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res) {
+        //            if (res) {
+        //                var data = res.data;
+        //                if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
+        //                    $scope.ClearFormData(frmEmployees);
+        //                    toastr.success(data.Message, successTitle);
+        //                    $scope.tableParams.reload();
+        //                }
+        //                else if (data.MessageType == messageTypes.Error) {
+        //                    toastr.error(data.Message, errorTitle);
+        //                }
+        //                else if (data.MessageType == messageTypes.Warning) {
+        //                    toastr.warning(data.Message, warningTitle);
+        //                }
+        //            }
+
+        //        });
+        //    }
+        //    //else {
+        //    //    toastr.error("Please fill All Fields", errorTitle);
+        //    //}
+        //}
 
         $scope.EditEmployeeDetails = function (employeeId)
         {
@@ -126,7 +209,8 @@
                         if (res.data.MessageType == messageTypes.Success) {
                             $defer.resolve(res.data.Result);
                             if (res.data.Result.length == 0) { }
-                            else { params.total(res.data.Result[0].TotalRecords); }
+                            else { params.total(50); }
+                            /*else { params.total(res.data.Result[0].TotalRecords); }*/
                            
                         }
                     }
@@ -196,6 +280,7 @@
             });
         };
         $scope.uploadFile = function () {
+            debugger;
             var fileInput = document.getElementById('file');
             //fileInput.click();
 
@@ -207,9 +292,9 @@
             var payload = new FormData();
             payload.append("stuff", "some string");
             payload.append("file", file);
-           // var url = $rootScope.apiURL + '/Upload/UploadImage'
+           var url = $rootScope.apiURL + '/Upload/UploadImage'
 
-            var url = $rootScope.apiURL +'/UploadPrec/UploadFile'
+            //var url = $rootScope.apiURL +'/UploadPrec/UploadFile'
             //use the service to upload the file
             FileService.uploadFile(url, payload).then(function (response) {
 
@@ -228,8 +313,16 @@
                 console.log($scope.Departments);
             });
         };
+
+        //Create Excel Report of Employees
+        $scope.createReport = function () {
+            if (!$rootScope.permission.CanWrite) { return; }
+            var filename = "Employee_" + $rootScope.fileDateName + ".xls";
+            CommonFunctions.DownloadReport('/Employee/CreateEmployeeListReport', filename);
+        };
     }
     angular.module("MVCApp").factory('FileService', ['$http', function ($http) {
+      /*  debugger;*/
         return {
             uploadFile: function (url, file) {
                 return $http({
@@ -245,6 +338,9 @@
             }
         };
     }]);
+
+
+      
 })();
 
 

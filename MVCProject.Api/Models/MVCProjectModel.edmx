@@ -4,7 +4,27 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="AttendanceId" />
+          </Key>
+          <Property Name="AttendanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="Date" Type="date" />
+          <Property Name="StartingTime" Type="datetime" />
+          <Property Name="EndingTime" Type="datetime" />
+          <Property Name="StartingLatitude" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="EndingLatitude" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="StartingLongitude" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="EndingLongitude" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="EntryBy" Type="int" />
+          <Property Name="EntryDate" Type="date" />
+          <Property Name="UpdatedBy" Type="int" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Discription" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Designation">
           <Key>
             <PropertyRef Name="DesignationId" />
@@ -83,7 +103,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_EmployeeId">
+          <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="0..1" />
+          <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MVCProjectModelStoreContainer">
+          <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDepartment" EntityType="Self.TblDepartment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblEmployee" EntityType="Self.TblEmployee" Schema="dbo" store:Type="Tables" />
@@ -95,9 +128,12 @@
             <End Role="TblDepartment" EntitySet="TblDepartment" />
             <End Role="TblEmployee" EntitySet="TblEmployee" />
           </AssociationSet>
+          <AssociationSet Name="fk_EmployeeId" Association="Self.fk_EmployeeId">
+            <End Role="TblEmployee" EntitySet="TblEmployee" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MVCProjectModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -158,6 +194,7 @@
           <Property Name="Gender" Type="Int32" />
           <NavigationProperty Name="Designation" Relationship="Self.fk_designationId" FromRole="TblEmployee" ToRole="Designation" />
           <NavigationProperty Name="TblDepartment" Relationship="Self.fk_despartmentId" FromRole="TblEmployee" ToRole="TblDepartment" />
+          <NavigationProperty Name="Attendance" Relationship="MVCProjectModel.fk_EmployeeId" FromRole="TblEmployee" ToRole="Attendance" />
         </EntityType>
         <Association Name="fk_designationId">
           <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
@@ -195,7 +232,45 @@
             <End Role="TblDepartment" EntitySet="TblDepartments" />
             <End Role="TblEmployee" EntitySet="TblEmployees" />
           </AssociationSet>
+          <EntitySet Name="Attendance" EntityType="MVCProjectModel.Attendance" />
+          <AssociationSet Name="fk_EmployeeId" Association="MVCProjectModel.fk_EmployeeId">
+            <End Role="TblEmployee" EntitySet="TblEmployees" />
+            <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Attendance">
+          <Key>
+            <PropertyRef Name="AttendanceId" />
+          </Key>
+          <Property Name="AttendanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="StartingTime" Type="DateTime" Precision="3" />
+          <Property Name="EndingTime" Type="DateTime" Precision="3" />
+          <Property Name="StartingLatitude" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EndingLatitude" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="StartingLongitude" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EndingLongitude" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EntryBy" Type="Int32" />
+          <Property Name="EntryDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Discription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblEmployee" Relationship="MVCProjectModel.fk_EmployeeId" FromRole="Attendance" ToRole="TblEmployee" />
+        </EntityType>
+        <Association Name="fk_EmployeeId">
+          <End Type="MVCProjectModel.TblEmployee" Role="TblEmployee" Multiplicity="0..1" />
+          <End Type="MVCProjectModel.Attendance" Role="Attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="Attendance">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -256,6 +331,27 @@
                 <ScalarProperty Name="FromPeriod" ColumnName="FromPeriod" />
                 <ScalarProperty Name="ToPeriod" ColumnName="ToPeriod" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attendance">
+            <EntityTypeMapping TypeName="MVCProjectModel.Attendance">
+              <MappingFragment StoreEntitySet="Attendance">
+                <ScalarProperty Name="Discription" ColumnName="Discription" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="EndingLongitude" ColumnName="EndingLongitude" />
+                <ScalarProperty Name="StartingLongitude" ColumnName="StartingLongitude" />
+                <ScalarProperty Name="EndingLatitude" ColumnName="EndingLatitude" />
+                <ScalarProperty Name="StartingLatitude" ColumnName="StartingLatitude" />
+                <ScalarProperty Name="EndingTime" ColumnName="EndingTime" />
+                <ScalarProperty Name="StartingTime" ColumnName="StartingTime" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="AttendanceId" ColumnName="AttendanceId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

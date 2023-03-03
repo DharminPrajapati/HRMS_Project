@@ -10,6 +10,8 @@
         <EntityTypeShape EntityType="MVCProjectModel.TblEmployee" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
         <AssociationConnector Association="MVCProjectModel.fk_designationId" ManuallyRouted="false" />
         <AssociationConnector Association="MVCProjectModel.fk_despartmentId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MVCProjectModel.Attendance" Width="1.5" PointX="5.25" PointY="4.125" />
+        <AssociationConnector Association="MVCProjectModel.fk_EmployeeId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
