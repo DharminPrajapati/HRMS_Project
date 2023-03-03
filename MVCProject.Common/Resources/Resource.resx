@@ -868,10 +868,10 @@
     <value>Designation</value>
   </data>
   <data name="FirstNameRequired" xml:space="preserve">
-    <value>FirstName Required</value>
+    <value>First Name required</value>
   </data>
   <data name="LastNameRequired" xml:space="preserve">
-    <value>LastName Required</value>
+    <value>Last Name required</value>
   </data>
   <data name="Attendance" xml:space="preserve">
     <value>Attendance</value>
