@@ -32,7 +32,7 @@
 .nav-sm .navbar.nav_title {
     width: 70px;
     background-color: #34444c;
-   
+    
 }
 
     .nav-sm .navbar.nav_title a span {
@@ -214,6 +214,7 @@
     padding: 0;
     position: absolute;
     z-index: 998;
+    width:230px;
 }
 
     .nav-md .container.body .col-md-3.left_col.menu_fixed {
@@ -403,7 +404,7 @@ body .container.body .right_col {
     left: 0;
     right: 0;
     padding-right: 20px;
-    height: 60px;
+    height:60px;
 }
 
 .no-padding {
@@ -1426,10 +1427,9 @@ ul.project_files li {
 .nav-sm .vmenuright {
     float: right;
     margin: 0px 0px 0px 0px;
-    border-right: 1px solid #292e46;
+
     padding: 3px 0 0 0;
-    border-bottom: 1px solid #292e46;
-    margin-right: 9px;
+    margin-right:9px;
 }
 
 .nav-sm .left_col .nav_title a img {

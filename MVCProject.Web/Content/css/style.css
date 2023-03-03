@@ -426,6 +426,7 @@ a:focus {
         vertical-align: middle;
     }
 /* Card Box */
+
 .card-box {
     padding: 20px;
     box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.20), 0 1px 0px 0 rgba(0, 0, 0, 0.02);
@@ -437,6 +438,7 @@ a:focus {
     background-color: #ffffff;
     float: left;
     width: 100%;
+    
 }
 
     .card-box .card-drop {
@@ -736,7 +738,7 @@ textarea.form-control {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #999999;
+    color: #212529;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
@@ -5071,7 +5073,6 @@ table.dataTable td.focus {
         transform: rotate(-360deg);
     }
 }
-
 /*==============ANIMATIONS=================*/
 
 /*==============ROTATE=====================*/
@@ -5190,6 +5191,8 @@ table.dataTable td.focus {
         opacity: 0.2;
     }
 }
+
+
 
 /*---------------------------------------------*/
 .sidebar {
@@ -5495,7 +5498,6 @@ table.dataTable td.focus {
     margin: 0px;
     font-size: 20px;
     color: black;
-    
 }
 
 
@@ -5507,7 +5509,7 @@ table.dataTable td.focus {
     border-left: 4px solid #DDD;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.125);
     color: white;
-    + filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FDFCFC', endColorstr='#FBF9F9');
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#FDFCFC', endColorstr='#FBF9F9');
     background-color: #F2F0F0;
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FDFCFC), to(#F2F0F0), color-stop(0.5, #FBF9F9), color-stop(0.5, #F7F5F6));
     background-image: -webkit-linear-gradient(top, #FDFCFC, #FBF9F9 50%, #F7F5F6 50%, #F2F0F0);
@@ -5730,7 +5732,7 @@ aside.left-panel.collapsed .navigation > ul > li > a .badge {
 
 .navigation ul li a .nav-label {
     vertical-align: middle;
-    font-size: 15px;
+    font-size:15px;
 }
 
 .collapsed .navigation ul li a i {
@@ -7407,6 +7409,7 @@ multilevel-accordion uib-accordion .panel-group {
     margin-left:6px;
     
 }
+
 .gender{
    margin-left:90px;
 }
@@ -7419,10 +7422,9 @@ multilevel-accordion uib-accordion .panel-group {
         margin-top: 10px;
     }
 }
-
-.required {
-    width: 50px;
-    margin-bottom: 50px;
+.required{
+    width:50px;
+    margin-bottom:50px;
 }
 
 .input-datepicker,
