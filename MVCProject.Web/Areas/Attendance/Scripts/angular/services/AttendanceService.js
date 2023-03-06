@@ -1,5 +1,5 @@
 ﻿angular.module('MVCApp')
-    .service('EmployeeService', ['$rootScope', '$http', function ($rootScope, $http) {
+    .service('AttendanceService', ['$rootScope', '$http', function ($rootScope, $http) {
         var list = [];
 
         list.GetAllEmployees = function (employeeDetailsParams) {

@@ -47,18 +47,16 @@
         }
 
         ///Get All Employee Details
-
-
         [HttpPost]
         public ApiResponse GetAllEmployees(PagingParams employeeDetailsParams)
         {
-            //if (string.IsNullOrWhiteSpace(employeeDetailParams.Search))
-            //{
-            //    employeeDetailParams.Search = string.Empty;
-            //}
+            if (string.IsNullOrWhiteSpace(employeeDetailsParams.Search))
+            {
+                employeeDetailsParams.Search = string.Empty;
+            }
 
-            var employeelist = (from d in this.entities.TblEmployees.AsEnumerable()
-                                let TotalRecords = this.entities.TblEmployees.AsEnumerable().Count()
+            var employeelist = (from d in this.entities.TblEmployees.AsEnumerable().Where(x => x.FirstName.Trim().ToLower().Contains(employeeDetailsParams.Search.Trim().ToLower()))
+                                let TotalRecords = this.entities.TblEmployees.AsEnumerable().Where(x => x.FirstName.Trim().ToLower().Contains(employeeDetailsParams.Search.Trim().ToLower())).Count()
                                 select new
                                 {
                                     //var employeelist = this.entities.TblEmployee.ToList();
@@ -95,6 +93,53 @@
             return this.Response(Utilities.MessageTypes.Success, string.Empty, employeelist);
 
         }
+
+        //[HttpPost]
+        //public ApiResponse GetAllEmployees(PagingParams employeeDetailsParams)
+        //{
+        //    //if (string.IsNullOrWhiteSpace(employeeDetailParams.Search))
+        //    //{
+        //    //    employeeDetailParams.Search = string.Empty;
+        //    //}
+
+        //    var employeelist = (from d in this.entities.TblEmployees.AsEnumerable()
+        //                        let TotalRecords = this.entities.TblEmployees.AsEnumerable().Count()
+        //                        select new
+        //                        {
+        //                            //var employeelist = this.entities.TblEmployee.ToList();
+
+        //                            EmployeeId = d.EmployeeId,
+        //                            FirstName = d.FirstName,
+        //                            LastName = d.LastName,
+        //                            Email = d.Email,
+        //                            Password = d.Password,
+        //                            JoiningDate = d.JoiningDate,
+        //                            PhoneNumber = d.PhoneNumber,
+        //                            AlternatePhoneNumber = d.AlternatePhoneNumber,
+        //                            Designation = d.DesignationId,
+        //                            Department = d.DepartmentId,
+        //                            BirthDate = d.BirthDate,
+        //                            Gender = d.Gender,
+        //                            PermanentAddress = d.PermanentAddress,
+        //                            TemporaryAddress = d.TemporaryAddress,
+        //                            Pincode = d.Pincode,
+        //                            InstitutionName = d.InstitutionName,
+        //                            CourseName = d.CourseName,
+        //                            CourseStartDate = d.CourseStartDate,
+        //                            CourseEndDate = d.CourseEndDate,
+        //                            Grade = d.Grade,
+        //                            Degree = d.Degree,
+        //                            CompanyName = d.CompanyName,
+        //                            LastJobLocation = d.LastJobLocation,
+        //                            JobPosition = d.JobPosition,
+        //                            FromPeriod = d.FromPeriod,
+        //                            ToPeriod = d.ToPeriod,
+        //                            IsActive = d.IsActive
+        //                        }).AsQueryable().Skip((employeeDetailsParams.CurrentPageNumber - 1) * employeeDetailsParams.PageSize).Take(employeeDetailsParams.PageSize);
+
+        //    return this.Response(Utilities.MessageTypes.Success, string.Empty, employeelist);
+
+        //}
         // [HttpGet]
         //public ApiResponse GetAllEmployees()
         //{

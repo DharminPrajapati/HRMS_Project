@@ -34,6 +34,11 @@ namespace MVCProject.Areas.Attendance
             bundles.Add(new ScriptBundle("~/bundles/Attendance/Attendance/EmployeeAttendanceView")
                 .Include("~/Areas/Attendance/Scripts/angular/services/AttendanceService.js")
                 .Include("~/Areas/Attendance/Scripts/angular/controllers/AttendanceCtrl.js"));
+
+            // HR Attendance View
+            bundles.Add(new ScriptBundle("~/bundles/Attendance/Attendance/HRAttendanceView")
+                .Include("~/Areas/Attendance/Scripts/angular/services/AttendanceService.js")
+                .Include("~/Areas/Attendance/Scripts/angular/controllers/AttendanceCtrl.js"));
         }
     }
 }
