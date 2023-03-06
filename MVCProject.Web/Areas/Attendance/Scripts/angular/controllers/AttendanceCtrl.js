@@ -16,9 +16,11 @@
         };
 
         $scope.isSearchClicked = false;
-
+         
         $scope.selectedMonth = moment().month() + 1;
+        //$scope.selectedMonth = moment().format("MMMM" || "YYYY");
         $scope.selectedYear = moment().year();
+       
         $scope.generateDates = function () {
             //debugger
             var year = $scope.selectedYear;
