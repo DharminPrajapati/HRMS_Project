@@ -208,9 +208,8 @@
                         var data = res.data;
                         if (res.data.MessageType == messageTypes.Success) {
                             $defer.resolve(res.data.Result);
-                            if (res.data.Result.length == 0) { }
-                            else { params.total(50); }
-                            /*else { params.total(res.data.Result[0].TotalRecords); }*/
+                            if (res.data.Result.length == 0) { }                            
+                            else { params.total(res.data.Result[0].TotalRecords); }
                            
                         }
                     }

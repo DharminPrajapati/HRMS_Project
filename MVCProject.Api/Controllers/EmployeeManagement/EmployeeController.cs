@@ -87,7 +87,8 @@
                                     JobPosition = d.JobPosition,
                                     FromPeriod = d.FromPeriod,
                                     ToPeriod = d.ToPeriod,
-                                    IsActive = d.IsActive
+                                    IsActive = d.IsActive,
+                                    TotalRecords
                                 }).AsQueryable().Skip((employeeDetailsParams.CurrentPageNumber - 1) * employeeDetailsParams.PageSize).Take(employeeDetailsParams.PageSize);
 
             return this.Response(Utilities.MessageTypes.Success, string.Empty, employeelist);
