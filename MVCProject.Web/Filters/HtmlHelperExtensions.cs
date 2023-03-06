@@ -41,21 +41,21 @@ namespace System.Web.Mvc
                     menuString.AppendFormat(GetParentMenu(Resource.Configuration, "fa fa-gears"));
                     menuString.Append("<ul class='nav child_menu'>");
 
-                    menuString.Append(GetSubMenu(Resource.Designations, "ti-id-badge", "/Configuration/Designation"));
-                    menuString.Append(GetSubMenu(Resource.Department, "ti-id-badge", "/Configuration/Department"));
+                    menuString.Append(GetSubMenu(Resource.Designations, "", "/Configuration/Designation"));
+                    menuString.Append(GetSubMenu(Resource.Department, "", "/Configuration/Department"));
                     menuString.Append("</ul></li>");
                     
                     menuString.Append("<li>");
                     menuString.AppendFormat(GetParentMenu(Resource.EmployeeManagement, "fa fa-user"));
                     menuString.Append("<ul class='nav child_menu'>");
-                    menuString.Append(GetSubMenu(Resource.Employee, "fa fa-user", "/EmployeeManagement/Employee"));
+                    menuString.Append(GetSubMenu(Resource.Employee, "", "/EmployeeManagement/Employee"));
                     menuString.Append("</ul></li>");
 
                     menuString.Append("<li>");
                     menuString.AppendFormat(GetParentMenu(Resource.Attendance, "fa fa-user"));
                     menuString.Append("<ul class='nav child_menu'>");
-                    menuString.Append(GetSubMenu(Resource.EmployeeAttendance, "fa fa-user", "/Attendance/Attendance/EmployeeAttendanceView"));
-                    menuString.Append(GetSubMenu(Resource.Attendance, "fa fa-user", "/Attendance/Attendance/HRAttendanceView"));
+                    menuString.Append(GetSubMenu(Resource.EmployeeAttendance, "", "/Attendance/Attendance/EmployeeAttendanceView"));
+                    menuString.Append(GetSubMenu(Resource.Attendance, "", "/Attendance/Attendance/HRAttendanceView"));
                     menuString.Append("</ul></li>");           
                     menuString.Append("</ul></div></div>");
 

@@ -31,8 +31,7 @@
 
 .nav-sm .navbar.nav_title {
     width: 70px;
-    background-color: #34444c;
-    
+    background-color: #ff9945;
 }
 
     .nav-sm .navbar.nav_title a span {
@@ -214,7 +213,7 @@
     padding: 0;
     position: absolute;
     z-index: 998;
-    width:230px;
+    width: 230px;
 }
 
     .nav-md .container.body .col-md-3.left_col.menu_fixed {
@@ -222,7 +221,6 @@
         position: fixed;
         z-index: 998;
         background: linear-gradient(#010101, #324aa0), #1d2544;
-        
     }
 
 body .container.body .right_col {
@@ -404,7 +402,7 @@ body .container.body .right_col {
     left: 0;
     right: 0;
     padding-right: 20px;
-    height:60px;
+    height: 60px;
 }
 
 .no-padding {
@@ -602,7 +600,7 @@ table.no-margin .progress {
         padding-left: 28px;
     }
 
-.nav-md ul.nav.child_menu li:before {
+    /*.nav-md ul.nav.child_menu li:before {
     background: white;
     bottom: auto;
     content: "";
@@ -614,43 +612,45 @@ table.no-margin .progress {
     width: 8px;
     z-index: 1;
     border-radius: 50%;
-}
+}*/
 
-.nav-md ul.nav.child_menu li:after {
+    /*.nav-md ul.nav.child_menu li:after {
     border-left: 1px solid #323750;
     bottom: 0;
     content: "";
     left: 27px;
     position: absolute;
     top: 0;
-}
+}*/
 
-.nav.side-menu > li > a,
-.nav.child_menu > li > a {
-    color: #E7E7E7;
-    font-weight: 500;
-    padding: 22px;
-}
-
-    .nav.child_menu > li > a i {
-        margin-right: 5px;
-        float: left;
+    .nav.side-menu > li > a,
+    .nav.child_menu > li > a {
+        color: #E7E7E7;
+        font-weight: 500;
+        padding: 22px;
+        margin-right:-8px;
     }
 
-    .nav.child_menu > li > a span {
-        float: left;
-        width: 88%;
+        .nav.child_menu > li > a i {
+            margin-right: 5px;
+            float: left;
+        }
+
+        .nav.child_menu > li > a span {
+            float: left;
+            width: 88%;
+            margin-left:32px;
+        }
+
+    .nav.child_menu li li:hover,
+    .nav.child_menu li li.active {
+        background: none;
     }
 
-.nav.child_menu li li:hover,
-.nav.child_menu li li.active {
-    background: none;
-}
-
-.nav.child_menu li li a:hover,
-.nav.child_menu li li a.active {
-    color: #fff;
-}
+    .nav.child_menu li li a:hover,
+    .nav.child_menu li li a.active {
+        color: #fff;
+    }
 
 .nav > li > a {
     position: relative;
@@ -672,7 +672,6 @@ table.no-margin .progress {
 
 .nav.side-menu > li.active > a {
     text-shadow: rgba(0,0,0,0.25) 0 -1px 0;
-   
     margin-top: 6px;
 }
 
@@ -739,6 +738,7 @@ table.no-margin .progress {
             color: #ffffff;
             PADDING: 16PX;
             border-radius: 3px;
+            margin-left: 0px;
         }
 
 .nav.child_menu > li > a {
@@ -1427,9 +1427,7 @@ ul.project_files li {
 .nav-sm .vmenuright {
     float: right;
     margin: 0px 0px 0px 0px;
-
-    padding: 3px 0 0 0;
-    margin-right:9px;
+    margin-right: 22px;
 }
 
 .nav-sm .left_col .nav_title a img {
