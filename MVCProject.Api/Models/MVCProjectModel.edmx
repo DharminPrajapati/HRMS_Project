@@ -14,10 +14,10 @@
           <Property Name="Date" Type="date" />
           <Property Name="StartingTime" Type="datetime" />
           <Property Name="EndingTime" Type="datetime" />
-          <Property Name="StartingLatitude" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="EndingLatitude" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="StartingLongitude" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="EndingLongitude" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="StartingLatitude" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="EndingLatitude" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="StartingLongitude" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="EndingLongitude" Type="decimal" Precision="18" Scale="6" />
           <Property Name="EntryBy" Type="int" />
           <Property Name="EntryDate" Type="date" />
           <Property Name="UpdatedBy" Type="int" />
@@ -198,11 +198,11 @@
           <Property Name="Gender" Type="Int32" />
           <NavigationProperty Name="Designation" Relationship="Self.fk_designationId" FromRole="TblEmployee" ToRole="Designation" />
           <NavigationProperty Name="TblDepartment" Relationship="Self.fk_despartmentId" FromRole="TblEmployee" ToRole="TblDepartment" />
-          <NavigationProperty Name="Attendance" Relationship="MVCProjectModel.fk_EmployeeId" FromRole="TblEmployee" ToRole="Attendance" />
           <Property Name="EntryBy" Type="Int32" />
           <Property Name="EntryDate" Type="DateTime" Precision="0" />
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Attendance" Relationship="MVCProjectModel.fk_EmployeeId" FromRole="TblEmployee" ToRole="Attendance" />
         </EntityType>
         <Association Name="fk_designationId">
           <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
@@ -255,10 +255,10 @@
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="StartingTime" Type="DateTime" Precision="3" />
           <Property Name="EndingTime" Type="DateTime" Precision="3" />
-          <Property Name="StartingLatitude" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="EndingLatitude" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="StartingLongitude" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="EndingLongitude" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="StartingLatitude" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="EndingLatitude" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="StartingLongitude" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="EndingLongitude" Type="Decimal" Precision="18" Scale="6" />
           <Property Name="EntryBy" Type="Int32" />
           <Property Name="EntryDate" Type="DateTime" Precision="0" />
           <Property Name="UpdatedBy" Type="Int32" />

@@ -877,9 +877,9 @@
     <value>Attendance</value>
   </data>
   <data name="EmployeeAttendance" xml:space="preserve">
-    <value>EmployeeAttendance</value>
+    <value>Employee Attendance</value>
   </data>
   <data name="EmployeeManagement" xml:space="preserve">
-    <value>EmployeeManagement</value>
+    <value>Employee Management</value>
   </data>
 </root>

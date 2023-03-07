@@ -17,10 +17,30 @@
 
         $scope.isSearchClicked = false;
          
-        $scope.selectedMonth = moment().month() + 1;
-        //$scope.selectedMonth = moment().format("MMMM" || "YYYY");
-        $scope.selectedYear = moment().year();
-       
+
+        var currentDate = new Date();
+        $scope.months = [
+            { name: 'January', value: 1 },
+            { name: 'February', value: 2 },
+            { name: 'March', value: 3 },
+            { name: 'April', value: 4 },
+            { name: 'May', value: 5 },
+            { name: 'June', value: 6 },
+            { name: 'July', value: 7 },
+            { name: 'August', value: 8 },
+            { name: 'September', value: 9 },
+            { name: 'October', value: 10 },
+            { name: 'November', value: 11 },
+            { name: 'December', value: 12 }
+        ];
+        $scope.years = [];
+        for (var i = currentDate.getFullYear() - 10; i <= currentDate.getFullYear() + 5; i++) {
+            $scope.years.push(i);
+        }
+        $scope.selectedMonth = currentDate.getMonth() + 1;
+        $scope.selectedYear = currentDate.getFullYear();
+
+
         $scope.generateDates = function () {
             //debugger
             var year = $scope.selectedYear;
@@ -60,9 +80,9 @@
                         var data = res.data;
                         if (res.data.MessageType == messageTypes.Success) {
                             $defer.resolve(res.data.Result);
-                            //if (res.data.Result.length == 0) { }
+                            if (res.data.Result.length == 0) { }
                             //else { params.total(50); }
-                            /*else { params.total(res.data.Result[0].TotalRecords); }*/
+                            else { params.total(res.data.Result[0].TotalRecords); }
 
                         }
                     }

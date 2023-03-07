@@ -727,7 +727,7 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EmployeeAttendance.
+        ///   Looks up a localized string similar to Employee Attendance.
         /// </summary>
         public static string EmployeeAttendance {
             get {
@@ -736,7 +736,7 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EmployeeManagement.
+        ///   Looks up a localized string similar to Employee Management.
         /// </summary>
         public static string EmployeeManagement {
             get {
