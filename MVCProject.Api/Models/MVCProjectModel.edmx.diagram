@@ -12,6 +12,8 @@
         <AssociationConnector Association="MVCProjectModel.fk_despartmentId" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MVCProjectModel.Attendance" Width="1.5" PointX="5.25" PointY="4.5" />
         <AssociationConnector Association="MVCProjectModel.fk_EmployeeId" />
+        <EntityTypeShape EntityType="MVCProjectModel.AttachmentMaster" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MVCProjectModel.AttachmentType" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

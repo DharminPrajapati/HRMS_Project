@@ -5,6 +5,25 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="AttachmentMaster">
+          <Key>
+            <PropertyRef Name="AttachmentId" />
+          </Key>
+          <Property Name="AttachmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Filepath" Type="nvarchar" MaxLength="500" />
+          <Property Name="FileAttachmentType" Type="nvarchar" MaxLength="500" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="RefrencedId" Type="int" />
+        </EntityType>
+        <EntityType Name="AttachmentType">
+          <Key>
+            <PropertyRef Name="AttachmentTypeId" />
+          </Key>
+          <Property Name="AttachmentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AttachmentTypeName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Attendance">
           <Key>
             <PropertyRef Name="AttendanceId" />
@@ -120,6 +139,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MVCProjectModelStoreContainer">
+          <EntitySet Name="AttachmentMaster" EntityType="Self.AttachmentMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AttachmentType" EntityType="Self.AttachmentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDepartment" EntityType="Self.TblDepartment" Schema="dbo" store:Type="Tables" />
@@ -245,6 +266,8 @@
             <End Role="TblEmployee" EntitySet="TblEmployees" />
             <End Role="Attendance" EntitySet="Attendance" />
           </AssociationSet>
+          <EntitySet Name="AttachmentMaster" EntityType="MVCProjectModel.AttachmentMaster" />
+          <EntitySet Name="AttachmentType" EntityType="MVCProjectModel.AttachmentType" />
         </EntityContainer>
         <EntityType Name="Attendance">
           <Key>
@@ -279,6 +302,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AttachmentMaster">
+          <Key>
+            <PropertyRef Name="AttachmentId" />
+          </Key>
+          <Property Name="AttachmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Filepath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileAttachmentType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="RefrencedId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AttachmentType">
+          <Key>
+            <PropertyRef Name="AttachmentTypeId" />
+          </Key>
+          <Property Name="AttachmentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttachmentTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -364,6 +406,27 @@
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="AttendanceId" ColumnName="AttendanceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttachmentMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.AttachmentMaster">
+              <MappingFragment StoreEntitySet="AttachmentMaster">
+                <ScalarProperty Name="RefrencedId" ColumnName="RefrencedId" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FileAttachmentType" ColumnName="FileAttachmentType" />
+                <ScalarProperty Name="Filepath" ColumnName="Filepath" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="AttachmentId" ColumnName="AttachmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttachmentType">
+            <EntityTypeMapping TypeName="MVCProjectModel.AttachmentType">
+              <MappingFragment StoreEntitySet="AttachmentType">
+                <ScalarProperty Name="AttachmentTypeName" ColumnName="AttachmentTypeName" />
+                <ScalarProperty Name="AttachmentTypeId" ColumnName="AttachmentTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

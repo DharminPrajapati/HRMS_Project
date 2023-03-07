@@ -343,6 +343,21 @@
 
 
 
+        [HttpPost]
+        public ApiResponse FileUploadTODB([FromBody] AttachmentMaster filedata)
+        {
+            //filedata.FileAttachmentType = (int?)FileAttachmentType.Slider;
+            this.entities.AttachmentMaster.AddObject(filedata);
+            if (!(this.entities.SaveChanges() > 0))
+            {
+                return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Employee));
+            }
+            return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Employee));
+        }
+
+
+
+
         /// Disposes expensive resources.
         protected override void Dispose(bool disposing)
         {

@@ -278,6 +278,36 @@
                 console.log($scope.Designation);
             });
         };
+        //$scope.uploadFile = function () {
+        //    debugger;
+        //    var fileInput = document.getElementById('file');
+        //    //fileInput.click();
+
+        //    //do nothing if there's no files
+        //    if (fileInput.files.length === 0) return;
+
+        //    var file = fileInput.files[0];
+
+        //    var payload = new FormData();
+        //    payload.append("stuff", "some string");
+        //    payload.append("file", file);
+        //   var url = $rootScope.apiURL + '/Upload/UploadImage'
+
+        //    //var url = $rootScope.apiURL +'/UploadPrec/UploadFile'
+        //    //use the service to upload the file
+        //    FileService.uploadFile(url, payload).then(function (response) {
+
+        //        response
+        //        //success, file uploaded
+        //    }).catch(function (response) {
+
+        //        response
+        //        //bummer
+        //    });
+        //}
+
+
+
         $scope.uploadFile = function () {
             debugger;
             var fileInput = document.getElementById('file');
@@ -289,22 +319,37 @@
             var file = fileInput.files[0];
 
             var payload = new FormData();
-            payload.append("stuff", "some string");
             payload.append("file", file);
-           var url = $rootScope.apiURL + '/Upload/UploadImage'
+            //payload.append("file", file);
+            //var url = $rootScope.apiURL + '/Upload/UploadImage'
+            var url = $rootScope.apiURL + '/Upload/UploadImage/'
 
             //var url = $rootScope.apiURL +'/UploadPrec/UploadFile'
             //use the service to upload the file
-            FileService.uploadFile(url, payload).then(function (response) {
+            FileService.uploadFile(url, payload).then(function sucessCallback(response) {
 
-                response
+                $scope.FileData = response.data.Result;
+
+                $scope.FileDataTODB($scope.FileData, $scope.emplyeeDetailScope)
+
+                // response
+
+
+
                 //success, file uploaded
             }).catch(function (response) {
 
                 response
                 //bummer
             });
+            $scope.FileDataTODB = function () {
+                EmployeeService.AddFileToDB($scope.FileData, $scope.emplyeeDetailScope)
+                    .then(function (res) {
+                        console.log(res.data.Result);
+                    })
+            }
         }
+
 
         $scope.departmentsScope = function () {
             EmployeeService.GetDepartmentlist().then(function (res) {
@@ -320,8 +365,27 @@
             CommonFunctions.DownloadReport('/Employee/CreateEmployeeListReport', filename);
         };
     }
+    //angular.module("MVCApp").factory('FileService', ['$http', function ($http) {
+    //  /*  debugger;*/
+    //    return {
+    //        uploadFile: function (url, file) {
+    //            return $http({
+    //                url: url,
+    //                method: 'POST',
+    //                data: file,
+    //                headers: { 'Content-Type': undefined }, //this is important
+    //                transformRequest: angular.identity //also important
+    //            });
+    //        },
+    //        otherFunctionHere: function (url, stuff) {
+    //            return $http.get(url);
+    //        }
+    //    };
+    //}]);
+
+
     angular.module("MVCApp").factory('FileService', ['$http', function ($http) {
-      /*  debugger;*/
+        /*  debugger;*/
         return {
             uploadFile: function (url, file) {
                 return $http({
@@ -337,7 +401,6 @@
             }
         };
     }]);
-
 
       
 })();
