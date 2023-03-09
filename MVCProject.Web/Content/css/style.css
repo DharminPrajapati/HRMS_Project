@@ -946,8 +946,8 @@ textarea.form-control {
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-    background-color: #71b6f9;
-    border-color: #71b6f9;
+    background-color: #ff9b44;
+    border-color: #ff9b44;
 }
 
 .pager li > a,
@@ -3350,7 +3350,7 @@ div.hopscotch-bubble {
 ============= */
 .btn {
     border-radius: 2px;
-    padding: 5px 14px;
+    padding: 11px 14px;
 }
 
 .btn-group-lg > .btn,
@@ -3471,6 +3471,7 @@ div.hopscotch-bubble {
 .btn-success {
     background-color: #10c469 !important;
     border: 1px solid #10c469 !important;
+    width:100%;
 }
 
     .btn-success:hover,
@@ -4813,6 +4814,8 @@ table.focus-on tbody tr.focused td {
 /* Data tables */
 #datatable td {
     font-weight: normal;
+    vertical-align:middle;
+
 }
 
 .paginate_button {
@@ -5521,6 +5524,7 @@ table.dataTable td.focus {
 
 .title-icon {
     border-color: #34444c;
+    margin-top:15px;
 }
 
 .icon-position {
@@ -7471,3 +7475,15 @@ multilevel-accordion uib-accordion .panel-group {
         left: 100%;
         margin-left: 8px;
     }
+.table td h2 {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+}
+.avatar.avatar-xs {
+    width: 24px;
+    height: 24px;
+}
