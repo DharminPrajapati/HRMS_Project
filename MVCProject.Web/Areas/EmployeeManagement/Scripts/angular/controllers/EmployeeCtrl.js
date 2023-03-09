@@ -135,33 +135,7 @@
             }
             
         }
-        //$scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees)
-        //{
-        //    if (frmEmployees.$valid) {
-        //        debugger;
-        //        EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res) {
-        //            if (res) {
-        //                var data = res.data;
-        //                if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
-        //                    $scope.ClearFormData(frmEmployees);
-        //                    toastr.success(data.Message, successTitle);
-        //                    $scope.tableParams.reload();
-        //                }
-        //                else if (data.MessageType == messageTypes.Error) {
-        //                    toastr.error(data.Message, errorTitle);
-        //                }
-        //                else if (data.MessageType == messageTypes.Warning) {
-        //                    toastr.warning(data.Message, warningTitle);
-        //                }
-        //            }
-
-        //        });
-        //    }
-        //    //else {
-        //    //    toastr.error("Please fill All Fields", errorTitle);
-        //    //}
-        //}
-
+        
         $scope.EditEmployeeDetails = function (employeeId)
         {
             EmployeeService.GetEmployeeById(employeeId).then(function (res) {

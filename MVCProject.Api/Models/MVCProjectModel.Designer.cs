@@ -124,22 +124,6 @@ namespace MVCProject.Api.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Attendance> Attendance
-        {
-            get
-            {
-                if ((_Attendance == null))
-                {
-                    _Attendance = base.CreateObjectSet<Attendance>("Attendance");
-                }
-                return _Attendance;
-            }
-        }
-        private ObjectSet<Attendance> _Attendance;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<AttachmentMaster> AttachmentMaster
         {
             get
@@ -168,6 +152,22 @@ namespace MVCProject.Api.Models
             }
         }
         private ObjectSet<AttachmentType> _AttachmentType;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Attendance> Attendance
+        {
+            get
+            {
+                if ((_Attendance == null))
+                {
+                    _Attendance = base.CreateObjectSet<Attendance>("Attendance");
+                }
+                return _Attendance;
+            }
+        }
+        private ObjectSet<Attendance> _Attendance;
 
         #endregion
 
@@ -198,14 +198,6 @@ namespace MVCProject.Api.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Attendance EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToAttendance(Attendance attendance)
-        {
-            base.AddObject("Attendance", attendance);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the AttachmentMaster EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToAttachmentMaster(AttachmentMaster attachmentMaster)
@@ -219,6 +211,14 @@ namespace MVCProject.Api.Models
         public void AddToAttachmentType(AttachmentType attachmentType)
         {
             base.AddObject("AttachmentType", attachmentType);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Attendance EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAttendance(Attendance attendance)
+        {
+            base.AddObject("Attendance", attendance);
         }
 
         #endregion
@@ -616,7 +616,7 @@ namespace MVCProject.Api.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> StartingTime
+        public Nullable<global::System.TimeSpan> StartingTime
         {
             get
             {
@@ -631,8 +631,8 @@ namespace MVCProject.Api.Models
                 OnStartingTimeChanged();
             }
         }
-        private Nullable<global::System.DateTime> _StartingTime;
-        partial void OnStartingTimeChanging(Nullable<global::System.DateTime> value);
+        private Nullable<global::System.TimeSpan> _StartingTime;
+        partial void OnStartingTimeChanging(Nullable<global::System.TimeSpan> value);
         partial void OnStartingTimeChanged();
     
         /// <summary>
@@ -640,7 +640,7 @@ namespace MVCProject.Api.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> EndingTime
+        public Nullable<global::System.TimeSpan> EndingTime
         {
             get
             {
@@ -655,8 +655,8 @@ namespace MVCProject.Api.Models
                 OnEndingTimeChanged();
             }
         }
-        private Nullable<global::System.DateTime> _EndingTime;
-        partial void OnEndingTimeChanging(Nullable<global::System.DateTime> value);
+        private Nullable<global::System.TimeSpan> _EndingTime;
+        partial void OnEndingTimeChanging(Nullable<global::System.TimeSpan> value);
         partial void OnEndingTimeChanged();
     
         /// <summary>
