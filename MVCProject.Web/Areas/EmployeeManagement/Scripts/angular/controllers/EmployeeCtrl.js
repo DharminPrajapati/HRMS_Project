@@ -283,7 +283,7 @@
 
 
         $scope.uploadFile = function () {
-            debugger;
+            debugger
             var fileInput = document.getElementById('file');
             //fileInput.click();
 
@@ -317,6 +317,7 @@
                 //bummer
             });
             $scope.FileDataTODB = function () {
+                debugger
                 EmployeeService.AddFileToDB($scope.FileData, $scope.emplyeeDetailScope)
                     .then(function (res) {
                         console.log(res.data.Result);
@@ -339,24 +340,6 @@
             CommonFunctions.DownloadReport('/Employee/CreateEmployeeListReport', filename);
         };
     }
-    //angular.module("MVCApp").factory('FileService', ['$http', function ($http) {
-    //  /*  debugger;*/
-    //    return {
-    //        uploadFile: function (url, file) {
-    //            return $http({
-    //                url: url,
-    //                method: 'POST',
-    //                data: file,
-    //                headers: { 'Content-Type': undefined }, //this is important
-    //                transformRequest: angular.identity //also important
-    //            });
-    //        },
-    //        otherFunctionHere: function (url, stuff) {
-    //            return $http.get(url);
-    //        }
-    //    };
-    //}]);
-
 
     angular.module("MVCApp").factory('FileService', ['$http', function ($http) {
         /*  debugger;*/
