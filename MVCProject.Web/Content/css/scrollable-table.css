@@ -64,7 +64,7 @@
 .scrollArea table th .box {
     padding: 0 8px;
     padding-right: 11px;    /*  order icon width*/
-    /*border-left: 1px solid #ddd;*/
+    border-left: 1px solid #ddd;
 }
 
 /*  to hack fix firefox border issue    */

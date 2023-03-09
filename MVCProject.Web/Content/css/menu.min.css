@@ -627,7 +627,7 @@ table.no-margin .progress {
     .nav.child_menu > li > a {
         color: #E7E7E7;
         font-weight: 500;
-        padding: 18px;
+        padding: 22px;
         margin-right:-8px;
     }
 
@@ -1237,7 +1237,7 @@ ul.project_files li {
 
 .avatar img {
     border-radius: 50%;
-    max-width: 35px;
+    max-width: 45px;
 }
 
 .sideways {
