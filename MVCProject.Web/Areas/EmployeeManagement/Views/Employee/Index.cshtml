@@ -201,7 +201,7 @@
                     </div>
                     <div class="col-md-4">
                         @*<img id="output" height="100px" width="100px" />*@
-                        @*<button ng-click="uploadFile()" class="btn-upload">Upload</button>*@
+                        <button ng-click="uploadFile()" class="btn-upload">Upload</button>
                         <script>
                             var loadFile = function (event) {
                                 var output = document.getElementById('output');
@@ -289,23 +289,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>
-                                Address <span class="required-field">*</span>
-                            </label>
-                            <textarea class="form-control" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.PermanentAddress" placeholder="Permanent Address" required> </textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>
-                                Temporary Address
-                            </label>
-                            <textarea class="form-control" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.TemporaryAddress" placeholder="Temporary Address"> </textarea>
-                        </div>
-                    </div>
-                </div>
+            
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>

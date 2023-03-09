@@ -71,6 +71,8 @@
                                     AlternatePhoneNumber = d.AlternatePhoneNumber,
                                     Designation = d.DesignationId,
                                     Department = d.DepartmentId,
+                                    DepartmentName = d.TblDepartmentReference.Value.DepartmentName,
+                                    DesignationName = d.DesignationReference.Value.DesignationName,
                                     BirthDate = d.BirthDate,
                                     Gender = d.Gender,
                                     PermanentAddress = d.PermanentAddress,
@@ -307,7 +309,6 @@
                 existingEmployeeDetail.FirstName = employeeDetail.FirstName;
                 existingEmployeeDetail.LastName = employeeDetail.LastName;
                 existingEmployeeDetail.Email = employeeDetail.Email;
-
                 existingEmployeeDetail.JoiningDate = employeeDetail.JoiningDate;
                 existingEmployeeDetail.PhoneNumber = employeeDetail.PhoneNumber;
                 existingEmployeeDetail.AlternatePhoneNumber = employeeDetail.AlternatePhoneNumber;

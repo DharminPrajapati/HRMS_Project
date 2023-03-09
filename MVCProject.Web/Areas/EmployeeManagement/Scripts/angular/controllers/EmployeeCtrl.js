@@ -283,7 +283,7 @@
 
 
         $scope.uploadFile = function () {
-            debugger;
+            debugger
             var fileInput = document.getElementById('file');
             //fileInput.click();
 
@@ -317,6 +317,7 @@
                 //bummer
             });
             $scope.FileDataTODB = function () {
+                debugger
                 EmployeeService.AddFileToDB($scope.FileData, $scope.emplyeeDetailScope)
                     .then(function (res) {
                         console.log(res.data.Result);

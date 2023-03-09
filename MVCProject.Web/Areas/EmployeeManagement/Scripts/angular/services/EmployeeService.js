@@ -73,12 +73,14 @@
 
         //Image uploading
         list.uploadFile = function (directoryPathEnumName) {
+            debugger
             return $http({
                 method: 'POST',
                 url: $rootScope.apiURL + 'Upload/UploadImage?directoryPathEnumName' + directoryPathEnumName
             });
         };
         list.AddFileToDB = function (filedata) {
+            debugger
             return $http({
                 method: 'POST',
                 url: $rootScope.apiURL + '/Employee/FileUploadTODB',
