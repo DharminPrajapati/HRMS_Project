@@ -7411,9 +7411,7 @@ multilevel-accordion uib-accordion .panel-group {
 	margin-left: 6px;
 }
 
-.gender {
-	margin-left: 90px;
-}
+
 
 @media (max-width: 999px) {
 	.div-timeline, .div-status, .div-action-type, .div-priority, .div-action-type, .div-type {
@@ -7474,3 +7472,7 @@ multilevel-accordion uib-accordion .panel-group {
 		left: 100%;
 		margin-left: 8px;
 	}
+.rdomrgn input[type=checkbox], .rdomrgn input[type=radio] {
+	float: left;
+	margin:-8px;
+}

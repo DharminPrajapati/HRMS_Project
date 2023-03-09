@@ -158,55 +158,68 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
-            </div>
-            <div class="col-md-4">
-                <!--IsActive -->
-                <div class="form-group">
-                    <label>
-                    </label>
-                    <div class="form-control-static">
-                        <div class="checkbox checkbox-info">
-                            <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="emplyeeDetailScope.IsActive"
-                                   tabindex="9" />
-                            <label for="chkDesignationActive">
-                                @Resource.IsActive
-                            </label>
+                        <div class="col-md-3 col-md-offset-1">
+                            <!--IsActive -->
+                            <div class="form-group">
+                                <label>
+                                </label>
+                                <div class="form-control-static">
+                                    <div class="checkbox checkbox-info">
+                                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="emplyeeDetailScope.IsActive"
+                                               tabindex="9" />
+                                        <label for="chkDesignationActive">
+                                            @Resource.IsActive
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+                    </form>
+                    </div>
+            
+                    </div>
+           
         <div class="row">
 
             <div class="col-md-12">
                 <div class="form-group">
 
-                    <div class="col-md-10">
-                        <input type="file" id="file" name="file" tabindex="27" accept="image/*" onchange="loadFile(event)" />
-                        <div>
-                            @*<img id="output" height="100px" width="100px" />*@
-                            <button ng-click="uploadFile()">Upload</button>
-                            <script>
-                                var loadFile = function (event) {
-                                    var output = document.getElementById('output');
-                                    output.src = URL.createObjectURL(event.target.files[0]);
-                                    output.onload = function () {
-                                        URL.revokeObjectURL(output.src) // free memory
-                                    }
-                                };
-                            </script>
+                    @*<div class="col-md-4">
+                            <input type="file" id="file" name="file" tabindex="27" accept="image/*" onchange="loadFile(event)" />
+                        </div>*@
+                    <div class="col-md-4">
+                        <div class="fileupload btn">
+                            <span class="btn-text">Choose File</span>
+                            <input class="upload" type="file" id="file" name="file" tabindex="27" accept="image/*" onchange="loadFile(event)">
                         </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <img id="output" height="200px" width="200px" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        @*<img id="output" height="100px" width="100px" />*@
+                        @*<button ng-click="uploadFile()" class="btn-upload">Upload</button>*@
+                        <script>
+                            var loadFile = function (event) {
+                                var output = document.getElementById('output');
+                                output.src = URL.createObjectURL(event.target.files[0]);
+                                output.onload = function () {
+                                    URL.revokeObjectURL(output.src) // free memory
+                                }
+                            };
+                        </script>
+                    </div>
 
-                    </div>
-                    <div>
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                <img id="output" height="200px" width="200px" />
-                            </div>
-                        </div>
-                    </div>
+
+
+
+
+
                 </div>
+
                 @*<div class="main-page-title title-icon relative l">
                         <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
                         <h4 class="header-title-sub l">
@@ -226,53 +239,70 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
 
-
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>
-                            Birth Date <span class="required-field">*</span>
-                        </label>
-                        <input type="date" class="form-control" id="birthdate" ng-focus="true" name="birthdate" ng-model="emplyeeDetailScope.BirthDate" required tabindex="1" placeholder="BirthDate" maxlength="250">
-                        <div class="c">
-                        </div>
-                        <div class="label label-danger" data-ng-show="frmEmployees.birthdate.$dirty && frmEmployees.birthdate.$invalid">
-                            <span data-ng-show="frmEmployees.birthdate.$error.required">Birth Date required</span>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>
+                                Birth Date <span class="required-field">*</span>
+                            </label>
+                            <input type="date" class="form-control" id="birthdate" ng-focus="true" name="birthdate" ng-model="emplyeeDetailScope.BirthDate" required tabindex="1" placeholder="BirthDate" maxlength="250">
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger" data-ng-show="frmEmployees.birthdate.$dirty && frmEmployees.birthdate.$invalid">
+                                <span data-ng-show="frmEmployees.birthdate.$error.required">Birth Date required</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="gender">
-                            @Resource.Gender
-                        </label>
-
-                        <div class="radio-custom gender">
-                            <input type="radio" name="rdGender" id="rdMale" ng-value="1" ng-model="emplyeeDetailScope.Gender" ng-required="true" ng-disabled="isDisabled" />
-                            <label for="rdMale">
-                                Male
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="gender">
+                                @Resource.Gender
                             </label>
 
-                            <input type="radio" name="rdGender" id="rdFemale" ng-value="2" ng-model="emplyeeDetailScope.Gender" ng-required="true" ng-disabled="isDisabled" />
-                            <label for="rdFemale">
-                                Female
-                            </label>
+                            <div class="radio-custom gender">
+                                <input type="radio" name="rdGender" id="rdMale" ng-value="1" ng-model="emplyeeDetailScope.Gender" ng-required="true" ng-disabled="isDisabled" />
+                                <label for="rdMale">
+                                    Male
+                                </label>
+
+                                <input type="radio" name="rdGender" id="rdFemale" ng-value="2" ng-model="emplyeeDetailScope.Gender" ng-required="true" ng-disabled="isDisabled" />
+                                <label for="rdFemale">
+                                    Female
+                                </label>
+                            </div>
+
                         </div>
-
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>
-                            Pincode <span class="required-field">*</span>
-                        </label>
-                        <input type="text" class="form-control" id="pincode" ng-focus="true" integer name="pincode" minlength="6" ng-model="emplyeeDetailScope.Pincode" required tabindex="1" placeholder="Pincode Number" maxlength="6">
-                        <div class="c">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>
+                                Pincode <span class="required-field">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="pincode" ng-focus="true" integer name="pincode" minlength="6" ng-model="emplyeeDetailScope.Pincode" required tabindex="1" placeholder="Pincode Number" maxlength="6">
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger" data-ng-show="frmEmployees.pincode.$dirty && frmEmployees.pincode.$invalid">
+                                <span data-ng-show="frmEmployees.pincode.$error.integer">Pincode must have Number</span>
+                                <span data-ng-show="frmEmployees.pincode.$error.required">Pincode required</span>
+                                <span data-ng-show="frmEmployees.pincode.$error.minlength">Pincode must have 6 Digits</span>
+                            </div>
                         </div>
-                        <div class="label label-danger" data-ng-show="frmEmployees.pincode.$dirty && frmEmployees.pincode.$invalid">
-                            <span data-ng-show="frmEmployees.pincode.$error.integer">Pincode must have Number</span>
-                            <span data-ng-show="frmEmployees.pincode.$error.required">Pincode required</span>
-                            <span data-ng-show="frmEmployees.pincode.$error.minlength">Pincode must have 6 Digits</span>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>
+                                Address <span class="required-field">*</span>
+                            </label>
+                            <textarea class="form-control" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.PermanentAddress" placeholder="Permanent Address" required> </textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>
+                                Temporary Address
+                            </label>
+                            <textarea class="form-control" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.TemporaryAddress" placeholder="Temporary Address"> </textarea>
                         </div>
                     </div>
                 </div>
@@ -295,7 +325,14 @@
 
 
                 <!-- Education Details Form -->
-              
+                @*<div class="main-page-title title-icon relative l">
+                        <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+                        <h4 class="header-title-sub l">
+
+
+                            Education Details
+                        </h4>
+                    </div>*@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -390,7 +427,12 @@
 
 
                 <!--Experience Details  Form-->
-               
+                @*<div class="main-page-title title-icon relative l">
+                        <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+                        <h4 class="header-title-sub l">
+                            Experience Details
+                        </h4>
+                    </div>*@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
@@ -400,7 +442,14 @@
                                 Experience Details
                             </h3>
 
-                          
+                            <!--Experience Details  Form-->
+                            @*<div class="main-page-title title-icon relative l">
+                                    <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+                                    <h4 class="header-title-sub l">
+
+                                        Experience Details
+                                    </h4>
+                                </div>*@
                             <div class="row">
                                 <div class="col-md-10">
                                     <div class="form-group">
@@ -602,14 +651,14 @@
                             </div>
                         </div>
                     </div>
-
+                    </div>
                     <!-- end Employee details list -->
                 </div>
+                </div>
             </div>
-        </div>
-        <!-- end body section-->
-
-        @section scripts {
-            @Scripts.Render("~/bundles/EmployeeManagement/Employee")
-        }
-        <script src="https://kit.fontawesome.com/73e0cf2663.js" crossorigin="anonymous"></script>
+            <!-- end body section-->
+    </div>
+            @section scripts {
+                @Scripts.Render("~/bundles/EmployeeManagement/Employee")
+            }
+            <script src="https://kit.fontawesome.com/73e0cf2663.js" crossorigin="anonymous"></script>
