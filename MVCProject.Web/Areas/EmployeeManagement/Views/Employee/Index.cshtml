@@ -175,11 +175,11 @@
                             </div>
                         </div>
                     </div>
-                    </form>
-                    </div>
-            
-                    </div>
-           
+                </form>
+            </div>
+
+        </div>
+
         <div class="row">
 
             <div class="col-md-12">
@@ -289,23 +289,32 @@
                             </div>
                         </div>
                     </div>
-            
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>
-                            Address <span class="required-field">*</span>
-                        </label>
-                        <textarea class="form-control" id="permanentAddress" name="permanentAddress" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.PermanentAddress" placeholder="Permanent Address" required> </textarea>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>
+                                Address <span class="required-field">*</span>
+                            </label>
+                            <textarea class="form-control" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.PermanentAddress" placeholder="Permanent Address" required> </textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>
+                                Temporary Address
+                            </label>
+                            <textarea class="form-control" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.TemporaryAddress" placeholder="Temporary Address"> </textarea>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label>
-                            Temporary Address
-                        </label>
-                        <textarea class="form-control" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.TemporaryAddress" placeholder="Temporary Address"> </textarea>
-                    </div>
-                </div>
+
+                <!-- Education Details Form -->
+                @*<div class="main-page-title title-icon relative l">
+                        <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+                        <h4 class="header-title-sub l">
+
+                            Education Details
+                        </h4>
+                    </div>*@
 
 
                 <!-- Education Details Form -->
@@ -511,7 +520,7 @@
                                     </div>
                                 </div>
                             </div>
-                            </form>
+                            
                         </div>
                     </div>
                     <!-- end Employee form -->
@@ -635,14 +644,14 @@
                             </div>
                         </div>
                     </div>
-                    </div>
-                    <!-- end Employee details list -->
                 </div>
-                </div>
+                <!-- end Employee details list -->
             </div>
-            <!-- end body section-->
+        </div>
     </div>
-            @section scripts {
-                @Scripts.Render("~/bundles/EmployeeManagement/Employee")
-            }
-            <script src="https://kit.fontawesome.com/73e0cf2663.js" crossorigin="anonymous"></script>
+    <!-- end body section-->
+</div>
+@section scripts {
+    @Scripts.Render("~/bundles/EmployeeManagement/Employee")
+}
+<script src="https://kit.fontawesome.com/73e0cf2663.js" crossorigin="anonymous"></script>
