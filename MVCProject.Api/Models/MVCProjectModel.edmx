@@ -5,42 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityType Name="AddSalary">
-          <Key>
-            <PropertyRef Name="SalaryId" />
-          </Key>
-          <Property Name="SalaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeId" Type="int" />
-          <Property Name="BasicSalary" Type="numeric" Precision="8" Scale="0" />
-          <Property Name="DA" Type="nvarchar" MaxLength="50" />
-          <Property Name="HRA" Type="nvarchar" MaxLength="50" />
-          <Property Name="PF" Type="nvarchar" MaxLength="50" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="EntryBy" Type="int" />
-          <Property Name="EntryDate" Type="date" />
-          <Property Name="UpdateBy" Type="int" />
-          <Property Name="UpdatedDate" Type="date" />
-        </EntityType>
-        <EntityType Name="AttachmentMaster">
-          <Key>
-            <PropertyRef Name="AttachmentId" />
-          </Key>
-          <Property Name="AttachmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FileName" Type="nvarchar" MaxLength="500" />
-          <Property Name="Filepath" Type="nvarchar" MaxLength="500" />
-          <Property Name="FileAttachmentType" Type="nvarchar" MaxLength="500" />
-          <Property Name="IsActive" Type="bit" />
-          <Property Name="IsDeleted" Type="bit" />
-          <Property Name="RefrencedId" Type="int" />
-          <Property Name="FileReletivePath" Type="nvarchar" MaxLength="500" />
-        </EntityType>
-        <EntityType Name="AttachmentType">
-          <Key>
-            <PropertyRef Name="AttachmentTypeId" />
-          </Key>
-          <Property Name="AttachmentTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="AttachmentTypeName" Type="nvarchar" MaxLength="100" />
-        </EntityType>
         <EntityType Name="Attendance">
           <Key>
             <PropertyRef Name="AttendanceId" />
@@ -48,8 +12,8 @@
           <Property Name="AttendanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeId" Type="int" />
           <Property Name="Date" Type="date" />
-          <Property Name="StartingTime" Type="time" Precision="7" />
-          <Property Name="EndingTime" Type="time" Precision="7" />
+          <Property Name="StartingTime" Type="datetime" />
+          <Property Name="EndingTime" Type="datetime" />
           <Property Name="StartingLatitude" Type="decimal" Precision="18" Scale="6" />
           <Property Name="EndingLatitude" Type="decimal" Precision="18" Scale="6" />
           <Property Name="StartingLongitude" Type="decimal" Precision="18" Scale="6" />
@@ -156,9 +120,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MVCProjectModelStoreContainer">
-          <EntitySet Name="AddSalary" EntityType="Self.AddSalary" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AttachmentMaster" EntityType="Self.AttachmentMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AttachmentType" EntityType="Self.AttachmentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDepartment" EntityType="Self.TblDepartment" Schema="dbo" store:Type="Tables" />
@@ -279,35 +240,12 @@
             <End Role="TblDepartment" EntitySet="TblDepartments" />
             <End Role="TblEmployee" EntitySet="TblEmployees" />
           </AssociationSet>
-          <EntitySet Name="AttachmentMaster" EntityType="MVCProjectModel.AttachmentMaster" />
-          <EntitySet Name="AttachmentType" EntityType="MVCProjectModel.AttachmentType" />
           <EntitySet Name="Attendance" EntityType="MVCProjectModel.Attendance" />
           <AssociationSet Name="fk_EmployeeId" Association="MVCProjectModel.fk_EmployeeId">
             <End Role="TblEmployee" EntitySet="TblEmployees" />
             <End Role="Attendance" EntitySet="Attendance" />
           </AssociationSet>
-          <EntitySet Name="AddSalary" EntityType="MVCProjectModel.AddSalary" />
         </EntityContainer>
-        <EntityType Name="AttachmentMaster">
-          <Key>
-            <PropertyRef Name="AttachmentId" />
-          </Key>
-          <Property Name="AttachmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Filepath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="FileAttachmentType" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <Property Name="RefrencedId" Type="Int32" />
-          <Property Name="FileReletivePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="AttachmentType">
-          <Key>
-            <PropertyRef Name="AttachmentTypeId" />
-          </Key>
-          <Property Name="AttachmentTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AttachmentTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Attendance">
           <Key>
             <PropertyRef Name="AttendanceId" />
@@ -315,8 +253,8 @@
           <Property Name="AttendanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeId" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="StartingTime" Type="Time" Precision="7" />
-          <Property Name="EndingTime" Type="Time" Precision="7" />
+          <Property Name="StartingTime" Type="DateTime" Precision="3" />
+          <Property Name="EndingTime" Type="DateTime" Precision="3" />
           <Property Name="StartingLatitude" Type="Decimal" Precision="18" Scale="6" />
           <Property Name="EndingLatitude" Type="Decimal" Precision="18" Scale="6" />
           <Property Name="StartingLongitude" Type="Decimal" Precision="18" Scale="6" />
@@ -341,22 +279,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="AddSalary">
-          <Key>
-            <PropertyRef Name="SalaryId" />
-          </Key>
-          <Property Name="SalaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeId" Type="Int32" />
-          <Property Name="BasicSalary" Type="Decimal" Precision="8" Scale="0" />
-          <Property Name="DA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HRA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="EntryBy" Type="Int32" />
-          <Property Name="EntryDate" Type="DateTime" Precision="0" />
-          <Property Name="UpdateBy" Type="Int32" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -424,28 +346,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AttachmentMaster">
-            <EntityTypeMapping TypeName="MVCProjectModel.AttachmentMaster">
-              <MappingFragment StoreEntitySet="AttachmentMaster">
-                <ScalarProperty Name="FileReletivePath" ColumnName="FileReletivePath" />
-                <ScalarProperty Name="RefrencedId" ColumnName="RefrencedId" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="FileAttachmentType" ColumnName="FileAttachmentType" />
-                <ScalarProperty Name="Filepath" ColumnName="Filepath" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="AttachmentId" ColumnName="AttachmentId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AttachmentType">
-            <EntityTypeMapping TypeName="MVCProjectModel.AttachmentType">
-              <MappingFragment StoreEntitySet="AttachmentType">
-                <ScalarProperty Name="AttachmentTypeName" ColumnName="AttachmentTypeName" />
-                <ScalarProperty Name="AttachmentTypeId" ColumnName="AttachmentTypeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Attendance">
             <EntityTypeMapping TypeName="MVCProjectModel.Attendance">
               <MappingFragment StoreEntitySet="Attendance">
@@ -464,23 +364,6 @@
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="AttendanceId" ColumnName="AttendanceId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AddSalary">
-            <EntityTypeMapping TypeName="MVCProjectModel.AddSalary">
-              <MappingFragment StoreEntitySet="AddSalary">
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="PF" ColumnName="PF" />
-                <ScalarProperty Name="HRA" ColumnName="HRA" />
-                <ScalarProperty Name="DA" ColumnName="DA" />
-                <ScalarProperty Name="BasicSalary" ColumnName="BasicSalary" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="SalaryId" ColumnName="SalaryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -135,7 +135,33 @@
             }
             
         }
-        
+        //$scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees)
+        //{
+        //    if (frmEmployees.$valid) {
+        //        debugger;
+        //        EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res) {
+        //            if (res) {
+        //                var data = res.data;
+        //                if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
+        //                    $scope.ClearFormData(frmEmployees);
+        //                    toastr.success(data.Message, successTitle);
+        //                    $scope.tableParams.reload();
+        //                }
+        //                else if (data.MessageType == messageTypes.Error) {
+        //                    toastr.error(data.Message, errorTitle);
+        //                }
+        //                else if (data.MessageType == messageTypes.Warning) {
+        //                    toastr.warning(data.Message, warningTitle);
+        //                }
+        //            }
+
+        //        });
+        //    }
+        //    //else {
+        //    //    toastr.error("Please fill All Fields", errorTitle);
+        //    //}
+        //}
+
         $scope.EditEmployeeDetails = function (employeeId)
         {
             EmployeeService.GetEmployeeById(employeeId).then(function (res) {
@@ -252,38 +278,8 @@
                 console.log($scope.Designation);
             });
         };
-        //$scope.uploadFile = function () {
-        //    debugger;
-        //    var fileInput = document.getElementById('file');
-        //    //fileInput.click();
-
-        //    //do nothing if there's no files
-        //    if (fileInput.files.length === 0) return;
-
-        //    var file = fileInput.files[0];
-
-        //    var payload = new FormData();
-        //    payload.append("stuff", "some string");
-        //    payload.append("file", file);
-        //   var url = $rootScope.apiURL + '/Upload/UploadImage'
-
-        //    //var url = $rootScope.apiURL +'/UploadPrec/UploadFile'
-        //    //use the service to upload the file
-        //    FileService.uploadFile(url, payload).then(function (response) {
-
-        //        response
-        //        //success, file uploaded
-        //    }).catch(function (response) {
-
-        //        response
-        //        //bummer
-        //    });
-        //}
-
-
-
         $scope.uploadFile = function () {
-            debugger
+            debugger;
             var fileInput = document.getElementById('file');
             //fileInput.click();
 
@@ -293,38 +289,22 @@
             var file = fileInput.files[0];
 
             var payload = new FormData();
+            payload.append("stuff", "some string");
             payload.append("file", file);
-            //payload.append("file", file);
-            //var url = $rootScope.apiURL + '/Upload/UploadImage'
-            var url = $rootScope.apiURL + '/Upload/UploadImage/'
+           var url = $rootScope.apiURL + '/Upload/UploadImage'
 
             //var url = $rootScope.apiURL +'/UploadPrec/UploadFile'
             //use the service to upload the file
-            FileService.uploadFile(url, payload).then(function sucessCallback(response) {
+            FileService.uploadFile(url, payload).then(function (response) {
 
-                $scope.FileData = response.data.Result;
-
-                $scope.FileDataTODB($scope.FileData, $scope.emplyeeDetailScope)
-
-                // response
-
-
-
+                response
                 //success, file uploaded
             }).catch(function (response) {
 
                 response
                 //bummer
             });
-            $scope.FileDataTODB = function () {
-                debugger
-                EmployeeService.AddFileToDB($scope.FileData, $scope.emplyeeDetailScope)
-                    .then(function (res) {
-                        console.log(res.data.Result);
-                    })
-            }
         }
-
 
         $scope.departmentsScope = function () {
             EmployeeService.GetDepartmentlist().then(function (res) {
@@ -340,9 +320,8 @@
             CommonFunctions.DownloadReport('/Employee/CreateEmployeeListReport', filename);
         };
     }
-
     angular.module("MVCApp").factory('FileService', ['$http', function ($http) {
-        /*  debugger;*/
+      /*  debugger;*/
         return {
             uploadFile: function (url, file) {
                 return $http({
@@ -358,6 +337,7 @@
             }
         };
     }]);
+
 
       
 })();

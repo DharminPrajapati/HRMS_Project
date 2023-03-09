@@ -52,7 +52,7 @@ namespace System.Web.Mvc
                     menuString.Append("</ul></li>");
 
                     menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Attendance, "fa fa-check-square"));
+                    menuString.AppendFormat(GetParentMenu(Resource.Attendance, "fa fa-user"));
                     menuString.Append("<ul class='nav child_menu'>");
                     menuString.Append(GetSubMenu(Resource.EmployeeAttendance, "", "/Attendance/Attendance/EmployeeAttendanceView"));
                     menuString.Append(GetSubMenu(Resource.Attendance, "", "/Attendance/Attendance/HRAttendanceView"));

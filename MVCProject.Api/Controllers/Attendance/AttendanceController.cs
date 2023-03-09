@@ -24,12 +24,12 @@ namespace MVCProject.Api.Controllers.Attendance
         [HttpPost]
         public ApiResponse SaveAttendanceDetails(Attendance AttendanceDetail)
         {
-            //if (this.entities.Attendance.Any(x => x.AttendanceId == AttendanceDetail.AttendanceId))
-            //{
-            //    return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Attendance));
-            //}
-            //else
-            //{
+            if (this.entities.Attendance.Any(x => x.AttendanceId == AttendanceDetail.AttendanceId))
+            {
+                return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Attendance));
+            }
+            else
+            {
                 Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.AttendanceId == AttendanceDetail.AttendanceId).FirstOrDefault();
                 if (existingAttendanceDetail == null)
                 {
@@ -46,7 +46,6 @@ namespace MVCProject.Api.Controllers.Attendance
 
                 else
                 {
-                //existingAttendanceDetail.AttendanceId = AttendanceDetail.AttendanceId;
                     existingAttendanceDetail.Date = AttendanceDetail.Date;
                     existingAttendanceDetail.StartingTime = AttendanceDetail.StartingTime;
                     existingAttendanceDetail.EndingTime = AttendanceDetail.EndingTime;
@@ -67,35 +66,9 @@ namespace MVCProject.Api.Controllers.Attendance
                     return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Attendance));
                 }
 
-            //}
+            }
         }
 
-        [HttpGet]
-        public ApiResponse GetAttendanceById(int attendanceId)
-        {
-            var Attendancedetail = this.entities.Attendance.Where(x=>x.AttendanceId==attendanceId)
-                .Select(d=> new
-                {
-                d.AttendanceId,
-                d.Date,
-                d.StartingTime,
-                d.EndingTime,
-                d.StartingLatitude,
-                d.EndingLatitude,
-                d.StartingLongitude,
-                d.EndingLongitude,
-                d.IsActive,
-                d.Discription
-                }).SingleOrDefault();
-            if (Attendancedetail != null)
-            {
-                return this.Response(Utilities.MessageTypes.Success,string.Empty,Attendancedetail);
-            }
-            else
-            {
-                return this.Response(Utilities.MessageTypes.NotFound,string.Empty);
-            }
-        }
 
 
         [HttpGet]
@@ -103,7 +76,7 @@ namespace MVCProject.Api.Controllers.Attendance
         {
             //var employeelist = this.entities.TblEmployee.ToList();
             var Attendanelist = this.entities.Attendance.Select(d => new {
-                AttendanceId = d.AttendanceId,
+                Attendance = d.AttendanceId,
                 Date = d.Date,
                 StartingTime = d.StartingTime,
                 EndingTime = d.EndingTime,
