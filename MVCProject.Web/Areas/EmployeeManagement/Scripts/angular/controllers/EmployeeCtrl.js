@@ -339,24 +339,6 @@
             CommonFunctions.DownloadReport('/Employee/CreateEmployeeListReport', filename);
         };
     }
-    //angular.module("MVCApp").factory('FileService', ['$http', function ($http) {
-    //  /*  debugger;*/
-    //    return {
-    //        uploadFile: function (url, file) {
-    //            return $http({
-    //                url: url,
-    //                method: 'POST',
-    //                data: file,
-    //                headers: { 'Content-Type': undefined }, //this is important
-    //                transformRequest: angular.identity //also important
-    //            });
-    //        },
-    //        otherFunctionHere: function (url, stuff) {
-    //            return $http.get(url);
-    //        }
-    //    };
-    //}]);
-
 
     angular.module("MVCApp").factory('FileService', ['$http', function ($http) {
         /*  debugger;*/
