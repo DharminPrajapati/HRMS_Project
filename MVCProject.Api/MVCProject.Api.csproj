@@ -194,6 +194,7 @@
     <Compile Include="Models\Extended\Configuration.cs" />
     <Compile Include="Models\Extended\GroupCurriculumMatrixMaster.cs" />
     <Compile Include="Models\Extended\GroupMaster.cs" />
+    <Compile Include="Models\Extended\ImageAttachment.cs" />
     <Compile Include="Models\Extended\SubGroupMaster.cs" />
     <Compile Include="Models\LogOn.cs" />
     <Compile Include="Models\Extended\Attachments.cs" />

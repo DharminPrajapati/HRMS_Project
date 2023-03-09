@@ -306,15 +306,22 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Education Details Form -->
-                @*<div class="main-page-title title-icon relative l">
-                        <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
-                        <h4 class="header-title-sub l">
-
-                            Education Details
-                        </h4>
-                    </div>*@
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>
+                            Address <span class="required-field">*</span>
+                        </label>
+                        <textarea class="form-control" id="permanentAddress" name="permanentAddress" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.PermanentAddress" placeholder="Permanent Address" required> </textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>
+                            Temporary Address
+                        </label>
+                        <textarea class="form-control" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.TemporaryAddress" placeholder="Temporary Address"> </textarea>
+                    </div>
+                </div>
 
 
                 <!-- Education Details Form -->

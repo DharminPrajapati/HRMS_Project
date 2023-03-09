@@ -124,6 +124,38 @@ namespace MVCProject.Api.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<AttachmentMaster> AttachmentMaster
+        {
+            get
+            {
+                if ((_AttachmentMaster == null))
+                {
+                    _AttachmentMaster = base.CreateObjectSet<AttachmentMaster>("AttachmentMaster");
+                }
+                return _AttachmentMaster;
+            }
+        }
+        private ObjectSet<AttachmentMaster> _AttachmentMaster;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AttachmentType> AttachmentType
+        {
+            get
+            {
+                if ((_AttachmentType == null))
+                {
+                    _AttachmentType = base.CreateObjectSet<AttachmentType>("AttachmentType");
+                }
+                return _AttachmentType;
+            }
+        }
+        private ObjectSet<AttachmentType> _AttachmentType;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Attendance> Attendance
         {
             get
@@ -166,6 +198,22 @@ namespace MVCProject.Api.Models
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the AttachmentMaster EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAttachmentMaster(AttachmentMaster attachmentMaster)
+        {
+            base.AddObject("AttachmentMaster", attachmentMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AttachmentType EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAttachmentType(AttachmentType attachmentType)
+        {
+            base.AddObject("AttachmentType", attachmentType);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Attendance EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToAttendance(Attendance attendance)
@@ -180,6 +228,288 @@ namespace MVCProject.Api.Models
     #endregion
 
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MVCProjectModel", Name="AttachmentMaster")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AttachmentMaster : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new AttachmentMaster object.
+        /// </summary>
+        /// <param name="attachmentId">Initial value of the AttachmentId property.</param>
+        public static AttachmentMaster CreateAttachmentMaster(global::System.Int32 attachmentId)
+        {
+            AttachmentMaster attachmentMaster = new AttachmentMaster();
+            attachmentMaster.AttachmentId = attachmentId;
+            return attachmentMaster;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 AttachmentId
+        {
+            get
+            {
+                return _AttachmentId;
+            }
+            set
+            {
+                if (_AttachmentId != value)
+                {
+                    OnAttachmentIdChanging(value);
+                    ReportPropertyChanging("AttachmentId");
+                    _AttachmentId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("AttachmentId");
+                    OnAttachmentIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _AttachmentId;
+        partial void OnAttachmentIdChanging(global::System.Int32 value);
+        partial void OnAttachmentIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FileName
+        {
+            get
+            {
+                return _FileName;
+            }
+            set
+            {
+                OnFileNameChanging(value);
+                ReportPropertyChanging("FileName");
+                _FileName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FileName");
+                OnFileNameChanged();
+            }
+        }
+        private global::System.String _FileName;
+        partial void OnFileNameChanging(global::System.String value);
+        partial void OnFileNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Filepath
+        {
+            get
+            {
+                return _Filepath;
+            }
+            set
+            {
+                OnFilepathChanging(value);
+                ReportPropertyChanging("Filepath");
+                _Filepath = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Filepath");
+                OnFilepathChanged();
+            }
+        }
+        private global::System.String _Filepath;
+        partial void OnFilepathChanging(global::System.String value);
+        partial void OnFilepathChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FileAttachmentType
+        {
+            get
+            {
+                return _FileAttachmentType;
+            }
+            set
+            {
+                OnFileAttachmentTypeChanging(value);
+                ReportPropertyChanging("FileAttachmentType");
+                _FileAttachmentType = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FileAttachmentType");
+                OnFileAttachmentTypeChanged();
+            }
+        }
+        private global::System.String _FileAttachmentType;
+        partial void OnFileAttachmentTypeChanging(global::System.String value);
+        partial void OnFileAttachmentTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsActive;
+        partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsDeleted
+        {
+            get
+            {
+                return _IsDeleted;
+            }
+            set
+            {
+                OnIsDeletedChanging(value);
+                ReportPropertyChanging("IsDeleted");
+                _IsDeleted = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsDeleted");
+                OnIsDeletedChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsDeleted;
+        partial void OnIsDeletedChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsDeletedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> RefrencedId
+        {
+            get
+            {
+                return _RefrencedId;
+            }
+            set
+            {
+                OnRefrencedIdChanging(value);
+                ReportPropertyChanging("RefrencedId");
+                _RefrencedId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RefrencedId");
+                OnRefrencedIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _RefrencedId;
+        partial void OnRefrencedIdChanging(Nullable<global::System.Int32> value);
+        partial void OnRefrencedIdChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MVCProjectModel", Name="AttachmentType")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AttachmentType : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new AttachmentType object.
+        /// </summary>
+        /// <param name="attachmentTypeId">Initial value of the AttachmentTypeId property.</param>
+        public static AttachmentType CreateAttachmentType(global::System.Int32 attachmentTypeId)
+        {
+            AttachmentType attachmentType = new AttachmentType();
+            attachmentType.AttachmentTypeId = attachmentTypeId;
+            return attachmentType;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 AttachmentTypeId
+        {
+            get
+            {
+                return _AttachmentTypeId;
+            }
+            set
+            {
+                if (_AttachmentTypeId != value)
+                {
+                    OnAttachmentTypeIdChanging(value);
+                    ReportPropertyChanging("AttachmentTypeId");
+                    _AttachmentTypeId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("AttachmentTypeId");
+                    OnAttachmentTypeIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _AttachmentTypeId;
+        partial void OnAttachmentTypeIdChanging(global::System.Int32 value);
+        partial void OnAttachmentTypeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String AttachmentTypeName
+        {
+            get
+            {
+                return _AttachmentTypeName;
+            }
+            set
+            {
+                OnAttachmentTypeNameChanging(value);
+                ReportPropertyChanging("AttachmentTypeName");
+                _AttachmentTypeName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("AttachmentTypeName");
+                OnAttachmentTypeNameChanged();
+            }
+        }
+        private global::System.String _AttachmentTypeName;
+        partial void OnAttachmentTypeNameChanging(global::System.String value);
+        partial void OnAttachmentTypeNameChanged();
+
+        #endregion
+
+    
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -286,7 +616,7 @@ namespace MVCProject.Api.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> StartingTime
+        public Nullable<global::System.TimeSpan> StartingTime
         {
             get
             {
@@ -301,8 +631,8 @@ namespace MVCProject.Api.Models
                 OnStartingTimeChanged();
             }
         }
-        private Nullable<global::System.DateTime> _StartingTime;
-        partial void OnStartingTimeChanging(Nullable<global::System.DateTime> value);
+        private Nullable<global::System.TimeSpan> _StartingTime;
+        partial void OnStartingTimeChanging(Nullable<global::System.TimeSpan> value);
         partial void OnStartingTimeChanged();
     
         /// <summary>
@@ -310,7 +640,7 @@ namespace MVCProject.Api.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> EndingTime
+        public Nullable<global::System.TimeSpan> EndingTime
         {
             get
             {
@@ -325,8 +655,8 @@ namespace MVCProject.Api.Models
                 OnEndingTimeChanged();
             }
         }
-        private Nullable<global::System.DateTime> _EndingTime;
-        partial void OnEndingTimeChanging(Nullable<global::System.DateTime> value);
+        private Nullable<global::System.TimeSpan> _EndingTime;
+        partial void OnEndingTimeChanging(Nullable<global::System.TimeSpan> value);
         partial void OnEndingTimeChanged();
     
         /// <summary>
