@@ -4,16 +4,21 @@
     #region NameSapces
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.Text;
+    using System.Web;
     using System.Web.Http;
     using MVCProject.Api.Models;
     using MVCProject.Api.Utilities;
     using MVCProject.Api.ViewModel;
     using MVCProject.Common.Resources;
     using Newtonsoft.Json;
+    using NPOI.SS.UserModel;
+    using NPOI.XSSF.UserModel;
     #endregion
     public class EmployeeController : BaseController
     {
@@ -187,53 +192,120 @@
             return this.Response(Utilities.MessageTypes.Success, string.Empty, result);
         }
 
+
+
         [HttpGet]
 
         public ApiResponse CreateEmployeeListReport()
         {
             var employeeDetail = this.entities.TblEmployees.Select(d => new
             {
-                EmployeeId = d.EmployeeId,
-                FirstName = d.FirstName,
-                LastName = d.LastName,
-                Email = d.Email,
-                Password = d.Password,
-                JoiningDate = d.JoiningDate,
-                PhoneNumber = d.PhoneNumber,
-                AlternatePhoneNumber = d.AlternatePhoneNumber,
-                DesignationId = d.DesignationId,
-                DepartmentId = d.DepartmentId,
-                BirthDate = d.BirthDate,
-                Gender = d.Gender,
-                PermanentAddress = d.PermanentAddress,
-                TemporaryAddress = d.TemporaryAddress,
-                Pincode = d.Pincode,
-                InstitutionName = d.InstitutionName,
-                CourseName = d.CourseName,
-                CourseStartDate = d.CourseStartDate,
-                CourseEndDate = d.CourseEndDate,
-                Grade = d.Grade,
-                Degree = d.Degree,
-                CompanyName = d.CompanyName,
-                LastJobLocation = d.LastJobLocation,
-                JobPosition = d.JobPosition,
-                FromPeriod = d.FromPeriod,
-                ToPeriod = d.ToPeriod,
-                IsActive = d.IsActive
-            }).SingleOrDefault();
+                d.EmployeeId,
+                d.FirstName,
+                d.LastName,
+                d.Email,
+                d.JoiningDate,
+                d.PhoneNumber,
+                d.AlternatePhoneNumber,
+                d.DesignationId,
+                d.DepartmentId,
+                //DesignationName = d.DesignationReference.Value.DesignationName,
+                //DepartmentName = d.TblDepartmentReference.Value.DepartmentName,
+                d.BirthDate,
+                Gender = d.Gender == 1 ? "Male" : "Female",
+                d.PermanentAddress,
+                d.TemporaryAddress,
+                d.Pincode,
+                d.InstitutionName,
+                d.CourseName,
+                d.CourseStartDate,
+                d.CourseEndDate,
+                d.Grade,
+                d.Degree,
+                IsActive = d.IsActive != null ? d.IsActive == true ? "Active" : "InActive" : string.Empty
+            }).ToList();
 
+            IWorkbook workbook = new XSSFWorkbook();
+            ISheet sheet = workbook.CreateSheet("Sheet1");
+
+            // Add Some Data to Sheet
+            // 
+            IRow headerRow = sheet.CreateRow(0);
+            headerRow.CreateCell(0).SetCellValue("Employee Id");
+            headerRow.CreateCell(1).SetCellValue("First Name");
+            headerRow.CreateCell(2).SetCellValue("Last Name");
+            headerRow.CreateCell(3).SetCellValue("Email");
+            headerRow.CreateCell(4).SetCellValue("Joining Date");
+            headerRow.CreateCell(5).SetCellValue("Phone Number");
+            headerRow.CreateCell(6).SetCellValue("Alternate Phone Number");
+            headerRow.CreateCell(7).SetCellValue("Designation Name");
+            headerRow.CreateCell(8).SetCellValue("Department Name");
+            headerRow.CreateCell(9).SetCellValue("Birth Date");
+            headerRow.CreateCell(10).SetCellValue("Gender");
+            headerRow.CreateCell(11).SetCellValue("Permanent Address");
+            headerRow.CreateCell(12).SetCellValue("Temporary Address");
+            headerRow.CreateCell(13).SetCellValue("Pincode");
+            headerRow.CreateCell(14).SetCellValue("Institution Name");
+            headerRow.CreateCell(15).SetCellValue("Course Name");
+            headerRow.CreateCell(16).SetCellValue("Course Start Date");
+            headerRow.CreateCell(17).SetCellValue("Course End Date");
+            headerRow.CreateCell(18).SetCellValue("Grade");
+            headerRow.CreateCell(19).SetCellValue("Degree");
+            headerRow.CreateCell(20).SetCellValue("IsActive");
+
+            int rowNumber = 1;
+            foreach (var emp in employeeDetail)
+            {
+                IRow row = sheet.CreateRow(rowNumber++);
+                row.CreateCell(0).SetCellValue(emp.EmployeeId);
+                row.CreateCell(1).SetCellValue(emp.FirstName);
+                row.CreateCell(2).SetCellValue(emp.LastName);
+                row.CreateCell(3).SetCellValue(emp.Email);
+                row.CreateCell(4).SetCellValue((DateTime)emp.JoiningDate);
+                row.CreateCell(5).SetCellValue(emp.PhoneNumber);
+                row.CreateCell(6).SetCellValue(emp.AlternatePhoneNumber);
+                row.CreateCell(7).SetCellValue((double)emp.DesignationId);
+                row.CreateCell(8).SetCellValue((double)emp.DepartmentId);
+                row.CreateCell(9).SetCellValue((DateTime)emp.BirthDate);
+                row.CreateCell(10).SetCellValue(emp.Gender);
+                row.CreateCell(11).SetCellValue(emp.PermanentAddress);
+                row.CreateCell(12).SetCellValue(emp.TemporaryAddress);
+                row.CreateCell(13).SetCellValue((double)emp.Pincode);
+                row.CreateCell(14).SetCellValue(emp.InstitutionName);
+                row.CreateCell(15).SetCellValue(emp.CourseName);
+                row.CreateCell(16).SetCellValue((DateTime)emp.CourseStartDate);
+                row.CreateCell(17).SetCellValue((DateTime)emp.CourseEndDate);
+                row.CreateCell(18).SetCellValue(emp.Grade);
+                row.CreateCell(19).SetCellValue(emp.Degree);
+                row.CreateCell(20).SetCellValue(emp.IsActive);
+            }
+
+
+            string filePath = HttpContext.Current.Server.MapPath("~/Reports/Employee.xlsx");
+            string fileName = Path.GetFileName(filePath);
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+            FileStream fileStream = new FileStream(filePath, FileMode.Create);
+            workbook.Write(fileStream);
+            var memorystream = new MemoryStream();
+            var byteArray = memorystream.ToArray();
             var response = new HttpResponseMessage(HttpStatusCode.OK);
 
+            response.Content = new ByteArrayContent(byteArray);
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = "MyExcelFile.xlsx";
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.Content.Headers.ContentLength = byteArray.Length;
+            Console.WriteLine(response);
 
-            response.Content = new StringContent(JsonConvert.SerializeObject(employeeDetail), Encoding.UTF8, "application/json");
-
-            return this.Response(Utilities.MessageTypes.Success, string.Empty, response);
-        }
-
-
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, filePath);
+        }       
+        
         /// <summary>
-        /// Get Employees By Id
-        /// </summary>
+                 /// Get Employees By Id
+                 /// </summary>
         [HttpGet]
 
         public ApiResponse GetEmployeeById(int employeeId)
