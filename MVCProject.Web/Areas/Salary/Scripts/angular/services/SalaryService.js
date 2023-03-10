@@ -42,6 +42,14 @@
                 url: $rootScope.apiURL + '/Salary/GetSalaryById?salaryId=' + salaryId
             });
         };
+        //Get employee DropDown
+        list.GetEmployeelist = function () {
+
+            return $http({
+                methd: 'GET',
+                url: $rootScope.apiURL + '/Employee/GetEmployeeDropDown'
+            });
+        };
 
 
         return list;

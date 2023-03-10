@@ -111,6 +111,13 @@
         }
 
     });
+       
+        $scope.employeesScope = function () {
+            SalaryService.GetEmployeeList().then(function (res) {
+                $scope.Employees = res.data.Result;
+                console.log($scope.Employees);
+            });
+        };
     //$scope.resetemployeeDetails = function (frmDesignations) {
     //    if ($scope.operationMode() == "Update") {
     //        $scope.frmDesignations = angular.copy($scope.lastStorageGroup);
@@ -139,25 +146,10 @@
     };
 
     //$scope.Init = function () {
-    //    $scope.designationScope();
-    //    $scope.departmentsScope();
-    //    $scope.salaryDetailScope.Gender;
+    //    $scope.employeesScope();
     //}
 
-    //$scope.designationScope = function () {
-    //    EmployeeService.GetDesignationlist().then(function (res) {
-    //        $scope.Designation = res.data.Result;
-    //        console.log($scope.Designation);
-    //    });
-    //};
-
-
-    //$scope.departmentsScope = function () {
-    //    EmployeeService.GetDepartmentlist().then(function (res) {
-    //        $scope.Departments = res.data.Result;
-    //        console.log($scope.Departments);
-    //    });
-    //};
+  
 
     ////Create Excel Report of Employees
     //$scope.createReport = function () {

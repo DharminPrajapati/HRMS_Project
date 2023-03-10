@@ -31,6 +31,13 @@ namespace MVCProject.Api.Controllers.Salary
             return this.Response(Utilities.MessageTypes.Success, string.Empty, result);
         }
 
+        [HttpGet]
+        public ApiResponse GetEmployeeDropDown()
+        {
+            var data = this.entities.TblEmployees.Where(x => x.IsActive.Value).Select(x => new { EmployeeName = x.FirstName, EmpId = x.EmployeeId }).OrderBy(x => x.EmployeeName).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+        }
+
         /// <summary>
         /// Get Employees By Id
         /// </summary>
