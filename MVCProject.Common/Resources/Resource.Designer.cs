@@ -106,6 +106,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Salary.
+        /// </summary>
+        public static string Add_Salary {
+            get {
+                return ResourceManager.GetString("Add Salary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Item.
         /// </summary>
         public static string AddMedicineStock {
@@ -237,6 +246,15 @@ namespace MVCProject.Common.Resources {
         public static string AutocompleteSearching {
             get {
                 return ResourceManager.GetString("AutocompleteSearching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BasicSalary.
+        /// </summary>
+        public static string BasicSalary {
+            get {
+                return ResourceManager.GetString("BasicSalary", resourceCulture);
             }
         }
         
@@ -462,6 +480,15 @@ namespace MVCProject.Common.Resources {
         public static string CustomRange {
             get {
                 return ResourceManager.GetString("CustomRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DA.
+        /// </summary>
+        public static string DA {
+            get {
+                return ResourceManager.GetString("DA", resourceCulture);
             }
         }
         
@@ -1033,6 +1060,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HRA.
+        /// </summary>
+        public static string HRA {
+            get {
+                return ResourceManager.GetString("HRA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Inactive.
         /// </summary>
         public static string Inactive {
@@ -1578,6 +1614,15 @@ namespace MVCProject.Common.Resources {
         public static string PDFFooterText {
             get {
                 return ResourceManager.GetString("PDFFooterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PF.
+        /// </summary>
+        public static string PF {
+            get {
+                return ResourceManager.GetString("PF", resourceCulture);
             }
         }
         

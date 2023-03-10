@@ -885,4 +885,19 @@
   <data name="Salary" xml:space="preserve">
     <value>Salary</value>
   </data>
+  <data name="Add Salary" xml:space="preserve">
+    <value>Add Salary</value>
+  </data>
+  <data name="BasicSalary" xml:space="preserve">
+    <value>BasicSalary</value>
+  </data>
+  <data name="DA" xml:space="preserve">
+    <value>DA</value>
+  </data>
+  <data name="HRA" xml:space="preserve">
+    <value>HRA</value>
+  </data>
+  <data name="PF" xml:space="preserve">
+    <value>PF</value>
+  </data>
 </root>

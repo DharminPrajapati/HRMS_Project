@@ -1,0 +1,234 @@
+﻿@{
+    ViewBag.Title = Resource.Salary;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .colSrno {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+
+    .colPosition {
+        width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
+    }
+
+    .colActive {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+    }
+
+    .colAction {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+    }
+</style>
+<div ng-controller="SalaryCtrl" novalidate>
+    <!--Start Title Section-->
+    <div class="main-page-title title-icon relative l">
+        <i class="ti-id-badge icon-position" style="padding-top:8px;"></i>
+        <h4 class="header-title-sub l">@Resource.Salary</h4>
+        <div class="pull-right">
+
+        </div>
+    </div>
+
+    <!--End Title Section-->
+    <!--Start Body Section-->
+    <div class="card-box">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- start Department form -->
+                <form name="frmSalary" ng-submit="SaveSalaryDetails(SalaryDetail,frmSalary)" novalidate>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    EmployeeList <span class="required-field">*</span>
+                                </label>
+                                <select class="form-control" id="selectDesignation" ng-model="salaryDetailScope.SalaryId" ng-options="a.Id as a.Name for a in Salary" ng-focus="true" name="selectEmployee" tabindex="7" required>
+                                    <option value="">Select Employee</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Basic Salary <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="txtSalary" id="txtSalary" required ng-focus="true" ng-model="salaryDetailScope.BasicSalary" tabindex="1" placeholder="@Resource.BasicSalary" maxlength="250" />
+                                <div class="c">
+                                </div>
+                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
+                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                        </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    DA <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="txtSalary" id="txtSalary" required ng-focus="true" ng-model="salaryDetailScope.DA" tabindex="1" placeholder="@Resource.DA" maxlength="250" />
+                                <div class="c">
+                                </div>
+                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
+                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                        </div>*@
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    HRA <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="txtSalary" id="txtSalary" required ng-focus="true" ng-model="salaryDetailScope.HRA" tabindex="1" placeholder="@Resource.HRA" maxlength="250" />
+                                <div class="c">
+                                </div>
+                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
+                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                        </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    PF <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="txtSalary" id="txtSalary" required ng-focus="true" ng-model="salaryDetailScope.PF" tabindex="1" placeholder="@Resource.PF" maxlength="250" />
+                                <div class="c">
+                                </div>
+                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
+                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                        </div>*@
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <!--IsActive -->
+                            <div class="form-group">
+                                <label>
+                                </label>
+                                <div class="form-control-static">
+                                    <div class="checkbox checkbox-info">
+                                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="departmentDetailScope.IsActive"
+                                               tabindex="2" />
+                                        <label for="chkDesignationActive">
+                                            
+                                            @Resource.IsActive
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                                        ng-disabled="frmDepartments.txtDepartments.$invalid" tabindex="3">
+                                    {{salaryDetailScope.DepartmentId > 0 ? 'Update' : 'Save'}}
+                                </button>
+                                <button type="button" ng-click="ClearFormData(frmSalary)" class="btn btn-info waves-effect w-md waves-light m-b-5"
+                                        tabindex="4">
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- End Department form -->
+                <hr />
+               @* Start Department Details List*@
+                <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-7">
+                    <label class="table-title">
+                        @Resource.Salary @Resource.Details
+                    </label>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <input type="text" tabindex="104" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1} {2}",Resource.Search,Resource.Department,Resource.Details)" />
+                        <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked=true;tableParams.page(1);tableParams.reload();"> <i class="fa fa-search"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="form-control-static">
+                            <scrollable-table scroll-height="427">
+                                <table ng-table="tableParams" id="datatable" class="table table-striped table-bordered table-hover">
+                                    <tr ng-repeat="dt in $data">
+                                        @*ng-hide="!dt.IsActive">*@
+                                        <td data-titile="'@Resource.SrNo'" header-class="'colSrno'" ng-class="'colSrno text-right'">
+                                            {{(tableParams.$params.page-1)*tableParams.$params.count+($index + 1)}}
+                                        </td>
+                                        <td data-title="'@Resource.BasicSalary'" sortable="'BasicSalary'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.BasicSalary}}">
+                                            {{dt.BasicSalary}}
+                                        </td>
+                                        <td data-title="'@Resource.DA'" sortable="'DA'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DA}}">
+                                            {{dt.DA}}
+                                        </td>
+                                        <td data-title="'@Resource.HRA'" sortable="'HRA'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.HRA}}">
+                                            {{dt.HRA}}
+                                        </td>
+                                        <td data-title="'@Resource.PF'" sortable="'PF'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.PF}}">
+                                            {{dt.PF}}
+                                        </td>
+                                        <td data-title="'@Resource.Active'" sortable="'IsActive'" header-class="'colActive'" ng-class="'colActive text-center'">
+                                            <input type="checkbox" class="js-switch" ui-switch options="switchOptions" ng-model="dt.IsActive"
+                                                   ng-disabled="true" />
+                                        </td>
+                                        <td data-title="'@Resource.Action'" header-class="'colAction'" ng-class="'colAction text-center'">
+                                            <a class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit" title="Edit"
+                                               ng-click="EditSalaryDetails(dt.SalaryId)">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @*<tr ng-if="$data.length==0">
+                                    <td colspan="4" class="no-record">
+                                        @Resource.NoRecordFound
+                                        <span ng-if="search!=''">
+                                            <br /> @Resource.YourSearch -'{{search}}'@Resource.DidNotMatchAnyRecord
+                                        </span>
+                                    </td>
+                                </tr>*@
+                            </table>
+                        </scrollable-table>
+                    </div>
+                </div>
+            </div>
+            </div>
+        <!--End Department Details List-->
+
+    </div>
+</div>
+</div>
+<!--End Body Section-->
+</div>
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/Salary/Salary")
+}
+<script src="https://kit.fontawesome.com/73e0cf2663.js" crossorigin="anonymous"></script>
