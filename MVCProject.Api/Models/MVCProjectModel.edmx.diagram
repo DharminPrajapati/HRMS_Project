@@ -10,7 +10,10 @@
         <EntityTypeShape EntityType="MVCProjectModel.TblEmployee" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
         <AssociationConnector Association="MVCProjectModel.fk_designationId" ManuallyRouted="false" />
         <AssociationConnector Association="MVCProjectModel.fk_despartmentId" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="MVCProjectModel.Attendance" Width="1.5" PointX="5.25" PointY="4.5" />
+        <EntityTypeShape EntityType="MVCProjectModel.AddSalary" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="MVCProjectModel.AttachmentMaster" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="MVCProjectModel.AttachmentType" Width="1.5" PointX="7.375" PointY="8.75" />
+        <EntityTypeShape EntityType="MVCProjectModel.Attendance" Width="1.5" PointX="5.25" PointY="11.5" />
         <AssociationConnector Association="MVCProjectModel.fk_EmployeeId" />
       </Diagram>
     </edmx:Diagrams>

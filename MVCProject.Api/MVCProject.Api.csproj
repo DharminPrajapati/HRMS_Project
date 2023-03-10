@@ -175,6 +175,7 @@
     <Compile Include="Controllers\Configuration\DesignationsController.cs" />
     <Compile Include="Controllers\Common\UploadController.cs" />
     <Compile Include="Controllers\EmployeeManagement\EmployeeController.cs" />
+    <Compile Include="Controllers\Salary\SalaryController.cs" />
     <Compile Include="Filters\CompressContentAttribute.cs" />
     <Compile Include="Filters\ContactNumberAnnotation.cs" />
     <Compile Include="Filters\EmailAnnotation.cs" />
@@ -195,6 +196,7 @@
     <Compile Include="Models\Extended\GroupCurriculumMatrixMaster.cs" />
     <Compile Include="Models\Extended\GroupMaster.cs" />
     <Compile Include="Models\Extended\SubGroupMaster.cs" />
+    <Compile Include="Models\Extended\TblEmployee.cs" />
     <Compile Include="Models\LogOn.cs" />
     <Compile Include="Models\Extended\Attachments.cs" />
     <Compile Include="Models\Metadata\NewsMetaData.cs" />

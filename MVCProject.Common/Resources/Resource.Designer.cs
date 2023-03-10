@@ -1825,6 +1825,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Salary.
+        /// </summary>
+        public static string Salary {
+            get {
+                return ResourceManager.GetString("Salary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {

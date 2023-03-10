@@ -882,4 +882,7 @@
   <data name="EmployeeManagement" xml:space="preserve">
     <value>Employee Management</value>
   </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Salary</value>
+  </data>
 </root>

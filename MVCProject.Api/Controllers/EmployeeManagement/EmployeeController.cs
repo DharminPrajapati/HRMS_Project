@@ -341,7 +341,28 @@
             }
         }
 
+        //image path upload to Attachment Table
+        [HttpPost]
+        public ApiResponse FileUploadTODB([FromBody] AttachmentMaster filedata)
+        {
+            //filedata.FileAttachmentType = (int?)FileAttachmentType.Slider;
+            this.entities.AttachmentMaster.AddObject(new AttachmentMaster()
+            {
 
+                FileName = filedata.FileName,
+                Filepath = filedata.Filepath,
+                // FileAttachmentType="profile_Image",
+                IsActive = true,
+                IsDeleted = filedata.IsDeleted,
+                FileRelativePath = filedata.FileRelativePath,
+                OriginalFileName = filedata.OriginalFileName
+            });
+            if (!(this.entities.SaveChanges() > 0))
+            {
+                return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Employee));
+            }
+            return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Employee));
+        }
 
         /// Disposes expensive resources.
         protected override void Dispose(bool disposing)
