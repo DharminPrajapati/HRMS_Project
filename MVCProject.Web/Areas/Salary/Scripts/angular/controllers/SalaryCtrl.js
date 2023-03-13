@@ -13,6 +13,7 @@
 
 
         $scope.salaryDetailScope = {
+
             SalaryId: 0,
             EmployeeId: 0,
             BasicSalary: '',
@@ -25,17 +26,17 @@
         $scope.isSearchClicked = false;
         $scope.lastStorageAudit = $scope.lastStorageAudit || {};
         $scope.operationMode = function () {
-            return SalaryDetail.SalaryId > 0 ? "Update" : "Save";
+            return salaryDetailScope.SalaryId > 0 ? "Update" : "Save";
         };
 
-        $scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees) {
+        $scope.SaveSalaryDetails = function (salaryDetailScope , frmSalary) {
             if (frmSalary.$valid) {
                 debugger;
-                SalaryService.SaveSalaryDetails(SalaryDetail).then(function (res) {
+                SalaryService.SaveSalaryDetails(salaryDetailScope).then(function (res) {
                     if (res) {
                         var data = res.data;
                         if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
-                            $scope.ClearFormData(frmEmployees);
+                            $scope.ClearFormData(frmSalary);
                             toastr.success(data.Message, successTitle);
                             $scope.tableParams.reload();
                         }
@@ -54,19 +55,14 @@
     
   
 
-    $scope.EditSalaryDetails = function (employeeId) {
-        SalaryService.GetSalaryById(employeeId).then(function (res) {
+        $scope.EditSalaryDetails = function (salaryId) {
+        debugger
+        SalaryService.GetSalaryById(salaryId).then(function (res) {
             if (res) {
                 var data = res.data;
                 if (data.MessageType == messageTypes.Success) {
                     debugger;
-                    $scope.SalaryDetail = data.Result;
-                    $scope.SalaryDetail.JoiningDa = new Date($scope.SalaryDetail.JoiningDate);
-                    $scope.SalaryDetail.BirthDate = new Date($scope.SalaryDetail.BirthDate);
-                    $scope.SalaryDetail.CourseStartDate = new Date($scope.SalaryDetail.CourseStartDate);
-                    $scope.SalaryDetail.CourseEndDate = new Date($scope.SalaryDetail.CourseEndDate);
-                    $scope.SalaryDetail.FromPeriod = new Date($scope.SalaryDetail.FromPeriod);
-                    $scope.SalaryDetail.ToPeriod = new Date($scope.SalaryDetail.ToPeriod);
+                    $scope.salaryDetailScope = data.Result;
                     $scope.lastStorageAudit = angular.copy(data.Result);
                     CommonFunctions.ScrollUpAndFocus("txtSalary");
                 }
@@ -113,11 +109,19 @@
     });
        
         $scope.employeesScope = function () {
-            SalaryService.GetEmployeeList().then(function (res) {
+            debugger
+            SalaryService.GetEmployeelist().then(function (res) {
                 $scope.Employees = res.data.Result;
                 console.log($scope.Employees);
             });
         };
+
+        $scope.Init = function () {
+            $scope.employeesScope();
+            //$scope.departmentsScope();
+            //$scope.emplyeeDetailScope.Gender;
+        }
+        
     //$scope.resetemployeeDetails = function (frmDesignations) {
     //    if ($scope.operationMode() == "Update") {
     //        $scope.frmDesignations = angular.copy($scope.lastStorageGroup);

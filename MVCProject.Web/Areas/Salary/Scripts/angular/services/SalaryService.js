@@ -27,11 +27,11 @@
         }
 
         // Add/Update Employee Details
-        list.SaveSalaryDetails = function (salaryDetail) {
+        list.SaveSalaryDetails = function (SalaryDetail) {
             return $http({
                 method: 'POST',
                 url: $rootScope.apiURL + '/Salary/SaveSalaryDetails',
-                data: JSON.stringify(salaryDetail)
+                data: JSON.stringify(SalaryDetail)
             });
         }
 
@@ -42,12 +42,12 @@
                 url: $rootScope.apiURL + '/Salary/GetSalaryById?salaryId=' + salaryId
             });
         };
+
         //Get employee DropDown
         list.GetEmployeelist = function () {
-
             return $http({
                 methd: 'GET',
-                url: $rootScope.apiURL + '/Employee/GetEmployeeDropDown'
+                url: $rootScope.apiURL + '/Salary/GetEmployeeDropDown'
             });
         };
 

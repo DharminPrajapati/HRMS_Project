@@ -250,7 +250,7 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BasicSalary.
+        ///   Looks up a localized string similar to Basic Salary.
         /// </summary>
         public static string BasicSalary {
             get {
