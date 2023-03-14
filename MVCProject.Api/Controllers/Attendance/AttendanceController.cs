@@ -22,75 +22,123 @@ namespace MVCProject.Api.Controllers.Attendance
             this.entities = new MVCProjectEntities();
         }
         [HttpPost]
-        public ApiResponse SaveAttendanceDetails(Attendance AttendanceDetail)
+        public ApiResponse SaveAttendanceDetails([FromBody] Attendance AttendanceDetail)
         {
-            if (this.entities.Attendance.Any(x => x.AttendanceId == AttendanceDetail.AttendanceId))
+
+            Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.AttendanceId == AttendanceDetail.AttendanceId).FirstOrDefault();
+            if (existingAttendanceDetail == null)
             {
-                return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Attendance));
+
+                this.entities.Attendance.AddObject(new Attendance()
+                {
+                    Date = DateTime.Now,
+                    InTime = DateTime.Now.TimeOfDay,
+                    InLatitude = AttendanceDetail.InLatitude,
+                    InLongitude = AttendanceDetail.InLongitude,
+                    InDiscription = AttendanceDetail.InDiscription
+                });
+                if (!(this.entities.SaveChanges() > 0))
+                {
+                    return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Attendance));
+                }
+
+                return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Attendance), AttendanceDetail.AttendanceId);
             }
+
+            // For Update
+
             else
             {
-                Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.AttendanceId == AttendanceDetail.AttendanceId).FirstOrDefault();
-                if (existingAttendanceDetail == null)
-                {
-                    this.entities.Attendance.AddObject(AttendanceDetail);
-                    if (!(this.entities.SaveChanges() > 0))
-                    {
-                        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Attendance));
-                    }
+                //existingAttendanceDetail.Date = AttendanceDetail.Date;
+                //existingAttendanceDetail.InTime = AttendanceDetail.InTime;
+                //existingAttendanceDetail.OutTime = AttendanceDetail.OutTime;
+                //existingAttendanceDetail.InLatitude = AttendanceDetail.InLatitude;
+                //existingAttendanceDetail.OutLatitude = AttendanceDetail.OutLatitude;
+                //existingAttendanceDetail.InLongitude = AttendanceDetail.InLongitude;
+                //existingAttendanceDetail.OutLongitude = AttendanceDetail.OutLongitude;
+                //existingAttendanceDetail.OutDiscription = AttendanceDetail.OutDiscription;
 
-                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Attendance));
+
+                this.entities.Attendance.ApplyCurrentValues(existingAttendanceDetail);
+                if (!(this.entities.SaveChanges() > 0))
+                {
+                    return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Attendance));
                 }
 
-                // For Update
-
-                else
-                {
-                    existingAttendanceDetail.Date = AttendanceDetail.Date;
-                    existingAttendanceDetail.InTime = AttendanceDetail.InTime;
-                    existingAttendanceDetail.OutTime = AttendanceDetail.OutTime;
-                    existingAttendanceDetail.InLatitude = AttendanceDetail.InLatitude;
-                    existingAttendanceDetail.OutLatitude = AttendanceDetail.OutLatitude;
-                    existingAttendanceDetail.InLongitude = AttendanceDetail.InLongitude;
-                    existingAttendanceDetail.OutLongitude = AttendanceDetail.OutLongitude;
-                    existingAttendanceDetail.IsActive = AttendanceDetail.IsActive;
-                    existingAttendanceDetail.InDiscription = AttendanceDetail.InDiscription;
-                    existingAttendanceDetail.OutDiscription = AttendanceDetail.OutDiscription;
-
-                    this.entities.Attendance.ApplyCurrentValues(existingAttendanceDetail);
-                    if (!(this.entities.SaveChanges() > 0))
-                    {
-                        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Attendance));
-                    }
-
-                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Attendance));
-                }
-
+                return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Attendance), AttendanceDetail.AttendanceId);
             }
+
+
         }
 
+        [HttpPost]
+        public ApiResponse UpdateAttendance([FromBody] Attendance AttendanceDetail)
+        {
+            Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.AttendanceId == AttendanceDetail.AttendanceId).FirstOrDefault();
 
+            existingAttendanceDetail.OutTime = DateTime.Now.TimeOfDay;
+            existingAttendanceDetail.OutLatitude = AttendanceDetail.OutLatitude;
+            existingAttendanceDetail.OutLongitude = AttendanceDetail.OutLongitude;
+            existingAttendanceDetail.OutDiscription = AttendanceDetail.OutDiscription;
+
+
+
+            this.entities.Attendance.ApplyCurrentValues(existingAttendanceDetail);
+            if (!(this.entities.SaveChanges() > 0))
+            {
+                return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Attendance));
+            }
+
+            return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Attendance), AttendanceDetail.AttendanceId);
+        }
 
         [HttpGet]
         public ApiResponse GetAllAttendance()
         {
             //var employeelist = this.entities.TblEmployee.ToList();
             var Attendanelist = this.entities.Attendance.Select(d => new {
-                Attendance = d.AttendanceId,
+                AttendanceId = d.AttendanceId,
                 Date = d.Date,
                 InTime = d.InTime,
                 OutTime = d.OutTime,
                 InLatitude = d.InLatitude,
                 OutLatitude = d.OutLatitude,
                 InLongitude = d.InLongitude,
-                OutLongitude = d.OutLongitude,
-                IsActive = d.IsActive,
                 InDiscription = d.InDiscription,
-                OutDiscription =d.OutDiscription
+                OutDiscription = d.OutDiscription
             });
 
             return this.Response(Utilities.MessageTypes.Success, string.Empty, Attendanelist);
 
+        }
+
+        [HttpGet]
+
+        public ApiResponse GetAttendanceById(int attendanceId)
+        {
+            var attendanceDetail = this.entities.Attendance.Where(x => x.AttendanceId == attendanceId)
+                   .Select(d => new
+                   {
+                       AttendanceId = d.AttendanceId,
+                       EmployeeId = d.EmployeeId,
+                       Date = d.Date,
+                       InTime = d.InTime,
+                       OutTime = d.OutTime,
+                       InLatitude = d.InLatitude,
+                       OutLatitude = d.OutLatitude,
+                       InLongitude = d.InLongitude,
+                       InDiscription = d.InDiscription,
+                       OutDiscription = d.OutDiscription
+
+                   }).SingleOrDefault();
+            if (attendanceDetail != null)
+            {
+                return this.Response(Utilities.MessageTypes.Success, string.Empty, attendanceDetail);
+            }
+            else
+            {
+                return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
+            }
         }
         /// Disposes expensive resources.
         protected override void Dispose(bool disposing)
