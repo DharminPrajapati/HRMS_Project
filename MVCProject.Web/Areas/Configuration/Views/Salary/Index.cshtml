@@ -45,8 +45,8 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- start Department form -->
-                <form name="frmSalary" ng-submit=" SaveSalaryDetails(salaryDetailScope,frmSalary)" novalidate>
-                   <div class="row">
+                <form name="frmSalary" ng-submit="SaveConfigSalaryDetails(salaryDetailScope,frmSalary)" novalidate>
+                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
@@ -56,8 +56,8 @@
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                        </div>*@
+                                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                                    </div>*@
                             </div>
                         </div>
 
@@ -71,8 +71,8 @@
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                        </div>*@
+                                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -86,8 +86,8 @@
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                        </div>*@
+                                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                                    </div>*@
                             </div>
                         </div>
 
@@ -102,7 +102,7 @@
                                         <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="salaryDetailScope.IsActive"
                                                tabindex="2" />
                                         <label for="chkDesignationActive">
-                                            
+
                                             @Resource.IsActive
                                         </label>
                                     </div>
@@ -116,7 +116,7 @@
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
                                         @*ng-disabled="frmSalary.txtSalary.$invalid"*@ tabindex="3">
-                                    {{salaryDetailScope.SalaryId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                                    {{salaryDetailScope.SalaryConfigurationId > 0 ? '@Resource.Update' : '@Resource.Save'}}
                                 </button>
                                 <button type="button" ng-click="ClearFormData(frmSalary)" class="btn btn-info waves-effect w-md waves-light m-b-5"
                                         tabindex="4">
@@ -131,4 +131,7 @@
         </div>
     </div>
 </div>
-
+@section scripts {
+    @Scripts.Render("~/bundles/Configuration/Salary")
+}
+<script src="https://kit.fontawesome.com/73e0cf2663.js" crossorigin="anonymous"></script>

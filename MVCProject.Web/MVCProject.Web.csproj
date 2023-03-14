@@ -163,7 +163,7 @@
     <Compile Include="Areas\Configuration\Controllers\ApplicationController.cs" />
     <Compile Include="Areas\Configuration\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Configuration\Controllers\DesignationController.cs" />
-    <Compile Include="Areas\Configuration\Controllers\SalaryController.cs" />
+    <Compile Include="Areas\Configuration\Controllers\SalaryConfigController.cs" />
     <Compile Include="Areas\EmployeeManagement\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ResetLoginController.cs" />
     <Compile Include="Areas\Configuration\Controllers\RoleController.cs" />

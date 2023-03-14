@@ -7,30 +7,30 @@
 
     function SalaryConfigCtrl($scope, $rootScope, ngTableParams, CommonFunctions, FileService, SalaryConfigService) {
         //Initial Declaration
-        var salaryDetailsParams = {};
+        var configsalaryDetailsParams = {};
 
 
 
 
         $scope.salaryDetailScope = {
 
-            SalaryId: 0,
-            DA: '',
-            HRA: '',
-            PF: '',
+            SalaryConfigurationId: 0,
+            DA: null,
+            HRA: null,
+            PF: null,
             IsActive: true
         };
 
         $scope.isSearchClicked = false;
         $scope.lastStorageAudit = $scope.lastStorageAudit || {};
         $scope.operationMode = function () {
-            return salaryDetailScope.SalaryId > 0 ? "Update" : "Save";
+            return salaryDetailScope.SalaryConfigurationId > 0 ? "Update" : "Save";
         };
 
-        $scope.SaveSalaryDetails = function (salaryDetailScope, frmSalary) {
+        $scope.SaveConfigSalaryDetails = function (salaryDetailScope, frmSalary) {
             if (frmSalary.$valid) {
                 debugger;
-                SalaryService.SaveSalaryDetails(salaryDetailScope).then(function (res) {
+                SalaryConfigService.SaveConfigSalaryDetails(salaryDetailScope).then(function (res) {
                     if (res) {
                         var data = res.data;
                         if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
@@ -53,24 +53,24 @@
 
 
 
-        $scope.EditSalaryDetails = function (salaryId) {
-            debugger
-            SalaryService.GetSalaryById(salaryId).then(function (res) {
-                if (res) {
-                    var data = res.data;
-                    if (data.MessageType == messageTypes.Success) {
-                        debugger;
-                        $scope.salaryDetailScope = data.Result;
-                        $scope.lastStorageAudit = angular.copy(data.Result);
-                        CommonFunctions.ScrollUpAndFocus("txtSalary");
-                    }
-                    else if (data.MessageType == messageTypes.Error) {
-                        toastr.error(data.Message, errorTitle);
-                    }
-                }
-                $rootScope.isAjaxLoadingChild = false;
-            });
-        }
+        //$scope.EditSalaryDetails = function (salaryconfigId) {
+        //    debugger
+        //    SalaryConfigService.GetConfigSalaryById(salaryconfigId).then(function (res) {
+        //        if (res) {
+        //            var data = res.data;
+        //            if (data.MessageType == messageTypes.Success) {
+        //                debugger;
+        //                $scope.salaryDetailScope = data.Result;
+        //                $scope.lastStorageAudit = angular.copy(data.Result);
+        //                CommonFunctions.ScrollUpAndFocus("txtSalary");
+        //            }
+        //            else if (data.MessageType == messageTypes.Error) {
+        //                toastr.error(data.Message, errorTitle);
+        //            }
+        //        }
+        //        $rootScope.isAjaxLoadingChild = false;
+        //    });
+        //}
 
         $scope.tableParams = new ngTableParams({
             page: 1,
@@ -78,14 +78,14 @@
             sort: { FirstName: 'asc' }
         }, {
             getData: function ($defer, params) {
-                if (salaryDetailsParams == null) {
-                    salaryDetailsParams = {};
+                if (configsalaryDetailsParams == null) {
+                    configsalaryDetailsParams = {};
                 }
 
-                salaryDetailsParams.Paging = CommonFunctions.GetPagingParams(params);
-                salaryDetailsParams.Paging.Search = $scope.isSearchClicked ? $scope.search : '';
+                configsalaryDetailsParams.Paging = CommonFunctions.GetPagingParams(params);
+                configsalaryDetailsParams.Paging.Search = $scope.isSearchClicked ? $scope.search : '';
 
-                SalaryService.GetAllSalary(salaryDetailsParams.Paging).then(function (res) {
+                SalaryConfigService.GetAllConfigSalary(configsalaryDetailsParams.Paging).then(function (res) {
 
                     if (res) {
                         var data = res.data;
@@ -106,13 +106,7 @@
 
         });
 
-        $scope.employeesScope = function () {
-            debugger
-            SalaryService.GetEmployeelist().then(function (res) {
-                $scope.Employees = res.data.Result;
-                console.log($scope.Employees);
-            });
-        };
+
 
         $scope.Init = function () {
             $scope.employeesScope();
@@ -131,9 +125,8 @@
 
         $scope.ClearFormData = function (frmSalary) {
             $scope.salaryDetailScope = {
-                SalaryId: 0,
-                EmployeeId: 0,
-                BasicSalary: '',
+
+                SalaryConfigurationId: 0,
                 DA: '',
                 HRA: '',
                 PF: '',

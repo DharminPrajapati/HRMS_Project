@@ -76,7 +76,7 @@
           <Key>
             <PropertyRef Name="SalaryConfigurationId" />
           </Key>
-          <Property Name="SalaryConfigurationId" Type="int" Nullable="false" />
+          <Property Name="SalaryConfigurationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DA" Type="nvarchar" MaxLength="50" />
           <Property Name="HRA" Type="nvarchar" MaxLength="50" />
           <Property Name="PF" Type="nvarchar" MaxLength="50" />
@@ -385,7 +385,7 @@
           <Key>
             <PropertyRef Name="SalaryConfigurationId" />
           </Key>
-          <Property Name="SalaryConfigurationId" Type="Int32" Nullable="false" />
+          <Property Name="SalaryConfigurationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HRA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />

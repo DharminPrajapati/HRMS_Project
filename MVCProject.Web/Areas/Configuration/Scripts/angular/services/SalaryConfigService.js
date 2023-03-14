@@ -18,46 +18,47 @@
             });
         }
 
-        list.GetAllSalary = function (salaryDetailsParams) {
+        list.GetAllConfigSalary = function (salaryDetailsParams) {
             return $http({
                 method: 'POST',
-                url: $rootScope.apiURL + '/Salary/GetAllSalary/',
+                url: $rootScope.apiURL + '/Salary/GetAllConfigSalary/',
                 data: JSON.stringify(salaryDetailsParams)
             });
         }
 
         // Get All  list of Employees
-        list.GetSalaryList = function (isGetAll) {
+        list.GetConfigSalaryList = function (isGetAll) {
             return $http({
                 method: 'GET',
-                url: $rootScope.apiURL + '/Salary/GetSalaryList' + (angular.isDefined(isGetAll) ? '?isGetAll=' + isGetAll : '')
+                url: $rootScope.apiURL + '/Salary/GetConfigSalaryList' + (angular.isDefined(isGetAll) ? '?isGetAll=' + isGetAll : '')
             });
         }
 
         // Add/Update Employee Details
-        list.SaveSalaryDetails = function (SalaryDetail) {
+        list.SaveConfigSalaryDetails = function (configsalaryDetail) {
+            debugger
             return $http({
                 method: 'POST',
-                url: $rootScope.apiURL + '/Salary/SaveSalaryDetails',
-                data: JSON.stringify(SalaryDetail)
+                url: $rootScope.apiURL + '/SalaryConfig/SaveConfigSalaryDetails',
+                data: JSON.stringify(configsalaryDetail)
             });
         }
 
         // Get Employees By Id
-        list.GetSalaryById = function (salaryId) {
+        list.GetConfigSalaryById = function (configsalaryId) {
             return $http({
                 method: 'GET',
-                url: $rootScope.apiURL + '/Salary/GetSalaryById?salaryId=' + salaryId
+                url: $rootScope.apiURL + '/Salary/GetConfigSalaryById?GetConfigSalaryById=' + GetConfigSalaryById
             });
         };
 
-        //Get employee DropDown
-        list.GetEmployeelist = function () {
-            return $http({
-                methd: 'GET',
-                url: $rootScope.apiURL + '/Salary/GetEmployeeDropDown'
-            });
-        };
+        ////Get employee DropDown
+        //list.GetEmployeelist = function () {
+        //    return $http({
+        //        methd: 'GET',
+        //        url: $rootScope.apiURL + '/Salary/GetEmployeeDropDown'
+        //    });
+        //};
 
 
         return list;
