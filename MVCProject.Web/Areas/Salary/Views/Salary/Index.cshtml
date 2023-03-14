@@ -68,12 +68,11 @@
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                        </div>*@
+                    <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                </div>*@
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
+
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
@@ -83,12 +82,14 @@
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                        </div>*@
+                    <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                </div>*@
                             </div>
                         </div>
+                    </div>
+                   
 
-
+                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
@@ -98,12 +99,10 @@
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                        </div>*@
+                    <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                </div>*@
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
@@ -113,13 +112,11 @@
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                        </div>*@
+                    <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                </div>*@
                             </div>
                         </div>
-
-
-                        <div class="col-md-4">
+                        <div class="col-md-2 col-md-offset-2">
                             <!--IsActive -->
                             <div class="form-group">
                                 <label>
@@ -129,7 +126,7 @@
                                         <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="salaryDetailScope.IsActive"
                                                tabindex="2" />
                                         <label for="chkDesignationActive">
-                                            
+
                                             @Resource.IsActive
                                         </label>
                                     </div>
@@ -137,8 +134,11 @@
                             </div>
                         </div>
                     </div>
+                    </form>
+                    </div>
+            </div>
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-12 ">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
                                         @*ng-disabled="frmSalary.txtSalary.$invalid"*@ tabindex="3">
@@ -151,17 +151,20 @@
                             </div>
                         </div>
                     </div>
-                </form>
+                
                 <!-- End Department form -->
                 <hr />
                @* Start Department Details List*@
                 <div class="row">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-7">
-                    <label class="table-title">
-                        @Resource.Salary @Resource.Details
-                    </label>
+                <div class="col-md-12">
+                    <h3 class="strip">
+                        <i class=" fa fa-inr"></i>
+                        <label class="table-title">
+                            @Resource.Salary @Resource.Details
+                        </label>
+                    </h3>
                 </div>
                 @*<div class="col-md-5">
                     <div class="input-group">

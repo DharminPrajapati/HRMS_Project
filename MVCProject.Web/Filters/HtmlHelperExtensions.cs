@@ -53,14 +53,14 @@ namespace System.Web.Mvc
                     menuString.Append("</ul></li>");
 
                     menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Attendance, "fa fa-user"));
+                    menuString.AppendFormat(GetParentMenu(Resource.Attendance, "fa fa-check-square"));
                     menuString.Append("<ul class='nav child_menu'>");
                     menuString.Append(GetSubMenu(Resource.EmployeeAttendance, "", "/Attendance/Attendance/EmployeeAttendanceView"));
                     menuString.Append(GetSubMenu(Resource.Attendance, "", "/Attendance/Attendance/HRAttendanceView"));
                     menuString.Append("</ul></li>");
 
                     menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Salary, "fa fa-user"));
+                    menuString.AppendFormat(GetParentMenu(Resource.Salary, "fa fa-inr"));
                     menuString.Append("<ul class='nav child_menu'>");
                     menuString.Append(GetSubMenu(Resource.Add_Salary, "", "/Salary/Salary/Index"));
                     menuString.Append("</ul></li>");
