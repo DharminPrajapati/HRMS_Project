@@ -184,6 +184,22 @@ namespace MVCProject.Api.Models
             }
         }
         private ObjectSet<Attendance> _Attendance;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SalaryConfiguration> SalaryConfiguration
+        {
+            get
+            {
+                if ((_SalaryConfiguration == null))
+                {
+                    _SalaryConfiguration = base.CreateObjectSet<SalaryConfiguration>("SalaryConfiguration");
+                }
+                return _SalaryConfiguration;
+            }
+        }
+        private ObjectSet<SalaryConfiguration> _SalaryConfiguration;
 
         #endregion
 
@@ -243,6 +259,14 @@ namespace MVCProject.Api.Models
         public void AddToAttendance(Attendance attendance)
         {
             base.AddObject("Attendance", attendance);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SalaryConfiguration EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSalaryConfiguration(SalaryConfiguration salaryConfiguration)
+        {
+            base.AddObject("SalaryConfiguration", salaryConfiguration);
         }
 
         #endregion
@@ -985,144 +1009,144 @@ namespace MVCProject.Api.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.TimeSpan> StartingTime
+        public Nullable<global::System.TimeSpan> InTime
         {
             get
             {
-                return _StartingTime;
+                return _InTime;
             }
             set
             {
-                OnStartingTimeChanging(value);
-                ReportPropertyChanging("StartingTime");
-                _StartingTime = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("StartingTime");
-                OnStartingTimeChanged();
+                OnInTimeChanging(value);
+                ReportPropertyChanging("InTime");
+                _InTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("InTime");
+                OnInTimeChanged();
             }
         }
-        private Nullable<global::System.TimeSpan> _StartingTime;
-        partial void OnStartingTimeChanging(Nullable<global::System.TimeSpan> value);
-        partial void OnStartingTimeChanged();
+        private Nullable<global::System.TimeSpan> _InTime;
+        partial void OnInTimeChanging(Nullable<global::System.TimeSpan> value);
+        partial void OnInTimeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.TimeSpan> EndingTime
+        public Nullable<global::System.TimeSpan> OutTime
         {
             get
             {
-                return _EndingTime;
+                return _OutTime;
             }
             set
             {
-                OnEndingTimeChanging(value);
-                ReportPropertyChanging("EndingTime");
-                _EndingTime = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("EndingTime");
-                OnEndingTimeChanged();
+                OnOutTimeChanging(value);
+                ReportPropertyChanging("OutTime");
+                _OutTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OutTime");
+                OnOutTimeChanged();
             }
         }
-        private Nullable<global::System.TimeSpan> _EndingTime;
-        partial void OnEndingTimeChanging(Nullable<global::System.TimeSpan> value);
-        partial void OnEndingTimeChanged();
+        private Nullable<global::System.TimeSpan> _OutTime;
+        partial void OnOutTimeChanging(Nullable<global::System.TimeSpan> value);
+        partial void OnOutTimeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> StartingLatitude
+        public Nullable<global::System.Decimal> InLatitude
         {
             get
             {
-                return _StartingLatitude;
+                return _InLatitude;
             }
             set
             {
-                OnStartingLatitudeChanging(value);
-                ReportPropertyChanging("StartingLatitude");
-                _StartingLatitude = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("StartingLatitude");
-                OnStartingLatitudeChanged();
+                OnInLatitudeChanging(value);
+                ReportPropertyChanging("InLatitude");
+                _InLatitude = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("InLatitude");
+                OnInLatitudeChanged();
             }
         }
-        private Nullable<global::System.Decimal> _StartingLatitude;
-        partial void OnStartingLatitudeChanging(Nullable<global::System.Decimal> value);
-        partial void OnStartingLatitudeChanged();
+        private Nullable<global::System.Decimal> _InLatitude;
+        partial void OnInLatitudeChanging(Nullable<global::System.Decimal> value);
+        partial void OnInLatitudeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> EndingLatitude
+        public Nullable<global::System.Decimal> OutLatitude
         {
             get
             {
-                return _EndingLatitude;
+                return _OutLatitude;
             }
             set
             {
-                OnEndingLatitudeChanging(value);
-                ReportPropertyChanging("EndingLatitude");
-                _EndingLatitude = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("EndingLatitude");
-                OnEndingLatitudeChanged();
+                OnOutLatitudeChanging(value);
+                ReportPropertyChanging("OutLatitude");
+                _OutLatitude = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OutLatitude");
+                OnOutLatitudeChanged();
             }
         }
-        private Nullable<global::System.Decimal> _EndingLatitude;
-        partial void OnEndingLatitudeChanging(Nullable<global::System.Decimal> value);
-        partial void OnEndingLatitudeChanged();
+        private Nullable<global::System.Decimal> _OutLatitude;
+        partial void OnOutLatitudeChanging(Nullable<global::System.Decimal> value);
+        partial void OnOutLatitudeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> StartingLongitude
+        public Nullable<global::System.Decimal> InLongitude
         {
             get
             {
-                return _StartingLongitude;
+                return _InLongitude;
             }
             set
             {
-                OnStartingLongitudeChanging(value);
-                ReportPropertyChanging("StartingLongitude");
-                _StartingLongitude = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("StartingLongitude");
-                OnStartingLongitudeChanged();
+                OnInLongitudeChanging(value);
+                ReportPropertyChanging("InLongitude");
+                _InLongitude = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("InLongitude");
+                OnInLongitudeChanged();
             }
         }
-        private Nullable<global::System.Decimal> _StartingLongitude;
-        partial void OnStartingLongitudeChanging(Nullable<global::System.Decimal> value);
-        partial void OnStartingLongitudeChanged();
+        private Nullable<global::System.Decimal> _InLongitude;
+        partial void OnInLongitudeChanging(Nullable<global::System.Decimal> value);
+        partial void OnInLongitudeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> EndingLongitude
+        public Nullable<global::System.Decimal> OutLongitude
         {
             get
             {
-                return _EndingLongitude;
+                return _OutLongitude;
             }
             set
             {
-                OnEndingLongitudeChanging(value);
-                ReportPropertyChanging("EndingLongitude");
-                _EndingLongitude = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("EndingLongitude");
-                OnEndingLongitudeChanged();
+                OnOutLongitudeChanging(value);
+                ReportPropertyChanging("OutLongitude");
+                _OutLongitude = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OutLongitude");
+                OnOutLongitudeChanged();
             }
         }
-        private Nullable<global::System.Decimal> _EndingLongitude;
-        partial void OnEndingLongitudeChanging(Nullable<global::System.Decimal> value);
-        partial void OnEndingLongitudeChanged();
+        private Nullable<global::System.Decimal> _OutLongitude;
+        partial void OnOutLongitudeChanging(Nullable<global::System.Decimal> value);
+        partial void OnOutLongitudeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -1249,24 +1273,48 @@ namespace MVCProject.Api.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Discription
+        public global::System.String InDiscription
         {
             get
             {
-                return _Discription;
+                return _InDiscription;
             }
             set
             {
-                OnDiscriptionChanging(value);
-                ReportPropertyChanging("Discription");
-                _Discription = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Discription");
-                OnDiscriptionChanged();
+                OnInDiscriptionChanging(value);
+                ReportPropertyChanging("InDiscription");
+                _InDiscription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("InDiscription");
+                OnInDiscriptionChanged();
             }
         }
-        private global::System.String _Discription;
-        partial void OnDiscriptionChanging(global::System.String value);
-        partial void OnDiscriptionChanged();
+        private global::System.String _InDiscription;
+        partial void OnInDiscriptionChanging(global::System.String value);
+        partial void OnInDiscriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String OutDiscription
+        {
+            get
+            {
+                return _OutDiscription;
+            }
+            set
+            {
+                OnOutDiscriptionChanging(value);
+                ReportPropertyChanging("OutDiscription");
+                _OutDiscription = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("OutDiscription");
+                OnOutDiscriptionChanged();
+            }
+        }
+        private global::System.String _OutDiscription;
+        partial void OnOutDiscriptionChanging(global::System.String value);
+        partial void OnOutDiscriptionChanged();
 
         #endregion
 
@@ -1468,6 +1516,255 @@ namespace MVCProject.Api.Models
 
         #endregion
 
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MVCProjectModel", Name="SalaryConfiguration")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SalaryConfiguration : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SalaryConfiguration object.
+        /// </summary>
+        /// <param name="salaryConfigurationId">Initial value of the SalaryConfigurationId property.</param>
+        public static SalaryConfiguration CreateSalaryConfiguration(global::System.Int32 salaryConfigurationId)
+        {
+            SalaryConfiguration salaryConfiguration = new SalaryConfiguration();
+            salaryConfiguration.SalaryConfigurationId = salaryConfigurationId;
+            return salaryConfiguration;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SalaryConfigurationId
+        {
+            get
+            {
+                return _SalaryConfigurationId;
+            }
+            set
+            {
+                if (_SalaryConfigurationId != value)
+                {
+                    OnSalaryConfigurationIdChanging(value);
+                    ReportPropertyChanging("SalaryConfigurationId");
+                    _SalaryConfigurationId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SalaryConfigurationId");
+                    OnSalaryConfigurationIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _SalaryConfigurationId;
+        partial void OnSalaryConfigurationIdChanging(global::System.Int32 value);
+        partial void OnSalaryConfigurationIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DA
+        {
+            get
+            {
+                return _DA;
+            }
+            set
+            {
+                OnDAChanging(value);
+                ReportPropertyChanging("DA");
+                _DA = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DA");
+                OnDAChanged();
+            }
+        }
+        private global::System.String _DA;
+        partial void OnDAChanging(global::System.String value);
+        partial void OnDAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String HRA
+        {
+            get
+            {
+                return _HRA;
+            }
+            set
+            {
+                OnHRAChanging(value);
+                ReportPropertyChanging("HRA");
+                _HRA = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("HRA");
+                OnHRAChanged();
+            }
+        }
+        private global::System.String _HRA;
+        partial void OnHRAChanging(global::System.String value);
+        partial void OnHRAChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PF
+        {
+            get
+            {
+                return _PF;
+            }
+            set
+            {
+                OnPFChanging(value);
+                ReportPropertyChanging("PF");
+                _PF = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PF");
+                OnPFChanged();
+            }
+        }
+        private global::System.String _PF;
+        partial void OnPFChanging(global::System.String value);
+        partial void OnPFChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> EntryBy
+        {
+            get
+            {
+                return _EntryBy;
+            }
+            set
+            {
+                OnEntryByChanging(value);
+                ReportPropertyChanging("EntryBy");
+                _EntryBy = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EntryBy");
+                OnEntryByChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _EntryBy;
+        partial void OnEntryByChanging(Nullable<global::System.Int32> value);
+        partial void OnEntryByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> EntryDate
+        {
+            get
+            {
+                return _EntryDate;
+            }
+            set
+            {
+                OnEntryDateChanging(value);
+                ReportPropertyChanging("EntryDate");
+                _EntryDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EntryDate");
+                OnEntryDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _EntryDate;
+        partial void OnEntryDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnEntryDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> UpdateBy
+        {
+            get
+            {
+                return _UpdateBy;
+            }
+            set
+            {
+                OnUpdateByChanging(value);
+                ReportPropertyChanging("UpdateBy");
+                _UpdateBy = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UpdateBy");
+                OnUpdateByChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _UpdateBy;
+        partial void OnUpdateByChanging(Nullable<global::System.Int32> value);
+        partial void OnUpdateByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> UpdatedDate
+        {
+            get
+            {
+                return _UpdatedDate;
+            }
+            set
+            {
+                OnUpdatedDateChanging(value);
+                ReportPropertyChanging("UpdatedDate");
+                _UpdatedDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UpdatedDate");
+                OnUpdatedDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _UpdatedDate;
+        partial void OnUpdatedDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnUpdatedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsActive;
+        partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsActiveChanged();
+
+        #endregion
+
+    
     }
     
     /// <summary>
@@ -2494,6 +2791,54 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.DateTime> _UpdatedDate;
         partial void OnUpdatedDateChanging(Nullable<global::System.DateTime> value);
         partial void OnUpdatedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SrNo
+        {
+            get
+            {
+                return _SrNo;
+            }
+            set
+            {
+                OnSrNoChanging(value);
+                ReportPropertyChanging("SrNo");
+                _SrNo = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SrNo");
+                OnSrNoChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SrNo;
+        partial void OnSrNoChanging(Nullable<global::System.Int32> value);
+        partial void OnSrNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BatchNo
+        {
+            get
+            {
+                return _BatchNo;
+            }
+            set
+            {
+                OnBatchNoChanging(value);
+                ReportPropertyChanging("BatchNo");
+                _BatchNo = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BatchNo");
+                OnBatchNoChanged();
+            }
+        }
+        private global::System.String _BatchNo;
+        partial void OnBatchNoChanging(global::System.String value);
+        partial void OnBatchNoChanged();
 
         #endregion
 

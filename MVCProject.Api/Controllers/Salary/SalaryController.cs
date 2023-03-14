@@ -88,6 +88,7 @@ namespace MVCProject.Api.Controllers.Salary
                                     //var employeelist = this.entities.TblEmployee.ToList();
                                     SalaryId = d.SalaryId,
                                     EmployeeId = d.EmployeeId,
+                                    
                                     BasicSalary = d.BasicSalary,
                                     DA = d.DA,
                                     HRA = d.HRA,

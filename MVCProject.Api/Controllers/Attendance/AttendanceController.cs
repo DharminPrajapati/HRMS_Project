@@ -47,15 +47,15 @@ namespace MVCProject.Api.Controllers.Attendance
                 else
                 {
                     existingAttendanceDetail.Date = AttendanceDetail.Date;
-                    existingAttendanceDetail.StartingTime = AttendanceDetail.StartingTime;
-                    existingAttendanceDetail.EndingTime = AttendanceDetail.EndingTime;
-                    existingAttendanceDetail.StartingLatitude = AttendanceDetail.StartingLatitude;
-                    existingAttendanceDetail.EndingLatitude = AttendanceDetail.EndingLatitude;
-                    existingAttendanceDetail.StartingLongitude = AttendanceDetail.StartingLongitude;
-                    existingAttendanceDetail.EndingLongitude = AttendanceDetail.EndingLongitude;
+                    existingAttendanceDetail.InTime = AttendanceDetail.InTime;
+                    existingAttendanceDetail.OutTime = AttendanceDetail.OutTime;
+                    existingAttendanceDetail.InLatitude = AttendanceDetail.InLatitude;
+                    existingAttendanceDetail.OutLatitude = AttendanceDetail.OutLatitude;
+                    existingAttendanceDetail.InLongitude = AttendanceDetail.InLongitude;
+                    existingAttendanceDetail.OutLongitude = AttendanceDetail.OutLongitude;
                     existingAttendanceDetail.IsActive = AttendanceDetail.IsActive;
-                    existingAttendanceDetail.Discription = AttendanceDetail.Discription;
-
+                    existingAttendanceDetail.InDiscription = AttendanceDetail.InDiscription;
+                    existingAttendanceDetail.OutDiscription = AttendanceDetail.OutDiscription;
 
                     this.entities.Attendance.ApplyCurrentValues(existingAttendanceDetail);
                     if (!(this.entities.SaveChanges() > 0))
@@ -78,13 +78,15 @@ namespace MVCProject.Api.Controllers.Attendance
             var Attendanelist = this.entities.Attendance.Select(d => new {
                 Attendance = d.AttendanceId,
                 Date = d.Date,
-                StartingTime = d.StartingTime,
-                EndingTime = d.EndingTime,
-                StartingLatitude = d.StartingLatitude,
-                EndingLatitude = d.EndingLatitude,
-                StartingLongitude = d.StartingLongitude,
+                InTime = d.InTime,
+                OutTime = d.OutTime,
+                InLatitude = d.InLatitude,
+                OutLatitude = d.OutLatitude,
+                InLongitude = d.InLongitude,
+                OutLongitude = d.OutLongitude,
                 IsActive = d.IsActive,
-                Discription = d.Discription
+                InDiscription = d.InDiscription,
+                OutDiscription =d.OutDiscription
             });
 
             return this.Response(Utilities.MessageTypes.Success, string.Empty, Attendanelist);

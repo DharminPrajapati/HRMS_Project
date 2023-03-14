@@ -67,6 +67,8 @@
                                     //var employeelist = this.entities.TblEmployee.ToList();
 
                                     EmployeeId = d.EmployeeId,
+                                    SrNo = d.SrNo,
+                                    BatchNo = d.BatchNo,
                                     FirstName = d.FirstName,
                                     LastName = d.LastName,
                                     Email = d.Email,
@@ -188,7 +190,7 @@
 
         public ApiResponse GetEmployeeList(bool isGetAll = false)
         {
-            var result = this.entities.TblEmployees.Where(x => (isGetAll || x.IsActive.Value)).Select(x => new { Id = x.EmployeeId, Name = x.FirstName }).OrderBy(e => e.Name).ToList();
+            var result = this.entities.TblEmployees.Where(x => (isGetAll || x.IsActive.Value)).Select(x => new  { Id = x.EmployeeId, Name = x.FirstName,srno=x.SrNo }).OrderBy(e => e.Name).ToList();
             return this.Response(Utilities.MessageTypes.Success, string.Empty, result);
         }
 
@@ -314,6 +316,8 @@
                    .Select(d => new
                    {
                        EmployeeId = d.EmployeeId,
+                       SrNo = d.SrNo,
+                       BatchNo = d.BatchNo,
                        FirstName = d.FirstName,
                        LastName = d.LastName,
                        Email = d.Email,
@@ -365,6 +369,8 @@
             TblEmployee existingEmployeeDetail = this.entities.TblEmployees.Where(x => x.EmployeeId == employeeDetail.EmployeeId).FirstOrDefault();
             if (existingEmployeeDetail == null)
             {
+               
+                this.entities.TblEmployees.Where(x=>x.SrNo==employeeDetail.SrNo + 1 );
                 this.entities.TblEmployees.AddObject(employeeDetail);
                 if (!(this.entities.SaveChanges() > 0))
                 {

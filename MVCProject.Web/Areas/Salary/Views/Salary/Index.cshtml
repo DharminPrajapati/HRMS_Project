@@ -182,6 +182,15 @@
                                         <td data-titile="'@Resource.SrNo'" header-class="'colSrno'" ng-class="'colSrno text-right'">
                                             {{(tableParams.$params.page-1)*tableParams.$params.count+($index + 1)}}
                                         </td>
+                                        <td data-title="'Name'" sortable="'FirstName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.FirstName}}">
+                                            {{dt.FirstName}} {{dt.LastName}}
+                                        </td>
+                                        <td data-title="'DepartmentName'" sortable="'DepartmentName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.Department}}">
+                                            {{dt.DepartmentName}}
+                                        </td>
+                                        <td data-title="'DesignationName'" sortable="'DesignationId'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.Designation}}">
+                                            {{dt.DesignationName}}
+                                        </td>
                                         <td data-title="'@Resource.BasicSalary'" sortable="'BasicSalary'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.BasicSalary}}">
                                             {{dt.BasicSalary}}
                                         </td>

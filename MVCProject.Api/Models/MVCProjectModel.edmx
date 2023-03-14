@@ -49,18 +49,19 @@
           <Property Name="AttendanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EmployeeId" Type="int" />
           <Property Name="Date" Type="date" />
-          <Property Name="StartingTime" Type="time" Precision="7" />
-          <Property Name="EndingTime" Type="time" Precision="7" />
-          <Property Name="StartingLatitude" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="EndingLatitude" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="StartingLongitude" Type="decimal" Precision="18" Scale="6" />
-          <Property Name="EndingLongitude" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="InTime" Type="time" Precision="7" />
+          <Property Name="OutTime" Type="time" Precision="7" />
+          <Property Name="InLatitude" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="OutLatitude" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="InLongitude" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="OutLongitude" Type="decimal" Precision="18" Scale="6" />
           <Property Name="EntryBy" Type="int" />
           <Property Name="EntryDate" Type="date" />
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="UpdatedDate" Type="date" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="Discription" Type="nvarchar" MaxLength="50" />
+          <Property Name="InDiscription" Type="nvarchar" MaxLength="50" />
+          <Property Name="OutDiscription" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Designation">
           <Key>
@@ -70,6 +71,20 @@
           <Property Name="DesignationName" Type="varchar" MaxLength="250" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Remarks" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="SalaryConfiguration">
+          <Key>
+            <PropertyRef Name="SalaryConfigurationId" />
+          </Key>
+          <Property Name="SalaryConfigurationId" Type="int" Nullable="false" />
+          <Property Name="DA" Type="nvarchar" MaxLength="50" />
+          <Property Name="HRA" Type="nvarchar" MaxLength="50" />
+          <Property Name="PF" Type="nvarchar" MaxLength="50" />
+          <Property Name="EntryBy" Type="int" />
+          <Property Name="EntryDate" Type="date" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="IsActive" Type="bit" />
         </EntityType>
         <EntityType Name="TblDepartment">
           <Key>
@@ -88,6 +103,8 @@
             <PropertyRef Name="EmployeeId" />
           </Key>
           <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SrNo" Type="int" />
+          <Property Name="BatchNo" Type="nvarchar" MaxLength="100" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
           <Property Name="LastName" Type="nvarchar" MaxLength="100" />
           <Property Name="Email" Type="nvarchar(max)" />
@@ -162,6 +179,7 @@
           <EntitySet Name="AttachmentType" EntityType="Self.AttachmentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalaryConfiguration" EntityType="Self.SalaryConfiguration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDepartment" EntityType="Self.TblDepartment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblEmployee" EntityType="Self.TblEmployee" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_designationId" Association="Self.fk_designationId">
@@ -242,6 +260,8 @@
           <Property Name="EntryDate" Type="DateTime" Precision="0" />
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="SrNo" Type="Int32" />
+          <Property Name="BatchNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Attendance" Relationship="MVCProjectModel.fk_EmployeeId" FromRole="TblEmployee" ToRole="Attendance" />
         </EntityType>
         <Association Name="fk_designationId">
@@ -288,6 +308,7 @@
             <End Role="TblEmployee" EntitySet="TblEmployees" />
             <End Role="Attendance" EntitySet="Attendance" />
           </AssociationSet>
+          <EntitySet Name="SalaryConfiguration" EntityType="MVCProjectModel.SalaryConfiguration" />
         </EntityContainer>
         <EntityType Name="AddSalary">
           <Key>
@@ -333,18 +354,19 @@
           <Property Name="AttendanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmployeeId" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="StartingTime" Type="Time" Precision="7" />
-          <Property Name="EndingTime" Type="Time" Precision="7" />
-          <Property Name="StartingLatitude" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="EndingLatitude" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="StartingLongitude" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="EndingLongitude" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="InTime" Type="Time" Precision="7" />
+          <Property Name="OutTime" Type="Time" Precision="7" />
+          <Property Name="InLatitude" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="OutLatitude" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="InLongitude" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="OutLongitude" Type="Decimal" Precision="18" Scale="6" />
           <Property Name="EntryBy" Type="Int32" />
           <Property Name="EntryDate" Type="DateTime" Precision="0" />
           <Property Name="UpdatedBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="IsActive" Type="Boolean" />
-          <Property Name="Discription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InDiscription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OutDiscription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblEmployee" Relationship="MVCProjectModel.fk_EmployeeId" FromRole="Attendance" ToRole="TblEmployee" />
         </EntityType>
         <Association Name="fk_EmployeeId">
@@ -359,6 +381,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SalaryConfiguration">
+          <Key>
+            <PropertyRef Name="SalaryConfigurationId" />
+          </Key>
+          <Property Name="SalaryConfigurationId" Type="Int32" Nullable="false" />
+          <Property Name="DA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HRA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntryBy" Type="Int32" />
+          <Property Name="EntryDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -391,6 +427,8 @@
           <EntitySetMapping Name="TblEmployees">
             <EntityTypeMapping TypeName="MVCProjectModel.TblEmployee">
               <MappingFragment StoreEntitySet="TblEmployee">
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="SrNo" ColumnName="SrNo" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
@@ -469,21 +507,37 @@
           <EntitySetMapping Name="Attendance">
             <EntityTypeMapping TypeName="MVCProjectModel.Attendance">
               <MappingFragment StoreEntitySet="Attendance">
-                <ScalarProperty Name="Discription" ColumnName="Discription" />
+                <ScalarProperty Name="OutDiscription" ColumnName="OutDiscription" />
+                <ScalarProperty Name="InDiscription" ColumnName="InDiscription" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
-                <ScalarProperty Name="EndingLongitude" ColumnName="EndingLongitude" />
-                <ScalarProperty Name="StartingLongitude" ColumnName="StartingLongitude" />
-                <ScalarProperty Name="EndingLatitude" ColumnName="EndingLatitude" />
-                <ScalarProperty Name="StartingLatitude" ColumnName="StartingLatitude" />
-                <ScalarProperty Name="EndingTime" ColumnName="EndingTime" />
-                <ScalarProperty Name="StartingTime" ColumnName="StartingTime" />
+                <ScalarProperty Name="OutLongitude" ColumnName="OutLongitude" />
+                <ScalarProperty Name="InLongitude" ColumnName="InLongitude" />
+                <ScalarProperty Name="OutLatitude" ColumnName="OutLatitude" />
+                <ScalarProperty Name="InLatitude" ColumnName="InLatitude" />
+                <ScalarProperty Name="OutTime" ColumnName="OutTime" />
+                <ScalarProperty Name="InTime" ColumnName="InTime" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="AttendanceId" ColumnName="AttendanceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalaryConfiguration">
+            <EntityTypeMapping TypeName="MVCProjectModel.SalaryConfiguration">
+              <MappingFragment StoreEntitySet="SalaryConfiguration">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="PF" ColumnName="PF" />
+                <ScalarProperty Name="HRA" ColumnName="HRA" />
+                <ScalarProperty Name="DA" ColumnName="DA" />
+                <ScalarProperty Name="SalaryConfigurationId" ColumnName="SalaryConfigurationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

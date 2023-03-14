@@ -163,6 +163,7 @@
     <Compile Include="Areas\Configuration\Controllers\ApplicationController.cs" />
     <Compile Include="Areas\Configuration\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Configuration\Controllers\DesignationController.cs" />
+    <Compile Include="Areas\Configuration\Controllers\SalaryController.cs" />
     <Compile Include="Areas\EmployeeManagement\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ResetLoginController.cs" />
     <Compile Include="Areas\Configuration\Controllers\RoleController.cs" />
@@ -215,15 +216,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\WebApiConfig.cs" />
     <Content Include="Areas\Attendance\Scripts\angular\controllers\AttendanceCtrl.js" />
+    <Content Include="Areas\Attendance\Scripts\angular\controllers\calendarDemo.js" />
     <Content Include="Areas\Attendance\Scripts\angular\services\AttendanceService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ApplicationCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DepartmentCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DesignationCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ResetToLoginCtrl.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\controllers\SalaryConfigCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ApplicationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DepartmentService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DesignationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ResetToLoginService.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\services\SalaryConfigService.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\angular\controllers\EmployeeCtrl.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\angular\services\EmployeeService.js" />
     <Content Include="Areas\Public\Content\css\css\blank.gif" />
@@ -254,6 +258,7 @@
     <Content Include="Content\css\components.css" />
     <Content Include="Content\css\core.css" />
     <Content Include="Content\css\dashboard.css" />
+    <Content Include="Content\css\fullcalendar.css" />
     <Content Include="Content\css\menu.min.css" />
     <Content Include="Content\css\custombox.min.css" />
     <Content Include="Content\css\fixedHeader.bootstrap.min.css" />
@@ -316,6 +321,7 @@
     <Content Include="Rotativa\msvcp120.dll" />
     <Content Include="Rotativa\msvcr120.dll" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
+    <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular\angular-drag-and-drop-lists.js" />
     <Content Include="Scripts\angular\d3.v4.min.js" />
     <Content Include="Scripts\angular\directives\AutocompleteDropdown.js" />
@@ -376,6 +382,10 @@
     <Content Include="Scripts\angular\vendor\modules\component\angular-gridster.js" />
     <Content Include="Content\css\angular-gridster.min.css" />
     <Content Include="Scripts\angular\vendor\modules\component\angular-nvd3.min.js" />
+    <Content Include="Scripts\calendar.js" />
+    <Content Include="Scripts\fullcalendar.js" />
+    <Content Include="Scripts\gcal.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery\plugin\d3.min.js" />
     <Content Include="Content\css\nv.d3.min.css" />
     <Content Include="Scripts\jquery\plugin\lodash.js" />
@@ -416,6 +426,7 @@
     <Content Include="Scripts\js\switchery.min.js" />
     <Content Include="Scripts\js\waves.js" />
     <Content Include="Scripts\js\wow.min.js" />
+    <Content Include="Scripts\moment.js" />
     <Content Include="Views\Template\_SetReminderPopup.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -482,6 +493,7 @@
     <Content Include="Areas\Attendance\Views\Attendance\EmployeeAttendanceView.cshtml" />
     <Content Include="Areas\Salary\Views\Web.config" />
     <Content Include="Areas\Salary\Views\Salary\Index.cshtml" />
+    <Content Include="Areas\Configuration\Views\Salary\Index.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />

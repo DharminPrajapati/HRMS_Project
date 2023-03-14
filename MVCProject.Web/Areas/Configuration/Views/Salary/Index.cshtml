@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = Resource.Salary;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .colSrno {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+
+    .colPosition {
+        width: 400px !important;
+        min-width: 400px !important;
+        max-width: 400px !important;
+    }
+
+    .colActive {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+
+    .colAction {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+</style>
+
+<div ng-controller="SalaryConfigCtrl" novalidate>
+    <!--Start Title Section-->
+    <div class="main-page-title title-icon relative l">
+        <i class="ti-id-badge icon-position" style="padding-top:8px;"></i>
+        <h4 class="header-title-sub l">@Resource.Salary</h4>
+        <div class="pull-right">
+
+        </div>
+    </div>
+
+    <!--End Title Section-->
+    <!--Start Body Section-->
+    <div class="card-box">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- start Department form -->
+                <form name="frmSalary" ng-submit=" SaveSalaryDetails(salaryDetailScope,frmSalary)" novalidate>
+                   <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    DA <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="DA" id="DA" required ng-focus="true" ng-model="salaryDetailScope.DA" tabindex="1" placeholder="@Resource.DA" maxlength="250" />
+                                <div class="c">
+                                </div>
+                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
+                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                        </div>*@
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    HRA <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="HRA" id="HRA" required ng-focus="true" ng-model="salaryDetailScope.HRA" tabindex="1" placeholder="@Resource.HRA" maxlength="250" />
+                                <div class="c">
+                                </div>
+                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
+                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                        </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    PF <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" name="PF" id="PF" required ng-focus="true" ng-model="salaryDetailScope.PF" tabindex="1" placeholder="@Resource.PF" maxlength="250" />
+                                <div class="c">
+                                </div>
+                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
+                            <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                        </div>*@
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <!--IsActive -->
+                            <div class="form-group">
+                                <label>
+                                </label>
+                                <div class="form-control-static">
+                                    <div class="checkbox checkbox-info">
+                                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="salaryDetailScope.IsActive"
+                                               tabindex="2" />
+                                        <label for="chkDesignationActive">
+                                            
+                                            @Resource.IsActive
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                                        @*ng-disabled="frmSalary.txtSalary.$invalid"*@ tabindex="3">
+                                    {{salaryDetailScope.SalaryId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                                </button>
+                                <button type="button" ng-click="ClearFormData(frmSalary)" class="btn btn-info waves-effect w-md waves-light m-b-5"
+                                        tabindex="4">
+                                    @Resource.Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- End Department form -->
+            </div>
+        </div>
+    </div>
+</div>
+
