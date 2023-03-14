@@ -31,7 +31,7 @@
 
 .nav-sm .navbar.nav_title {
     width: 70px;
-    background-color: #0e0e23;
+    background-color: #ff9945;
 }
 
     .nav-sm .navbar.nav_title a span {
@@ -237,7 +237,7 @@ body .container.body .right_col {
 .nav_title {
     width: 230px;
     float: left;
-    background: #0e0e23;
+    background: #ff9a45;
     border-bottom: 1px solid #D9DEE4;
     border-radius: 0;
     height: 57px;
@@ -245,14 +245,14 @@ body .container.body .right_col {
     position: fixed;
     z-index: 1;
     top: 0;
-    height: 60px
+    height: 60px;
 }
 
     .nav_title a img {
         margin-left: 45px;
         max-height: 43px;
         max-width: 155px;
-        background: #0e0e23;
+        background: #ff9a45;
         margin-top: -6px;
     }
 
@@ -395,18 +395,14 @@ body .container.body .right_col {
 .main_container .top_nav {
     display: block;
     margin-left: 230px;
-    /* background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%); */
+    background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%);
     border-bottom: 1px solid #D9DEE4;
     position: fixed;
     z-index: 997;
     left: 0;
     right: 0;
     padding-right: 20px;
-    height: 65px;
-    /* width: 100%; */
-    background: white;
-}
-
+    height: 60px;
 }
 
 .no-padding {
@@ -587,13 +583,13 @@ table.no-margin .progress {
     }
 
     .nav.side-menu > li > a:hover {
-        color: #ffffff !important;
+        color: #F2F5F7 !important;
     }
 
     .nav.side-menu > li > a:hover,
     .nav > li > a:focus {
         text-decoration: none;
-        background: #494998;
+        background: transparent;
     }
 
 .nav.child_menu {
@@ -604,7 +600,7 @@ table.no-margin .progress {
         padding-left: 28px;
     }
 
-.nav-md ul.nav.child_menu li:before {
+    /*.nav-md ul.nav.child_menu li:before {
     background: white;
     bottom: auto;
     content: "";
@@ -616,45 +612,45 @@ table.no-margin .progress {
     width: 8px;
     z-index: 1;
     border-radius: 50%;
-}
+}*/
 
-.nav-md ul.nav.child_menu li:after {
+    /*.nav-md ul.nav.child_menu li:after {
     border-left: 1px solid #323750;
     bottom: 0;
     content: "";
     left: 27px;
     position: absolute;
     top: 0;
-}
+}*/
 
-.nav.side-menu > li > a,
-.nav.child_menu > li > a {
-    color: #ffffff;
-    font-weight: 500;
-    padding: 22px;
-    margin-right: -8px;
-}
-
-    .nav.child_menu > li > a i {
-        margin-right: 5px;
-        float: left;
+    .nav.side-menu > li > a,
+    .nav.child_menu > li > a {
+        color: #E7E7E7;
+        font-weight: 500;
+        padding: 22px;
+        margin-right:-8px;
     }
 
-    .nav.child_menu > li > a span {
-        float: left;
-        width: 88%;
-        margin-left: 32px;
+        .nav.child_menu > li > a i {
+            margin-right: 5px;
+            float: left;
+        }
+
+        .nav.child_menu > li > a span {
+            float: left;
+            width: 88%;
+            margin-left:32px;
+        }
+
+    .nav.child_menu li li:hover,
+    .nav.child_menu li li.active {
+        background: none;
     }
 
-.nav.child_menu li li:hover,
-.nav.child_menu li li.active {
-    background: none;
-}
-
-.nav.child_menu li li a:hover,
-.nav.child_menu li li a.active {
-    color: #fff;
-}
+    .nav.child_menu li li a:hover,
+    .nav.child_menu li li a.active {
+        color: #fff;
+    }
 
 .nav > li > a {
     position: relative;
@@ -663,7 +659,7 @@ table.no-margin .progress {
 }
 
 .nav li.current-page {
-    background: rgb(177 177 202);
+    background: rgba(255,255,255,0.05);
 }
 
 .nav li li li.current-page {
@@ -739,12 +735,11 @@ table.no-margin .progress {
 
         .toggle a i {
             font-size: 24px;
-            color: #0e0e23;
+            color: #ffffff;
             PADDING: 16PX;
             border-radius: 3px;
-            margin-left: 46px;
+            margin-left: 0px;
         }
-
 
 .nav.child_menu > li > a {
     color: rgba(255,255,255,0.75);
@@ -1442,9 +1437,8 @@ ul.project_files li {
 .scroll-view {
     width: 100%;
     height: 100%;
-    background: #0e0e23;
+    background: #34444c;
 }
-
 
 .l {
     float: left;

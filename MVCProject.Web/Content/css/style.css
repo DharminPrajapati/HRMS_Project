@@ -37,7 +37,7 @@ h6 {
     color: #ffffff;
     font-weight: normal; /*font-family: 'Karla', sans-serif;*/
     margin: 10px 0;
-    font-size: 16px;
+    font-size:16px;
 }
 
 h1 {
@@ -49,10 +49,9 @@ h2 {
 }
 
 h3 {
-    line-height: 32px;
-    background: linear-gradient(to right, #0e0e23 0%, #b4b4eb 100%);
+    line-height: 30px;
+    background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%);
 }
-
 
     h3 small {
         color: #444444;
@@ -439,7 +438,7 @@ a:focus {
     background-color: #ffffff;
     float: left;
     width: 100%;
-    margin-top: -25px;
+    
 }
 
     .card-box .card-drop {
@@ -742,17 +741,16 @@ textarea.form-control {
     color: #212529;
     background-color: #fff;
     background-clip: padding-box;
-    border: 1px solid #134679;
+    border: 1px solid #ced4da;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     border-radius: 0.375rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    border-color: #acace2;
+    border-color: #e3e3e3;
     box-shadow: none;
     font-size: 15px;
     height: 44px;
-    border-radius: 7px;
 }
 
     .form-control:focus {
@@ -948,8 +946,8 @@ textarea.form-control {
 .pagination > .active > span:hover,
 .pagination > .active > a:focus,
 .pagination > .active > span:focus {
-    background-color: #0e0e23;
-    border-color: #f0f1f1;
+    background-color: #71b6f9;
+    border-color: #71b6f9;
 }
 
 .pager li > a,
@@ -1193,7 +1191,6 @@ textarea.form-control {
 .input-group-addon {
     border-radius: 2px;
     border: 1px solid #eeeeee;
-    background: #0e0e23;
 }
 /* Tooltips */
 .tooltip-inner {
@@ -4639,8 +4636,7 @@ div.hopscotch-bubble {
     .table > thead > tr.active > th,
     .table > tbody > tr.active > th,
     .table > tfoot > tr.active > th {
-        background-color: #b1b1ca !important;
-        color: #060606;
+        background-color: #f4f8fb !important;
     }
 
     .table > thead > tr > th,
@@ -4670,7 +4666,7 @@ div.hopscotch-bubble {
 
 
 tbody {
-    color: #010101;
+    color: #797979;
 }
 
 th {
@@ -5521,7 +5517,6 @@ table.dataTable td.focus {
     background-image: -o-linear-gradient(top, #FDFCFC, #FBF9F9 50%, #F7F5F6 50%, #F2F0F0);
     background-image: -ms-linear-gradient(top, #FDFCFC, #FBF9F9 50%, #F7F5F6 50%, #F2F0F0);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
-    margin-bottom: 32px;
 }
 
 .title-icon {
@@ -5529,7 +5524,7 @@ table.dataTable td.focus {
 }
 
 .icon-position {
-    background-color: #0e0e23;
+    background-color: #fe8655;
     position: absolute;
     top: 50%;
     margin-top: -14px;
@@ -5737,11 +5732,12 @@ aside.left-panel.collapsed .navigation > ul > li > a .badge {
 
 .navigation ul li a .nav-label {
     vertical-align: middle;
-    font-size: 15px;
+    font-size:15px;
 }
 
 .collapsed .navigation ul li a i {
     float: none;
+
 }
 /*aside.left-panel.collapsed .navigation ul li ul { display:none !important;}*/
 
@@ -7409,14 +7405,14 @@ multilevel-accordion uib-accordion .panel-group {
     max-width: 270px;
 }
 
-.strip i {
-    margin-left: 6px;
+.strip i{
+    margin-left:6px;
+    
 }
 
-.gender {
-    margin-left: 90px;
+.gender{
+   margin-left:90px;
 }
-
 @media (max-width: 999px) {
     .div-timeline, .div-status, .div-action-type, .div-priority, .div-action-type, .div-type {
         margin-bottom: 10px;
@@ -7426,10 +7422,9 @@ multilevel-accordion uib-accordion .panel-group {
         margin-top: 10px;
     }
 }
-
-.required {
-    width: 50px;
-    margin-bottom: 50px;
+.required{
+    width:50px;
+    margin-bottom:50px;
 }
 
 .input-datepicker,
@@ -7476,11 +7471,3 @@ multilevel-accordion uib-accordion .panel-group {
         left: 100%;
         margin-left: 8px;
     }
-
-.attendance_btn {
-    width: 100%;
-    margin-top: 27px;
-    background: #34444c;
-    color: white;
-    height: 38px;
-}
