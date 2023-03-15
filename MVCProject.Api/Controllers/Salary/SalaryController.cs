@@ -147,23 +147,30 @@ namespace MVCProject.Api.Controllers.Salary
 
         //}
         }
-        //[HttpGet]
-        //public ApiResponse GetAllSalary()
-        //{
-        //    //var employeelist = this.entities.TblEmployee.ToList();
-        //    var Salarylist = this.entities.AddSalary.Select(d => new
-        //    {
-        //        SalaryId = d.SalaryId,
-        //        BasicSalary = d.BasicSalary,
-        //        DA = d.DA,
-        //        HRA = d.HRA,
-        //        PF = d.PF,
-        //        IsActive = d.IsActive,
-        //    });
 
-        //    return this.Response(Utilities.MessageTypes.Success, string.Empty, Salarylist);
+        [HttpPost]
+        public ApiResponse GetEmployeeSalary(PagingParams salaryDetailsParams)
+        {
+            var result = this.entities.Sp_Salary_DisplayAllEmployees().ToList();
+            var TotalRecords = result.Count();
+            var employeelist = result.Select(d => new
+            {
+                Name = d.Name,
+                DepartmentName = d.DepartmentName,
+                DesignationName = d.DesignationName,
+                BatchNo = d.BatchNo,
+                SalaryId = d.SalaryId,
+                EmplyeeId = d.EmployeeId,
+                BasicSalary = d.BasicSalary,
+                DA = d.DA,
+                HRA = d.HRA,
+                PF = d.PF,
+                IsActive = d.IsActive,
+                TotalRecords
+            }).AsQueryable().Skip((salaryDetailsParams.CurrentPageNumber - 1) * salaryDetailsParams.PageSize).Take(salaryDetailsParams.PageSize);
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, employeelist);
 
-        //}
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

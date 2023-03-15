@@ -173,6 +173,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Sp_Salary_DisplayAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MVCProjectModelStoreContainer">
           <EntitySet Name="AddSalary" EntityType="Self.AddSalary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AttachmentMaster" EntityType="Self.AttachmentMaster" Schema="dbo" store:Type="Tables" />
@@ -309,6 +310,7 @@
             <End Role="Attendance" EntitySet="Attendance" />
           </AssociationSet>
           <EntitySet Name="SalaryConfiguration" EntityType="MVCProjectModel.SalaryConfiguration" />
+          <FunctionImport Name="Sp_Salary_DisplayAllEmployees" ReturnType="Collection(MVCProjectModel.Sp_Salary_DisplayAllEmployees_Result)" />
         </EntityContainer>
         <EntityType Name="AddSalary">
           <Key>
@@ -395,6 +397,23 @@
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="IsActive" Type="Boolean" />
         </EntityType>
+        <ComplexType Name="Sp_Salary_DisplayAllEmployees_Result">
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DesignationName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="BatchNo" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SalaryId" Nullable="false" />
+          <Property Type="Int32" Name="EmployeeId" Nullable="true" />
+          <Property Type="Decimal" Name="BasicSalary" Nullable="true" Precision="8" Scale="0" />
+          <Property Type="String" Name="DA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HRA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PF" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="EntryBy" Nullable="true" />
+          <Property Type="DateTime" Name="EntryDate" Nullable="true" />
+          <Property Type="Int32" Name="UpdateBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -541,6 +560,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Sp_Salary_DisplayAllEmployees" FunctionName="MVCProjectModel.Store.Sp_Salary_DisplayAllEmployees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.Sp_Salary_DisplayAllEmployees_Result">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="SalaryId" ColumnName="SalaryId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="BasicSalary" ColumnName="BasicSalary" />
+                <ScalarProperty Name="DA" ColumnName="DA" />
+                <ScalarProperty Name="HRA" ColumnName="HRA" />
+                <ScalarProperty Name="PF" ColumnName="PF" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

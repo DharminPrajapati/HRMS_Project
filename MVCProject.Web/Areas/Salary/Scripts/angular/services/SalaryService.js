@@ -18,6 +18,14 @@
             });
         }
 
+        //Get Salary With Employees
+        list.GetEmployeeSalary = function (salaryDetailsParams) {
+            return $http({
+                method: 'POST',
+                url: $rootScope.apiURL + '/Salary/GetEmployeeSalary/',
+                data: JSON.stringify(salaryDetailsParams)
+            });
+        }
         list.GetAllSalary = function (salaryDetailsParams) {
             return $http({
                 method: 'POST',

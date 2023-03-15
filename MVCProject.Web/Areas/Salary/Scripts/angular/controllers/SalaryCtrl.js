@@ -87,7 +87,7 @@
             salaryDetailsParams.Paging = CommonFunctions.GetPagingParams(params);
             salaryDetailsParams.Paging.Search = $scope.isSearchClicked ? $scope.search : '';
 
-            SalaryService.GetAllSalary(salaryDetailsParams.Paging).then(function (res) {
+            SalaryService.GetEmployeeSalary(salaryDetailsParams.Paging).then(function (res) {
 
                 if (res) {
                     var data = res.data;
@@ -109,7 +109,7 @@
     });
        
         $scope.employeesScope = function () {
-            debugger
+            //debugger
             SalaryService.GetEmployeelist().then(function (res) {
                 $scope.Employees = res.data.Result;
                 console.log($scope.Employees);
