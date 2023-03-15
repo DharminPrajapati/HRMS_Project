@@ -29,9 +29,6 @@
             this.entities = new MVCProjectEntities();
         }
 
-
-
-
         /// <summary>
         /// Get All Designation
         /// </summary>
@@ -369,16 +366,32 @@
             TblEmployee existingEmployeeDetail = this.entities.TblEmployees.Where(x => x.EmployeeId == employeeDetail.EmployeeId).FirstOrDefault();
             if (existingEmployeeDetail == null)
             {
-               
-                this.entities.TblEmployees.Where(x=>x.SrNo==employeeDetail.SrNo + 1 );
                 this.entities.TblEmployees.AddObject(employeeDetail);
                 if (!(this.entities.SaveChanges() > 0))
                 {
                     return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Employee));
                 }
+                //var existingattachfiles = this.entities.AttachmentMaster.Where(a => a.RefrencedId == employeeDetail.EmployeeId).ToList();
 
-                return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Employee));
+                //if (existingattachfiles != null)
+                //{
+                //    foreach (var item in existingattachfiles)
+                //    {
+                //        this.entities.AttachmentMaster.DeleteObject(item);
+                //        this.entities.SaveChanges();
+                //    }
+                //    var attachFile = employeeDetail.Attachment;
+                //    attachFile.RefrencedId = employeeDetail.EmployeeId;
+                //    //filedata.FileAttachmentType = (int?)FileAttachmentType.Slider;
+                //    attachFile.IsActive = employeeDetail.IsActive;
+                //    this.entities.AttachmentMaster.AddObject(attachFile);
+                //    this.entities.SaveChanges();
+                //}
+                // return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Employee));
             }
+
+
+
 
             // For Update
 
@@ -417,32 +430,53 @@
                     return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Employee));
                 }
 
-                return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Employee));
+                //return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Employee));
             }
+
+            var existingattachfile = this.entities.AttachmentMaster.Where(a => a.RefrencedId == employeeDetail.EmployeeId).ToList();
+
+            if (existingattachfile != null)
+            {
+                foreach (var item in existingattachfile)
+                {
+                    this.entities.AttachmentMaster.DeleteObject(item);
+                    this.entities.SaveChanges();
+                }
+            }
+            var attachfile = employeeDetail.Attachment;
+            attachfile.RefrencedId = employeeDetail.EmployeeId;
+            //filedata.FileAttachmentType = (int?)FileAttachmentType.Slider;
+            attachfile.IsActive = employeeDetail.IsActive;
+            this.entities.AttachmentMaster.AddObject(attachfile);
+            this.entities.SaveChanges();
+
+
+            return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Employee));
         }
 
         //image path upload to Attachment Table
-        [HttpPost]
-        public ApiResponse FileUploadTODB([FromBody] AttachmentMaster filedata)
-        {
-            //filedata.FileAttachmentType = (int?)FileAttachmentType.Slider;
-            this.entities.AttachmentMaster.AddObject(new AttachmentMaster()
-            {
+        //[HttpPost]
+        //public ApiResponse FileUploadTODB([FromBody] AttachmentMaster filedata)
+        //{
+        //    //filedata.FileAttachmentType = (int?)FileAttachmentType.Slider;
+        //    this.entities.AttachmentMaster.AddObject(new AttachmentMaster()
+        //    {
 
-                FileName = filedata.FileName,
-                Filepath = filedata.Filepath,
-                // FileAttachmentType="profile_Image",
-                IsActive = true,
-                IsDeleted = filedata.IsDeleted,
-                FileRelativePath = filedata.FileRelativePath,
-                OriginalFileName = filedata.OriginalFileName
-            });
-            if (!(this.entities.SaveChanges() > 0))
-            {
-                return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Employee));
-            }
-            return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Employee));
-        }
+        //        FileName = filedata.FileName,
+        //        Filepath = filedata.Filepath,
+        //        // FileAttachmentType="profile_Image",
+        //        IsActive = true,
+        //        IsDeleted = filedata.IsDeleted,
+        //        FileRelativePath = filedata.FileRelativePath,
+        //        OriginalFileName = filedata.OriginalFileName
+        //    });
+        //    if (!(this.entities.SaveChanges() > 0))
+        //    {
+        //        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Employee));
+        //    }
+        //    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Employee));
+        //}
+
 
         /// Disposes expensive resources.
         protected override void Dispose(bool disposing)

@@ -186,10 +186,14 @@
                             <div class="form-group">
 
                                 <div class="col-md-10">
-                                    <input type="file" id="file" name="file" tabindex="10" accept="image/*" onchange="loadFile(event)" />
+                                    @*<input type="file" id="file" name="file" tabindex="27" accept="image/*" onchange="loadFile(event)" />*@
+                                    <input type="file" id="file" name="file" tabindex="27" accept="image/*" ng-model="file" onchange="loadFile(event)" />
+
                                     <div>
                                         @*<img id="output" height="100px" width="100px" />*@
-                                        <button ng-click="uploadFile()">Upload</button>
+
+                                        @*<button ng-click="uploadFile()">Upload</button>*@
+
                                         <script>
                                             var loadFile = function (event) {
                                                 var output = document.getElementById('output');
@@ -199,9 +203,18 @@
                                                 }
                                             };
                                         </script>
+                                        <div class="label label-danger" data-ng-show="frmEmployees.file.$dirty && frmEmployees.file.$invalid">
+                                            <span data-ng-show="frmEmployees.file.$error.pattern">@Resource.EmployeeImage</span>
+                                        </div>
                                     </div>
-
                                 </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <button type="button" class="btn btn-info waves-effect w-md waves-light m-b-5" id="img" ng-click="uploadFile(file)">UploadImage</button>
+                                    </div>
+                                </div>
+
                                 <div>
                                     <div class="col-md-10">
                                         <div class="form-group">
@@ -495,6 +508,7 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
 </form>
         </div>

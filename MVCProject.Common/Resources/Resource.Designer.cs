@@ -763,6 +763,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EmployeeImage.
+        /// </summary>
+        public static string EmployeeImage {
+            get {
+                return ResourceManager.GetString("EmployeeImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee Management.
         /// </summary>
         public static string EmployeeManagement {
