@@ -1,4 +1,6 @@
-﻿(function () {
+﻿
+
+(function () {
     'use strict';
 
     angular.module("MVCApp").controller('EmployeeCtrl', [
@@ -42,6 +44,8 @@
 
         };
 
+        $scope.max = new Date();
+
         $scope.isSearchClicked = false;
         $scope.lastStorageAudit = $scope.lastStorageAudit || {};
         $scope.operationMode = function () {
@@ -52,72 +56,94 @@
 
 
         $scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees) {
-            if (!$("#txtEmployee").val()) {
-                toastr.warning("Please fill the First Name", warningTitle);
+            debugger;
+           
+            if (emplyeeDetailScope.FirstName == null || emplyeeDetailScope.FirstName == "") {
+                toastr.warning(" First Name Required", warningTitle);
                 $("#txtEmployee").focus();
+                return;
             }
-            else if (!$("#txtEmpln").val()) {
-                toastr.warning("Please fill the Last Name", warningTitle);
+            else if (emplyeeDetailScope.LastName == null || emplyeeDetailScope.LastName == "" ) {
+                toastr.warning("Last Name Required", warningTitle);
                 $("#txtEmpln").focus();
             }
-            else if (!$("#email").val()) {
-                toastr.warning("Please fill Email", warningTitle);
+            else if (emplyeeDetailScope.Email == null || emplyeeDetailScope.Email == "") {
+                toastr.warning("Email Required", warningTitle);
                 $("#email").focus();
             }
-            else if (!$("#joindate").val()) {
-                toastr.warning("Please fill the Joining Date", warningTitle);
+            else if (emplyeeDetailScope.JoiningDate == null || emplyeeDetailScope.JoiningDate == "") {
+                toastr.warning("Joining Date Required ", warningTitle);
                 $("#joindate").focus();
             }
-            else if (!$("#phno").val()) {
-                toastr.warning("Please fill Phone Number", warningTitle);
+            else if (emplyeeDetailScope.PhoneNumber == null || emplyeeDetailScope.PhoneNumber == "") {
+                toastr.warning("Phone Number Required", warningTitle);
                 $("#phno").focus();
             }
-            else if (!$("#selectDesignation").val()) {
-                toastr.warning("Please fill Designation", warningTitle);
+            else if (emplyeeDetailScope.DesignationId == null || emplyeeDetailScope.DesignationId == "") {
+                toastr.warning("Designation Required", warningTitle);
                 $("#selectDesignation").focus();
             }
-            else if (!$("#selectDepartments").val()) {
-                toastr.warning("Please fill Department", warningTitle);
+            //else if (!$("#selectDesignation").val()) {
+            //    toastr.warning("Please fill Designation", warningTitle);
+            //    $("#selectDesignation").focus();
+            //}
+
+            else if (emplyeeDetailScope.DepartmentId == null || emplyeeDetailScope.DepartmentId == "") {
+                toastr.warning("Department Required", warningTitle);
                 $("#selectDepartments").focus();
             }
-            else if (!$("#birthdate").val()) {
-                toastr.warning("Please fill Birth Date", warningTitle);
+            //else if (!$("#selectDepartments").val()) {
+            //    toastr.warning("Please fill Department", warningTitle);
+            //    $("#selectDepartments").focus();
+            //}
+            else if (emplyeeDetailScope.BirthDate == null || emplyeeDetailScope.BirthDate == "") {
+                toastr.warning("Birth Date Required", warningTitle);
                 $("#birthdate").focus();
             }
-            else if (!$("#pincode").val()) {
-                toastr.warning("Please fill Pincode", warningTitle);
+
+            else if (emplyeeDetailScope.Pincode == null || emplyeeDetailScope.Pincode == "") {
+                toastr.warning("Pincode Required", warningTitle);
                 $("#pincode").focus();
             }
-            else if (!$("#permanentAddress").val()) {
-                toastr.warning("Please fill Address", warningTitle);
+            else if (emplyeeDetailScope.PermanentAddress == null || emplyeeDetailScope.PermanentAddress == "") {
+                toastr.warning("Address Required", warningTitle);
                 $("#permanentAddress").focus();
             }
-            else if (!$("#institutename").val()) {
-                toastr.warning("Please fill Institution Name", warningTitle);
+            else if (emplyeeDetailScope.InstitutionName == null || emplyeeDetailScope.InstitutionName == "") {
+                toastr.warning("Institution Name Required", warningTitle);
                 $("#institutename").focus();
             }
-            else if (!$("#coursename").val()) {
-                toastr.warning("Please fill Course Name", warningTitle);
-                $("#coursename").focus();
+            else if (emplyeeDetailScope.CourseName == null || emplyeeDetailScope.CourseName == "") {
+                toastr.warning("Course Name Required", warningTitle);
+                $("#CourseName").focus();
             }
-            else if (!$("#coursestartdate").val()) {
-                toastr.warning("Please fill Course Start Date", warningTitle);
-                $("#coursestartdate").focus();
+            else if (emplyeeDetailScope.CourseStartDate == null || emplyeeDetailScope.CourseStartDate == "") {
+                toastr.warning("Course Start-Date Required", warningTitle);
+                $("#CourseStartDate").focus();
             }
-            else if (!$("#courseEnddate").val()) {
-                toastr.warning("Please fill Course End Date", warningTitle);
-                $("#courseEnddate").focus();
+            else if (emplyeeDetailScope.CourseEndDate == null || emplyeeDetailScope.CourseEndDate == "") {
+                toastr.warning("Course End-Date Required", warningTitle);
+                $("#CourseStartDate").focus();
             }
-            else if (!$("#grade").val()) {
-                toastr.warning("Please fill Grade", warningTitle);
+            else if (emplyeeDetailScope.CourseStartDate >= emplyeeDetailScope.CourseEndDate) {
+                toastr.warning("Course Start date should be grater then end date", warningTitle);
+                $("#CourseStartDate").focus();
+                return;
+            }
+            else if (emplyeeDetailScope.Grade == null || emplyeeDetailScope.Grade == "") {
+                toastr.warning("Grade Required", warningTitle);
                 $("#grade").focus();
             }
-            else if (!$("#degree").val()) {
-                toastr.warning("Please fill Degree", warningTitle);
+            else if (emplyeeDetailScope.Degree == null || emplyeeDetailScope.Degree == "") {
+                toastr.warning("Degree Required ", warningTitle);
                 $("#degree").focus();
+            }          
+            else if (emplyeeDetailScope.FromPeriod >= emplyeeDetailScope.ToPeriod) {
+                toastr.warning("FromPeriod date should be grater then ToPeriod ", warningTitle);
+                $("#txtEmployee").focus();
+                return;
             }
-            if (frmEmployees.$valid) {
-                debugger;
+            if (frmEmployees.$valid) {                
 
                 //emplyeeDetailScope.Attachment = [];
                 //emplyeeDetailScope.Attachment = emplyeeDetailScope.Attachment.push($scope.FileData)
@@ -146,10 +172,10 @@
         }
 
         $scope.EditEmployeeDetails = function (employeeId) {
-            debugger
+           
             EmployeeService.GetEmployeeById(employeeId).then(function (res) {
                 if (res) {
-                    debugger
+                   
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success) {
                         $scope.emplyeeDetailScope = data.Result;
@@ -161,7 +187,7 @@
                         $scope.emplyeeDetailScope.ToPeriod = new Date($scope.emplyeeDetailScope.ToPeriod);
 
 
-                        debugger;
+                        
                         ///$scope.emplyeeDetailScope = data.Result;
                         $scope.file = data.Result.Attachment[0];
                         var output = document.getElementById('output');
@@ -219,7 +245,7 @@
 
         //fileupload
         $scope.uploadFile = function () {
-            debugger;
+            
             var fileInput = document.getElementById('file');
             //fileInput.click();
 
@@ -319,9 +345,16 @@
                 JobPosition: '',
                 FromPeriod: null,
                 ToPeriod: null,
-                IsActive: true
+                IsActive: true,
+                Attachment:null,
+                file: null,
+                output:''
             };
-
+            //after save image is removed
+            $scope.output = document.getElementById('output');//preview id
+            $scope.file = document.getElementById('file');//image input id
+            output.src = '';
+            file.value = '';
             frmEmployees.$setPristine();
             $("#txtEmployee").focus();
             CommonFunctions.ScrollToTop();
@@ -335,8 +368,7 @@
 
         $scope.designationScope = function () {
             EmployeeService.GetDesignationlist().then(function (res) {
-                $scope.Designation = res.data.Result;
-                console.log($scope.Designation);
+                $scope.Designation = res.data.Result;               
             });
         };
 
@@ -344,8 +376,7 @@
 
         $scope.departmentsScope = function () {
             EmployeeService.GetDepartmentlist().then(function (res) {
-                $scope.Departments = res.data.Result;
-                console.log($scope.Departments);
+                $scope.Departments = res.data.Result;               
             });
         };
 

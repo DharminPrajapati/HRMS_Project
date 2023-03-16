@@ -65,7 +65,7 @@
                                 <label>
                                     First Name <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" tabindex="1" id="txtEmployee" ng-focus="true" name="txtEmployee" ng-model="emplyeeDetailScope.FirstName" required tabindex="1" placeholder="First Name" maxlength="250">
+                                <input type="text" class="form-control"  id="txtEmployee" ng-focus="true" name="txtEmployee" ng-model="emplyeeDetailScope.FirstName" required tabindex="1" placeholder="First Name" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.txtEmployee.$dirty && frmEmployees.txtEmployee.$invalid">
@@ -255,11 +255,12 @@
                 <label>
                     Birth Date <span class="required-field">*</span>
                 </label>
-                <input type="date" class="form-control" id="birthdate" ng-focus="true" name="birthdate" ng-model="emplyeeDetailScope.BirthDate" required tabindex="1" placeholder="BirthDate" maxlength="250">
+                <input type="date" class="form-control" id="birthdate" ng-focus="true" name="birthdate"   required max="{{max}}" ng-model="emplyeeDetailScope.BirthDate"  tabindex="1" placeholder="BirthDate" maxlength="250">
                 <div class="c">
                 </div>
                 <div class="label label-danger" data-ng-show="frmEmployees.birthdate.$dirty && frmEmployees.birthdate.$invalid">
                     <span data-ng-show="frmEmployees.birthdate.$error.required">Birth Date required</span>
+                    <span ng-if="frmEmployees.birthdate.$error.max" class="help-block">Birthdate can't  be in future</span>
                 </div>
             </div>
         </div>
@@ -305,7 +306,7 @@
                 <label>
                     Address <span class="required-field">*</span>
                 </label>
-                <textarea class="form-control" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.PermanentAddress" placeholder="Permanent Address" required> </textarea>
+                <textarea class="form-control" id="permanentAddress" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.PermanentAddress" placeholder="Permanent Address" required> </textarea>
             </div>
         </div>
         <div class="col-md-6">
@@ -367,11 +368,13 @@
                                 <label>
                                     Course Start Date <span class="required-field">*</span>
                                 </label>
-                                <input type="date" class="form-control" id="coursestartdate" ng-focus="true" name="coursestartdate" ng-model="emplyeeDetailScope.CourseStartDate" required tabindex="19" placeholder="Select Course Start Date">
+                                <input type="date" class="form-control" id="coursestartdate" ng-focus="true" name="coursestartdate"  required max="{{max}}"   ng-model="emplyeeDetailScope.CourseStartDate"  tabindex="19" placeholder="Select Course Start Date">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.coursestartdate.$dirty && frmEmployees.coursestartdate.$invalid">
                                     <span data-ng-show="frmEmployees.coursestartdate.$error.required">Course Start date required</span>
+                                    <span ng-if="frmEmployees.coursestartdate.$error.max" class="help-block">Cource Start date can't  be in future</span>
+
                                 </div>
                             </div>
                         </div>
@@ -380,11 +383,13 @@
                                 <label>
                                     Course End Date <span class="required-field">*</span>
                                 </label>
-                                <input type="date" class="form-control" id="courseEnddate" ng-focus="true" name="courseEnddate" ng-model="emplyeeDetailScope.CourseEndDate" required tabindex="20" placeholder="Select Course End Date">
+                                <input type="date" class="form-control" id="courseEnddate" ng-focus="true" name="courseEnddate" required max="{{max}}"  ng-model="emplyeeDetailScope.CourseEndDate"  tabindex="20" placeholder="Select Course End Date">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.courseEnddate.$dirty && frmEmployees.courseEnddate.$invalid">
                                     <span data-ng-show="frmEmployees.courseEnddate.$error.required">Course End Date required</span>
+                                    <span ng-if="frmEmployees.courseEnddate.$error.max" class="help-block">Cource End Date can't  be in future</span>
+
                                 </div>
                             </div>
                         </div>
@@ -465,7 +470,7 @@
                                             <input type="text" class="form-control" id="jobposition" ng-focus="true" name="jobposition" ng-model="emplyeeDetailScope.JobPosition" tabindex="24" placeholder="Job Position" maxlength="250">
                                             <div class="c">
                                             </div>
-
+                                            
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -473,10 +478,13 @@
                                             <label>
                                                 From Period
                                             </label>
-                                            <input type="date" class="form-control" id="fromperiod" ng-focus="true" name="fromperiod" ng-model="emplyeeDetailScope.FromPeriod" tabindex="25" placeholder="Select From Period">
+                                            <input type="date" class="form-control" id="fromperiod" ng-focus="true" name="fromperiod" required max="{{max}}"  ng-model="emplyeeDetailScope.FromPeriod" tabindex="25" placeholder="Select From Period">
                                             <div class="c">
                                             </div>
-
+                                            <div class="label label-danger" data-ng-show="frmEmployees.fromperiod.$dirty && frmEmployees.fromperiod.$invalid">
+                                                @*<span data-ng-show="frmEmployees.degree.$error.required">Degree required</span>*@
+                                                <span ng-if="frmEmployees.fromperiod.$error.max" class="help-block">From Period can't  be in future</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -484,18 +492,23 @@
                                             <label>
                                                 To Period
                                             </label>
-                                            <input type="date" class="form-control" id="toperiod" ng-focus="true" name="toperiod" ng-model="emplyeeDetailScope.ToPeriod" tabindex="26" placeholder="Select From Period">
+                                            <input type="date" class="form-control" id="toperiod" ng-focus="true" name="toperiod"  required max="{{max}}" ng-model="emplyeeDetailScope.ToPeriod" tabindex="26" placeholder="Select From Period">
                                             <div class="c">
                                             </div>
-
+                                            
+                                            <div class="label label-danger" data-ng-show="frmEmployees.toperiod.$dirty && frmEmployees.toperiod.$invalid">
+                                                @*<span data-ng-show="frmEmployees.degree.$error.required">Degree required</span>*@
+                                                <span ng-if="frmEmployees.toperiod.$error.max" class="help-block">To Period can't  be in future</span>
+                                            </div>
                                         </div>
                                     </div>
+                                   
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                                            <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5" id="submit"
                                                     @*ng-disabled="frmEmployees.txtEmployee.$invalid"*@ tabindex="28">
                                                 {{emplyeeDetailScope.EmployeeId > 0 ? '@Resource.Update' : '@Resource.Save'}}
                                             </button>
@@ -646,8 +659,8 @@
     </div>
     <!-- end Employee details list -->
 </div>
-            </div>
-        </div>
+            @*</div>
+        </div>*@
 <!-- end body section-->
 
 @section scripts {
