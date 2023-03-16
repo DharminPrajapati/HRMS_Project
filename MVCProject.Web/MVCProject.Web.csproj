@@ -251,6 +251,7 @@
     <Content Include="Areas\Salary\Scripts\angular\services\SalaryService.js" />
     <Content Include="Content\css\angucomplete-alt.css" />
     <Content Include="Content\css\animate.css" />
+    <Content Include="Content\images\arrow-1.jpg" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\bs-daterangepicker.css" />
     <Content Include="Content\css\buttons.bootstrap.min.css" />

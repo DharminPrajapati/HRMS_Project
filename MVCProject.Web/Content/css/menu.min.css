@@ -88,7 +88,7 @@
     top: 0;
     width: 210px;
     z-index: 999;
-    background: #34444c;
+    background: rgb(63 63 127);
     display: none;
 }
 
@@ -610,19 +610,20 @@ table.no-margin .progress {
     content: "";
     height: 8px;
     left: 23px;
-    margin-top: 12px;
+    margin-top: 18px;
     position: absolute;
     right: auto;
     width: 8px;
     z-index: 1;
     border-radius: 50%;
+    margin-left: 15px;
 }
 
 .nav-md ul.nav.child_menu li:after {
     border-left: 1px solid #323750;
     bottom: 0;
     content: "";
-    left: 27px;
+    left: 42px;
     position: absolute;
     top: 0;
 }
@@ -663,7 +664,7 @@ table.no-margin .progress {
 }
 
 .nav li.current-page {
-    background: rgb(177 177 202);
+    background: rgb(63 63 127);
 }
 
 .nav li li li.current-page {
