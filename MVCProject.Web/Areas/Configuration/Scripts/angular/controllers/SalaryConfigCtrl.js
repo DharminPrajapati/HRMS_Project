@@ -53,24 +53,24 @@
 
 
 
-        //$scope.EditSalaryDetails = function (salaryconfigId) {
-        //    debugger
-        //    SalaryConfigService.GetConfigSalaryById(salaryconfigId).then(function (res) {
-        //        if (res) {
-        //            var data = res.data;
-        //            if (data.MessageType == messageTypes.Success) {
-        //                debugger;
-        //                $scope.salaryDetailScope = data.Result;
-        //                $scope.lastStorageAudit = angular.copy(data.Result);
-        //                CommonFunctions.ScrollUpAndFocus("txtSalary");
-        //            }
-        //            else if (data.MessageType == messageTypes.Error) {
-        //                toastr.error(data.Message, errorTitle);
-        //            }
-        //        }
-        //        $rootScope.isAjaxLoadingChild = false;
-        //    });
-        //}
+        $scope.EditSalaryDetails = function (salaryconfigId) {
+            debugger
+            SalaryConfigService.GetConfigSalaryById(salaryconfigId).then(function (res) {
+                if (res) {
+                    var data = res.data;
+                    if (data.MessageType == messageTypes.Success) {
+                        debugger;
+                        $scope.salaryDetailScope = data.Result;
+                        $scope.lastStorageAudit = angular.copy(data.Result);
+                        CommonFunctions.ScrollUpAndFocus("txtSalary");
+                    }
+                    else if (data.MessageType == messageTypes.Error) {
+                        toastr.error(data.Message, errorTitle);
+                    }
+                }
+                $rootScope.isAjaxLoadingChild = false;
+            });
+        }
 
         $scope.tableParams = new ngTableParams({
             page: 1,

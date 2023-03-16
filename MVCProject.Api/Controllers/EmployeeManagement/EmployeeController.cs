@@ -366,6 +366,9 @@
             TblEmployee existingEmployeeDetail = this.entities.TblEmployees.Where(x => x.EmployeeId == employeeDetail.EmployeeId).FirstOrDefault();
             if (existingEmployeeDetail == null)
             {
+                var Srno=this.entities.TblEmployees.Max(x => x.SrNo)+1;
+                //string Batchno = "ask".ToString() ;
+               
                 this.entities.TblEmployees.AddObject(employeeDetail);
                 if (!(this.entities.SaveChanges() > 0))
                 {

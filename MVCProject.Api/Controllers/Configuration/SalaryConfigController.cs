@@ -99,28 +99,28 @@ namespace MVCProject.Api.Controllers.Configuration
         [HttpPost]
         public ApiResponse SaveConfigSalaryDetails(SalaryConfiguration configsalaryDetail)
         {
-            //if (this.entities.Attendance.Any(x => x.AttendanceId == SalaryDetail.SalaryId))
-            //{
-            //    return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Salary));
-            //}
-            //else
-            //{
-            SalaryConfiguration existingSalaryDetail = this.entities.SalaryConfiguration.Where(x => x.SalaryConfigurationId == configsalaryDetail.SalaryConfigurationId).FirstOrDefault();
-            if (existingSalaryDetail == null)
+            if (this.entities.SalaryConfiguration.Any(x => x.SalaryConfigurationId == configsalaryDetail.SalaryConfigurationId))
             {
-                this.entities.SalaryConfiguration.AddObject(configsalaryDetail);
-                if (!(this.entities.SaveChanges() > 0))
+                return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Salary));
+            }
+            else
+            { 
+              SalaryConfiguration existingSalaryDetail = this.entities.SalaryConfiguration.Where(x => x.SalaryConfigurationId == configsalaryDetail.SalaryConfigurationId).FirstOrDefault();
+                if (existingSalaryDetail == null)
                 {
-                    return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Salary));
+                    this.entities.SalaryConfiguration.AddObject(configsalaryDetail);
+                    if (!(this.entities.SaveChanges() > 0))
+                    {
+                        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Salary));
+                    }
+
+                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Salary));
                 }
 
-                return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Salary));
-            }
+                // For Update
 
-            // For Update
-
-            else
-            {
+               else
+                {
 
                 existingSalaryDetail.SalaryConfigurationId = configsalaryDetail.SalaryConfigurationId;
                 existingSalaryDetail.DA = configsalaryDetail.DA;
@@ -135,12 +135,13 @@ namespace MVCProject.Api.Controllers.Configuration
                 {
                     return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Salary));
                 }
+                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Salary));
 
-                return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Salary));
+                }
+
+
+                }
             }
-
-            //}
-        }
         //[HttpGet]
         //public ApiResponse GetAllSalary()
         //{

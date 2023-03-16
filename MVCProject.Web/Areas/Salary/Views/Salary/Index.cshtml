@@ -29,7 +29,8 @@
         max-width: 60px !important;
     }
 </style>
-<div ng-controller="SalaryCtrl" novalidate>
+<div ng-controller="SalaryCtrl" novalidate ng-init="Init()">
+   
     <!--Start Title Section-->
     <div class="main-page-title title-icon relative l">
         <i class="ti-id-badge icon-position" style="padding-top:8px;"></i>
@@ -45,7 +46,7 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- start Department form -->
-                <form name="frmSalary" ng-submit="SaveSalaryDetails(salaryDetailScope,frmSalary)" ng-init="Init()" novalidate>
+                <form name="frmSalary" ng-submit="SaveSalaryDetails(salaryDetailScope,frmSalary)"  novalidate>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">

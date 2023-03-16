@@ -116,10 +116,28 @@
             });
         };
 
+        $scope.designationScope = function () {
+            EmployeeService.GetDesignationlist().then(function (res) {
+                $scope.Designation = res.data.Result;
+                console.log($scope.Designation);
+            });
+        };
+
+
+
+        $scope.departmentsScope = function () {
+            EmployeeService.GetDepartmentlist().then(function (res) {
+                $scope.Departments = res.data.Result;
+                console.log($scope.Departments);
+            });
+        };
+        debugger
         $scope.Init = function () {
+            debugger
             $scope.employeesScope();
-            //$scope.departmentsScope();
-            //$scope.emplyeeDetailScope.Gender;
+            $scope.designationScope(); 
+            $scope.departmentsScope();
+            $scope.salaryDetailScope.DA=20
         }
         
     //$scope.resetemployeeDetails = function (frmDesignations) {

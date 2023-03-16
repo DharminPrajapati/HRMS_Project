@@ -321,7 +321,6 @@
     <Content Include="Rotativa\msvcp120.dll" />
     <Content Include="Rotativa\msvcr120.dll" />
     <Content Include="Rotativa\wkhtmltopdf.exe" />
-    <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular\angular-drag-and-drop-lists.js" />
     <Content Include="Scripts\angular\d3.v4.min.js" />
     <Content Include="Scripts\angular\directives\AutocompleteDropdown.js" />
@@ -382,10 +381,9 @@
     <Content Include="Scripts\angular\vendor\modules\component\angular-gridster.js" />
     <Content Include="Content\css\angular-gridster.min.css" />
     <Content Include="Scripts\angular\vendor\modules\component\angular-nvd3.min.js" />
-    <Content Include="Scripts\calendar.js" />
-    <Content Include="Scripts\fullcalendar.js" />
-    <Content Include="Scripts\gcal.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\js\calendar.js" />
+    <Content Include="Scripts\js\fullcalendar.js" />
+    <Content Include="Scripts\js\gcal.js" />
     <Content Include="Scripts\jquery\plugin\d3.min.js" />
     <Content Include="Content\css\nv.d3.min.css" />
     <Content Include="Scripts\jquery\plugin\lodash.js" />
@@ -426,7 +424,6 @@
     <Content Include="Scripts\js\switchery.min.js" />
     <Content Include="Scripts\js\waves.js" />
     <Content Include="Scripts\js\wow.min.js" />
-    <Content Include="Scripts\moment.js" />
     <Content Include="Views\Template\_SetReminderPopup.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

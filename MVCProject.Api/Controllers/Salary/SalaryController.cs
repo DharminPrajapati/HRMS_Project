@@ -32,6 +32,20 @@ namespace MVCProject.Api.Controllers.Salary
             return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
         }
 
+        [HttpGet]
+        public ApiResponse GetDesignationDropDown()
+        {
+            var data = this.entities.Designations.Where(x => x.IsActive.Value).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+        }
+
+        /// Get All Departments 
+        [HttpGet]
+        public ApiResponse GetDepartmentDropDown()
+        {
+            var data = this.entities.TblDepartments.Where(x => x.IsActive.Value).Select(x => new { DeptName = x.DepartmentName, DeptId = x.DepartmentId }).OrderBy(x => x.DeptName).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+        }
 
         [HttpGet]
 
@@ -50,11 +64,14 @@ namespace MVCProject.Api.Controllers.Salary
 
         public ApiResponse GetSalaryById(int salaryId)
         {
+            var result = this.entities.Sp_Salary_DisplayAllEmployees().ToList();
             var salaryDetail = this.entities.AddSalary.Where(x => x.SalaryId == salaryId)
                    .Select(d => new
                    {
                        SalaryId = d.SalaryId,
                        EmployeeId = d.EmployeeId,
+                       //y=this.entities.AddToTblEmployees,where
+                       
                        BasicSalary = d.BasicSalary,
                        DA = d.DA,
                        HRA = d.HRA,

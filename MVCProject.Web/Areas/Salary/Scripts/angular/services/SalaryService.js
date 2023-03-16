@@ -67,6 +67,24 @@
             });
         };
 
+        //Get Designation DropDown
+        list.GetDesignationlist = function () {
+
+            return $http({
+                methd: 'GET',
+                url: $rootScope.apiURL + '/Employee/GetDesignationDropDown'
+            });
+        };
+
+        //Get Department DropDown
+        list.GetDepartmentlist = function () {
+
+            return $http({
+                methd: 'GET',
+                url: $rootScope.apiURL + '/Employee/GetDepartmentDropDown'
+            });
+        };
+
 
         return list;
     }]);

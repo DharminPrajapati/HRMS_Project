@@ -29,7 +29,7 @@
     }
 </style>
 
-<div ng-controller="SalaryConfigCtrl" novalidate>
+<div ng-controller="SalaryConfigCtrl" novalidate @*ng-init="Init()">*@
     <!--Start Title Section-->
     <div class="main-page-title title-icon relative l">
         <i class="ti-id-badge icon-position" style="padding-top:8px;"></i>
@@ -115,7 +115,7 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
-                                        @*ng-disabled="frmSalary.txtSalary.$invalid"*@ tabindex="3">
+                                        ng-disabled="frmSalary.txtSalary.$invalid" tabindex="3">
                                     {{salaryDetailScope.SalaryConfigurationId > 0 ? '@Resource.Update' : '@Resource.Save'}}
                                 </button>
                                 <button type="button" ng-click="ClearFormData(frmSalary)" class="btn btn-info waves-effect w-md waves-light m-b-5"
