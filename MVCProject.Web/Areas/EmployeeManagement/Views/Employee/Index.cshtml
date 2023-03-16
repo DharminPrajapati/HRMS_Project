@@ -259,12 +259,13 @@
                                 <label>
                                     Birth Date <span class="required-field">*</span>
                                 </label>
-                                <input type="date" class="form-control" id="birthdate" ng-focus="true" name="birthdate" ng-model="emplyeeDetailScope.BirthDate" required tabindex="11" placeholder="BirthDate" maxlength="250">
+                                <input type="date" class="form-control" id="birthdate" ng-focus="true" name="birthdate" required max="{{max}}" ng-model="emplyeeDetailScope.BirthDate" required tabindex="11" placeholder="BirthDate" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.birthdate.$dirty && frmEmployees.birthdate.$invalid">
                                     <span data-ng-show="frmEmployees.birthdate.$error.required">Birth Date required</span>
-                                </div>
+                                    <span data-ng-show="frmEmployees.birthdate.$error.max" class="help-block">Birth Date can't be in future'</span>
+                                </div> 
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -371,11 +372,12 @@
                                 <label>
                                     Course Start Date <span class="required-field">*</span>
                                 </label>
-                                <input type="date" class="form-control" id="coursestartdate" ng-focus="true" name="coursestartdate" ng-model="emplyeeDetailScope.CourseStartDate" required tabindex="17" placeholder="Select Course Start Date">
+                                <input type="date" class="form-control"required max="{{max}}" id="coursestartdate" ng-focus="true" name="coursestartdate" ng-model="emplyeeDetailScope.CourseStartDate" required tabindex="17" placeholder="Select Course Start Date">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.coursestartdate.$dirty && frmEmployees.coursestartdate.$invalid">
                                     <span data-ng-show="frmEmployees.coursestartdate.$error.required">Course Start date required</span>
+                                    <span data-ng-show="frmEmployees.coursestartdate.$error.max" class="help-block">Cource Date can't be in future'</span>
                                 </div>
                             </div>
                         </div>
@@ -386,11 +388,12 @@
                                 <label>
                                     Course End Date <span class="required-field">*</span>
                                 </label>
-                                <input type="date" class="form-control" id="courseEnddate" ng-focus="true" name="courseEnddate" ng-model="emplyeeDetailScope.CourseEndDate" required tabindex="18" placeholder="Select Course End Date">
+                                <input type="date" class="form-control" required max="{{max}}" id="courseEnddate" ng-focus="true" name="courseEnddate" ng-model="emplyeeDetailScope.CourseEndDate" required tabindex="18" placeholder="Select Course End Date">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.courseEnddate.$dirty && frmEmployees.courseEnddate.$invalid">
                                     <span data-ng-show="frmEmployees.courseEnddate.$error.required">Course End Date required</span>
+                                    <span data-ng-show="frmEmployees.courceEnddate.$error.max" class="help-block">Cource Date can't be in future'</span>
                                 </div>
                             </div>
                         </div>
@@ -480,8 +483,12 @@
                                             <label>
                                                 From Period
                                             </label>
-                                            <input type="date" class="form-control" id="fromperiod" ng-focus="true" name="fromperiod" ng-model="emplyeeDetailScope.FromPeriod" tabindex="24" placeholder="Select From Period">
+                                            <input type="date" required max="{{max}}" class="form-control" id="fromperiod" ng-focus="true" name="fromperiod" ng-model="emplyeeDetailScope.FromPeriod" tabindex="24" placeholder="Select From Period">
                                             <div class="c">
+                                            </div>
+                                            <div class="label label-danger" data-ng-show="frmEmployees.fromperiod.$dirty && frmEmployees.fromperiod.$invalid">
+                                                @*<span data-ng-show="frmEmployees.fromperiod.$error.required">Course End Date required</span>*@
+                                                <span data-ng-show="frmEmployees.fromperiod.$error.max" class="help-block">From Date can't be in future'</span>
                                             </div>
 
                                         </div>
@@ -491,10 +498,13 @@
                                             <label>
                                                 To Period
                                             </label>
-                                            <input type="date" class="form-control" id="toperiod" ng-focus="true" name="toperiod" ng-model="emplyeeDetailScope.ToPeriod" tabindex="25" placeholder="Select From Period">
+                                            <input type="date"  required max="{{max}}" class="form-control" id="toperiod" ng-focus="true" name="toperiod" ng-model="emplyeeDetailScope.ToPeriod" tabindex="25" placeholder="Select From Period">
                                             <div class="c">
                                             </div>
-
+                                            <div class="label label-danger" data-ng-show="frmEmployees.toperiod.$dirty && frmEmployees.toperiod.$invalid">
+                                                @*<span data-ng-show="frmEmployees.fromperiod.$error.required">Course End Date required</span>*@
+                                                <span data-ng-show="frmEmployees.toperiod.$error.max" class="help-block">To Date can't be in future'</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
