@@ -173,6 +173,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="sp_Emp_GetAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sp_Salary_DisplayAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MVCProjectModelStoreContainer">
           <EntitySet Name="AddSalary" EntityType="Self.AddSalary" Schema="dbo" store:Type="Tables" />
@@ -311,6 +312,7 @@
           </AssociationSet>
           <EntitySet Name="SalaryConfiguration" EntityType="MVCProjectModel.SalaryConfiguration" />
           <FunctionImport Name="Sp_Salary_DisplayAllEmployees" ReturnType="Collection(MVCProjectModel.Sp_Salary_DisplayAllEmployees_Result)" />
+          <FunctionImport Name="sp_Emp_GetAllEmployees" ReturnType="Collection(MVCProjectModel.sp_Emp_GetAllEmployees_Result)" />
         </EntityContainer>
         <EntityType Name="AddSalary">
           <Key>
@@ -398,7 +400,6 @@
           <Property Name="IsActive" Type="Boolean" />
         </EntityType>
         <ComplexType Name="Sp_Salary_DisplayAllEmployees_Result">
-          <Property Type="String" Name="Name" Nullable="true" MaxLength="201" />
           <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
           <Property Type="String" Name="DesignationName" Nullable="true" MaxLength="250" />
           <Property Type="String" Name="BatchNo" Nullable="true" MaxLength="100" />
@@ -413,6 +414,40 @@
           <Property Type="DateTime" Name="EntryDate" Nullable="true" />
           <Property Type="Int32" Name="UpdateBy" Nullable="true" />
           <Property Type="DateTime" Name="UpdatedDate" Nullable="true" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="DesignationId" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Emp_GetAllEmployees_Result">
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="DesignationId" Nullable="true" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DesignationName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Email" Nullable="true" />
+          <Property Type="Int32" Name="Gender" Nullable="true" />
+          <Property Type="DateTime" Name="JoiningDate" Nullable="true" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AlternatePhoneNumber" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="BirthDate" Nullable="true" />
+          <Property Type="String" Name="PermanentAddress" Nullable="true" />
+          <Property Type="String" Name="TemporaryAddress" Nullable="true" />
+          <Property Type="Int32" Name="Pincode" Nullable="true" />
+          <Property Type="String" Name="InstitutionName" Nullable="true" />
+          <Property Type="String" Name="CourseName" Nullable="true" />
+          <Property Type="DateTime" Name="CourseStartDate" Nullable="true" />
+          <Property Type="DateTime" Name="CourseEndDate" Nullable="true" />
+          <Property Type="String" Name="Grade" Nullable="true" />
+          <Property Type="String" Name="Degree" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CompanyName" Nullable="true" />
+          <Property Type="String" Name="LastJobLocation" Nullable="true" />
+          <Property Type="String" Name="JobPosition" Nullable="true" />
+          <Property Type="DateTime" Name="FromPeriod" Nullable="true" />
+          <Property Type="DateTime" Name="ToPeriod" Nullable="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -563,7 +598,6 @@
           <FunctionImportMapping FunctionImportName="Sp_Salary_DisplayAllEmployees" FunctionName="MVCProjectModel.Store.Sp_Salary_DisplayAllEmployees">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MVCProjectModel.Sp_Salary_DisplayAllEmployees_Result">
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
                 <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
                 <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
@@ -578,6 +612,44 @@
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Emp_GetAllEmployees" FunctionName="MVCProjectModel.Store.sp_Emp_GetAllEmployees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.sp_Emp_GetAllEmployees_Result">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AlternatePhoneNumber" ColumnName="AlternatePhoneNumber" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="InstitutionName" ColumnName="InstitutionName" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseStartDate" ColumnName="CourseStartDate" />
+                <ScalarProperty Name="CourseEndDate" ColumnName="CourseEndDate" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="LastJobLocation" ColumnName="LastJobLocation" />
+                <ScalarProperty Name="JobPosition" ColumnName="JobPosition" />
+                <ScalarProperty Name="FromPeriod" ColumnName="FromPeriod" />
+                <ScalarProperty Name="ToPeriod" ColumnName="ToPeriod" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -101,87 +101,7 @@
 
         }
 
-        //[HttpPost]
-        //public ApiResponse GetAllEmployees(PagingParams employeeDetailsParams)
-        //{
-        //    //if (string.IsNullOrWhiteSpace(employeeDetailParams.Search))
-        //    //{
-        //    //    employeeDetailParams.Search = string.Empty;
-        //    //}
-
-        //    var employeelist = (from d in this.entities.TblEmployees.AsEnumerable()
-        //                        let TotalRecords = this.entities.TblEmployees.AsEnumerable().Count()
-        //                        select new
-        //                        {
-        //                            //var employeelist = this.entities.TblEmployee.ToList();
-
-        //                            EmployeeId = d.EmployeeId,
-        //                            FirstName = d.FirstName,
-        //                            LastName = d.LastName,
-        //                            Email = d.Email,
-        //                            Password = d.Password,
-        //                            JoiningDate = d.JoiningDate,
-        //                            PhoneNumber = d.PhoneNumber,
-        //                            AlternatePhoneNumber = d.AlternatePhoneNumber,
-        //                            Designation = d.DesignationId,
-        //                            Department = d.DepartmentId,
-        //                            BirthDate = d.BirthDate,
-        //                            Gender = d.Gender,
-        //                            PermanentAddress = d.PermanentAddress,
-        //                            TemporaryAddress = d.TemporaryAddress,
-        //                            Pincode = d.Pincode,
-        //                            InstitutionName = d.InstitutionName,
-        //                            CourseName = d.CourseName,
-        //                            CourseStartDate = d.CourseStartDate,
-        //                            CourseEndDate = d.CourseEndDate,
-        //                            Grade = d.Grade,
-        //                            Degree = d.Degree,
-        //                            CompanyName = d.CompanyName,
-        //                            LastJobLocation = d.LastJobLocation,
-        //                            JobPosition = d.JobPosition,
-        //                            FromPeriod = d.FromPeriod,
-        //                            ToPeriod = d.ToPeriod,
-        //                            IsActive = d.IsActive
-        //                        }).AsQueryable().Skip((employeeDetailsParams.CurrentPageNumber - 1) * employeeDetailsParams.PageSize).Take(employeeDetailsParams.PageSize);
-
-        //    return this.Response(Utilities.MessageTypes.Success, string.Empty, employeelist);
-
-        //}
-        // [HttpGet]
-        //public ApiResponse GetAllEmployees()
-        //{
-        //var employeelist = this.entities.TblEmployees.Select(d => new {
-        //    EmployeeId = d.EmployeeId,
-        //    FirstName = d.FirstName,
-        //    LastName = d.LastName,
-        //    Email = d.Email,
-        //    Password = d.Password,
-        //    JoiningDate = d.JoiningDate,
-        //    PhoneNumber = d.PhoneNumber,
-        //    AlternatePhoneNumber = d.AlternatePhoneNumber,
-        //    Designation = d.DesignationId,
-        //    Department = d.DepartmentId,
-        //    BirthDate = d.BirthDate,
-        //    Gender = d.Gender,
-        //    PermanentAddress = d.PermanentAddress,
-        //    TemporaryAddress = d.TemporaryAddress,
-        //    Pincode = d.Pincode,
-        //    InstitutionName = d.InstitutionName,
-        //    CourseName = d.CourseName,
-        //    CourseStartDate = d.CourseStartDate,
-        //    CourseEndDate = d.CourseEndDate,
-        //    Grade = d.Grade,
-        //    Degree = d.Degree,
-        //    CompanyName = d.CompanyName,
-        //    LastJobLocation = d.LastJobLocation,
-        //    JobPosition = d.JobPosition,
-        //    FromPeriod = d.FromPeriod,
-        //    ToPeriod = d.ToPeriod,
-        //    IsActive = d.IsActive
-        //});
-        //         return this.Response(Utilities.MessageTypes.Success, string.Empty, employeelist);
-
-        //}
+    
 
         [HttpGet]
 
@@ -305,20 +225,66 @@
         /// <summary>
                  /// Get Employees By Id
                  /// </summary>
+        //[HttpGet]
+
+        //public ApiResponse GetEmployeeById(int employeeId)
+        //{
+        //    var employeeDetail = this.entities.TblEmployees.Where(x => x.EmployeeId == employeeId)
+        //           .Select(d => new
+        //           {
+        //               EmployeeId = d.EmployeeId,
+        //               SrNo = d.SrNo,
+        //               BatchNo = d.BatchNo,
+        //               FirstName = d.FirstName,
+        //               LastName = d.LastName,
+        //               Email = d.Email,
+        //               Password = d.Password,
+        //               JoiningDate = d.JoiningDate,
+        //               PhoneNumber = d.PhoneNumber,
+        //               AlternatePhoneNumber = d.AlternatePhoneNumber,
+        //               DesignationId = d.DesignationId,
+        //               DepartmentId = d.DepartmentId,
+        //               BirthDate = d.BirthDate,
+        //               Gender = d.Gender,
+        //               PermanentAddress = d.PermanentAddress,
+        //               TemporaryAddress = d.TemporaryAddress,
+        //               Pincode = d.Pincode,
+        //               InstitutionName = d.InstitutionName,
+        //               CourseName = d.CourseName,
+        //               CourseStartDate = d.CourseStartDate,
+        //               CourseEndDate = d.CourseEndDate,
+        //               Grade = d.Grade,
+        //               Degree = d.Degree,
+        //               CompanyName = d.CompanyName,
+        //               LastJobLocation = d.LastJobLocation,
+        //               JobPosition = d.JobPosition,
+        //               FromPeriod = d.FromPeriod,
+        //               ToPeriod = d.ToPeriod,
+        //               IsActive = d.IsActive
+        //           }).SingleOrDefault();
+        //    if (employeeDetail != null)
+        //    {
+        //        return this.Response(Utilities.MessageTypes.Success, string.Empty, employeeDetail);
+        //    }
+        //    else
+        //    {
+        //        return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
+        //    }
+        //}
+        
+        /// Get Employee using Store Procedure
+        /// </summary>
         [HttpGet]
 
         public ApiResponse GetEmployeeById(int employeeId)
         {
-            var employeeDetail = this.entities.TblEmployees.Where(x => x.EmployeeId == employeeId)
+            var employeeDetail = this.entities.sp_Emp_GetAllEmployees().Where(x => x.EmployeeId == employeeId)
                    .Select(d => new
                    {
                        EmployeeId = d.EmployeeId,
-                       SrNo = d.SrNo,
-                       BatchNo = d.BatchNo,
                        FirstName = d.FirstName,
                        LastName = d.LastName,
-                       Email = d.Email,
-                       Password = d.Password,
+                       Email = d.Email,                      
                        JoiningDate = d.JoiningDate,
                        PhoneNumber = d.PhoneNumber,
                        AlternatePhoneNumber = d.AlternatePhoneNumber,
@@ -367,30 +333,17 @@
             if (existingEmployeeDetail == null)
             {
                 var Srno=this.entities.TblEmployees.Max(x => x.SrNo)+1;
-                //string Batchno = "ask".ToString() ;
-               
+                var Batch = string.Format("{0}{1}","ASK_",(Srno));
+
+                employeeDetail.SrNo = Srno;
+                employeeDetail.BatchNo = Batch;
                 this.entities.TblEmployees.AddObject(employeeDetail);
                 if (!(this.entities.SaveChanges() > 0))
                 {
                     return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Employee));
                 }
-                //var existingattachfiles = this.entities.AttachmentMaster.Where(a => a.RefrencedId == employeeDetail.EmployeeId).ToList();
-
-                //if (existingattachfiles != null)
-                //{
-                //    foreach (var item in existingattachfiles)
-                //    {
-                //        this.entities.AttachmentMaster.DeleteObject(item);
-                //        this.entities.SaveChanges();
-                //    }
-                //    var attachFile = employeeDetail.Attachment;
-                //    attachFile.RefrencedId = employeeDetail.EmployeeId;
-                //    //filedata.FileAttachmentType = (int?)FileAttachmentType.Slider;
-                //    attachFile.IsActive = employeeDetail.IsActive;
-                //    this.entities.AttachmentMaster.AddObject(attachFile);
-                //    this.entities.SaveChanges();
-                //}
-                // return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Employee));
+               
+               // return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Employee));
             }
 
 
@@ -403,7 +356,6 @@
                 existingEmployeeDetail.FirstName = employeeDetail.FirstName;
                 existingEmployeeDetail.LastName = employeeDetail.LastName;
                 existingEmployeeDetail.Email = employeeDetail.Email;
-
                 existingEmployeeDetail.JoiningDate = employeeDetail.JoiningDate;
                 existingEmployeeDetail.PhoneNumber = employeeDetail.PhoneNumber;
                 existingEmployeeDetail.AlternatePhoneNumber = employeeDetail.AlternatePhoneNumber;
@@ -447,8 +399,7 @@
                 }
             }
             var attachfile = employeeDetail.Attachment;
-            attachfile.RefrencedId = employeeDetail.EmployeeId;
-            //filedata.FileAttachmentType = (int?)FileAttachmentType.Slider;
+            attachfile.RefrencedId = employeeDetail.EmployeeId;           
             attachfile.IsActive = employeeDetail.IsActive;
             this.entities.AttachmentMaster.AddObject(attachfile);
             this.entities.SaveChanges();
@@ -480,7 +431,20 @@
         //    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Employee));
         //}
 
+        [HttpPost]
+        public ApiResponse GetEmployeeDetails(PagingParams employeeDetailsParams)
+        {
+            if (string.IsNullOrWhiteSpace(employeeDetailsParams.Search))
+            {
+                employeeDetailsParams.Search = string.Empty;
+            }
+            var results = this.entities.sp_Emp_GetAllEmployees().Where(x => x.FirstName.Trim().ToLower().Contains(employeeDetailsParams.Search.Trim().ToLower())).ToList().AsQueryable().Skip((employeeDetailsParams.CurrentPageNumber - 1) * employeeDetailsParams.PageSize).Take(employeeDetailsParams.PageSize);
+            var TotalRecords = this.entities.sp_Emp_GetAllEmployees().Where(x => x.FirstName.Trim().ToLower().Contains(employeeDetailsParams.Search.Trim().ToLower())).Count();
 
+
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, new { list = results, Total = TotalRecords });
+           
+        }
         /// Disposes expensive resources.
         protected override void Dispose(bool disposing)
         {

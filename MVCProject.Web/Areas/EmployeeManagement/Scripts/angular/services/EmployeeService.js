@@ -17,6 +17,14 @@
                 data: JSON.stringify(employeeDetailsParams)
             });
         }
+        // Get Employee List using Sp
+        list.GetEmployeeDetails = function (employeeDetailsParams) {
+            return $http({
+                method: 'POST',
+                url: $rootScope.apiURL + '/Employee/GetEmployeeDetails/',
+                data: JSON.stringify(employeeDetailsParams)
+            });
+        }
 
         // Get All  list of Employees
         list.GetEmployeeList = function (isGetAll)

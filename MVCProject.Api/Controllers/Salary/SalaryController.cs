@@ -172,7 +172,10 @@ namespace MVCProject.Api.Controllers.Salary
             var TotalRecords = result.Count();
             var employeelist = result.Select(d => new
             {
-                Name = d.Name,
+                FirstName = d.FirstName,
+                LastName = d.LastName,
+                DepartmentId = d.DepartmentId,
+                DesignationId = d.DesignationId,
                 DepartmentName = d.DepartmentName,
                 DesignationName = d.DesignationName,
                 BatchNo = d.BatchNo,

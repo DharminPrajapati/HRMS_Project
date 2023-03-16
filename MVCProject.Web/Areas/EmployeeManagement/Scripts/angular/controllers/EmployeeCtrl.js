@@ -262,6 +262,7 @@
             sort: { FirstName: 'asc' }
         }, {
             getData: function ($defer, params) {
+
                 if (employeeDetailsParams == null) {
                     employeeDetailsParams = {};
                 }
@@ -269,14 +270,14 @@
                 employeeDetailsParams.Paging = CommonFunctions.GetPagingParams(params);
                 employeeDetailsParams.Paging.Search = $scope.isSearchClicked ? $scope.search : '';
 
-                EmployeeService.GetAllEmployees(employeeDetailsParams.Paging).then(function (res) {
-
+                EmployeeService.GetEmployeeDetails(employeeDetailsParams.Paging).then(function (res) {
+                    //debugger
                     if (res) {
                         var data = res.data;
                         if (res.data.MessageType == messageTypes.Success) {
-                            $defer.resolve(res.data.Result);
-                            if (res.data.Result.length == 0) { }
-                            else { params.total(res.data.Result[0].TotalRecords); }
+                            $defer.resolve(res.data.Result.list);
+
+                            params.total(res.data.Result.Total);
 
                         }
                     }
