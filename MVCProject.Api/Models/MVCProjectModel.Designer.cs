@@ -3669,6 +3669,30 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.Boolean> _IsActive;
         partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
         partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String BatchNo
+        {
+            get
+            {
+                return _BatchNo;
+            }
+            set
+            {
+                OnBatchNoChanging(value);
+                ReportPropertyChanging("BatchNo");
+                _BatchNo = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("BatchNo");
+                OnBatchNoChanged();
+            }
+        }
+        private global::System.String _BatchNo;
+        partial void OnBatchNoChanging(global::System.String value);
+        partial void OnBatchNoChanged();
 
         #endregion
 

@@ -448,6 +448,7 @@
           <Property Type="DateTime" Name="FromPeriod" Nullable="true" />
           <Property Type="DateTime" Name="ToPeriod" Nullable="true" />
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="BatchNo" Nullable="true" MaxLength="100" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -650,6 +651,7 @@
                 <ScalarProperty Name="FromPeriod" ColumnName="FromPeriod" />
                 <ScalarProperty Name="ToPeriod" ColumnName="ToPeriod" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

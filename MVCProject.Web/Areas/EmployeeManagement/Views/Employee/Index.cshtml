@@ -573,6 +573,9 @@
                                 <td data-title="'@Resource.SrNo'" header-class="'colSrno'" ng-class="'colSrno text-right'">
                                     {{(tableParams.$params.page-1)*tableParams.$params.count+($index + 1)}}
                                 </td>
+                                <td data-title="'BatchNo'" sortable="'BatchNo'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{emp.BatchNo}}">
+                                    {{emp.BatchNo}}
+                                </td>
                                 <td data-title="'Name'" sortable="'FirstName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{emp.FirstName}}">
                                     {{emp.FirstName}} {{emp.LastName}}
                                 </td>
