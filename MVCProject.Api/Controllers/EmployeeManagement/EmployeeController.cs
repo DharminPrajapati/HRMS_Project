@@ -445,6 +445,13 @@
             return this.Response(Utilities.MessageTypes.Success, string.Empty, new { list = results, Total = TotalRecords });
            
         }
+
+        [HttpGet]
+        public ApiResponse GeneratePdf()
+        {
+            var records = this.entities.sp_Emp_GetAllEmployees().ToList();
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, records);
+        }
         /// Disposes expensive resources.
         protected override void Dispose(bool disposing)
         {

@@ -96,7 +96,14 @@
                 data: JSON.stringify(filedata)
             });
         }
-
+        list.GeneratePdf = function () {
+            debugger
+            return $http({
+                method: 'GET',                
+                url: $rootScope.apiURL + '/Employee/GeneratePdf'
+            });
+            debugger
+        }
 
         return list;
     }]);

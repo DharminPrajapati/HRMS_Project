@@ -429,6 +429,30 @@
                 debugger
             });
         };
+
+        $scope.generatePdf = function () {
+            debugger
+            EmployeeService.GeneratePdf().then(function (res) {
+                debugger
+                if (res) {
+                    var data = res.data.Result;
+                    var doc = new jsPDF();
+                    var pos = 10;
+
+
+                    angular.forEach(data, function (record) {
+                        doc.text(20, pos, record.BatchNo);
+                        doc.text(50, pos, record.FirstName);
+                        doc.text(80, pos, record.LastName);
+                        doc.text(110, pos, record.Gender == 1 ? "Male" : "Female");
+                        pos += 5;
+                    });
+
+                    doc.save('Employees.pdf');
+
+                }
+            });
+        }
     };
 
 
