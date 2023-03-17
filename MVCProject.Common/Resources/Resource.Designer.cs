@@ -592,7 +592,7 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Position.
+        ///   Looks up a localized string similar to Designation.
         /// </summary>
         public static string Designation {
             get {

@@ -138,11 +138,11 @@
                 toastr.warning("Degree Required ", warningTitle);
                 $("#degree").focus();
             }          
-            else if (emplyeeDetailScope.FromPeriod >= emplyeeDetailScope.ToPeriod) {
-                toastr.warning("FromPeriod date should be grater then ToPeriod ", warningTitle);
-                $("#txtEmployee").focus();
-                return;
-            }
+            //else if (emplyeeDetailScope.FromPeriod >= emplyeeDetailScope.ToPeriod) {
+            //    toastr.warning("FromPeriod date should be grater then ToPeriod ", warningTitle);
+            //    $("#txtEmployee").focus();
+            //    return;
+            //}
             if (frmEmployees.$valid) {                
 
                 //emplyeeDetailScope.Attachment = [];

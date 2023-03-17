@@ -184,7 +184,7 @@
     <value>dd-MMM-yyyy HH:mm</value>
   </data>
   <data name="Designation" xml:space="preserve">
-    <value>Position</value>
+    <value>Designation</value>
   </data>
   <data name="DesignationDetails" xml:space="preserve">
     <value>Designation Details</value>
