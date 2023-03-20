@@ -69,9 +69,7 @@ namespace MVCProject.Api.Controllers.Salary
                    .Select(d => new
                    {
                        SalaryId = d.SalaryId,
-                       EmployeeId = d.EmployeeId,
-                       //y=this.entities.AddToTblEmployees,where
-                       
+                       EmployeeId = d.EmployeeId,                                           
                        BasicSalary = d.BasicSalary,
                        DA = d.DA,
                        HRA = d.HRA,

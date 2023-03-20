@@ -29,7 +29,7 @@
         max-width: 60px !important;
     }
 </style>
-<div ng-controller="SalaryCtrl" novalidate ng-init="Init()">
+<div ng-controller="SalaryCtrl" novalidate >
    
     <!--Start Title Section-->
     <div class="main-page-title title-icon relative l">
@@ -46,7 +46,7 @@
         <div class="row">
             <div class="col-md-12">
                 <!-- start Department form -->
-                <form name="frmSalary" ng-submit="SaveSalaryDetails(salaryDetailScope,frmSalary)"  novalidate>
+                <form name="frmSalary" ng-submit="SaveSalaryDetails(salaryDetailScope,frmSalary)" novalidate ng-init="Init()">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -68,8 +68,8 @@
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                                    <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                                </div>*@
+                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                    </div>*@
                             </div>
                         </div>
 
@@ -82,8 +82,8 @@
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                                    <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                                </div>*@
+                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -97,8 +97,8 @@
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                                    <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                                </div>*@
+                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                    </div>*@
                             </div>
                         </div>
 
@@ -108,12 +108,12 @@
                                 <label>
                                     DA <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="DA" id="DA" required ng-focus="true" ng-model="salaryDetailScope.DA" tabindex="1" placeholder="@Resource.DA" maxlength="250" />
+                                <input type="text" class="form-control" name="DA" id="DA" required ng-focus="true" ng-model="salaryDetailScope.DA" tabindex="1" placeholder="@Resource.DA" value="{{SalaryDetails.DA}}" maxlength="250" />
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                                    <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                                </div>*@
+                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                    </div>*@
                             </div>
                         </div>
 
@@ -123,12 +123,12 @@
                                 <label>
                                     HRA <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="HRA" id="HRA" required ng-focus="true" ng-model="salaryDetailScope.HRA" tabindex="1" placeholder="@Resource.HRA" maxlength="250" />
+                                <input type="text" class="form-control" name="HRA" id="HRA" required ng-focus="true" ng-model="salaryDetailScope.HRA" tabindex="1" placeholder="@Resource.HRA" value="{{SalaryDetails.HRA}}" maxlength="250" />
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                                    <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                                </div>*@
+                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                    </div>*@
                             </div>
                         </div>
                     </div>
@@ -139,12 +139,12 @@
                                 <label>
                                     PF <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="PF" id="PF" required ng-focus="true" ng-model="salaryDetailScope.PF" tabindex="1" placeholder="@Resource.PF" maxlength="250" />
+                                <input type="text" class="form-control" name="PF" id="PF" required ng-focus="true" ng-model="salaryDetailScope.PF" tabindex="1" placeholder="@Resource.PF" value="{{SalaryDetails.PF}}" maxlength="250" />
                                 <div class="c">
                                 </div>
                                 @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                                    <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                                </div>*@
+                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                    </div>*@
                             </div>
                         </div>
 

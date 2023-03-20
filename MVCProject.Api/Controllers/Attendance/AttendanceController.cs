@@ -25,8 +25,8 @@ namespace MVCProject.Api.Controllers.Attendance
         public ApiResponse SaveAttendanceDetails([FromBody] Attendance AttendanceDetail)
         {
 
-            Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.AttendanceId == AttendanceDetail.AttendanceId).FirstOrDefault();
-            if (existingAttendanceDetail == null)
+           
+            if (AttendanceDetail.EmployeeId > 0)
             {
                 AttendanceDetail.Date = DateTime.Now;
                 AttendanceDetail.InTime = DateTime.Now.TimeOfDay;
@@ -36,15 +36,15 @@ namespace MVCProject.Api.Controllers.Attendance
                     return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Attendance));
                 }
             }
-            return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Attendance), AttendanceDetail.AttendanceId);
-          
+            return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Attendance), AttendanceDetail.EmployeeId);
+
 
         }
 
         [HttpPost]
         public ApiResponse UpdateAttendance([FromBody] Attendance AttendanceDetail)
         {
-            Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.AttendanceId == AttendanceDetail.AttendanceId).FirstOrDefault();
+            Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.EmployeeId == AttendanceDetail.EmployeeId).FirstOrDefault();
 
             existingAttendanceDetail.OutTime = DateTime.Now.TimeOfDay;
             existingAttendanceDetail.OutLatitude = AttendanceDetail.OutLatitude;
@@ -59,7 +59,7 @@ namespace MVCProject.Api.Controllers.Attendance
                 return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Attendance));
             }
 
-            return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Attendance), AttendanceDetail.AttendanceId);
+            return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Attendance), AttendanceDetail.EmployeeId);
         }
 
         [HttpGet]
@@ -84,9 +84,9 @@ namespace MVCProject.Api.Controllers.Attendance
 
         [HttpGet]
 
-        public ApiResponse GetAttendanceById(int attendanceId)
+        public ApiResponse GetAttendanceById(int employeeId)
         {
-            var attendanceDetail = this.entities.Attendance.Where(x => x.AttendanceId == attendanceId)
+            var attendanceDetail = this.entities.Attendance.Where(x => x.EmployeeId == employeeId)
                    .Select(d => new
                    {
                        AttendanceId = d.AttendanceId,

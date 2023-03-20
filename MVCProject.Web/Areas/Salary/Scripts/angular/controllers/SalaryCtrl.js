@@ -117,7 +117,7 @@
         };
 
         $scope.designationScope = function () {
-            EmployeeService.GetDesignationlist().then(function (res) {
+            SalaryService.GetDesignationlist().then(function (res) {
                 $scope.Designation = res.data.Result;
                 console.log($scope.Designation);
             });
@@ -126,18 +126,29 @@
 
 
         $scope.departmentsScope = function () {
-            EmployeeService.GetDepartmentlist().then(function (res) {
+            SalaryService.GetDepartmentlist().then(function (res) {
                 $scope.Departments = res.data.Result;
                 console.log($scope.Departments);
             });
         };
+
+        $scope.SalaryDetails = function () {
+            debugger
+            SalaryService.GetSalConfig().then(function (res) {
+                var data = res.data.Result;
+                $scope.salaryDetailScope = data;
+
+                console.log(data);
+            });
+        }
+
         debugger
         $scope.Init = function () {
             debugger
             $scope.employeesScope();
             $scope.designationScope(); 
             $scope.departmentsScope();
-            $scope.salaryDetailScope.DA=20
+            $scope.SalaryDetails();
         }
         
     //$scope.resetemployeeDetails = function (frmDesignations) {

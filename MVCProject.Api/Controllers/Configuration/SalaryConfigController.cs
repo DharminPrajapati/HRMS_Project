@@ -159,6 +159,18 @@ namespace MVCProject.Api.Controllers.Configuration
         //    return this.Response(Utilities.MessageTypes.Success, string.Empty, Salarylist);
 
         //}
+        [HttpGet]
+        public ApiResponse GetSalConfig()
+        {
+            var Salarylist = this.entities.SalaryConfiguration.Select(d => new {
+                SalaryConfigurationId = d.SalaryConfigurationId,
+                DA = d.DA,
+                HRA = d.HRA,
+                PF = d.PF,
+                IsActive = d.IsActive
+            }).FirstOrDefault();
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, Salarylist);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
