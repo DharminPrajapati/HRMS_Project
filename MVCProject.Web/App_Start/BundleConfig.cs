@@ -53,6 +53,7 @@ namespace MVCProject
                .Include(BundlePath.angular.module.angularCookies)
                .Include(BundlePath.angular.module.uiBootstrap)
                .Include(BundlePath.angular.module.angularAnimate)
+               
                .Include(BundlePath.angular.module.angularFilter)               
                .Include(BundlePath.angular.app)
                .Include(BundlePath.angular.commonFunctions)
@@ -125,7 +126,9 @@ namespace MVCProject
                 .Include(BundlePath.css.textAngular)
                 .Include(BundlePath.css.spectrum)
                 .Include(BundlePath.css.scrollableTable)
-                .Include(BundlePath.css.tooltipster));
+                .Include(BundlePath.css.tooltipster)
+                .Include("~/Content/css/fullcalendar.css")
+                );
 
             // Common JS Bundle (inner)
             bundles.Add(new ScriptBundle("~/bundles/inner")
@@ -161,6 +164,9 @@ namespace MVCProject
                .Include(BundlePath.angular.module.angularCookies)
                .Include(BundlePath.angular.module.uiBootstrap)
                .Include(BundlePath.angular.module.angularAnimate)
+               .Include("~/Scripts/angular/vendor/modules/calendar.js")
+               .Include("~/Scripts/angular/vendor/modules/fullcalendar.js")
+               .Include("~/Scripts/angular/vendor/modules/gcal.js")
                .Include(BundlePath.angular.module.ngTable)
                .Include(BundlePath.angular.module.ngBootbox)
                .Include(BundlePath.angular.module.angucomplete)

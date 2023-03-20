@@ -65,7 +65,7 @@
                                 <label>
                                     First Name <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" tabindex="1" id="txtEmployee" ng-focus="true" name="txtEmployee" onkeypress="return event.charCode >=96 && event.charCode <=122" ng-model="emplyeeDetailScope.FirstName" required  placeholder="First Name" maxlength="250">
+                                <input type="text" class="form-control" tabindex="1" id="txtEmployee" ng-focus="true" name="txtEmployee" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)" ng-model="emplyeeDetailScope.FirstName" required  placeholder="First Name" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.txtEmployee.$dirty && frmEmployees.txtEmployee.$invalid">
@@ -78,7 +78,7 @@
                                 <label>
                                     Last Name <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="txtEmpln" ng-focus="true" name="txtEmpln" onkeypress="return event.charCode >=96 && event.charCode <=122" ng-model="emplyeeDetailScope.LastName" required tabindex="2" placeholder="Last Name" maxlength="250">
+                                <input type="text" class="form-control" id="txtEmpln" ng-focus="true" name="txtEmpln" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)" ng-model="emplyeeDetailScope.LastName" required tabindex="2" placeholder="Last Name" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.txtEmpln.$dirty && frmEmployees.txtEmpln.$invalid">
@@ -345,7 +345,7 @@
                                 <label>
                                     Institution Name <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="institutename" ng-focus="true" name="institutename"  onkeypress="return event.charCode = 188 && event.charCode >=96 && event.charCode <=122"  ng-model="emplyeeDetailScope.InstitutionName" required tabindex="15" placeholder="Institution Name" maxlength="250">
+                                <input type="text" class="form-control" id="institutename" ng-focus="true" name="institutename"  onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122) || (event.charCode == 95) || (event.charCode == 46)"  ng-model="emplyeeDetailScope.InstitutionName" required tabindex="15" placeholder="Institution Name" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.institutename.$dirty && frmEmployees.institutename.$invalid">
@@ -358,7 +358,7 @@
                                 <label>
                                     Course Name <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="coursename" ng-focus="true" name="coursename" ng-model="emplyeeDetailScope.CourseName" required tabindex="16" placeholder="Course Name" maxlength="250">
+                                <input type="text" class="form-control" id="coursename" ng-focus="true" name="coursename" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122) || (event.charCode == 95) || (event.charCode == 46)" ng-model="emplyeeDetailScope.CourseName" required tabindex="16" placeholder="Course Name" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.coursename.$dirty && frmEmployees.coursename.$invalid">
@@ -451,7 +451,7 @@
                                             <label>
                                                 Company Name
                                             </label>
-                                            <input type="text" class="form-control" id="companyname" ng-focus="true" name="companyname" ng-model="emplyeeDetailScope.CompanyName" @*required*@ tabindex="21" placeholder="Company Name" maxlength="250">
+                                            <input type="text" class="form-control" id="companyname" ng-focus="true" name="companyname" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122) || (event.charCode == 95) || (event.charCode == 46)" ng-model="emplyeeDetailScope.CompanyName" @*required*@ tabindex="21" placeholder="Company Name" maxlength="250">
                                             <div class="c">
                                             </div>
                                         </div>

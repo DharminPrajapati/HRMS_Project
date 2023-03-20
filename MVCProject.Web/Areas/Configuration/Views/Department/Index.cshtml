@@ -51,7 +51,7 @@
                                 <label>
                                     @Resource.Department <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="txtDepartments" id="txtDepartments" required ng-focus="true" onkeypress="return event.charCode >=96 && event.charCode <=122" ng-model="departmentDetailScope.DepartmentName" tabindex="1" placeholder="@Resource.Department" maxlength="250" />
+                                <input type="text" class="form-control" name="txtDepartments" id="txtDepartments" required ng-focus="true" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)" ng-model="departmentDetailScope.DepartmentName" tabindex="1" placeholder="@Resource.Department" maxlength="250" />
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">

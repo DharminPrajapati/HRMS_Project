@@ -34,9 +34,6 @@ namespace MVCProject.Areas.Attendance
             bundles.Add(new ScriptBundle("~/bundles/Attendance/Attendance/EmployeeAttendanceView")
                 .Include("~/Areas/Attendance/Scripts/angular/services/AttendanceService.js")
                 .Include("~/Areas/Attendance/Scripts/angular/controllers/AttendanceCtrl.js")
-                .Include("~/Scripts/js/calendar.js")
-                .Include("~/Scripts/js/fullcalendar.js")
-                .Include("~/Scripts/js/gcal.js")
                 .Include("~/Areas/Attendance/Scripts/angular/controllers/calendarDemo.js"));
 
             // HR Attendance View

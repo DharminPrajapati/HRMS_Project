@@ -97,6 +97,7 @@ angular.module('ui.calendar', [])
             //    when set to a callback, called each item where a respective change is detected
             this.changeWatcher = function (arraySource, tokenFn) {
                 var self;
+
                 var getTokens = function () {
                     var array = angular.isFunction(arraySource) ? arraySource() : arraySource;
                     var result = [], token, el;

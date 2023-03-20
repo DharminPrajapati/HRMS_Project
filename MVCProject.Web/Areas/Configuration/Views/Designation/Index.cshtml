@@ -58,7 +58,7 @@
                             <label>
                                 @Resource.Designation <span class="required-field">*</span>
                             </label>
-                            <input type="text" class="form-control" id="txtDesignation" ng-focus="true" name="txtDesignation"  onkeypress="return event.charCode >=96 && event.charCode <=122" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">
+                            <input type="text" class="form-control" id="txtDesignation" ng-focus="true" name="txtDesignation"  onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">
                             <div class="c">
                             </div>
                             <div class="label label-danger" data-ng-show="frmDesignations.txtDesignation.$dirty && frmDesignations.txtDesignation.$invalid">
