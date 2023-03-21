@@ -99,12 +99,12 @@ namespace MVCProject.Api.Controllers.Configuration
         [HttpPost]
         public ApiResponse SaveConfigSalaryDetails(SalaryConfiguration configsalaryDetail)
         {
-            if (this.entities.SalaryConfiguration.Any(x => x.SalaryConfigurationId == configsalaryDetail.SalaryConfigurationId))
-            {
-                return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Salary));
-            }
-            else
-            { 
+            //if (this.entities.SalaryConfiguration.Any(x => x.SalaryConfigurationId == configsalaryDetail.SalaryConfigurationId))
+            //{
+            //    return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Salary));
+            //}
+            //else
+            //{ 
               SalaryConfiguration existingSalaryDetail = this.entities.SalaryConfiguration.Where(x => x.SalaryConfigurationId == configsalaryDetail.SalaryConfigurationId).FirstOrDefault();
                 if (existingSalaryDetail == null)
                 {
@@ -140,7 +140,7 @@ namespace MVCProject.Api.Controllers.Configuration
                 }
 
 
-                }
+                //}
             }
         //[HttpGet]
         //public ApiResponse GetAllSalary()

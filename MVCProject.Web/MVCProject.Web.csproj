@@ -89,6 +89,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -527,6 +528,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MVCProject.Api\MVCProject.Api.csproj">
+      <Project>{F557BDC3-CDE7-483E-B24E-D1D3DF2F70D6}</Project>
+      <Name>MVCProject.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MVCProject.Common\MVCProject.Common.csproj">
       <Project>{68C3FA16-68B8-4B89-AFBB-997DF46A28DE}</Project>
       <Name>MVCProject.Common</Name>

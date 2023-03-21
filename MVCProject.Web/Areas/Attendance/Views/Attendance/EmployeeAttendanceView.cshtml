@@ -135,7 +135,14 @@
         <div id="calendar" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar"></div>
 
     </div>
-  
+    <div class="col-md-4">
+        <div ng-show="SelectedEvent" class="alert alert-success" style="margin-top:50px">
+            <h2 style="margin-top:0px"> Nofication Is:</h2>
+            <h3>{{SelectedEvent.InDiscription}}</h3>
+            <p>{{SelectedEvent.OutDiscription}}</p>
+
+        </div>
+    </div>
 </div>
 
 

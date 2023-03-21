@@ -16,6 +16,14 @@
                 url: $rootScope.apiURL + '/Employee/GetEmployeeList' + (angular.isDefined(isGetAll) ? '?isGetAll=' + isGetAll : '')
             });
         }
+        //list.GetAllAttendance = function () {
+        //    debugger
+        //    return $http({
+        //        method: 'GET',
+        //        url: $rootScope.apiURL + '/Attendance/GetAllAttendance/',
+        //        data: JSON.stringify(Attendanelist)
+        //    });
+        //}
 
         return list;
     }]);
