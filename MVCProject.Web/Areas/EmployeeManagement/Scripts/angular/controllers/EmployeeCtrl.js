@@ -433,29 +433,94 @@
        
         };
 
+    
+        //$scope.generatePdf = function () {
+        //    debugger
+        //    EmployeeService.GeneratePdf().then(function (res) {
+        //        debugger
+        //        if (res) {
+        //            var data = res.data.Result;
+        //            var doc = new jsPDF();
+        //            var pos = 20;
+
+
+        //            /*doc.setFontsize(16);*/
+        //            doc.setFont('helvetica', 'bold')
+        //            doc.text('Employee List', 85, 10);
+
+        //            angular.forEach(data, function (record) {
+        //                doc.setFontSize(12);
+        //                doc.setFont('helvetica', 'normal');
+        //                doc.text(20, pos, record.BatchNo);
+        //                doc.text(50, pos, record.FirstName);
+        //                doc.text(80, pos, record.LastName);
+        //                doc.text(110, pos, record.Gender == 1 ? "Male" : "Female");
+        //                doc.text(140, pos, record.PermanentAddress);
+        //                pos += 5;
+
+
+        //            });
+        //              doc.save('Employees.pdf');
+
+        //        }
+        //    });
+        //}
+
         $scope.generatePdf = function () {
-            debugger
             EmployeeService.GeneratePdf().then(function (res) {
-                debugger
                 if (res) {
                     var data = res.data.Result;
                     var doc = new jsPDF();
-                    var pos = 10;
+                    var pos = 30;
+                    var currentPage = 0; // initialize currentPage to 0
+
+                    doc.setFont('helvetica', 'bold');
+                    doc.text('Employee List', 80, 20);
 
 
-                    angular.forEach(data, function (record) {
+                    // Add current date and time
+                    var now = new Date();
+                    var dateTime = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+                    doc.setFontSize(10);
+                    doc.text('Generated on: ' + dateTime, 135, 20);
+
+                    //// Load the image from a URL or file path
+                    //var imgURL = '~/Content/images/company-logo.png';
+
+                    angular.forEach(data, function (record, index) {
+                        if (pos > 280) {
+                            currentPage++;
+                            pos = 20;
+                            doc.addPage(); // add new page
+                            doc.setFont('helvetica', 'bold');
+                            doc.text('Employee List - Page ' + currentPage, 80, 20);
+                            doc.setFontSize(10); // set font size for page number
+                            doc.text("Page: " + currentPage,135, 15 /*+ " of " + data.length, 150, 290*/); // add page number
+
+                            //// Add the image to the page
+                            //doc.addImage(imgURL, 'PNG', 10, 280, 40, 40);
+                        }
+                        doc.setFontSize(12);
+                        doc.setFont('helvetica', 'normal');
                         doc.text(20, pos, record.BatchNo);
                         doc.text(50, pos, record.FirstName);
                         doc.text(80, pos, record.LastName);
                         doc.text(110, pos, record.Gender == 1 ? "Male" : "Female");
+                        doc.text(140, pos, record.PermanentAddress);
                         pos += 5;
                     });
 
-                    doc.save('Employees.pdf');
+                    // add page number to last page
+                    currentPage++;
+                    doc.setFontSize(10);
+                    doc.setFont('helvetica', 'bold');
+                    doc.text("Page: " + currentPage,135 , 15/*+ " of " + data.length, 150, 290*/);
 
+                    doc.save('Employees.pdf');
                 }
             });
-        }
+        };
+
     };
 
 
@@ -480,4 +545,18 @@
 
 })();
 
+//$scope.exportToPDF = function () {
+//    var doc = new jsPDF();
+//    var data = [];
+//    angular.forEach($scope.employees, function (employee) {
+//        data.push([employee.name, employee.email, employee.phone]);
+//    });
+//    doc.text('Employee List', 10, 10);
+//    doc.autoTable({
+//        startY: 20,
+//        head: [['Name', 'Email', 'Phone']],
+//        body: data
+//    });
+//    doc.save('employee_list.pdf');
+//};
 
