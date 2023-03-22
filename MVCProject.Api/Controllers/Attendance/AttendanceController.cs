@@ -21,6 +21,30 @@ namespace MVCProject.Api.Controllers.Attendance
         {
             this.entities = new MVCProjectEntities();
         }
+
+        [HttpGet]
+        public ApiResponse GetAttendance(int employeeId)
+        {
+            var attendanceDetail = this.entities.Sp_HRMS_Attendance().Where(x => x.EmployeeId == employeeId)
+                .Select(d => new
+                {
+                    EmployeeId = d.EmployeeId,
+                    InTime = d.InTime,
+                    OutTime = d.OutTime,
+                    Date = d.Date,
+                    IsActive = d.IsActive
+                }).SingleOrDefault();
+            if(attendanceDetail != null)
+            {
+                return this.Response(Utilities.MessageTypes.Success, string.Empty, attendanceDetail);
+            }
+            else
+            {
+                return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
+
+            }
+        }
+
         [HttpPost]
         public ApiResponse SaveAttendanceDetails([FromBody] Attendance AttendanceDetail)
         {

@@ -16,6 +16,14 @@
                 url: $rootScope.apiURL + '/Employee/GetEmployeeList' + (angular.isDefined(isGetAll) ? '?isGetAll=' + isGetAll : '')
             });
         }
+
+        // Get Attendance By Id
+        list.GetAttendance = function (employeeId) {
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/Attendance/GetAttendance?employeeId=' + employeeId
+            });
+        };
         //list.GetAllAttendance = function () {
         //    debugger
         //    return $http({

@@ -124,24 +124,26 @@
             params: {}
         }).then(function (data) {
             $scope.events.length = 0;
+            angular.forEach(data.data.Result, function (value) {
+            debugger
             $scope.events.push({
-                title: 'START',
-                description: 'DESC',
-                start: new Date(),
-                end: new Date(),
+                title: 'present',
+                description: value.InTime,
+                start: value.Date,
+                end: value.Date,
                 allDay: true,
                 stick: true
 
             });
-            $scope.events.push({
-                title: '2ND',
-                description: 'DESC',
-                start: new Date(),
-                end: new Date(),
-                allDay: true,
-                stick: true
+            //$scope.events.push({
+            //    title: '2ND',
+            //    description: 'DESC',
+            //    start: new Date(),
+            //    end: new Date(),
+            //    allDay: true,
+            //    stick: true
 
-            })
+            //})
             debugger
             //angular.forEach(data.data.Result, function (value) {
             //    debugger
@@ -155,6 +157,7 @@
                    
             //    });             
             //});
+            });
         });
 
         //configure calendar
