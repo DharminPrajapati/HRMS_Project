@@ -12,17 +12,16 @@
         $scope.EmployeeDetails = {
             EmployeeId: 0,
             FirstName: '',
-            LastName: ''
-        };
-
-        $scope.attendanceDetailScope = {
-            AttendanceId: 0,
+            LastName: '',
             Date: '',
             InTime: '',
-            OutTime: '',
+            outTime: '',
             InDiscription: '',
-            OutDiscription: ''
+            OutDiscription:''
+
         };
+
+        
         $scope.isSearchClicked = false;
 
 
@@ -124,22 +123,38 @@
             cache: true,
             params: {}
         }).then(function (data) {
-            $scope.events.slice(0, $scope.events.length);
-            debugger
-            angular.forEach(data.data, function (value,substr) {
-                $scope.events.push({
-                    
-                    Date: new Date(parseInt(value.Date.substr(6))),
-                    InTime: new Date(parseInt(value.InTime.substr(6))),
-                    OutTime: new Date(parseInt(value.OutTime.substr(6))),
-                    InDiscription: value.InDiscription,
-                    OutDiscription:value.OutDiscription
-                   
-                });
-                $scope.attendanceDetailScope = data;
+            $scope.events.length = 0;
+            $scope.events.push({
+                title: 'START',
+                description: 'DESC',
+                start: new Date(),
+                end: new Date(),
+                allDay: true,
+                stick: true
 
-                console.log(data);
             });
+            $scope.events.push({
+                title: '2ND',
+                description: 'DESC',
+                start: new Date(),
+                end: new Date(),
+                allDay: true,
+                stick: true
+
+            })
+            debugger
+            //angular.forEach(data.data.Result, function (value) {
+            //    debugger
+            //    $scope.events.push({
+            //        title: value.InDiscription,
+            //        description: value.OutDiscription,
+            //        start: new Date(parseInt(value.InTime.substr(0,7))),
+            //        end: new Date(parseInt(value.OutTime.substr(0,7))),
+            //        allDay: value.IsActive,
+            //        stick: true
+                   
+            //    });             
+            //});
         });
 
         //configure calendar
@@ -149,11 +164,11 @@
                 editable: true,
                 displayEventTime: false,
                 header: {
-                    left: 'month basicWeek basicDay agendaWeek agendaDay',
+                    left: 'month basicWeek ',
                     center: 'title',
                     right: 'today prev,next'
                 },
-                
+                eventSources: $scope.eventSources,
                 eventClick: function (event) {
                     $scope.SelectedEvent = event;
                 },

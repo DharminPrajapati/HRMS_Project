@@ -22,13 +22,6 @@ namespace MVCProject.Areas.Attendance.Controllers
             return View();
         }
 
-        public JsonResult GetEvents()  
-        {  
-            using (MVCProjectEntities dc = new MVCProjectEntities())  
-            {  
-                var v = dc.Attendance.OrderBy(a => a.InTime).ToList();  
-                return new JsonResult { Data = v, JsonRequestBehavior = JsonRequestBehavior.AllowGet };  
-            }  
-        }   
+       
     }
 }
