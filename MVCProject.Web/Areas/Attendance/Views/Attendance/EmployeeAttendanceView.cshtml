@@ -29,7 +29,15 @@
         max-width: 60px !important;
     }
 </style>
+<div class="main-page-title title-icon relative l">
+    <i class="fa fa-user icon-position" style="padding-top: 8px;" aria-hidden="true"></i>
+    <h4 class="header-title-sub l">
 
+        Employee Attendance
+    </h4>
+    <!-- start button-->
+    <!-- end button-->
+</div>
 <div class="row">
     <div class="col-md-12">
         <!-- start Employee form -->
@@ -130,7 +138,7 @@
 <!-- scripts -->
 <div class="col-md-12" ng-app="MVCApp" ng-controller="AttendanceCtrl">
     <div class="form-group">
-        <h2 style="background-color:blue;color: white; text-align: center; font-style: oblique">Calendar</h2>
+        @*<h2 style="background-color:blue;color: white; text-align: center; font-style: oblique">Calendar</h2>*@
 
         <div id="calendar" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar"></div>
 

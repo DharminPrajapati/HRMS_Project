@@ -46,6 +46,7 @@ h1 {
 
 h2 {
     line-height: 35px;
+    color: #0e0e23;
 }
 
 h3 {
@@ -757,17 +758,19 @@ textarea.form-control {
 }
 
     .form-control:focus {
-        background-color: #FFFFFF;
-        border: 1px solid #71B6F9;
+        /* background-color: #FFFFFF; */
+        border: 5px solid #3f3f7f;
         -webkit-box-shadow: none;
         box-shadow: none;
         outline: 0 !important;
         color: #333333;
     }
 
-    .form-control[disabled], .form-control[readonly] {
-        background-color: #FFFFFF;
-    }
+}
+
+.form-control[disabled], .form-control[readonly] {
+    background-color: #FFFFFF;
+}
 
 
 
@@ -6188,7 +6191,7 @@ header {
 
 .eternity-form {
     font-weight: 300;
-    color: #95a5a6;
+    color: #000000;
 }
 
     .eternity-form .login-form-section,
@@ -6200,15 +6203,17 @@ header {
     .eternity-form .login-content,
     .eternity-form .forgot-password-section,
     .eternity-form .reg-content {
-        background-color: white;
+        /*background-color: white;*/ /*
+       */
         -o-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
         -ms-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        margin-top: 105px;
         -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
     }
 
     .eternity-form .section-title {
         padding: 5px 20px;
-        background-color: white;
+        /*  background-color: white;*/
         margin-bottom: 15px;
         text-align: center;
     }
@@ -6224,16 +6229,17 @@ header {
 
     .eternity-form .textbox-wrap {
         padding: 10px 15px 10px 15px;
-        border-left: 5px solid transparent;
+        /*border-left: 5px solid transparent;
         -moz-transition: border-left-color 0.5s, box-shadow 0.5s, background-color 0.5s;
         -o-transition: border-left-color 0.5s, box-shadow 0.5s, background-color 0.5s;
         -webkit-transition: border-left-color 0.5s, box-shadow 0.5s, background-color 0.5s;
-        transition: border-left-color 0.5s, box-shadow 0.5s, background-color 0.5s;
+        transition: border-left-color 0.5s, box-shadow 0.5s, background-color 0.5s;*/
     }
 
         .eternity-form .textbox-wrap .input-group {
-            border: 1px solid #e0e0e0;
             background-color: #ffffff;
+            border-radius: 5px;
+            width: 100%;
         }
 
             .eternity-form .textbox-wrap .input-group .input-group-addon {
@@ -6251,7 +6257,7 @@ header {
                 .eternity-form .textbox-wrap .input-group .form-control,
                 .eternity-form .textbox-wrap .input-group input:focus,
                 .eternity-form .textbox-wrap .input-group .form-control:focus {
-                    background-color: #fbfbfb;
+                    background-color: #cdd2df;
                     border: 1px solid #e3e3e3;
                     height: 46px;
                     border-radius: 4px;
@@ -6264,20 +6270,27 @@ header {
             }
 
         .eternity-form .textbox-wrap.focused {
-            border-left-color: #4f6cdf;
+            /* border-left-color: #4f6cdf;
             background-color: #f0f0f0;
             -o-box-shadow: inset 0 0 3px rgba(0,0,0,.1);
             -ms-box-shadow: inset 0 0 3px rgba(0,0,0,.1);
             -moz-box-shadow: inset 0 0 3px rgba(0,0,0,.1);
             -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,.1);
-            box-shadow: inset 0 0 3px rgba(0,0,0,.1);
+            box-shadow: inset 0 0 3px rgba(0,0,0,.1);*/
         }
 
     .eternity-form .green-btn,
     .eternity-form .green-btn:hover,
     .eternity-form .blue-btn {
-        background-color: #2ecc71;
+        background-color: #b8375d;
         border: none;
+        width: 100%;
+        margin-top: 15px;
+        /* background: black; */
+        font-size: 20px;
+        height: 40px;
+        border-radius: -3px;
+        color: white;
     }
 
         .eternity-form .blue-btn,
@@ -6653,32 +6666,35 @@ header {
 }
 
 .body-sign {
-    background-color: #ffffff;
+    background: #ffffff;
     border: 1px solid #ededed;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
     overflow: hidden;
     width: 500px;
     border-radius: 4px;
-    margin-top: 80px;
+    margin-top: 100px;
     float: right;
     margin-right: 30px;
+    height: 500px;
 }
 
     .body-sign .center-sign {
         display: table-cell;
         padding: 20px 0;
         vertical-align: middle;
+        background-image: url('../images/hexagon.svg');
     }
 
 .colorBg.colorBg1 {
-    background-color: #1D2544;
-    background-image: -ms-radial-gradient(center top, circle farthest-side, #5E6CA0 0%, #1D2544 100%);
+    /*    background-color: #1D2544;*/
+    /*background-image: -ms-radial-gradient(center top, circle farthest-side, #5E6CA0 0%, #1D2544 100%);
     background-image: -moz-radial-gradient(center top, circle farthest-side, #5E6CA0 0%, #1D2544 100%);
     background-image: -o-radial-gradient(center top, circle farthest-side, #5E6CA0 0%, #1D2544 100%);
     background-image: -webkit-gradient(radial, center top, 0, center top, 487, color-stop(0, #5E6CA0), color-stop(1, #1D2544));
     background-image: -webkit-radial-gradient(center top, circle farthest-side, #5E6CA0 0%, #1D2544 100%);
-    background-image: radial-gradient(circle farthest-side at center top, #5E6CA0 0%, #1D2544 100%);
+    background-image: radial-gradient(circle farthest-side at center top, #5E6CA0 0%, #1D2544 100%);*/
     height: 100%;
+    /*  background-image: url('../images/3314330.svg');*/
 }
 
 .colorBg.form-seprator {
@@ -7118,26 +7134,30 @@ multilevel-accordion uib-accordion .panel-group {
 
 /*----------------back-top-------*/
 .backToTop {
-    cursor: pointer; /* border:1px solid #ccc; */
+    cursor: pointer;
+    border: 1px solid #ccc;
     padding: 0px 5px;
     text-align: center;
-    background: #10c469;
+    background: #d07d1c;
     font-weight: normal;
     color: #fff;
     text-decoration: none;
     position: fixed;
-    bottom: 5px;
+    bottom: 7px;
     right: 10px;
     display: none;
     z-index: 999;
-    font-size: 18px;
-    opacity: 0.5;
+    font-size: 25px;
+    border-radius: 5px;
+    /* opacity: 0.5; */
 }
 
-    .backToTop:hover {
-        text-decoration: none;
-        opacity: 1;
-    }
+}
+
+.backToTop:hover {
+    text-decoration: none;
+    opacity: 1;
+}
 
 /*----------------------CustomScroll-------------*/
 .custom-scroll .mCustomScrollbar {
@@ -7492,4 +7512,87 @@ multilevel-accordion uib-accordion .panel-group {
     background-size: 25px 25px;
     background-repeat: no-repeat;
     padding-left: 20px;
+}
+
+.main-wrapper {
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../images/hexagon.svg');
+    /*    background-image: url('../images/animated shape.svg');*/
+    background-size: cover;
+}
+/*.error-page {
+    max-width: 480px;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    margin-top: -1px;
+    background: #572e5e;
+    float: left;
+    margin-left: 0px;*/
+/* border-radius: 16px; */
+/*height: 718px;*/
+
+
+.error-page1 {
+    max-width: 480px;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px;
+    margin-top: 140px;
+    background: #ffffff;
+    float: left;
+    margin-left: 520px;
+    border-radius: 16px;
+    height: 415px;
+}
+
+.error-img {
+    margin-left: 250px;
+    /* size: auto; */
+    margin-top: 150px;
+    width: 700px;
+}
+
+.auth {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+}
+
+    .auth .auth_left {
+        background: #39374e;
+    }
+
+        .auth .auth_left .card {
+            padding: 20px;
+            right: -150px;
+            z-index: 99999;
+        }
+
+.card {
+    background-color: #fff
+}
+
+.bgimg {
+    background-image: url('../images/hexagon.svg');
+    height: 100%;
+}
+
+/*
+newcss*/
+.login-card {
+    margin-top: 160px;
+    height: 415px;
+}
+
+.login {
+    font-size: 30px;
+}
+
+.logoimg {
+    width: 350px;
 }

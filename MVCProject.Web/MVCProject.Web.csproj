@@ -252,6 +252,8 @@
     <Content Include="Content\css\angucomplete-alt.css" />
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\images\3314330.svg" />
+    <Content Include="Content\images\Animated Shape.svg" />
     <Content Include="Content\images\arrow-1.jpg" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\bs-daterangepicker.css" />
@@ -299,6 +301,8 @@
     <Content Include="Content\images\company-logo.png" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\ghost.png" />
+    <Content Include="Content\images\Group 10.png" />
+    <Content Include="Content\images\Hexagon.svg" />
     <Content Include="Content\images\hp.png" />
     <Content Include="Content\images\image-not-available.jpg" />
     <Content Include="Content\images\loading.gif" />

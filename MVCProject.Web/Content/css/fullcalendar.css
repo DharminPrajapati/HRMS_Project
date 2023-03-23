@@ -104,16 +104,16 @@ NOTE: use percentage font sizes or else old IE chokes
 	content: "\02039";
 	font-weight: bold;
 	font-size: 200%;
-	top: -7%;
-	left: 3%;
+	/*	top: -7%;
+*/ left: 3%;
 }
 
 .fc-icon-right-single-arrow:after {
 	content: "\0203A";
 	font-weight: bold;
 	font-size: 200%;
-	top: -7%;
-	left: -3%;
+	/*	top: -7%;
+*/ left: -3%;
 }
 
 .fc-icon-left-double-arrow:after {
@@ -215,12 +215,15 @@ NOTE: use percentage font sizes or else old IE chokes
 	background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
 	background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
 	background-repeat: repeat-x;*/
-	background: #f3f3f3;
 	/*border-color: #e6e6e6 #e6e6e6 #bfbfbf;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);*/
+	background: #0e0e23;
 	color: #333;
 	border: 1px solid #dddddd;
 	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+	border-radius: 5px;
+	color: white;
 	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
@@ -244,9 +247,10 @@ NOTE: use percentage font sizes or else old IE chokes
 
 .fc-state-down,
 .fc-state-active {
-	background-color: #cccccc;
+	background-color: #3f3f7f;
 	background-image: none;
 	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
+	color: white;
 }
 
 .fc-state-disabled {
