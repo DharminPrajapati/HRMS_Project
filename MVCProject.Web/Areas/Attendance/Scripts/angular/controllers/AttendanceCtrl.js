@@ -103,19 +103,13 @@
             }
 
         });
-        debugger
-
         
-
-
         $scope.SelectedEvent = null;
         var isFirstTime = true;
 
 
         $scope.events = [];
         $scope.eventSources = [$scope.events];
-
-       
 
 
         //Load events from server
@@ -125,45 +119,27 @@
         }).then(function (data) {
             $scope.events.length = 0;
             angular.forEach(data.data.Result, function (value) {
-            debugger
+           
             $scope.events.push({
                 title: 'present',
-                description: value.InTime,
+                intimedescription: value.InTime,
+                outtimetdescription: value.OutTime,
+                indescription: value.InDiscription,
+                outdescription: value.OutDiscription,
                 start: value.Date,
                 end: value.Date,
                 allDay: true,
                 stick: true
 
             });
-            //$scope.events.push({
-            //    title: '2ND',
-            //    description: 'DESC',
-            //    start: new Date(),
-            //    end: new Date(),
-            //    allDay: true,
-            //    stick: true
-
-            //})
-            debugger
-            //angular.forEach(data.data.Result, function (value) {
-            //    debugger
-            //    $scope.events.push({
-            //        title: value.InDiscription,
-            //        description: value.OutDiscription,
-            //        start: new Date(parseInt(value.InTime.substr(0,7))),
-            //        end: new Date(parseInt(value.OutTime.substr(0,7))),
-            //        allDay: value.IsActive,
-            //        stick: true
-                   
-            //    });             
-            //});
+            
             });
         });
 
         //configure calendar
         $scope.uiConfig = {
             calendar: {
-                height: 450,
+                height: 700,
                 editable: true,
                 displayEventTime: false,
                 header: {

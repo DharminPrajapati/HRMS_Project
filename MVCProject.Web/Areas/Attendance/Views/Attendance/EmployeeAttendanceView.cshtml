@@ -141,14 +141,19 @@
         @*<h2 style="background-color:blue;color: white; text-align: center; font-style: oblique">Calendar</h2>*@
 
         <div id="calendar" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar"></div>
+        
 
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 ">
         <div ng-show="SelectedEvent" class="alert alert-success" style="margin-top:50px">
             <h2 style="margin-top:0px"> Selected Event:</h2>
             <h3 style="color:#A9A50E">{{SelectedEvent.title}}</h3>
-            <p>{{SelectedEvent.description}}</p>
-
+            <p>{{SelectedEvent.intimedescription}}</p>
+            <p>{{SelectedEvent.outtimetdescription}}</p>
+            <p>{{SelectedEvent.indescription}}</p>
+            <p>{{SelectedEvent.outdescription}}</p>
+            <p>{{SelectedEvent.start}}</p>
+            <p>{{SelectedEvent.end}}</p>
         </div>
     </div>
 </div>

@@ -17,13 +17,13 @@
             });
         }
 
-        // Get Attendance By Id
-        list.GetAttendance = function (employeeId) {
-            return $http({
-                method: 'GET',
-                url: $rootScope.apiURL + '/Attendance/GetAttendance?employeeId=' + employeeId
-            });
-        };
+        //// Get Attendance By Id
+        //list.GetAttendance = function (employeeId) {
+        //    return $http({
+        //        method: 'GET',
+        //        url: $rootScope.apiURL + '/Attendance/GetAttendance?employeeId=' + employeeId
+        //    });
+        //};
         //list.GetAllAttendance = function () {
         //    debugger
         //    return $http({
