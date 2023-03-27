@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module("MVCApp").controller('AttendanceCtrl', [
-        '$scope', '$rootScope','$http', 'ngTableParams', 'CommonFunctions', 'FileService','uiCalendarConfig', 'AttendanceService', AttendanceCtrl
+        '$scope', '$rootScope', '$http', 'ngTableParams', 'CommonFunctions', 'FileService','uiCalendarConfig', 'AttendanceService', AttendanceCtrl
     ]);
 
     //BEGIN DesignationCtrl
@@ -106,10 +106,13 @@
         
         $scope.SelectedEvent = null;
         var isFirstTime = true;
+        
 
 
         $scope.events = [];
         $scope.eventSources = [$scope.events];
+       
+           
 
 
         //Load events from server
@@ -128,6 +131,7 @@
                 outdescription: value.OutDiscription,
                 start: value.Date,
                 end: value.Date,
+                
                 allDay: true,
                 stick: true
 
@@ -135,29 +139,42 @@
             
             });
         });
-
+        /* Render Tooltip */
+        
         //configure calendar
         $scope.uiConfig = {
+
             calendar: {
                 height: 700,
                 editable: true,
                 displayEventTime: false,
+
                 header: {
                     left: 'month basicWeek ',
                     center: 'title',
                     right: 'today prev,next'
+
                 },
+               
+             
+
                 eventSources: $scope.eventSources,
                 eventClick: function (event) {
-                    $scope.SelectedEvent = event;
+                    $scope.SelectedEvent = event;                   
                 },
+                
                 eventAfterAllRender: function () {
                     if ($scope.events.length > 0 && isFirstTime) {
                         //Focus first event
                         uiCalendarConfig.calendars.myCalendar.fullCalendar('gotoDate', $scope.events[0].start);
                         isFirstTime = false;
+
                     }
-                }
+                },
+                eventRender: function (event, element) {
+                    $(element).tooltip({ title: event.title });                 
+                },
+                
             }
         };
     }
