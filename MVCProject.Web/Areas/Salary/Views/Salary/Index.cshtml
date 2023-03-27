@@ -29,8 +29,8 @@
         max-width: 60px !important;
     }
 </style>
-<div ng-controller="SalaryCtrl" novalidate >
-   
+<div ng-controller="SalaryCtrl" novalidate>
+
     <!--Start Title Section-->
     <div class="main-page-title title-icon relative l">
         <i class="ti-id-badge icon-position" style="padding-top:8px;"></i>
@@ -53,37 +53,50 @@
                                 <label>
                                     EmployeeList <span class="required-field">*</span>
                                 </label>
-                                <select class="form-control" id="selectEmployee" ng-model="salaryDetailScope.EmployeeId" ng-options="a.EmpId as a.EmpName for a in Employees" ng-focus="true" name="selectEmployee" tabindex="7" required>
-                                    <option value="">Select Employee</option>
-                                </select>
+                                @*<select class="form-control" id="selectEmployee" ng-model="salaryDetailScope.EmployeeId" ng-options="a.EmpId as a.EmpName for a in Employees" ng-focus="true" name="selectEmployee" tabindex="7" required>
+                                        <option value="">Select Employee</option>
+                                    </select>*@
+                                <div angucomplete-alt
+                                     name="txtEmp"
+                                     id="GetFullname"
+                                     input-name="GetFullname"
+                                     placeholder="Full Name"
+                                     pause="200"
+                                     selected-object="selectedProject"
+                                     remote-url="{{FullnameURL}}"
+                                     remote-url-data-field="Result"
+                                     initial-value=""
+                                     title-field="Name"
+                                     description-field="description"
+                                     minlength="1"
+                                     input-class="form-control form-control-small "
+                                     match-class="highlight">
+
+                                </div>
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
-                                    Designation <span class="required-field">*</span>
+                                    Designation
                                 </label>
-                                <input type="text" class="form-control" name="txtDesignation" id="txtDesignation" required ng-focus="true" ng-model="salaryDetailScope.DesignationName" tabindex="1" placeholder="@Resource.Designation" maxlength="250" />
+                                <input type="text" class="form-control" ng-disabled="true" ng-focus="true" ng-model="salaryDetailScope.DesignationName" ng-change="getEmployeebyId(Id)"   placeholder="@Resource.Designation" @*placeholder="{{data.DesignationName}}"*@ maxlength="250" />
                                 <div class="c">
                                 </div>
-                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                    </div>*@
+
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
-                                    Department <span class="required-field">*</span>
+                                    Department
                                 </label>
-                                <input type="text" class="form-control" name="txtDepartments" id="txtDepartments" required ng-focus="true" ng-model="salaryDetailScope.DepartmentName" tabindex="1" placeholder="@Resource.Department" maxlength="250" />
+                                <input type="text" class="form-control" ng-disabled="true" ng-focus="true" ng-model="salaryDetailScope.DepartmentName" ng-change="getEmployeebyId(Id)"  placeholder="@Resource.Department" maxlength="250" />
                                 <div class="c">
                                 </div>
-                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                    </div>*@
+
                             </div>
                         </div>
                     </div>
@@ -93,62 +106,12 @@
                                 <label>
                                     Basic Salary <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="txtSalary" id="txtSalary" required ng-focus="true" ng-model="salaryDetailScope.BasicSalary" tabindex="1" placeholder="@Resource.BasicSalary" maxlength="250" />
+                                <input type="text" class="form-control" name="basicsalary" id="basicsalary" required ng-focus="true" ng-model="salaryDetailScope.BasicSalary" tabindex="1" ng-change="calculateSalary()" placeholder="@Resource.BasicSalary" maxlength="250" />
                                 <div class="c">
                                 </div>
-                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                    </div>*@
+                               
                             </div>
                         </div>
-
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    DA <span class="required-field">*</span>
-                                </label>
-                                <input type="text" class="form-control" name="DA" id="DA" required ng-focus="true" ng-model="salaryDetailScope.DA" tabindex="1" placeholder="@Resource.DA" value="{{SalaryDetails.DA}}" maxlength="250" />
-                                <div class="c">
-                                </div>
-                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                    </div>*@
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    HRA <span class="required-field">*</span>
-                                </label>
-                                <input type="text" class="form-control" name="HRA" id="HRA" required ng-focus="true" ng-model="salaryDetailScope.HRA" tabindex="1" placeholder="@Resource.HRA" value="{{SalaryDetails.HRA}}" maxlength="250" />
-                                <div class="c">
-                                </div>
-                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                    </div>*@
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    PF <span class="required-field">*</span>
-                                </label>
-                                <input type="text" class="form-control" name="PF" id="PF" required ng-focus="true" ng-model="salaryDetailScope.PF" tabindex="1" placeholder="@Resource.PF" value="{{SalaryDetails.PF}}" maxlength="250" />
-                                <div class="c">
-                                </div>
-                                @*<div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                        <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
-                    </div>*@
-                            </div>
-                        </div>
-
-
                         <div class="col-md-4">
                             <!--IsActive -->
                             <div class="form-group">
@@ -168,20 +131,109 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-10">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>
+                                DA <span>(%)</span>
+                            </label>
+                            <input type="text" class="form-control" name="DA" id="DA" required ng-focus="true" ng-model="salaryDetailScope.DA" tabindex="2" placeholder="@Resource.DA" value="{{SalaryDetails.DA}}" maxlength="250" />
+                            <div class="c">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
-                                        @*ng-disabled="frmSalary.txtSalary.$invalid" *@ tabindex="3">
-                                    {{salaryDetailScope.SalaryId > 0 ? '@Resource.Update' : '@Resource.Save'}}
-                                </button>
-                                <button type="button" ng-click="ClearFormData(frmSalary)" class="btn btn-info waves-effect w-md waves-light m-b-5"
-                                        tabindex="4">
-                                    @Resource.Clear
-                                </button>
+                                <label>
+                                    DA <span>(₹)</span>
+                                </label>
+                                <input type="text" class="form-control" name="DA" id="DA" ng-disabled="true" required ng-focus="true" ng-model="DA"  placeholder="@Resource.DA" maxlength="250" />
+                                <div class="c">
+                                </div>
+
                             </div>
                         </div>
                     </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    HRA <span>(%)</span>
+                                </label>
+                                <input type="text" class="form-control" name="HRA" id="HRA" required ng-focus="true" ng-model="salaryDetailScope.HRA" tabindex="3" placeholder="@Resource.HRA" value="{{SalaryDetails.HRA}}" maxlength="250" />
+                                <div class="c">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    HRA <span>(₹)</span>
+                                </label>
+                                <input type="text" class="form-control" name="HRA" id="HRA" ng-disabled="true" required ng-focus="true" ng-model="HRA"  placeholder="@Resource.HRA" maxlength="250" />
+                                <div class="c">
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    PF <span>(%)</span>
+                                </label>
+                                <input type="text" class="form-control" name="PF" id="PF" required ng-focus="true" ng-model="salaryDetailScope.PF" tabindex="4" placeholder="@Resource.PF" value="{{SalaryDetails.PF}}" maxlength="250" />
+                                <div class="c">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    PF<span>(₹)</span>
+                                </label>
+                                <input type="text" class="form-control" name="PF" id="PF" ng-focus="true" ng-disabled="true" ng-model="PF"  placeholder="@Resource.PF" maxlength="250" />
+                                <div class="c">
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        Net Salary<span>(₹)</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="netsalary" id="netsalary" ng-disabled="true" ng-focus="true" ng-model="netsalary"  placeholder="Net Salary" maxlength="250" />
+                                    <div class="c">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                                            @*ng-disabled="frmSalary.txtSalary.$invalid" *@ tabindex="5">
+                                        {{salaryDetailScope.SalaryId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                                    </button>
+                                    <button type="button" ng-click="ClearFormData(frmSalary)" class="btn btn-info waves-effect w-md waves-light m-b-5"
+                                            tabindex="4">
+                                        @Resource.Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                   
+
                 </form>
+
                 <!-- End Department form -->
                 <hr />
                 @* Start Department Details List*@
@@ -194,11 +246,11 @@
                                 </label>
                             </div>
                             @*<div class="col-md-5">
-                                <div class="input-group">
-                                    <input type="text" tabindex="104" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format(" {0} {1} {2}",Resource.Search,Resource.Department,Resource.Details)" />
-                                    <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked=true;tableParams.page(1);tableParams.reload();"> <i class="fa fa-search"></i></a>
-                                </div>
-                            </div>*@
+                                    <div class="input-group">
+                                        <input type="text" tabindex="104" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format(" {0} {1} {2}",Resource.Search,Resource.Department,Resource.Details)" />
+                                        <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked=true;tableParams.page(1);tableParams.reload();"> <i class="fa fa-search"></i></a>
+                                    </div>
+                                </div>*@
                         </div>
 
                     </div>
@@ -218,7 +270,7 @@
                                             <td data-title="'DepartmentName'" sortable="'DepartmentName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DepartmentId}}">
                                                 {{dt.DepartmentName}}
                                             </td>
-                                            <td data-title="'DesignationName'" sortable="'DesignationId'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.Designation}}">
+                                            <td data-title="'DesignationName'" sortable="'DesignationId'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DesignationId}}">
                                                 {{dt.DesignationName}}
                                             </td>
                                             <td data-title="'@Resource.BasicSalary'" sortable="'BasicSalary'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.BasicSalary}}">
@@ -244,15 +296,7 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                        @*
-                                        <tr ng-if="$data.length==0">
-                                            <td colspan="4" class="no-record">
-                                                @Resource.NoRecordFound
-                                                <span ng-if="search!=''">
-                                                    <br /> @Resource.YourSearch -'{{search}}'@Resource.DidNotMatchAnyRecord
-                                                </span>
-                                            </td>
-                                        </tr>*@
+                                      
                                     </table>
                                 </scrollable-table>
                             </div>

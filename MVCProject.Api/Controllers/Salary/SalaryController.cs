@@ -55,7 +55,7 @@ namespace MVCProject.Api.Controllers.Salary
             return this.Response(Utilities.MessageTypes.Success, string.Empty, result);
         }
 
-        
+
 
         /// <summary>
         /// Get Employees By Id
@@ -64,18 +64,22 @@ namespace MVCProject.Api.Controllers.Salary
 
         public ApiResponse GetSalaryById(int salaryId)
         {
-            var result = this.entities.Sp_Salary_DisplayAllEmployees().ToList();
-            var salaryDetail = this.entities.AddSalary.Where(x => x.SalaryId == salaryId)
-                   .Select(d => new
-                   {
-                       SalaryId = d.SalaryId,
-                       EmployeeId = d.EmployeeId,                                           
-                       BasicSalary = d.BasicSalary,
-                       DA = d.DA,
-                       HRA = d.HRA,
-                       PF = d.PF,
-                       IsActive = d.IsActive
-                   }).SingleOrDefault();
+            var salaryDetail = this.entities.Sp_Salary_DisplayAllEmployees().Where(x => x.SalaryId == salaryId)
+                .Select(d => new
+                {
+                    SalaryId = d.SalaryId,
+                    EmployeeId = d.EmployeeId,
+                    DepartmentId = d.DepartmentId,
+                    DesignationId = d.DepartmentId,
+                    DesignationName = d.DesignationName,
+                    DepartmentName = d.DepartmentName,
+                    BasicSalary = d.BasicSalary,
+                    DA = d.DA,
+                    HRA = d.HRA,
+                    PF = d.PF,
+                    IsActive = d.IsActive
+                }).SingleOrDefault();
+
             if (salaryDetail != null)
             {
                 return this.Response(Utilities.MessageTypes.Success, string.Empty, salaryDetail);
@@ -87,7 +91,7 @@ namespace MVCProject.Api.Controllers.Salary
         }
 
 
-        ///Get All Employee Details
+        ///Get All Salary Details
         [HttpPost]
         public ApiResponse GetAllSalary(PagingParams salaryDetailsParams)
         {
@@ -97,20 +101,19 @@ namespace MVCProject.Api.Controllers.Salary
             }
 
             var salarylist = (from d in this.entities.AddSalary.AsEnumerable()
-                                let TotalRecords = this.entities.AddSalary.AsEnumerable().Count()
-                                select new
-                                {
-                                    //var employeelist = this.entities.TblEmployee.ToList();
-                                    SalaryId = d.SalaryId,
-                                    EmployeeId = d.EmployeeId,
-                                    
-                                    BasicSalary = d.BasicSalary,
-                                    DA = d.DA,
-                                    HRA = d.HRA,
-                                    PF = d.PF,
-                                    IsActive = d.IsActive,
-                                    TotalRecords
-                                }).AsQueryable().Skip((salaryDetailsParams.CurrentPageNumber - 1) * salaryDetailsParams.PageSize).Take(salaryDetailsParams.PageSize);
+                              let TotalRecords = this.entities.AddSalary.AsEnumerable().Count()
+                              select new
+                              {
+                                  //var employeelist = this.entities.TblEmployee.ToList();
+                                  SalaryId = d.SalaryId,
+                                  EmployeeId = d.EmployeeId,
+                                  BasicSalary = d.BasicSalary,
+                                  DA = d.DA,
+                                  HRA = d.HRA,
+                                  PF = d.PF,
+                                  IsActive = d.IsActive,
+                                  TotalRecords
+                              }).AsQueryable().Skip((salaryDetailsParams.CurrentPageNumber - 1) * salaryDetailsParams.PageSize).Take(salaryDetailsParams.PageSize);
 
             return this.Response(Utilities.MessageTypes.Success, string.Empty, salarylist);
 
@@ -119,12 +122,7 @@ namespace MVCProject.Api.Controllers.Salary
         [HttpPost]
         public ApiResponse SaveSalaryDetails(AddSalary SalaryDetail)
         {
-            //if (this.entities.Attendance.Any(x => x.AttendanceId == SalaryDetail.SalaryId))
-            //{
-            //    return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Salary));
-            //}
-            //else
-            //{
+
             AddSalary existingSalaryDetail = this.entities.AddSalary.Where(x => x.SalaryId == SalaryDetail.SalaryId).FirstOrDefault();
             if (existingSalaryDetail == null)
             {
@@ -160,34 +158,45 @@ namespace MVCProject.Api.Controllers.Salary
                 return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Salary));
             }
 
-        //}
+
         }
+
 
         [HttpPost]
         public ApiResponse GetEmployeeSalary(PagingParams salaryDetailsParams)
         {
-            var result = this.entities.Sp_Salary_DisplayAllEmployees().ToList();
-            var TotalRecords = result.Count();
-            var employeelist = result.Select(d => new
-            {
-                FirstName = d.FirstName,
-                LastName = d.LastName,
-                DepartmentId = d.DepartmentId,
-                DesignationId = d.DesignationId,
-                DepartmentName = d.DepartmentName,
-                DesignationName = d.DesignationName,
-                BatchNo = d.BatchNo,
-                SalaryId = d.SalaryId,
-                EmplyeeId = d.EmployeeId,
-                BasicSalary = d.BasicSalary,
-                DA = d.DA,
-                HRA = d.HRA,
-                PF = d.PF,
-                IsActive = d.IsActive,
-                TotalRecords
-            }).AsQueryable().Skip((salaryDetailsParams.CurrentPageNumber - 1) * salaryDetailsParams.PageSize).Take(salaryDetailsParams.PageSize);
-            return this.Response(Utilities.MessageTypes.Success, string.Empty, employeelist);
+            var result = this.entities.Sp_Salary_DisplayAllEmployees().AsQueryable().Skip((salaryDetailsParams.CurrentPageNumber - 1) * salaryDetailsParams.PageSize).Take(salaryDetailsParams.PageSize);
+            var TotalRecords = this.entities.Sp_Salary_DisplayAllEmployees().AsQueryable().Count();
 
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, new { list = result, Total = TotalRecords });
+
+        }
+
+
+        [HttpGet]
+        public ApiResponse GetFullName(bool isActive, string searchText)
+        {
+            var data = this.entities.TblEmployees.Where(x => x.IsActive.Value == isActive && x.FirstName.Contains(searchText)).Select(x => new { Name = x.FirstName + " " + x.LastName, Id = x.EmployeeId, DepartmentId = x.DepartmentId, DepartmentName = this.entities.TblDepartments.FirstOrDefault(d => d.DepartmentId == x.DepartmentId).DepartmentName, DesignationName = this.entities.Designations.FirstOrDefault(d => d.DesignationId == x.DesignationId).DesignationName }).OrderBy(x => x.Name).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+
+        }
+
+        [HttpGet]
+        public ApiResponse GetDeptDesiByEmployeeId(int Id)
+        {
+            object Employee = null;
+            if (this.entities.AddSalary.Any(x => x.EmployeeId == Id))
+            {
+                Employee = GetSalaryById(this.entities.AddSalary.FirstOrDefault(x => x.EmployeeId == Id).SalaryId).Result;
+            }
+            if (Employee != null)
+            {
+                return this.Response(Utilities.MessageTypes.Success, string.Empty, Employee);
+            }
+            else
+            {
+                return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
+            }
         }
         protected override void Dispose(bool disposing)
         {

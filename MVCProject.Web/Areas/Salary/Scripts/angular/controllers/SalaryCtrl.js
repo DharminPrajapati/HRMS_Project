@@ -17,10 +17,9 @@
             SalaryId: 0,
             EmployeeId: 0,
             BasicSalary: '',
-            DA: '',
-            HRA: '',
-            PF: '',
-            IsActive: true
+            IsActive: true,
+            DesignationId: 0,
+            DepartmentId: 0
         };
 
         $scope.isSearchClicked = false;
@@ -92,9 +91,9 @@
                 if (res) {
                     var data = res.data;
                     if (res.data.MessageType == messageTypes.Success) {
-                        $defer.resolve(res.data.Result);
-                        if (res.data.Result.length == 0) { }
-                        else { params.total(res.data.Result[0].TotalRecords); }
+                        $defer.resolve(res.data.Result.list);
+
+                        params.total(res.data.Result.Total);
 
                     }
                 }
@@ -116,24 +115,9 @@
             });
         };
 
-        $scope.designationScope = function () {
-            SalaryService.GetDesignationlist().then(function (res) {
-                $scope.Designation = res.data.Result;
-                console.log($scope.Designation);
-            });
-        };
-
-
-
-        $scope.departmentsScope = function () {
-            SalaryService.GetDepartmentlist().then(function (res) {
-                $scope.Departments = res.data.Result;
-                console.log($scope.Departments);
-            });
-        };
 
         $scope.SalaryDetails = function () {
-            debugger
+         
             SalaryService.GetSalConfig().then(function (res) {
                 var data = res.data.Result;
                 $scope.salaryDetailScope = data;
@@ -142,54 +126,74 @@
             });
         }
 
-        debugger
+      
         $scope.Init = function () {
-            debugger
-            $scope.employeesScope();
-            $scope.designationScope(); 
-            $scope.departmentsScope();
+        
             $scope.SalaryDetails();
         }
         
-    //$scope.resetemployeeDetails = function (frmDesignations) {
-    //    if ($scope.operationMode() == "Update") {
-    //        $scope.frmDesignations = angular.copy($scope.lastStorageGroup);
-    //        frmDesignations.$setPristine();
-    //    } else {
-    //        $scope.clearData(frmDesignations);
-    //    }
-    //};
+   
 
-    $scope.ClearFormData = function (frmSalary) {
-        $scope.salaryDetailScope = {
-            SalaryId: 0,
-            EmployeeId: 0,
-            BasicSalary: '',
-            DA: '',
-            HRA: '',
-            PF: '',
-            IsActive: true
-
-
+        $scope.ClearFormData = function (frmSalary) {
+            $scope.salaryDetailScope = {
+                SalaryId: 0,
+                EmployeeId: 0,
+                BasicSalary: '',
+                IsActive: true
+            };
+            $scope.$broadcast('angucomplete-alt:clearInput');
+            frmSalary.$setPristine();
+            $("#txtSalary").focus();
+            CommonFunctions.ScrollToTop();
         };
 
-        frmSalary.$setPristine();
-        $("#txtSalary").focus();
-        CommonFunctions.ScrollToTop();
-    };
+        $scope.calculateSalary = function () {
 
-    //$scope.Init = function () {
-    //    $scope.employeesScope();
-    //}
+            var pf = ($scope.salaryDetailScope.BasicSalary * $scope.salaryDetailScope.PF) / 100;
+            var da = ($scope.salaryDetailScope.BasicSalary * $scope.salaryDetailScope.DA) / 100;
+            var hra = ($scope.salaryDetailScope.BasicSalary * $scope.salaryDetailScope.HRA) / 100;
 
-  
+            var netsalary = parseFloat($scope.salaryDetailScope.BasicSalary) + parseFloat(da) + parseFloat(hra) - parseFloat(pf);
+            $scope.PF = pf.toFixed(2);
+            $scope.HRA = hra.toFixed(2);
+            $scope.DA = da.toFixed(2);
+            $scope.netsalary = netsalary.toFixed(2);
 
-    ////Create Excel Report of Employees
-    //$scope.createReport = function () {
-    //    if (!$rootScope.permission.CanWrite) { return; }
-    //    var filename = "Employee_" + $rootScope.fileDateName + ".xls";
-    //    CommonFunctions.DownloadReport('/Employee/CreateEmployeeListReport', filename);
-    //};
+        }
+
+        $scope.FullnameURL = SalaryService.GetFullName(true);
+
+        $scope.employee = [];
+        $scope.selectedProject = function (selected) {
+            if (angular.isDefined(selected)) {
+                $scope.employee = selected.originalObject
+                $scope.getEmployeebyId($scope.employee.Id)
+            }
+        }
+
+        $scope.getEmployeebyId = function (Id) {
+            SalaryService.getEmployeebyId(Id).then(function (res) {
+                debugger
+                var data = res.data;
+                if (!angular.isUndefined(data.Result) && data.Result != '') {
+                    $scope.salaryDetailScope.DesignationName = res.data.Result.DesignationName;
+                    $scope.salaryDetailScope.DepartmentName = res.data.Result.DepartmentName;
+                    $scope.salaryDetailScope.BasicSalary = res.data.Result.BasicSalary;
+                    $scope.salaryDetailScope.DA = res.data.Result.DA;
+                    $scope.salaryDetailScope.HRA = res.data.Result.HRA;
+                    $scope.salaryDetailScope.PF = res.data.Result.PF;
+
+                    console.log(data);
+
+
+                }
+                else {
+                    $scope.salaryDetailScope.EmployeeId = $scope.employee.Id; 
+                    console.log($scope.employee.Id);
+                }
+            })
+        }
+
 }
 })();
 

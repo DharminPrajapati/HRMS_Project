@@ -4,6 +4,7 @@ namespace MVCProject.Api.Controllers.Attendance
     #region NameSapces
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
@@ -53,7 +54,8 @@ namespace MVCProject.Api.Controllers.Attendance
             if (AttendanceDetail.EmployeeId > 0)
             {
                 AttendanceDetail.Date = DateTime.Now;
-                AttendanceDetail.InTime = DateTime.Now.TimeOfDay;
+                TimeSpan intime = TimeSpan.ParseExact(DateTime.Now.ToString("hh:mm:ss"), "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+                AttendanceDetail.InTime = intime;
                 entities.Attendance.AddObject(AttendanceDetail);
                 if (!(this.entities.SaveChanges() > 0))
                 {
@@ -70,7 +72,8 @@ namespace MVCProject.Api.Controllers.Attendance
         {
             Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.EmployeeId == AttendanceDetail.EmployeeId).FirstOrDefault();
 
-            existingAttendanceDetail.OutTime = DateTime.Now.TimeOfDay;
+            TimeSpan outtime = TimeSpan.ParseExact(DateTime.Now.ToString("hh:mm:ss"), "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+            existingAttendanceDetail.OutTime = outtime;
             existingAttendanceDetail.OutLatitude = AttendanceDetail.OutLatitude;
             existingAttendanceDetail.OutLongitude = AttendanceDetail.OutLongitude;
             existingAttendanceDetail.OutDiscription = AttendanceDetail.OutDiscription;
