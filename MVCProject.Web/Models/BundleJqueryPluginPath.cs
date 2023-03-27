@@ -23,7 +23,7 @@ namespace MVCProject.Models
         /// <summary>
         /// bootstrap JS
         /// </summary>
-        public string bootstrap = jqueryPluginPath + "bootstrap.js";
+        public string bootstrap = jqueryPluginPath + "bootstrap.min.js";
 
         /// <summary>
         /// toastr JS

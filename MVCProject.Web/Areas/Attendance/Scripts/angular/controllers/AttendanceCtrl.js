@@ -132,7 +132,7 @@
                 start: value.Date,
                 end: value.Date,
                 
-                allDay: true,
+                IsActive: true,
                 stick: true
 
             });
@@ -172,9 +172,28 @@
                     }
                 },
                 eventRender: function (event, element) {
-                    $(element).tooltip({ title: event.title });                 
+                    $(element).tooltip({ title: event.title});                 
                 },
+
+               
                 
+                eventMouseover: function (event, jsEvent) {
+                    var tooltip = '<div class="tooltipevent" style="width:200px;height:150px;background:#ccc;position:absolute;z-index:10001;">' + event.title + '<br>' + event.intimedescription + '<br>' + event.outtimetdescription + '<br>' + event.indescription + '<br>' + event.outdescription + '<br>' + event.start + '<br>' + event.end + '</div>';
+                    $("body").append(tooltip);
+                    $(this).mouseover(function (e) {
+                        $(this).css('z-index', 10000);
+                        $('.tooltipevent').fadeIn('500');
+                        $('.tooltipevent').fadeTo('10', 1.9);
+                    }).mousemove(function (e) {
+                        $('.tooltipevent').css('top', e.pageY + 10);
+                        $('.tooltipevent').css('left', e.pageX + 20);
+                    });
+                },
+
+                eventMouseout: function (calEvent, jsEvent) {
+                    $(this).css('z-index', 8);
+                    $('.tooltipevent').remove();
+                },
             }
         };
     }
