@@ -33,6 +33,10 @@ namespace MVCProject.Areas.EmployeeManagement
             bundles.Add(new ScriptBundle("~/bundles/EmployeeManagement/Employee")
                 .Include("~/Areas/EmployeeManagement/Scripts/angular/services/EmployeeService.js")
                 .Include("~/Areas/EmployeeManagement/Scripts/angular/controllers/EmployeeCtrl.js"));
+            //SearchEmployee
+            bundles.Add(new ScriptBundle("~/bundles/EmployeeManagement/SearchEmployee")
+                .Include("~/Areas/EmployeeManagement/Scripts/angular/services/SearchEmployeeService.js")
+                .Include("~/Areas/EmployeeManagement/Scripts/angular/controllers/SearchEmployeeCtrl.js"));
         }
     }
 }

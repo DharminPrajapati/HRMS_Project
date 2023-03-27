@@ -169,6 +169,7 @@
     <Compile Include="Areas\Configuration\Controllers\ResetLoginController.cs" />
     <Compile Include="Areas\Configuration\Controllers\RoleController.cs" />
     <Compile Include="Areas\Configuration\Controllers\UsersController.cs" />
+    <Compile Include="Areas\EmployeeManagement\Controllers\SearchEmployeeController.cs" />
     <Compile Include="Areas\EmployeeManagement\EmployeeManagementAreaRegistration.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
     <Compile Include="Areas\Salary\Controllers\SalaryController.cs" />
@@ -229,7 +230,9 @@
     <Content Include="Areas\Configuration\Scripts\angular\services\ResetToLoginService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\SalaryConfigService.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\angular\controllers\EmployeeCtrl.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\angular\controllers\SearchEmployeeCtrl.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\angular\services\EmployeeService.js" />
+    <Content Include="Areas\EmployeeManagement\Scripts\angular\services\SearchEmployeeService.js" />
     <Content Include="Areas\Public\Content\css\css\blank.gif" />
     <Content Include="Areas\Public\Content\css\HomePageStyle.css" />
     <Content Include="Areas\Public\Content\css\skins\fullwidth\loading.gif" />
@@ -498,6 +501,7 @@
     <Content Include="Areas\Salary\Views\Web.config" />
     <Content Include="Areas\Salary\Views\Salary\Index.cshtml" />
     <Content Include="Areas\Configuration\Views\Salary\Index.cshtml" />
+    <Content Include="Areas\EmployeeManagement\Views\SearchEmployee\Index.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />
