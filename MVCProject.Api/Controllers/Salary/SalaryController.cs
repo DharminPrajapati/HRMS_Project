@@ -138,7 +138,7 @@ namespace MVCProject.Api.Controllers.Salary
             // For Update
 
             else
-            {
+            { 
 
                 existingSalaryDetail.EmployeeId = SalaryDetail.EmployeeId;
                 existingSalaryDetail.BasicSalary = SalaryDetail.BasicSalary;

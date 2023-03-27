@@ -17,9 +17,7 @@
             SalaryId: 0,
             EmployeeId: 0,
             BasicSalary: '',
-            IsActive: true,
-            DesignationId: 0,
-            DepartmentId: 0
+            IsActive: true
         };
 
         $scope.isSearchClicked = false;
@@ -33,6 +31,7 @@
                 debugger;
                 SalaryService.SaveSalaryDetails(salaryDetailScope).then(function (res) {
                     if (res) {
+                        debugger
                         var data = res.data;
                         if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
                             $scope.ClearFormData(frmSalary);
@@ -140,7 +139,12 @@
                 EmployeeId: 0,
                 BasicSalary: '',
                 IsActive: true
+                
             };
+            $scope.PF = "";
+            $scope.HRA ="";
+            $scope.DA = "";
+            $scope.netsalary ="" ;
             $scope.$broadcast('angucomplete-alt:clearInput');
             frmSalary.$setPristine();
             $("#txtSalary").focus();
