@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module("MVCApp").controller('AttendanceCtrl', [
-        '$scope', '$rootScope', '$http', 'ngTableParams', 'CommonFunctions', 'FileService','uiCalendarConfig', 'AttendanceService', AttendanceCtrl
+        '$scope', '$rootScope', '$http', 'ngTableParams', 'CommonFunctions', 'FileService', 'uiCalendarConfig', 'AttendanceService', AttendanceCtrl
     ]);
 
     //BEGIN DesignationCtrl
-    function AttendanceCtrl($scope, $rootScope, $http,ngTableParams, CommonFunctions, FileService, uiCalendarConfig, AttendanceService) {
+    function AttendanceCtrl($scope, $rootScope, $http, ngTableParams, CommonFunctions, FileService, uiCalendarConfig, AttendanceService) {
         var employeeDetailsParams = {};
 
         $scope.EmployeeDetails = {
@@ -17,11 +17,11 @@
             InTime: '',
             outTime: '',
             InDiscription: '',
-            OutDiscription:''
+            OutDiscription: ''
 
         };
 
-        
+
         $scope.isSearchClicked = false;
 
 
@@ -103,16 +103,16 @@
             }
 
         });
-        
+
         $scope.SelectedEvent = null;
         var isFirstTime = true;
-        
+
 
 
         $scope.events = [];
         $scope.eventSources = [$scope.events];
-       
-           
+
+
 
 
         //Load events from server
@@ -122,25 +122,29 @@
         }).then(function (data) {
             $scope.events.length = 0;
             angular.forEach(data.data.Result, function (value) {
-           
-            $scope.events.push({
-                title: 'present',
-                intimedescription: value.InTime,
-                outtimetdescription: value.OutTime,
-                indescription: value.InDiscription,
-                outdescription: value.OutDiscription,
-                start: value.Date,
-                end: value.Date,
-                
-                IsActive: true,
-                stick: true
+                //date formating
+                $scope.formatDate = function (dateString) {
+                    var date = new Date(dateString);
+                    return date.toISOString().slice(0, 10);
+                }
+                $scope.events.push({
+                    title: 'present',
+                    intimedescription: value.InTime,
+                    outtimetdescription: value.OutTime,
+                    indescription: value.InDiscription,
+                    outdescription: value.OutDiscription,
+                    start: value.Date,
+                    end: value.Date,
 
-            });
-            
+                    IsActive: true,
+                    stick: true
+
+                });
+
             });
         });
         /* Render Tooltip */
-        
+
         //configure calendar
         $scope.uiConfig = {
 
@@ -155,17 +159,17 @@
                     right: 'today prev,next'
 
                 },
-               
-             
+
+
 
                 eventSources: $scope.eventSources,
                 eventClick: function (event) {
                     $scope.SelectedEvent = event;
                     $('#eventModal').modal('show');
-                    
+
                 },
-                
-                
+
+
                 eventAfterAllRender: function () {
                     if ($scope.events.length > 0 && isFirstTime) {
                         //Focus first event
@@ -178,10 +182,10 @@
                 //    $(element).tooltip({ title: event.title});                 
                 //},
 
-               
-                
+
+
                 eventMouseover: function (event, jsEvent) {
-                    var tooltip = '<div class="tooltipevent" style="width:200px;height:150px;background:#ccc;position:absolute;z-index:10001;">' +  event.intimedescription + '<br>' + event.outtimetdescription  + '</div>';
+                    var tooltip = '<div class="tooltipevent" style="width:200px;height:150px;background:#ccc;position:absolute;z-index:10001;">' + event.intimedescription + '<br>' + event.outtimetdescription + '</div>';
                     $("body").append(tooltip);
                     $(this).mouseover(function (e) {
                         $(this).css('z-index', 10000);
