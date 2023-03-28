@@ -18,59 +18,18 @@
 
             EmployeeId: 0,
             FirstName: null,
-            DepartmentName: null,
-            DesignationName: null,
+            DepartmentId: null,
+            DesignationId: null,
             // IsActive: true
         };
 
         $scope.isSearchClicked = false;
         $scope.lastStorageAudit = $scope.lastStorageAudit || {};
-        $scope.operationMode = function () {
-            return SearchemployeeDetailScope.EmployeeId > 0 ? "Update" : "Save";
-        };
-
-        //$scope.SearchemployeeDetailScope = function (SearchemployeeDetailScope, frmSearchemployee) {
-        //    if (frmSearchemployee.$valid) {
-        //        debugger;
-        //        SearhEmployeeService.configsalaryDetails(SearchemployeeDetailScope).then(function (res) {
-        //            if (res) {
-        //                var data = res.data;
-        //                if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
-        //                    $scope.ClearFormData(frmSalary);
-        //                    toastr.success(data.Message, successTitle);
-        //                    $scope.tableParams.reload();
-        //                }
-        //                else if (data.MessageType == messageTypes.Error) {
-        //                    toastr.error(data.Message, errorTitle);
-        //                }
-        //                else if (data.MessageType == messageTypes.Warning) {
-        //                    toastr.warning(data.Message, warningTitle);
-        //                }
-        //            }
-
-        //        });
-        //    }
-        //}
+        //$scope.operationMode = function () {
+        //    return SearchemployeeDetailScope.EmployeeId > 0 ? "Update" : "Save";
+        //};
 
 
-        //$scope.EditSalaryDetails = function (salaryconfigId) {
-        //    debugger
-        //    SalaryConfigService.GetConfigSalaryById(salaryconfigId).then(function (res) {
-        //        if (res) {
-        //            var data = res.data;
-        //            if (data.MessageType == messageTypes.Success) {
-        //                debugger;
-        //                $scope.salaryDetailScope = data.Result;
-        //                $scope.lastStorageAudit = angular.copy(data.Result);
-        //                CommonFunctions.ScrollUpAndFocus("txtSalary");
-        //            }
-        //            else if (data.MessageType == messageTypes.Error) {
-        //                toastr.error(data.Message, errorTitle);
-        //            }
-        //        }
-        //        $rootScope.isAjaxLoadingChild = false;
-        //    });
-        //}
 
         $scope.tableParams = new ngTableParams({
             page: 1,
@@ -116,15 +75,25 @@
         //    });
         //    // debugger
         //}
+        $scope.Init = function () {
+            debugger
+            $scope.designationScope();
+            $scope.departmentsScope();
 
+        }
 
-        //$scope.Init = function () {
-        //    //  debugger
-        //    $scope.employeesScope();
-        //    // debugger
-        //    //$scope.departmentsScope();
-        //    //$scope.emplyeeDetailScope.Gender;
-        //}
+        $scope.designationScope = function () {
+            debugger
+            SearchEmployeeService.GetDesignationlist().then(function (res) {
+                $scope.Designation = res.data.Result;
+            });
+        };
+
+        $scope.departmentsScope = function () {
+            SearchEmployeeService.GetDepartmentlist().then(function (res) {
+                $scope.Departments = res.data.Result;
+            });
+        };
 
 
         $scope.ClearFormData = function (frmSearchemployee) {
