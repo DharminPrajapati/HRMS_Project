@@ -903,4 +903,7 @@
   <data name="EmployeeImage" xml:space="preserve">
     <value>EmployeeImage</value>
   </data>
+  <data name="Employee Search" xml:space="preserve">
+    <value>Employee Search</value>
+  </data>
 </root>

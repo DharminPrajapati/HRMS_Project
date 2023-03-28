@@ -29,6 +29,8 @@
         max-width: 60px !important;
     }
 </style>
+
+
 <div class="main-page-title title-icon relative l">
     <i class="fa fa-user icon-position" style="padding-top: 8px;" aria-hidden="true"></i>
     <h4 class="header-title-sub l">
@@ -150,17 +152,17 @@
             <div ng-show="SelectedEvent" class="alert alert-success" style="margin-top:130px">
                 <h2 style="margin-top:0px"> Selected Event:</h2>
                 <h3 style="color:#A9A50E">{{SelectedEvent.title}}</h3>
-                <p>{{SelectedEvent.intimedescription}}</p>
-                <p>{{SelectedEvent.outtimetdescription}}</p>
-                <p>{{SelectedEvent.indescription}}</p>
-                <p>{{SelectedEvent.outdescription}}</p>
-                <p>{{SelectedEvent.start}}</p>
-                <p>{{SelectedEvent.end}}</p>
+                <p>InTime:{{SelectedEvent.intimedescription}}</p>
+                <p>OutTime:{{SelectedEvent.outtimetdescription}}</p>
+                <p>InDiscription:{{SelectedEvent.indescription}}</p>
+                <p>OutDiscription:{{SelectedEvent.outdescription}}</p>
+                <p>Date:{{SelectedEvent.start}}</p>
+                @*<p>Date:{{SelectedEvent.end}}</p>*@
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true" ng-show="SelectedEvent" ng-model="eventSources">
+    @*<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true" ng-show="SelectedEvent" ng-model="eventSources">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -179,37 +181,11 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 </div>
 
-<div class="container">
-    <h2>Modal Example</h2>
-    <!-- Trigger the modal with a button -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Modal Header</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Some text in the modal.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</div>
 
 
 

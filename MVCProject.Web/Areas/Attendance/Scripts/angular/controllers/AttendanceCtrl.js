@@ -174,14 +174,14 @@
 
                     }
                 },
-                eventRender: function (event, element) {
-                    $(element).tooltip({ title: event.title});                 
-                },
+                //eventRender: function (event, element) {
+                //    $(element).tooltip({ title: event.title});                 
+                //},
 
                
                 
                 eventMouseover: function (event, jsEvent) {
-                    var tooltip = '<div class="tooltipevent" style="width:200px;height:150px;background:#ccc;position:absolute;z-index:10001;">' + event.title + '<br>' + event.intimedescription + '<br>' + event.outtimetdescription + '<br>' + event.indescription + '<br>' + event.outdescription + '<br>' + event.start + '<br>' + event.end + '</div>';
+                    var tooltip = '<div class="tooltipevent" style="width:200px;height:150px;background:#ccc;position:absolute;z-index:10001;">' +  event.intimedescription + '<br>' + event.outtimetdescription  + '</div>';
                     $("body").append(tooltip);
                     $(this).mouseover(function (e) {
                         $(this).css('z-index', 10000);
