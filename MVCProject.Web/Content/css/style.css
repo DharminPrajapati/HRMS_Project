@@ -7582,7 +7582,9 @@ multilevel-accordion uib-accordion .panel-group {
     height: 100%;
 }
 
-/*
+/*.modal-backdrop {
+  z-index: -1;
+}
 newcss*/
 .login-card {
     margin-top: 160px;
@@ -7596,3 +7598,10 @@ newcss*/
 .logoimg {
     width: 350px;
 }
+
+.modal{
+    z-index: 1071;
+}
+/*.modal-backdrop {
+    z-index: -1;
+}*/

@@ -160,8 +160,11 @@
 
                 eventSources: $scope.eventSources,
                 eventClick: function (event) {
-                    $scope.SelectedEvent = event;                   
+                    $scope.SelectedEvent = event;
+                    $('#eventModal').modal('show');
+                    
                 },
+                
                 
                 eventAfterAllRender: function () {
                     if ($scope.events.length > 0 && isFirstTime) {
