@@ -65,7 +65,7 @@
                                      selected-object="selectedProject"
                                      remote-url="{{FullnameURL}}"
                                      remote-url-data-field="Result"
-                                     initial-value=""
+                                     initial-value="Id"
                                      title-field="Name"
                                      description-field="description"
                                      minlength="1"
@@ -136,7 +136,7 @@
                             <label>
                                 DA <span>(%)</span>
                             </label>
-                            <input type="text" class="form-control" name="DA" id="DA" required ng-focus="true" ng-model="salaryDetailScope.DA" tabindex="2" placeholder="@Resource.DA" value="{{SalaryDetails.DA}}" maxlength="250" />
+                            <input type="text" class="form-control" name="DA" id="DA" required ng-focus="true" ng-model="salaryDetailScope.DA" tabindex="2" placeholder="@Resource.DA" ng-change="calculateSalary()" value="{{SalaryDetails.DA}}" maxlength="250" />
                             <div class="c">
                             </div>
 
@@ -162,7 +162,7 @@
                                 <label>
                                     HRA <span>(%)</span>
                                 </label>
-                                <input type="text" class="form-control" name="HRA" id="HRA" required ng-focus="true" ng-model="salaryDetailScope.HRA" tabindex="3" placeholder="@Resource.HRA" value="{{SalaryDetails.HRA}}" maxlength="250" />
+                                <input type="text" class="form-control" name="HRA" id="HRA" required ng-focus="true" ng-model="salaryDetailScope.HRA" ng-change="calculateSalary()" tabindex="3" placeholder="@Resource.HRA" value="{{SalaryDetails.HRA}}" maxlength="250" />
                                 <div class="c">
                                 </div>
 
@@ -187,7 +187,7 @@
                                 <label>
                                     PF <span>(%)</span>
                                 </label>
-                                <input type="text" class="form-control" name="PF" id="PF" required ng-focus="true" ng-model="salaryDetailScope.PF" tabindex="4" placeholder="@Resource.PF" value="{{SalaryDetails.PF}}" maxlength="250" />
+                                <input type="text" class="form-control" name="PF" id="PF" required ng-focus="true" ng-model="salaryDetailScope.PF" ng-change="calculateSalary()" tabindex="4" placeholder="@Resource.PF" value="{{SalaryDetails.PF}}" maxlength="250" />
                                 <div class="c">
                                 </div>
                             </div>

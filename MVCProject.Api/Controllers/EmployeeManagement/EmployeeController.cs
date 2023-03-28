@@ -128,8 +128,8 @@
                 d.AlternatePhoneNumber,
                 d.DesignationId,
                 d.DepartmentId,
-                //DesignationName = d.DesignationReference.Value.DesignationName,
-                //DepartmentName = d.TblDepartmentReference.Value.DepartmentName,
+                DesignationName = this.entities.Designations.FirstOrDefault(x=>x.DesignationId==d.DesignationId).DesignationName,
+                DepartmentName = this.entities.TblDepartments.FirstOrDefault(x => x.DepartmentId == d.DepartmentId).DepartmentName,
                 d.BirthDate,
                 Gender = d.Gender == 1 ? "Male" : "Female",
                 d.PermanentAddress,
@@ -183,8 +183,8 @@
                 row.CreateCell(4).SetCellValue((DateTime)emp.JoiningDate);
                 row.CreateCell(5).SetCellValue(emp.PhoneNumber);
                 row.CreateCell(6).SetCellValue(emp.AlternatePhoneNumber);
-                row.CreateCell(7).SetCellValue((double)emp.DesignationId);
-                row.CreateCell(8).SetCellValue((double)emp.DepartmentId);
+                row.CreateCell(7).SetCellValue(emp.DesignationName);
+                row.CreateCell(8).SetCellValue(emp.DepartmentName);
                 row.CreateCell(9).SetCellValue((DateTime)emp.BirthDate);
                 row.CreateCell(10).SetCellValue(emp.Gender);
                 row.CreateCell(11).SetCellValue(emp.PermanentAddress);
