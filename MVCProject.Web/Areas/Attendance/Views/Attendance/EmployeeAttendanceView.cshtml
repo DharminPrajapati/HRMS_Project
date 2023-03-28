@@ -32,7 +32,7 @@
 
 
 <div class="main-page-title title-icon relative l">
-    <i class="fa fa-user icon-position" style="padding-top: 8px;" aria-hidden="true"></i>
+    <i class="fa fa-check-square icon-position" style="padding-top: 8px;" aria-hidden="true"></i>
     <h4 class="header-title-sub l">
 
         Employee Attendance
@@ -140,60 +140,63 @@
 <!-- scripts -->
 
 <div ng-app="MVCApp" ng-controller="AttendanceCtrl">
-    <div class="row">
-        <div class="col-md-9 ">
+    <div class="card-box">
+        <div class="row">
+            <div class="col-md-9 ">
 
-            @*<h2 style="background-color:blue;color: white; text-align: center; font-style: oblique">Calendar</h2>*@
+                @*<h2 style="background-color:blue;color: white; text-align: center; font-style: oblique">Calendar</h2>*@
 
-            <div id="calendar" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar"></div>
-        </div>
+                <div id="calendar" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar"></div>
+            </div>
 
-        <div class="col-md-3">
-            <div ng-show="SelectedEvent" class="alert alert-success" style="margin-top:130px">
-                <h2 style="margin-top:0px"> Selected Event:</h2>
-                <h3 style="color:#A9A50E">{{SelectedEvent.title}}</h3>
-                <p>InTime:{{SelectedEvent.intimedescription}}</p>
-                <p>OutTime:{{SelectedEvent.outtimetdescription}}</p>
-                <p>InDiscription:{{SelectedEvent.indescription}}</p>
-                <p>OutDiscription:{{SelectedEvent.outdescription}}</p>
-                <p>Date:{{SelectedEvent.start}}</p>
-                @*<p>Date:{{SelectedEvent.end}}</p>*@
+            <div class="col-md-3">
+                <div ng-show="SelectedEvent" class="alert alert-success" style="margin-top:80px">
+                    <h2 style="margin-top:0px;color:white;">Selected Event:</h2>
+                    <h2 style="color:#ffffff">{{SelectedEvent.title}}</h2>
+                    <p>InTime:{{SelectedEvent.intimedescription}}</p>
+                    <p>OutTime:{{SelectedEvent.outtimetdescription}}</p>
+                    <p>InDiscription:{{SelectedEvent.indescription}}</p>
+                    <p>OutDiscription:{{SelectedEvent.outdescription}}</p>
+                    <p>Date:{{SelectedEvent.start}}</p>
+                    @*<p>Date:{{SelectedEvent.end}}</p>*@
+
+                    @*<p>Date:{{SelectedEvent.end}}</p>*@
+                </div>
             </div>
         </div>
+        </div>
+        @*<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true" ng-show="SelectedEvent" ng-model="eventSources">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="eventModalLabel">{{SelectedEvent.title}}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="SelectedEvent=null">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{SelectedEvent.intimedescription}}</p>
+                            <p>{{SelectedEvent.outtimetdescription}}</p>
+                            <p>{{SelectedEvent.indescription}}</p>
+                            <p>{{SelectedEvent.outdescription}}</p>
+                            <p>{{SelectedEvent.start}}</p>
+                            <p>{{SelectedEvent.end}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
     </div>
 
-    @*<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true" ng-show="SelectedEvent" ng-model="eventSources">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="eventModalLabel">{{SelectedEvent.title}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="SelectedEvent=null">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>{{SelectedEvent.intimedescription}}</p>
-                <p>{{SelectedEvent.outtimetdescription}}</p>
-                <p>{{SelectedEvent.indescription}}</p>
-                <p>{{SelectedEvent.outdescription}}</p>
-                <p>{{SelectedEvent.start}}</p>
-                <p>{{SelectedEvent.end}}</p>
-            </div>
-        </div>
-    </div>
-</div>*@
-
-</div>
 
 
 
 
+    <script src="https://kit.fontawesome.com/73e0cf2663.js" crossorigin="anonymous"></script>
 
-<script src="https://kit.fontawesome.com/73e0cf2663.js" crossorigin="anonymous"></script>
-
-@section scripts {
-    @Scripts.Render("~/bundles/Attendance/Attendance/EmployeeAttendanceView")
-}
+    @section scripts {
+        @Scripts.Render("~/bundles/Attendance/Attendance/EmployeeAttendanceView")
+    }
 
 
 

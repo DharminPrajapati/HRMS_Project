@@ -814,7 +814,7 @@ textarea.form-control {
 .label {
     font-weight: 500;
     letter-spacing: 0.05em;
-    padding: .3em .6em .3em;
+    /*  padding: .3em .6em .3em;*/
 }
 
 .label-default {
@@ -1046,9 +1046,9 @@ textarea.form-control {
 }
 
 .alert-success {
-    background-color: rgba(95, 190, 170, 0.3);
+    background-color: rgb(63 63 127);
     border-color: rgba(95, 190, 170, 0.4);
-    color: #5fbeaa;
+    color: #ffffff;
 }
 
 .alert-info {
@@ -1555,11 +1555,12 @@ pre {
 }
 
 .fc th.fc-widget-header {
-    background: #ebeff2;
+    background: #3f3f7f;
     font-size: 14px;
     line-height: 20px;
     padding: 10px 0px;
     text-transform: uppercase;
+    color: white;
 }
 
 .fc-button {
@@ -7582,13 +7583,11 @@ multilevel-accordion uib-accordion .panel-group {
     height: 100%;
 }
 
-/*.modal-backdrop {
-  z-index: -1;
-}
+/*
 newcss*/
 .login-card {
     margin-top: 160px;
-    height: 415px;
+    height: 445px;
 }
 
 .login {
@@ -7598,10 +7597,3 @@ newcss*/
 .logoimg {
     width: 350px;
 }
-
-.modal{
-    z-index: 1071;
-}
-/*.modal-backdrop {
-    z-index: -1;
-}*/

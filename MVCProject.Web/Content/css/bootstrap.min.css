@@ -2739,7 +2739,8 @@ th {
     }
 
     .table > caption + thead > tr:first-child > td, .table > caption + thead > tr:first-child > th, .table > colgroup + thead > tr:first-child > td, .table > colgroup + thead > tr:first-child > th, .table > thead:first-child > tr:first-child > td, .table > thead:first-child > tr:first-child > th {
-        border-top: 0
+        border-top: 0;
+        color: #0e0e23;
     }
 
     .table > tbody + tbody {
@@ -4152,7 +4153,7 @@ tbody.collapse.in {
         float: left;
         width: 100%;
         margin-bottom: 0;
-        margin-top: 1px;
+        margin-top: 4px;
     }
 
         .input-group .form-control:focus {
