@@ -17,6 +17,11 @@
             SalaryId: 0,
             EmployeeId: 0,
             BasicSalary: '',
+            FullnameURL: '',
+            selectedProject: '',
+            Id: 0,
+            Name: '',
+            netSalary: '',
             IsActive: true
         };
 
@@ -138,13 +143,13 @@
                 SalaryId: 0,
                 EmployeeId: 0,
                 BasicSalary: '',
+                netSalary: null,
                 IsActive: true
                 
             };
-            $scope.PF = "";
-            $scope.HRA ="";
-            $scope.DA = "";
-            $scope.netsalary ="" ;
+            $scope.salaryDetailScope.PFamt = "";
+            $scope.salaryDetailScope.HRAamt = "";
+            $scope.salaryDetailScope.DAamt = "";           
             $scope.$broadcast('angucomplete-alt:clearInput');
             frmSalary.$setPristine();
             $("#txtSalary").focus();
@@ -158,10 +163,11 @@
             var hra = ($scope.salaryDetailScope.BasicSalary * $scope.salaryDetailScope.HRA) / 100;
 
             var netsalary = parseFloat($scope.salaryDetailScope.BasicSalary) + parseFloat(da) + parseFloat(hra) - parseFloat(pf);
-            $scope.PF = pf.toFixed(2);
-            $scope.HRA = hra.toFixed(2);
-            $scope.DA = da.toFixed(2);
-            $scope.netsalary = netsalary.toFixed(2);
+            $scope.salaryDetailScope.PFamt = pf.toFixed(2);
+            $scope.salaryDetailScope.HRAamt = hra.toFixed(2);
+            $scope.salaryDetailScope.DAamt = da.toFixed(2);
+            $scope.salaryDetailScope.netSalary = netsalary.toFixed(2);
+
 
         }
 
@@ -180,19 +186,22 @@
                 debugger
                 var data = res.data;
                 if (!angular.isUndefined(data.Result) && data.Result != '') {
-                    $scope.salaryDetailScope.DesignationName = res.data.Result.DesignationName;
-                    $scope.salaryDetailScope.DepartmentName = res.data.Result.DepartmentName;
-                    $scope.salaryDetailScope.BasicSalary = res.data.Result.BasicSalary;
-                    $scope.salaryDetailScope.DA = res.data.Result.DA;
-                    $scope.salaryDetailScope.HRA = res.data.Result.HRA;
-                    $scope.salaryDetailScope.PF = res.data.Result.PF;
+                    $scope.salaryDetailScope = res.data.Result;
+                    //$scope.salaryDetailScope.DesignationName = res.data.Result.DesignationName;
+                    //$scope.salaryDetailScope.DepartmentName = res.data.Result.DepartmentName;
+                    //$scope.salaryDetailScope.BasicSalary = res.data.Result.BasicSalary;
+                    //$scope.salaryDetailScope.DA = res.data.Result.DA;
+                    //$scope.salaryDetailScope.HRA = res.data.Result.HRA;
+                    //$scope.salaryDetailScope.PF = res.data.Result.PF;
 
                     console.log(data);
 
 
                 }
                 else {
-                    $scope.salaryDetailScope.EmployeeId = $scope.employee.Id; 
+                    $scope.salaryDetailScope.EmployeeId = $scope.employee.Id;
+                    $scope.salaryDetailScope.DesignationName = $scope.employee.DesignationName;
+                    $scope.salaryDetailScope.DepartmentName = $scope.employee.DepartmentName;
                     console.log($scope.employee.Id);
                 }
             })

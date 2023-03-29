@@ -69,6 +69,7 @@ namespace MVCProject.Api.Controllers.Salary
                 {
                     SalaryId = d.SalaryId,
                     EmployeeId = d.EmployeeId,
+                    Name = d.FirstName + ' ' + d.LastName,
                     DepartmentId = d.DepartmentId,
                     DesignationId = d.DepartmentId,
                     DesignationName = d.DesignationName,
@@ -77,6 +78,10 @@ namespace MVCProject.Api.Controllers.Salary
                     DA = d.DA,
                     HRA = d.HRA,
                     PF = d.PF,
+                    DAamt = d.DAamt,
+                    HRAamt = d.HRAamt,
+                    PFamt = d.PFamt,
+                    netSalary = d.netSalary,
                     IsActive = d.IsActive
                 }).SingleOrDefault();
 
@@ -138,13 +143,17 @@ namespace MVCProject.Api.Controllers.Salary
             // For Update
 
             else
-            { 
+            {
 
                 existingSalaryDetail.EmployeeId = SalaryDetail.EmployeeId;
                 existingSalaryDetail.BasicSalary = SalaryDetail.BasicSalary;
                 existingSalaryDetail.DA = SalaryDetail.DA;
                 existingSalaryDetail.HRA = SalaryDetail.HRA;
                 existingSalaryDetail.PF = SalaryDetail.PF;
+                existingSalaryDetail.DAamt = SalaryDetail.DAamt;
+                existingSalaryDetail.HRAamt = SalaryDetail.HRAamt;
+                existingSalaryDetail.PFamt = SalaryDetail.PFamt;
+                existingSalaryDetail.netSalary = SalaryDetail.netSalary;
                 existingSalaryDetail.IsActive = SalaryDetail.IsActive;
 
 
@@ -165,8 +174,12 @@ namespace MVCProject.Api.Controllers.Salary
         [HttpPost]
         public ApiResponse GetEmployeeSalary(PagingParams salaryDetailsParams)
         {
-            var result = this.entities.Sp_Salary_DisplayAllEmployees().AsQueryable().Skip((salaryDetailsParams.CurrentPageNumber - 1) * salaryDetailsParams.PageSize).Take(salaryDetailsParams.PageSize);
-            var TotalRecords = this.entities.Sp_Salary_DisplayAllEmployees().AsQueryable().Count();
+            if (string.IsNullOrWhiteSpace(salaryDetailsParams.Search))
+            {
+                salaryDetailsParams.Search = string.Empty;
+            }
+            var result = this.entities.Sp_Salary_DisplayAllEmployees().Where(x => x.FirstName.Trim().ToLower().Contains(salaryDetailsParams.Search.Trim().ToLower())).AsQueryable().Skip((salaryDetailsParams.CurrentPageNumber - 1) * salaryDetailsParams.PageSize).Take(salaryDetailsParams.PageSize);
+            var TotalRecords = this.entities.Sp_Salary_DisplayAllEmployees().Where(x => x.FirstName.Trim().ToLower().Contains(salaryDetailsParams.Search.Trim().ToLower())).AsQueryable().Count();
 
             return this.Response(Utilities.MessageTypes.Success, string.Empty, new { list = result, Total = TotalRecords });
 

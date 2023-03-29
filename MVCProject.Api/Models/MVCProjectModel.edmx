@@ -15,6 +15,10 @@
           <Property Name="DA" Type="nvarchar" MaxLength="50" />
           <Property Name="HRA" Type="nvarchar" MaxLength="50" />
           <Property Name="PF" Type="nvarchar" MaxLength="50" />
+          <Property Name="DAamt" Type="nvarchar" MaxLength="50" />
+          <Property Name="HRAamt" Type="nvarchar" MaxLength="50" />
+          <Property Name="PFamt" Type="nvarchar" MaxLength="50" />
+          <Property Name="netSalary" Type="numeric" Precision="18" Scale="2" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="EntryBy" Type="int" />
           <Property Name="EntryDate" Type="date" />
@@ -303,7 +307,6 @@
             <End Role="TblDepartment" EntitySet="TblDepartments" />
             <End Role="TblEmployee" EntitySet="TblEmployees" />
           </AssociationSet>
-          <EntitySet Name="AddSalary" EntityType="MVCProjectModel.AddSalary" />
           <EntitySet Name="AttachmentMaster" EntityType="MVCProjectModel.AttachmentMaster" />
           <EntitySet Name="AttachmentType" EntityType="MVCProjectModel.AttachmentType" />
           <EntitySet Name="Attendance" EntityType="MVCProjectModel.Attendance" />
@@ -315,23 +318,8 @@
           <FunctionImport Name="Sp_Salary_DisplayAllEmployees" ReturnType="Collection(MVCProjectModel.Sp_Salary_DisplayAllEmployees_Result)" />
           <FunctionImport Name="sp_Emp_GetAllEmployees" ReturnType="Collection(MVCProjectModel.sp_Emp_GetAllEmployees_Result)" />
           <FunctionImport Name="Sp_HRMS_Attendance" ReturnType="Collection(MVCProjectModel.Sp_HRMS_Attendance_Result)" />
+          <EntitySet Name="AddSalary" EntityType="MVCProjectModel.AddSalary" />
         </EntityContainer>
-        <EntityType Name="AddSalary">
-          <Key>
-            <PropertyRef Name="SalaryId" />
-          </Key>
-          <Property Name="SalaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeId" Type="Int32" />
-          <Property Name="BasicSalary" Type="Decimal" Precision="8" Scale="0" />
-          <Property Name="DA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HRA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="EntryBy" Type="Int32" />
-          <Property Name="EntryDate" Type="DateTime" Precision="0" />
-          <Property Name="UpdateBy" Type="Int32" />
-          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
-        </EntityType>
         <EntityType Name="AttachmentMaster">
           <Key>
             <PropertyRef Name="AttachmentId" />
@@ -420,6 +408,10 @@
           <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="DepartmentId" Nullable="true" />
           <Property Type="Int32" Name="DesignationId" Nullable="true" />
+          <Property Type="String" Name="DAamt" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="HRAamt" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PFamt" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="netSalary" Nullable="true" Precision="18" Scale="2" />
         </ComplexType>
         <ComplexType Name="sp_Emp_GetAllEmployees_Result">
           <Property Type="Int32" Name="EmployeeId" Nullable="false" />
@@ -459,6 +451,26 @@
           <Property Type="DateTime" Name="Date" Nullable="true" />
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
         </ComplexType>
+        <EntityType Name="AddSalary">
+          <Key>
+            <PropertyRef Name="SalaryId" />
+          </Key>
+          <Property Name="SalaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="BasicSalary" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="DA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HRA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DAamt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HRAamt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PFamt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="netSalary" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="EntryBy" Type="Int32" />
+          <Property Name="EntryDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -525,23 +537,6 @@
                 <ScalarProperty Name="FromPeriod" ColumnName="FromPeriod" />
                 <ScalarProperty Name="ToPeriod" ColumnName="ToPeriod" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AddSalary">
-            <EntityTypeMapping TypeName="MVCProjectModel.AddSalary">
-              <MappingFragment StoreEntitySet="AddSalary">
-                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="PF" ColumnName="PF" />
-                <ScalarProperty Name="HRA" ColumnName="HRA" />
-                <ScalarProperty Name="DA" ColumnName="DA" />
-                <ScalarProperty Name="BasicSalary" ColumnName="BasicSalary" />
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
-                <ScalarProperty Name="SalaryId" ColumnName="SalaryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -626,6 +621,10 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+                <ScalarProperty Name="DAamt" ColumnName="DAamt" />
+                <ScalarProperty Name="HRAamt" ColumnName="HRAamt" />
+                <ScalarProperty Name="PFamt" ColumnName="PFamt" />
+                <ScalarProperty Name="netSalary" ColumnName="netSalary" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -675,6 +674,27 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="AddSalary">
+            <EntityTypeMapping TypeName="MVCProjectModel.AddSalary">
+              <MappingFragment StoreEntitySet="AddSalary">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="netSalary" ColumnName="netSalary" />
+                <ScalarProperty Name="PFamt" ColumnName="PFamt" />
+                <ScalarProperty Name="HRAamt" ColumnName="HRAamt" />
+                <ScalarProperty Name="DAamt" ColumnName="DAamt" />
+                <ScalarProperty Name="PF" ColumnName="PF" />
+                <ScalarProperty Name="HRA" ColumnName="HRA" />
+                <ScalarProperty Name="DA" ColumnName="DA" />
+                <ScalarProperty Name="BasicSalary" ColumnName="BasicSalary" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="SalaryId" ColumnName="SalaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

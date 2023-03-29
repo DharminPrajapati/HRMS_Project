@@ -124,22 +124,6 @@ namespace MVCProject.Api.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<AddSalary> AddSalary
-        {
-            get
-            {
-                if ((_AddSalary == null))
-                {
-                    _AddSalary = base.CreateObjectSet<AddSalary>("AddSalary");
-                }
-                return _AddSalary;
-            }
-        }
-        private ObjectSet<AddSalary> _AddSalary;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<AttachmentMaster> AttachmentMaster
         {
             get
@@ -200,6 +184,22 @@ namespace MVCProject.Api.Models
             }
         }
         private ObjectSet<SalaryConfiguration> _SalaryConfiguration;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AddSalary> AddSalary
+        {
+            get
+            {
+                if ((_AddSalary == null))
+                {
+                    _AddSalary = base.CreateObjectSet<AddSalary>("AddSalary");
+                }
+                return _AddSalary;
+            }
+        }
+        private ObjectSet<AddSalary> _AddSalary;
 
         #endregion
 
@@ -227,14 +227,6 @@ namespace MVCProject.Api.Models
         public void AddToTblEmployees(TblEmployee tblEmployee)
         {
             base.AddObject("TblEmployees", tblEmployee);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the AddSalary EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToAddSalary(AddSalary addSalary)
-        {
-            base.AddObject("AddSalary", addSalary);
         }
     
         /// <summary>
@@ -267,6 +259,14 @@ namespace MVCProject.Api.Models
         public void AddToSalaryConfiguration(SalaryConfiguration salaryConfiguration)
         {
             base.AddObject("SalaryConfiguration", salaryConfiguration);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AddSalary EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAddSalary(AddSalary addSalary)
+        {
+            base.AddObject("AddSalary", addSalary);
         }
 
         #endregion
@@ -476,6 +476,102 @@ namespace MVCProject.Api.Models
         private global::System.String _PF;
         partial void OnPFChanging(global::System.String value);
         partial void OnPFChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DAamt
+        {
+            get
+            {
+                return _DAamt;
+            }
+            set
+            {
+                OnDAamtChanging(value);
+                ReportPropertyChanging("DAamt");
+                _DAamt = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DAamt");
+                OnDAamtChanged();
+            }
+        }
+        private global::System.String _DAamt;
+        partial void OnDAamtChanging(global::System.String value);
+        partial void OnDAamtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String HRAamt
+        {
+            get
+            {
+                return _HRAamt;
+            }
+            set
+            {
+                OnHRAamtChanging(value);
+                ReportPropertyChanging("HRAamt");
+                _HRAamt = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("HRAamt");
+                OnHRAamtChanged();
+            }
+        }
+        private global::System.String _HRAamt;
+        partial void OnHRAamtChanging(global::System.String value);
+        partial void OnHRAamtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PFamt
+        {
+            get
+            {
+                return _PFamt;
+            }
+            set
+            {
+                OnPFamtChanging(value);
+                ReportPropertyChanging("PFamt");
+                _PFamt = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PFamt");
+                OnPFamtChanged();
+            }
+        }
+        private global::System.String _PFamt;
+        partial void OnPFamtChanging(global::System.String value);
+        partial void OnPFamtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> netSalary
+        {
+            get
+            {
+                return _netSalary;
+            }
+            set
+            {
+                OnnetSalaryChanging(value);
+                ReportPropertyChanging("netSalary");
+                _netSalary = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("netSalary");
+                OnnetSalaryChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _netSalary;
+        partial void OnnetSalaryChanging(Nullable<global::System.Decimal> value);
+        partial void OnnetSalaryChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4298,6 +4394,102 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.Int32> _DesignationId;
         partial void OnDesignationIdChanging(Nullable<global::System.Int32> value);
         partial void OnDesignationIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DAamt
+        {
+            get
+            {
+                return _DAamt;
+            }
+            set
+            {
+                OnDAamtChanging(value);
+                ReportPropertyChanging("DAamt");
+                _DAamt = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DAamt");
+                OnDAamtChanged();
+            }
+        }
+        private global::System.String _DAamt;
+        partial void OnDAamtChanging(global::System.String value);
+        partial void OnDAamtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String HRAamt
+        {
+            get
+            {
+                return _HRAamt;
+            }
+            set
+            {
+                OnHRAamtChanging(value);
+                ReportPropertyChanging("HRAamt");
+                _HRAamt = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("HRAamt");
+                OnHRAamtChanged();
+            }
+        }
+        private global::System.String _HRAamt;
+        partial void OnHRAamtChanging(global::System.String value);
+        partial void OnHRAamtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PFamt
+        {
+            get
+            {
+                return _PFamt;
+            }
+            set
+            {
+                OnPFamtChanging(value);
+                ReportPropertyChanging("PFamt");
+                _PFamt = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PFamt");
+                OnPFamtChanged();
+            }
+        }
+        private global::System.String _PFamt;
+        partial void OnPFamtChanging(global::System.String value);
+        partial void OnPFamtChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> netSalary
+        {
+            get
+            {
+                return _netSalary;
+            }
+            set
+            {
+                OnnetSalaryChanging(value);
+                ReportPropertyChanging("netSalary");
+                _netSalary = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("netSalary");
+                OnnetSalaryChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _netSalary;
+        partial void OnnetSalaryChanging(Nullable<global::System.Decimal> value);
+        partial void OnnetSalaryChanged();
 
         #endregion
 

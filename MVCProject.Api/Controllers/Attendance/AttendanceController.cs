@@ -137,6 +137,23 @@ namespace MVCProject.Api.Controllers.Attendance
                 return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
             }
         }
+
+
+        [HttpGet]
+        public ApiResponse AttendanceStatus(int employeeId)
+        {
+            var data = this.entities.Attendance.Where(x => x.EmployeeId == employeeId && x.Date == DateTime.Today).Any();
+            if (data == true)
+            {
+                return this.Response(Utilities.MessageTypes.Success, responseToReturn: true);
+            }
+            else
+            {
+                return this.Response(Utilities.MessageTypes.Success, responseToReturn: false);
+            }
+        }
+
+
         /// Disposes expensive resources.
         protected override void Dispose(bool disposing)
         {
