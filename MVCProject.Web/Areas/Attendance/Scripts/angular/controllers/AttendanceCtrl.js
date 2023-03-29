@@ -128,7 +128,7 @@
                     return date.toISOString().slice(0, 10);
                 }
                 $scope.events.push({
-                    title: 'present',
+                    title: '',
                     intimedescription: value.InTime,
                     outtimetdescription: value.OutTime,
                     indescription: value.InDiscription,
@@ -185,7 +185,7 @@
 
 
                 eventMouseover: function (event, jsEvent) {
-                    var tooltip = '<div class="tooltipevent" style="width:200px;height:150px;background:#ccc;position:absolute;z-index:10001;">' + event.intimedescription + '<br>' + event.outtimetdescription + '</div>';
+                    var tooltip = '<div class="tooltipevent" style="width:auto;height:auto;background:#f2f2f2;position:absolute;z-index:10001;border:1px solid  #ddd;border-radius:3px;padding:5px 10px; font-size:11px;font-weight:600">' + event.intimedescription + '<br>' + event.outtimetdescription + '</div>';
                     $("body").append(tooltip);
                     $(this).mouseover(function (e) {
                         $(this).css('z-index', 10000);

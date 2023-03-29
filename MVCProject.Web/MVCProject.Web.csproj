@@ -305,6 +305,7 @@
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\ghost.png" />
     <Content Include="Content\images\Group 10.png" />
+    <Content Include="Content\images\Group 11.png" />
     <Content Include="Content\images\Hexagon.svg" />
     <Content Include="Content\images\hp.png" />
     <Content Include="Content\images\image-not-available.jpg" />
@@ -317,6 +318,9 @@
     <Content Include="Content\images\nothumb.png" />
     <Content Include="Content\images\openhand.cur" />
     <Content Include="Content\images\PDFBG.jpg" />
+    <Content Include="Content\images\Photon-10s-1536px.png" />
+    <Content Include="Content\images\Photon-10s-1536px.svg" />
+    <Content Include="Content\images\Photon-4.3s-1573px.png" />
     <Content Include="Content\images\reload.gif" />
     <Content Include="Content\images\ringLoading.gif" />
     <Content Include="Content\images\safe-logo.png" />

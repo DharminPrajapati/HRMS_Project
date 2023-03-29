@@ -3699,7 +3699,7 @@ a.btn.disabled, fieldset[disabled] a.btn {
 
 .btn-link {
     font-weight: 400;
-    color: #337ab7;
+    color: #ffffff;
     border-radius: 0
 }
 
@@ -5465,8 +5465,8 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover {
 
 .alert-success {
     color: #3c763d;
-    background-color: #dff0d8;
-    border-color: #d6e9c6
+    /*background-color: #dff0d8;
+    border-color: #d6e9c6*/
 }
 
     .alert-success hr {
