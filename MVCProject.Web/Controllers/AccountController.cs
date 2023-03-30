@@ -26,17 +26,17 @@ namespace MVCProject.Controllers
         [OutputCache(NoStore = true, Duration = 0)]
         public ActionResult Login()
         {
-            //if (this.Session["UserContext"] == null || Request.Url.PathAndQuery.Contains("noSession"))
-            //{
-            //    ViewBag.IsSessionExpired = Request.QueryString["noSession"] != null ? true : false;
-            //    return this.View();
-            //}
-            //else
-            //{
-            //    return this.RedirectToAction("RedirectToDefaultUrl");
-            //}
+            if (this.Session["UserContext"] == null || Request.Url.PathAndQuery.Contains("noSession"))
+            {
+                ViewBag.IsSessionExpired = Request.QueryString["noSession"] != null ? true : false;
+                return this.View();
+            }
+            else
+            {
+                return this.RedirectToAction("RedirectToDefaultUrl");
+            }
 
-            return this.RedirectToAction("RedirectToDefaultUrl");
+            //return this.RedirectToAction("RedirectToDefaultUrl");
         }
 
         /// <summary>

@@ -141,6 +141,17 @@
           <Property Name="UpdatedBy" Type="int" />
           <Property Name="UpdatedDate" Type="date" />
         </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserPassword" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="IsLock" Type="bit" />
+        </EntityType>
         <Association Name="fk_designationId">
           <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
           <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
@@ -165,6 +176,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_empId">
+          <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="1" />
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="UserMaster">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_EmployeeId">
           <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="0..1" />
           <End Role="Attendance" Type="Self.Attendance" Multiplicity="*" />
@@ -174,6 +197,18 @@
             </Principal>
             <Dependent Role="Attendance">
               <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMaster_UserMaster">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="UserMaster1" Type="Self.UserMaster" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserMaster1">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -189,6 +224,7 @@
           <EntitySet Name="SalaryConfiguration" EntityType="Self.SalaryConfiguration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDepartment" EntityType="Self.TblDepartment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblEmployee" EntityType="Self.TblEmployee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_designationId" Association="Self.fk_designationId">
             <End Role="Designation" EntitySet="Designation" />
             <End Role="TblEmployee" EntitySet="TblEmployee" />
@@ -197,9 +233,17 @@
             <End Role="TblDepartment" EntitySet="TblDepartment" />
             <End Role="TblEmployee" EntitySet="TblEmployee" />
           </AssociationSet>
+          <AssociationSet Name="fk_empId" Association="Self.fk_empId">
+            <End Role="TblEmployee" EntitySet="TblEmployee" />
+            <End Role="UserMaster" EntitySet="UserMaster" />
+          </AssociationSet>
           <AssociationSet Name="fk_EmployeeId" Association="Self.fk_EmployeeId">
             <End Role="TblEmployee" EntitySet="TblEmployee" />
             <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMaster_UserMaster" Association="Self.FK_UserMaster_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="UserMaster1" EntitySet="UserMaster" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -270,6 +314,7 @@
           <Property Name="SrNo" Type="Int32" />
           <Property Name="BatchNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Attendance" Relationship="MVCProjectModel.fk_EmployeeId" FromRole="TblEmployee" ToRole="Attendance" />
+          <NavigationProperty Name="UserMaster" Relationship="MVCProjectModel.fk_empId" FromRole="TblEmployee" ToRole="UserMaster" />
         </EntityType>
         <Association Name="fk_designationId">
           <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
@@ -319,6 +364,15 @@
           <FunctionImport Name="sp_Emp_GetAllEmployees" ReturnType="Collection(MVCProjectModel.sp_Emp_GetAllEmployees_Result)" />
           <FunctionImport Name="Sp_HRMS_Attendance" ReturnType="Collection(MVCProjectModel.Sp_HRMS_Attendance_Result)" />
           <EntitySet Name="AddSalary" EntityType="MVCProjectModel.AddSalary" />
+          <EntitySet Name="UserMaster" EntityType="MVCProjectModel.UserMaster" />
+          <AssociationSet Name="fk_empId" Association="MVCProjectModel.fk_empId">
+            <End Role="TblEmployee" EntitySet="TblEmployees" />
+            <End Role="UserMaster" EntitySet="UserMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserMaster_UserMaster" Association="MVCProjectModel.FK_UserMaster_UserMaster">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="UserMaster1" EntitySet="UserMaster" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AttachmentMaster">
           <Key>
@@ -471,6 +525,44 @@
           <Property Name="UpdateBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
         </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="IsLock" Type="Boolean" />
+          <NavigationProperty Name="TblEmployee" Relationship="MVCProjectModel.fk_empId" FromRole="UserMaster" ToRole="TblEmployee" />
+          <NavigationProperty Name="UserMaster1" Relationship="MVCProjectModel.FK_UserMaster_UserMaster" FromRole="UserMaster" ToRole="UserMaster1" />
+          <NavigationProperty Name="UserMaster2" Relationship="MVCProjectModel.FK_UserMaster_UserMaster" FromRole="UserMaster1" ToRole="UserMaster" />
+        </EntityType>
+        <Association Name="fk_empId">
+          <End Type="MVCProjectModel.TblEmployee" Role="TblEmployee" Multiplicity="1" />
+          <End Type="MVCProjectModel.UserMaster" Role="UserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblEmployee">
+              <PropertyRef Name="EmployeeId" />
+            </Principal>
+            <Dependent Role="UserMaster">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserMaster_UserMaster">
+          <End Type="MVCProjectModel.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="MVCProjectModel.UserMaster" Role="UserMaster1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserMaster1">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -692,6 +784,18 @@
                 <ScalarProperty Name="BasicSalary" ColumnName="BasicSalary" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="SalaryId" ColumnName="SalaryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="IsLock" ColumnName="IsLock" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -14,6 +14,8 @@ namespace MVCProject.Api.Models
     [DataContract]
     public class ApiResponse
     {
+        public string Status { get; internal set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether request is authenticated or not.
         /// </summary>
