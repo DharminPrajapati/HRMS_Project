@@ -20,7 +20,7 @@
             OutDiscription: ''
 
         };
-
+        $scope.headers = [];
 
         $scope.isSearchClicked = false;
 
@@ -48,22 +48,25 @@
         $scope.selectedYear = currentDate.getFullYear();
 
 
-        $scope.generateDates = function () {
-            //debugger
-            var year = $scope.selectedYear;
-            var month = $scope.selectedMonth;
-            var numDays = new Date(year, month, 0).getDate();
-            var dates = [];
+        $scope.getAttendance = function () {
+            AttendanceService.GetHRAttendance($scope.selectedMonth, $scope.selectedYear).then(function (res) {
+                $scope.headers = [];
+                $scope.employees = res.data.Result;
+                $scope.dates = res.data.Result[0];
+                console.log($scope.employees);
 
-            for (var i = 1; i <= numDays; i++) {
-                var date = new Date(year, month - 1, i);
-                dates.push(date);
-            }
+                angular.forEach(Object.keys($scope.dates), function (selected) {
+                    if (selected != 'FirstName' && selected != 'LastName' && selected != 'EmployeeId' && selected != 'EmployeeId1') {
+                        $scope.headers.push({ Date: selected });
+                    }
+                });
 
-            $scope.dates = dates;
+            }, function (error) {
+                console.log(error);
+            });
         };
 
-        $scope.generateDates();
+        $scope.getAttendance();
 
 
 

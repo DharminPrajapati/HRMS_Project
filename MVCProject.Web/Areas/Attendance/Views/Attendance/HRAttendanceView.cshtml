@@ -26,7 +26,7 @@
                             <label>
 
                             </label>
-                            <input type="text" class="form-control" id="txtEmpName" ng-focus="true" name="txtEmpName" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1} {2}", Resource.Search, Resource.Employee, Resource.Details)" ng-model="search" tabindex="1"  maxlength="250">
+                            <input type="text" class="form-control" id="txtEmpName" ng-focus="true" name="txtEmpName" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1} {2}", Resource.Search, Resource.Employee, Resource.Details)" ng-model="search" tabindex="1" maxlength="250">
                             <div class="c">
                             </div>
 
@@ -34,21 +34,20 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>
-                              @*  {{selectedMonth}}*@
+                            <label for="month">
+                                Month:
+                                {{selectedMonth}}
                             </label>
-                            <select ng-model="selectedMonth" class="form-control" ng-options="month.value as month.name for month in months" ng-change="generateDates()"></select>
-
+                            <select id="month" class="form-control" ng-model="selectedMonth" ng-options="m.value as m.name for m in months" ng-change="getAttendance()"></select>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>
-                              @*  {{selectedYear}}*@
+                                Year:
+                                {{selectedYear}}
                             </label>
-                            <select ng-model="selectedYear" class="form-control" ng-options="year for year in years" ng-change="generateDates()"></select>
-
-
+                            <select id="year" class="form-control" ng-model="selectedYear" ng-options="y for y in years" ng-change="getAttendance()"></select>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -59,32 +58,35 @@
                             <button type="button" class="attendance_btn  btn waves-effect w-md waves-light m-b-5" ng-model="search" ng-click="isSearchClicked = true;tableParams.page(1);tableParams.reload();">Search</button>
                         </div>
                     </div>
-                 
+
                 </div>
             </div>
         </div>
         <div class="col-md-12">
             <div class="form-group">
                 <div class="form-control-static table table-responsive">
-                    @*<scrollable-table scroll-height="427">*@
-                        <table ng-table="tableParams" id="datatable" class="table table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
+                 
+                    <table ng-table="tableParams" id="datatable" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Employee</th>
+                                <th ng-repeat="h in headers">{{h.Date}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="emp in employees">
+                                <td sortable="'FirstName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{emp.FirstName}}">
+                                    {{emp.FirstName}} {{emp.LastName}}
+                                </td>
+                                <td ng-repeat="h in headers">
+                                    <span ng-if="emp[h.Date] === 0" class="fa fa-close text-danger"></span>
+                                    <span ng-if="emp[h.Date] === 1" class="fa fa-check text-success"></span>
+                                </td>
 
-                                    <th>Employee</th>                                  
-                                    <th ng-repeat="date in dates">{{date | date : 'd'}}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="emp in $data">
-                                    <td sortable="'FirstName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{emp.FirstName}}">
-                                        {{emp.FirstName}} {{emp.LastName}}
-                                    </td>
-                                    <td ng-repeat="date in dates"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                   @* </scrollable-table>*@
+                            </tr>
+                        </tbody>
+                    </table>
+                
                 </div>
             </div>
         </div>

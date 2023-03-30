@@ -17,21 +17,13 @@
             });
         }
 
-        //// Get Attendance By Id
-        //list.GetAttendance = function (employeeId) {
-        //    return $http({
-        //        method: 'GET',
-        //        url: $rootScope.apiURL + '/Attendance/GetAttendance?employeeId=' + employeeId
-        //    });
-        //};
-        //list.GetAllAttendance = function () {
-        //    debugger
-        //    return $http({
-        //        method: 'GET',
-        //        url: $rootScope.apiURL + '/Attendance/GetAllAttendance/',
-        //        data: JSON.stringify(Attendanelist)
-        //    });
-        //}
+        list.GetHRAttendance = function (month, year) {
+            return $http({
+                method: 'GET',               
+                url: $rootScope.apiURL + '/Attendance/GetHRAttendanceByMonthYear?month=' + month + '&year=' + year,
+                data: { month: month, year: year }
+            });
+        }
 
         return list;
     }]);

@@ -4,6 +4,9 @@ namespace MVCProject.Api.Controllers.Attendance
     #region NameSapces
     using System;
     using System.Collections.Generic;
+    using System.Data;
+    using System.Data.EntityClient;
+    using System.Data.SqlClient;
     using System.Globalization;
     using System.Linq;
     using System.Net;
@@ -152,6 +155,34 @@ namespace MVCProject.Api.Controllers.Attendance
                 return this.Response(Utilities.MessageTypes.Success, responseToReturn: false);
             }
         }
+
+        [HttpGet]
+        public ApiResponse GetHRAttendanceByMonthYear(int month, int year)
+        {
+            object result = null;
+            DataSet ds = new DataSet("CalendarData");
+            string providerString = ((EntityConnection)this.entities.Connection).StoreConnection.ConnectionString;
+            using (var conn = new System.Data.SqlClient.SqlConnection(providerString))
+            {
+                SqlCommand cmd = new SqlCommand("usp_EmployeeDaysInMonth", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandTimeout = 0;
+                cmd.Parameters.AddWithValue("@Month", month);
+                cmd.Parameters.AddWithValue("@Year", year);
+                conn.Open();
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+                conn.Close();
+                if (ds.Tables.Count > 0)
+                { result = ds.Tables[0]; }
+
+            }
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, result);
+
+
+        }
+
 
 
         /// Disposes expensive resources.
