@@ -21,9 +21,16 @@
             return $http({
                 method: 'GET',               
                 url: $rootScope.apiURL + '/Attendance/GetHRAttendanceByMonthYear?month=' + month + '&year=' + year,
-                data: { month: month, year: year }
+                data: { month: month, year: year}
             });
         }
+        // list.GetHRAttendance = function (month, year, pagingParams) {
+        //    return $http({
+        //        method: 'GET',               
+        //        url: $rootScope.apiURL + '/Attendance/GetHRAttendanceByMonthYear?month=' + month + '&year=' + year,
+        //        data: { month: month, year: year, pagingParams }
+        //    });
+        //}
 
         return list;
     }]);

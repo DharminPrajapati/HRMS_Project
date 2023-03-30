@@ -47,8 +47,9 @@
         $scope.selectedMonth = currentDate.getMonth() + 1;
         $scope.selectedYear = currentDate.getFullYear();
 
-
+        
         $scope.getAttendance = function () {
+           
             AttendanceService.GetHRAttendance($scope.selectedMonth, $scope.selectedYear).then(function (res) {
                 $scope.headers = [];
                 $scope.employees = res.data.Result;
@@ -68,44 +69,69 @@
 
         $scope.getAttendance();
 
+        //  $scope.getAttendance = function () {
+        //    var pagingParams = {
+        //        CurrentPageNumber: 1,
+        //        PageSize: 10,
+        //        Search: '' 
+        //    };
+        //    AttendanceService.GetHRAttendance($scope.selectedMonth, $scope.selectedYear, pagingParams).then(function (res) {
+        //        $scope.headers = [];
+        //        $scope.employees = res.data.Result.list;
+        //        $scope.dates = res.data.Result.list[0];
+        //        console.log($scope.employees);
+
+        //        angular.forEach(Object.keys($scope.dates), function (selected) {
+        //            if (selected != 'FirstName' && selected != 'LastName' && selected != 'EmployeeId' && selected != 'EmployeeId1') {
+        //                $scope.headers.push({ Date: selected });
+        //            }
+        //        });
+
+        //    }, function (error) {
+        //        console.log(error);
+        //    });
+        //};
+
+        //$scope.getAttendance();
 
 
-        $scope.tableParams = new ngTableParams({
-            page: 1,
-            count: $rootScope.pageSize,
-            sort: { FirstName: 'asc' }
-        }, {
-            getData: function ($defer, params) {
-                if (employeeDetailsParams == null) {
-                    employeeDetailsParams = {};
-                }
 
-                employeeDetailsParams.Paging = CommonFunctions.GetPagingParams(params);
-                /*    debugger*/
-                employeeDetailsParams.Paging.Search = $scope.isSearchClicked ? $scope.search : '';
-                //debugger
-                AttendanceService.GetAllEmployees(employeeDetailsParams.Paging).then(function (res) {
+        //$scope.tableParams = new ngTableParams({
+        //    page: 1,
+        //    count: $rootScope.pageSize,
+        //    sort: { FirstName: 'asc' }
+        //}, {
+        //    getData: function ($defer, params) {
+        //        if (employeeDetailsParams == null) {
+        //            employeeDetailsParams = {};
+        //        }
 
-                    if (res) {
-                        var data = res.data;
-                        if (res.data.MessageType == messageTypes.Success) {
-                            $defer.resolve(res.data.Result);
-                            if (res.data.Result.length == 0) { }
-                            //else { params.total(50); }
-                            else { params.total(res.data.Result[0].TotalRecords); }
+        //        employeeDetailsParams.Paging = CommonFunctions.GetPagingParams(params);
+        //        /*    debugger*/
+        //        employeeDetailsParams.Paging.Search = $scope.isSearchClicked ? $scope.search : '';
+        //        //debugger
+        //        AttendanceService.GetAllEmployees(employeeDetailsParams.Paging).then(function (res) {
 
-                        }
-                    }
-                    else if (res.data.MessageType == messageTypes.Error) {// Error
-                        toastr.error(res.data.Message, errorTitle);
-                    }
-                    //  debugger
-                    $rootScope.isAjaxLoadingChild = false;
-                    CommonFunctions.SetFixHeader();
-                });
-            }
+        //            if (res) {
+        //                var data = res.data;
+        //                if (res.data.MessageType == messageTypes.Success) {
+        //                    $defer.resolve(res.data.Result);
+        //                    if (res.data.Result.length == 0) { }
+        //                    //else { params.total(50); }
+        //                    else { params.total(res.data.Result[0].TotalRecords); }
 
-        });
+        //                }
+        //            }
+        //            else if (res.data.MessageType == messageTypes.Error) {// Error
+        //                toastr.error(res.data.Message, errorTitle);
+        //            }
+        //            //  debugger
+        //            $rootScope.isAjaxLoadingChild = false;
+        //            CommonFunctions.SetFixHeader();
+        //        });
+        //    }
+
+        //});
 
         $scope.SelectedEvent = null;
         var isFirstTime = true;
