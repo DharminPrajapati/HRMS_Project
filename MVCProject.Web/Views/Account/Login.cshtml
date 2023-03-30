@@ -2,35 +2,55 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_LayoutPublic.cshtml";
 }
+
 <span ng-init="IsInChildView()"></span>
+
 <div ng-controller="AccountCtrl" ng-init="CheckLogin('@ViewBag.IsSessionExpired');" class="eternity-form scroll-animations-activated">
+    @*<div class="main-wrapper">*@
     <div class="container">
-        <div class="body-sign">
-            <div class="center-sign">
-                <div class="login-form-section">
-                    <div class="login-content">
-                        <form name="frmLogin" class="form-horizontal m-t-20" role="form" ng-submit="DoLogin(loginFormData,frmLogin);"
-                              novalidate>
-                            <div class="section-title">
-                                <img src="/Content/images/company-logo.png" ng-src="{{applicationLogo}}" fallback-src="/Content/images/company-logo.png"
-                                     alt="#" ng-class="{'blur-7' : !isLogoLoaded}" style="max-height: 50px;max-width: 300px;" /><span style="color: #D40003;
-                                    font-size: 18px; font-weight: bold;"></span>
+        <div class="row">
+            <div class="col-lg-8">
+                <img src="~/Content/images/Group 10.png" style="width: 700px; margin-top: 70px; margin-left: 55px; /* margin-right: -24px;">
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card-box login-card">
+
+                        <div class="row">
+
+                            <div class="col-lg-9 col-lg-offset-3 ">
+                                <img src="~/Content/images/Group 11.png" style="width: 211px;margin-left:-8px;">
                             </div>
-                            <div class="textbox-wrap">
-                                <div class="input-group">
-                                    <span class="input-group-addon "><i class="ti-user icon-color"></i></span>
-                                    <input type="text" id="txtUserName" name="txtUserName" ng-model="loginFormData.UserName" @*autocomplete=off*@
-                                           class="form-control" maxlength="50" required ng-focus="true" tabindex="1" placeholder="@Resource.UserName" />
-                                    <div class="c">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 m-t-15">
+                                <div class="form-group">
+                                    <form name="frmLogin" class="form-horizontal m-t-20" role="form" ng-submit="DoLogin(loginFormData,frmLogin);"
+                                          novalidate>
+                                        <div class="username_text" style=" font-size: 17px;">
+                                            Username
+                                        </div>
+
+                                        @*<span class="input-group-addon "><i class="ti-user icon-color"></i></span>*@
+                                        <input type="text" id="txtUserName" name="txtUserName" ng-model="loginFormData.UserName" @*autocomplete=off*@
+                                               class="form-control " maxlength="50" required ng-focus="true" tabindex="1" placeholder="@Resource.UserName"/>
+                                        <div class="c">
+                                        </div>
+                                        <div class="label label-danger" data-ng-show="frmLogin.txtUserName.$dirty && frmLogin.txtUserName.$invalid">
+                                            <span data-ng-show="frmLogin.txtUserName.$error.required">@Resource.UserNameRequired</span>
+                                        </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <div class="username_text" style=" font-size: 17px;">
+                                        Password
                                     </div>
-                                </div>
-                                <div class="label label-danger" data-ng-show="frmLogin.txtUserName.$dirty && frmLogin.txtUserName.$invalid">
-                                    <span data-ng-show="frmLogin.txtUserName.$error.required">@Resource.UserNameRequired</span>
-                                </div>
-                            </div>
-                            <div class="textbox-wrap">
-                                <div class="input-group">
-                                    <span class="input-group-addon "><i class="ti-key icon-color"></i></span>
+
+                                    @*<span class="input-group-addon ">*@<!--<i class="ti-key icon-color"></i>-->@*</span>*@
                                     <input name="txtPassword" id="txtPassword" type="password" ng-model="loginFormData.UserPassword" autocomplete=off @*readonly onfocus="$(this).removeAttr('readonly');"*@
                                            class="form-control password" maxlength="25" required tabindex="2" placeholder="@Resource.Password" />
                                     <div class="c">
@@ -40,67 +60,145 @@
                                     <span data-ng-show="frmLogin.txtPassword.$error.required">@Resource.PasswordRequired</span>
                                 </div>
                             </div>
-                            <div class="login-form-action">
-                                <div class="checkbox pull-left">
-                                    <div class="custom-checkbox">
-                                        <div class="checkbox-primary">
-                                            <input id="chkRememberMe" ng-model="loginFormData.Remember" tabindex="3" type="checkbox" />
-                                            <label for="chkRememberMe">
-                                                Remember me
-                                            </label>
-                                            <div class="c">
-                                            </div>
-                                        </div>
-                                        <div class="c">
-                                        </div>
-                                    </div>
-                                    <div class="c">
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-primary pull-right green-btn" tabindex="4">
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 m-t-10">
+                                <input id="chkRememberMe" ng-model="loginFormData.Remember" tabindex="3" type="checkbox" />
+                                <label for="chkRememberMe">
+                                    Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lag-12">
+                                <button type="submit" class="btn btn pull-right green-btn" tabindex="4">
                                     @Resource.Login
                                 </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 m-t-10">
+                                <button type="button" class="btn btn-link no-padding" tabindex="5" ng-click="OpenResetPasswordModel()">
+                                    <i class="fa fa-lock m-r-5"></i>@Resource.ForgotPassword?
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@*</div>*@
+
+
+
+
+
+
+
+
+
+<!--<div class="container">
+
+    <img src="~/Content/images/Group 12.png" style="width: 650px;margin-top: 140px;">
+    <div class="body-sign">
+        <div class="center-sign">
+            <div class="login-form-section">
+                <div class="login-content">
+                    <div class="username_text" style="font-size: 36px; margin-left: 192px; margin-top: -45px; font-weight: 600; color: black;">
+                        Login
+                    </div>
+                    <form name="frmLogin" class="form-horizontal m-t-20" role="form" ng-submit="DoLogin(loginFormData,frmLogin);"
+                          novalidate>
+
+                        <div class="textbox-wrap">
+                            <div class="username_text" style=" font-size: 17px;">
+                                Username
+                            </div>
+                            <div class="input-group">
+                                <input type="text" id="txtUserName" name="txtUserName" ng-model="loginFormData.UserName"-->
+@*autocomplete=off*@
+<!--class="form-control" maxlength="50" required ng-focus="true" tabindex="1"--> @*placeholder="@Resource.UserName"*@
+<!--/>
+
+        <div class="c">
+        </div>
+
+    </div>
+    <div class="label label-danger" data-ng-show="frmLogin.txtUserName.$dirty && frmLogin.txtUserName.$invalid">
+        <span data-ng-show="frmLogin.txtUserName.$error.required">@Resource.UserNameRequired</span>
+    </div>
+</div>
+<div class="textbox-wrap">
+    <div class="username_text" style=" font-size: 17px;">
+        Password
+    </div>
+    <div class="input-group">
+        <input name="txtPassword" id="txtPassword" type="password" ng-model="loginFormData.UserPassword" autocomplete=off-->
+@*readonly onfocus="$(this).removeAttr('readonly');"*@
+<!--class="form-control password" maxlength="25" required tabindex="2"--> @*placeholder="@Resource.Password"*@
+<!--/>
+                        <div class="c">
+                        </div>
+                    </div>
+                    <div class="label label-danger" data-ng-show="frmLogin.txtPassword.$dirty && frmLogin.txtPassword.$invalid">
+                        <span data-ng-show="frmLogin.txtPassword.$error.required">@Resource.PasswordRequired</span>
+                    </div>
+                </div>
+                <div class="login-form-action">
+                    <div class="checkbox pull-left">
+                        <div class="custom-checkbox">
+                            <div class="checkbox-primary">
+                                <input id="chkRememberMe" ng-model="loginFormData.Remember" tabindex="3" type="checkbox" />
+                                <label for="chkRememberMe">
+                                    Remember me
+                                </label>
                                 <div class="c">
                                 </div>
-                                <h4 class="green">
-                                    <button type="button" class="btn btn-link no-padding" tabindex="5" ng-click="OpenResetPasswordModel()">
-                                        <i class="fa fa-lock m-r-5"></i>@Resource.ForgotPassword?
-                                    </button>
-                                </h4>
                             </div>
                             <div class="c">
                             </div>
-                        </form>
+                        </div>
                         <div class="c">
                         </div>
                     </div>
-                    <div class="login-form-links link1  animated fadeInLeftBig" data-animation="fadeInLeftBig"
-                         data-animation-delay=".2s" style="animation-delay: 0.2s;">
-                        <img src="/Content/images/askehs_logo_demo.png" alt="#" ng-class="{'blur-7' : !isLogoLoaded}"
-                             style="max-height: 50px;" /><span style="color: #D40003; font-size: 18px; font-weight: bold;"></span>
+                    <button type="submit" class="btn  pull-right green-btn" tabindex="4">
+                        @Resource.Login
+                    </button>
+                    <div class="c">
                     </div>
-                    @* <div class="login-form-links link1  animated fadeInLeftBig" data-animation="fadeInLeftBig" data-animation-delay=".2s" style="animation-delay: 0.2s;">
-                            <h4 class="blue">Don't have an Account?</h4>
-                            <span>No worry</span>
-                            <a href="#" class="blue">Click Here</a>
-                            <span>to Register</span>
-                        </div>*@ @*<div class="login-link-back">
-                        <a href="~/Home" tabindex="6"><i class="fa fa-home m-r-5"></i>@Resource.BackToHome</a></div>*@
-                        <div class="c">
-                        </div>
-                    </div>
+                    <h4 class="green">
+                        <button type="button" class="btn btn-link no-padding" tabindex="5" ng-click="OpenResetPasswordModel()">
+                            <i class="fa fa-lock m-r-5"></i>@Resource.ForgotPassword?
+                        </button>
+                    </h4>
                 </div>
-            </div>
+                <div class="c">
+                </div>
+            </form>
             <div class="c">
             </div>
         </div>
-        <div class="c">
-        </div>
-        <div class="c">
-        </div>
     </div>
-    <div class="c">
-    </div>
+</div>-->
+@*<div class="login-form-links link1  animated fadeInLeftBig" data-animation="fadeInLeftBig"
+        data-animation-delay=".2s" style="animation-delay: 0.2s;">
+        <img src="/Content/images/askehs_logo_demo.png" alt="#" ng-class="{'blur-7' : !isLogoLoaded}"
+            style="max-height: 50px;" /><span style="color: #D40003; font-size: 18px; font-weight: bold;"></span>
+    </div>*@
+@* <div class="login-form-links link1  animated fadeInLeftBig" data-animation="fadeInLeftBig" data-animation-delay=".2s" style="animation-delay: 0.2s;">
+        <h4 class="blue">Don't have an Account?</h4>
+        <span>No worry</span>
+        <a href="#" class="blue">Click Here</a>
+        <span>to Register</span>
+    </div>*@ @*<div class="login-link-back">
+    <a href="~/Home" tabindex="6"><i class="fa fa-home m-r-5"></i>@Resource.BackToHome</a></div>*@
+
+
     @*<div ng-controller="AccountCtrl" ng-init="CheckLogin('@ViewBag.IsSessionExpired')">
             <div class="text-center">
                 <a href="#" class="logo-login">
@@ -156,6 +254,7 @@
                 </div>
             </div>
         </div>*@
+
     @section Scripts {
         @Scripts.Render("~/bundles/Account")
     }
