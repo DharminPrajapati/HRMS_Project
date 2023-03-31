@@ -153,7 +153,7 @@
 
                 
 
-                // format time in AM/PM format
+                 //format time in AM/PM format
                 function formatTime(timeString, isOutTime) {
                     var time = new Date('2000-01-01T' + timeString + 'Z');
                     var timeZoneOffset = time.getTimezoneOffset(); // get timezone offset in minutes
@@ -164,12 +164,15 @@
                     var hours = time.getHours();
                     var minutes = time.getMinutes();
                     var suffix = isOutTime ? 'PM' : 'AM';
-                    hours = hours % 12;
-                    hours = hours ? hours : 12; // the hour '0' should be '12'
+                    hours = hours % 24;
+                    hours = hours ? hours : 24; // the hour '0' should be '12'
                     minutes = minutes < 10 ? '0' + minutes : minutes;
                     var strTime = hours + ':' + minutes + ' ' + suffix;
                     return strTime;
                 }
+                
+                
+
 
 
 
@@ -184,8 +187,8 @@
                 // push event to events array
                 $scope.events.push({
                     title: '',
-                    intimedescription: formatTime(value.InTime, false), // In Time in AM format
-                    outtimetdescription: formatTime(value.OutTime, true), // Out Time in PM format
+                    intimedescription: formatTime(value.InTime,false), // In Time in AM format
+                    outtimetdescription: formatTime(value.OutTime,true), // Out Time in PM format
                     indescription: value.InDiscription,
                     outdescription: value.OutDiscription,
                     start: $scope.formatDate(value.Date),
