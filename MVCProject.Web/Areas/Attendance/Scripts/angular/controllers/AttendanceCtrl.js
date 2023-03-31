@@ -141,8 +141,7 @@
         $scope.events = [];
         $scope.eventSources = [$scope.events];
 
-
-
+        
 
         //Load events from server
         $http.get($rootScope.apiURL + '/Attendance/GetAllAttendance/', {
@@ -151,27 +150,52 @@
         }).then(function (data) {
             $scope.events.length = 0;
             angular.forEach(data.data.Result, function (value) {
-                //date formating
+
+                
+
+                // format time in AM/PM format
+                function formatTime(timeString, isOutTime) {
+                    var time = new Date('2000-01-01T' + timeString + 'Z');
+                    var timeZoneOffset = time.getTimezoneOffset(); // get timezone offset in minutes
+                    time.setTime(time.getTime() + timeZoneOffset * 60 * 1000); // adjust time object based on timezone offset
+                    if (isNaN(time.getTime())) {
+                        return '';
+                    }
+                    var hours = time.getHours();
+                    var minutes = time.getMinutes();
+                    var suffix = isOutTime ? 'PM' : 'AM';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // the hour '0' should be '12'
+                    minutes = minutes < 10 ? '0' + minutes : minutes;
+                    var strTime = hours + ':' + minutes + ' ' + suffix;
+                    return strTime;
+                }
+
+
+
+                //format date
                 $scope.formatDate = function (dateString) {
                     var date = new Date(dateString);
-                    return date.toISOString().slice(0, 10);
+                    var year = date.getFullYear();
+                    var month = date.getMonth() + 1;
+                    var day = date.getDate();
+                    return year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
                 }
+                // push event to events array
                 $scope.events.push({
                     title: '',
-                    intimedescription: value.InTime,
-                    outtimetdescription: value.OutTime,
+                    intimedescription: formatTime(value.InTime, false), // In Time in AM format
+                    outtimetdescription: formatTime(value.OutTime, true), // Out Time in PM format
                     indescription: value.InDiscription,
                     outdescription: value.OutDiscription,
-                    start: value.Date,
-                    end: value.Date,
-
+                    start: $scope.formatDate(value.Date),
+                    end: $scope.formatDate(value.Date),
                     IsActive: true,
                     stick: true
-
                 });
-
             });
         });
+
         /* Render Tooltip */
 
         //configure calendar
@@ -214,7 +238,7 @@
 
 
                 eventMouseover: function (event, jsEvent) {
-                    var tooltip = '<div class="tooltipevent" style="width:auto;height:auto;background:#f2f2f2;position:absolute;z-index:10001;border:1px solid  #ddd;border-radius:3px;padding:5px 10px; font-size:11px;font-weight:600">' + event.intimedescription + '<br>' + event.outtimetdescription + '</div>';
+                    var tooltip = '<div class="tooltipevent" style="width:auto;height:auto;background:#f2f2f2;position:absolute;z-index:10001;border:1px solid  #ddd;border-radius:3px;padding:5px 10px; font-size:11px;font-weight:600">' + 'In Time: ' + event.intimedescription + '<br>' + 'Out Time: '  + event.outtimetdescription + '</div>';
                     $("body").append(tooltip);
                     $(this).mouseover(function (e) {
                         $(this).css('z-index', 10000);
