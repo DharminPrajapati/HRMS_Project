@@ -44,6 +44,7 @@ namespace System.Web.Mvc
                     menuString.Append(GetSubMenu(Resource.Designations, "", "/Configuration/Designation"));
                     menuString.Append(GetSubMenu(Resource.Department, "", "/Configuration/Department"));
                     menuString.Append(GetSubMenu(Resource.Salary, "", "/Configuration/Salary"));
+                    menuString.Append(GetSubMenu(Resource.UserMaster, "", "/Configuration/UserMaster"));
                     menuString.Append("</ul></li>");
                     
                     menuString.Append("<li>");

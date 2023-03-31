@@ -1,0 +1,293 @@
+﻿@{
+    ViewBag.Title = Resource.UserMaster;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<style>
+    .colSrno {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+
+    .colPosition {
+        width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
+    }
+
+    .colActive {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+    }
+
+    .colAction {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+    }
+</style>
+@*<script src="~/Scripts/js/jquery-3.6.3.js"></script>
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+    <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>*@
+
+<div ng-controller="UserMasterCtrl" novalidate>
+    <!-- start title section-->
+    <!-- start title section-->
+    <div class="main-page-title title-icon relative l">
+        <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+        <h4 class="header-title-sub l">@Resource.UserMaster</h4>
+        <!-- start button-->
+        <div class="pull-right">
+            @*<button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()">
+                    <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
+                </button>*@
+        </div>
+        <!-- end button-->
+    </div>
+    <!-- end title section-->
+    <!-- start body section-->
+    <div class="card-box">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- start designation form -->
+                <form name="frmUserMaster" ng-submit="SaveuserMasterDetails(userMasterDetailScope,frmUserMaster)"
+                      novalidate>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    Name <span class="required-field">*</span>
+                                </label>
+
+                                @*<select name="Rolename" ng-init="namelist()"  class="form-control" ng-model="userMasterDetailScope.FullName">
+                                    <option>Select fullname</option>
+
+                                    <option ng-repeat="Namelists in name" value="{{Namelists.Id}}" >{{Namelists.Name}}</option>
+
+                                    </select>*@
+                                @*<input type="text" class="form-control" ng-focus="true" required tabindex="1" placeholder="@Resource.FirstName" maxlength="250">*@
+
+                                <div angucomplete-alt
+                                     name="txtUserMaster"
+                                     id="GetFullname"
+                                     input-name="GetFullname"
+                                     placeholder="Full name"
+                                     pause="200"
+                                     selected-object="selectedProject"
+                                     remote-url="{{FullnameURL}}"
+                                     remote-url-data-field="Result"
+                                     model-field="userMasterDetailScope.FirstName"
+                                     @*remote -url-request-formatter="remoteUrlRequestFn" *@
+                                     @*remote -url-data-field="items" *@
+                                     initial-value="userMasterDetailScope.FirstName"
+                                     title-field="Name"
+                                     description-field="description"
+                                     minlength="3"
+                                     input-class="form-control form-control-small"
+                                     match-class="highlight">
+                                </div>
+
+                                <div class="c">
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMaster.$dirty && frmUserMaster.txtUserMaster.$invalid">
+                                    <span data-ng-show="frmUserMaster.txtUserMaster.$error.required">Name</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>
+                                @Resource.UserName <span class="required-field">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserName" name="txtUserMaster" required tabindex="1" placeholder="@Resource.UserName" maxlength="250">
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger" data-ng-show="">
+                                <span data-ng-show="">@Resource.UserNameRequired</span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>
+                                @Resource.Password <span class="required-field">*</span>
+                            </label>
+                            <input type="password" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserPassword" name="txtUserMaster" required tabindex="1" placeholder="@Resource.Password" maxlength="250">
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMaster.$dirty && frmUserMaster.txtUserMaster.$invalid">
+                                <span data-ng-show="frmUserMaster.txtUserMaster.$error.required">@Resource.Password</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label required tabindex="2" placeholder="Resource.UserRole" maxlength="250">
+                                Resource.UserRole {{ userMasterDetailScope.UserRole}} <span class="required-field">*</span>
+                            </label>-->
+                    @*<select name="Rolename" ng-init="rolelist()" class="form-control">
+                            <option>Select role</option>
+
+                            <option ng-repeat="Rolelists in role">{{Rolelists.Name}}</option>
+
+                        </select>*@
+
+                    @*<input type="text" class="form-control" id="txtUserMaster" ng-focus="true" name="txtUserMaster" ng-focus="true" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">*@
+
+                    <!--<div ng-dropdown-multiselect=""
+                                 ng-model="userMasterDetailScope.UserRole"
+                                 ng-init="roleScope()"
+                                 extra-settings="multiselectsettingrole"
+                                 options="Role"
+                                 Selected-model="userMasterDetailScope.UserRole"
+                                 checkboxes="true"
+                                 title="{{userMasterDetailScope.UserRole}}">
+                            </div>
+
+                            <div class="c">
+                            </div>
+                            <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMaster.$dirty && frmUserMaster.txtUserMaster.$invalid">
+                                <span data-ng-show="frmUserMaster.txtUserMaster.$error.required"></span>
+                            </div>
+                        </div>
+                    </div>-->
+                    @*
+                        </div>*@
+
+                    <div class="col-md-3">
+                        <!--IsActive -->
+                        <div class="form-group">
+                            <label>
+                            </label>
+                            <div class="form-control-static">
+                                <div class="checkbox checkbox-info">
+                                    <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="userMasterDetailScope.IsActive" tabindex="2" />
+                                    <label for="chkDesignationActive">
+                                        @Resource.IsActive
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                                        ng-disabled="frmUserMaster.txtUserMaster.$invalid" tabindex="3">
+                                    {{userMasterDetailScope.UserId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                                </button>
+                                <button type="button" ng-click="ClearFormData()" class="btn btn-info waves-effect w-md waves-light m-b-5"
+                                        tabindex="4">
+                                    @Resource.Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <!-- end usermaster form -->
+                <hr />
+                <!-- start usermaster details list -->
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <label class="table-title">
+                                @Resource.UserMaster @Resource.Details
+                            </label>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="input-group">
+                                <input type="text" tabindex="104" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1} {2}", Resource.Search, Resource.User, Resource.Details)" />
+                                <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked = true;tableParams.page(1);tableParams.reload();">
+                                    <i class="fa fa-search"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="form-control-static">
+                            <scrollable-table scroll-height="400">
+                                <table ng-table="tableParams" id="datatable" class="table table-striped table-bordered table-hover">
+                                    <tr ng-repeat="h in $data">
+                                        <td data-title="'@Resource.SrNo'" header-class="'colSrno'" ng-class="'colSrno text-right'">
+                                            {{(tableParams.$params.page-1)*tableParams.$params.count+($index + 1)}}
+                                        </td>
+                                        <td data-title="'@Resource.FirstName'" sortable="'Fullname'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.FirstName}}">
+                                            {{h.FirstName}}
+                                        </td>
+                                        <td data-title="'@Resource.UserName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.UserName}}">
+                                            {{h.UserName}}
+                                        </td>
+                                        @*<td data-title="'@Resource.UserRole'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.UserRoleName}}">
+                                                {{h.UserRoleName}}
+                                            </td>*@
+
+                                        @*<td data-title="'@Resource.UserRole'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.UserRoleName}}">
+                                                <span ng-if="h.UserRole && h.UserRole.length > 0">
+                                                    {{ h.UserId.join(', ') }}
+                                                </span>
+                                                <span ng-if="!h.UserId || h.UserId.length == 0">
+                                                    N/A
+                                                </span>
+                                            </td>*@
+
+
+                                        <td data-title="'@Resource.Active'" sortable="'IsActive'" header-class="'colActive'" ng-class="'colActive text-center'">
+                                            <input type="checkbox" class="js-switch" ui-switch options="switchOptions" ng-model="h.IsActive"
+                                                   ng-disabled="true" />
+                                        </td>
+                                        <td data-title="'@Resource.Action'" header-class="'colAction'" ng-class="'colAction text-center'">
+                                            <a class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit" title="Edit"
+                                               ng-click="EditUserMasterDetails(h.UserId)">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit" title="Lock"
+                                               ng-click="LockUserMaster(h.UserId)">
+                                                <i class="fa fa-lock"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="$data.length == 0">
+                                        <td colspan="4" class="no-record">
+                                            @Resource.NoRecordAvailable
+                                            <span ng-if="search!=''">
+                                                <br />@Resource.YourSearch - '{{search}}' @Resource.DidNotMatchAnyRecord
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </scrollable-table>
+                        </div>
+
+
+                        <!-- end usermaster details list -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end body section-->
+
+@section scripts {
+    @Scripts.Render("~/bundles/Configuration/UserMaster")
+
+}
+<script src="https://kit.fontawesome.com/73e0cf2663.js" crossorigin="anonymous"></script>
+

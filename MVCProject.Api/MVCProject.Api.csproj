@@ -188,6 +188,7 @@
     <Compile Include="Controllers\Configuration\DesignationsController.cs" />
     <Compile Include="Controllers\Common\UploadController.cs" />
     <Compile Include="Controllers\Configuration\SalaryConfigController.cs" />
+    <Compile Include="Controllers\Configuration\UserMastersController.cs" />
     <Compile Include="Controllers\EmployeeManagement\EmployeeController.cs" />
     <Compile Include="Controllers\EmployeeManagement\SearchEmployeeController.cs" />
     <Compile Include="Controllers\Salary\SalaryController.cs" />

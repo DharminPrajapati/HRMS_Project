@@ -943,6 +943,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FirstName.
+        /// </summary>
+        public static string FirstName {
+            get {
+                return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First Name required.
         /// </summary>
         public static string FirstNameRequired {
@@ -2307,6 +2316,15 @@ namespace MVCProject.Common.Resources {
         public static string UserInvalid {
             get {
                 return ResourceManager.GetString("UserInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UserMaster.
+        /// </summary>
+        public static string UserMaster {
+            get {
+                return ResourceManager.GetString("UserMaster", resourceCulture);
             }
         }
         

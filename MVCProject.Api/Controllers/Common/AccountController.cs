@@ -34,13 +34,31 @@ namespace MVCProject.Api.Controllers.Common
             var emp = entities.UserMaster.Where(u => u.UserName == user.UserName && u.UserPassword == user.UserPassword).FirstOrDefault();
             if (emp == null)
             {
-                return new ApiResponse { Status = "Error", Message = "Invalid username or password." };
+                //return new ApiResponse { Status = "Error", Message = "Invalid username or password." };
+                return this.Response(Utilities.MessageTypes.Warning, string.Format("Invalid username or password"));
             }
             else
             {
-                return new ApiResponse { Status = "Success", Message = "login sucessfull." };
-                // return this.RedirectToAction("Index", "Employee");
+                UserContext userContext = new UserContext();
+                userContext.EmployeeId = (int)emp.EmployeeId;
+                userContext.UserId = emp.UserId;
+                userContext.UserName = emp.UserName;
+
+                this.UserContext.EmployeeId = userContext.EmployeeId;
+                this.UserContext.UserId = userContext.UserId;
+                this.UserContext.UserName = userContext.UserName;
+                //return this.Response(Utilities.MessageTypes.Success, string.Empty);
+
+                return this.Response(Utilities.MessageTypes.Success, responseToReturn: userContext);
+
+                //return new ApiResponse { Status = "Success", Message = "login sucessfull." };
+
+
             }
         }
+
     }
 }
+
+
+

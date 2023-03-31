@@ -33,7 +33,7 @@
 
                                         @*<span class="input-group-addon "><i class="ti-user icon-color"></i></span>*@
                                         <input type="text" id="txtUserName" name="txtUserName" ng-model="loginFormData.UserName" @*autocomplete=off*@
-                                               class="form-control " maxlength="50" required ng-focus="true" tabindex="1" placeholder="@Resource.UserName"/>
+                                               class="form-control " maxlength="50" required ng-focus="true" tabindex="1" placeholder="@Resource.UserName" />
                                         <div class="c">
                                         </div>
                                         <div class="label label-danger" data-ng-show="frmLogin.txtUserName.$dirty && frmLogin.txtUserName.$invalid">
@@ -76,13 +76,13 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-12 m-t-10">
-                                <button type="button" class="btn btn-link no-padding" tabindex="5" ng-click="OpenResetPasswordModel()">
-                                    <i class="fa fa-lock m-r-5"></i>@Resource.ForgotPassword?
-                                </button>
-                            </div>
-                        </div>
+                        @*<div class="row">
+                                <div class="col-lg-12 m-t-10">
+                                    <button type="button" class="btn btn-link no-padding" tabindex="5" ng-click="OpenResetPasswordModel()">
+                                        <i class="fa fa-lock m-r-5"></i>@Resource.ForgotPassword?
+                                    </button>
+                                </div>
+                            </div>*@
 
                     </div>
 

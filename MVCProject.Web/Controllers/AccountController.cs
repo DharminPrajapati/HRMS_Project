@@ -102,35 +102,35 @@ namespace MVCProject.Controllers
         /// <returns>ActionResult object</returns>
         public ActionResult RedirectToDefaultUrl()
         {
-            //if (this.Session["UserContext"] == null)
-            //{
-            //    // No session, redirect to login                
-            //    this.LogoutUser();
-            //    return this.RedirectToAction("Login", "Account", new { noSession = "y" });
-            //}
-            //else
-            //{
-            //    if (this.Session["LastUrl"] != null)
-            //    {
-            //        string url = this.Session["LastUrl"].ToString();
-            //        this.Session["LastUrl"] = null;
-            //        Response.Redirect(url);
-            //    }
+            if (this.Session["UserContext"] == null)
+            {
+                // No session, redirect to login                
+                this.LogoutUser();
+                return this.RedirectToAction("Login", "Account", new { noSession = "y" });
+            }
+            else
+            {
+                if (this.Session["LastUrl"] != null)
+                {
+                    string url = this.Session["LastUrl"].ToString();
+                    this.Session["LastUrl"] = null;
+                    Response.Redirect(url);
+                }
 
-            //    UserContext userContext = (UserContext)this.Session["UserContext"];
-            //    UserContext.PagePermission generalPermission = userContext.PageAccess.Where(p => p.PageId == Pages.General.Designation || p.PageId == Pages.General.CommonConfiguartion).FirstOrDefault();
-            //    bool hasGeneralAccess = generalPermission.CanWrite || generalPermission.CanRead;
+              //  UserContext userContext = (UserContext)this.Session["UserContext"];
+              // // UserContext.PagePermission generalPermission = userContext.PageAccess.Where(p => p.PageId == Pages.General.Designation || p.PageId == Pages.General.CommonConfiguartion).FirstOrDefault();
+              ////  bool hasGeneralAccess = generalPermission.CanWrite || generalPermission.CanRead;
 
-            //    if (hasGeneralAccess)
-            //    {
-            //        return RedirectToAction("Index", "Designation", new { area = "Configuration" });
-            //    }
-            //    else
-            //    {
-            //        return this.RedirectToAction("ServerError", "Error", new { id = 404 });
-            //    }
-            //    //}
-            //}
+              //  if (hasGeneralAccess)
+              //  {
+              //      return RedirectToAction("Index", "Designation", new { area = "Configuration" });
+              //  }
+              //  else
+              //  {
+              //      return this.RedirectToAction("ServerError", "Error", new { id = 404 });
+              //  }
+                //}
+            }
 
             return RedirectToAction("Index", "Employee", new { area = "EmployeeManagement" });
         }
@@ -172,7 +172,7 @@ namespace MVCProject.Controllers
         /// </summary>
         private void LogoutUser()
         {
-            /*
+
             try
             {
                 if (Request.Cookies["SAFEZydusSESSION" + Request.Url.Port] != null && Request.Cookies["SAFEZydusSESSION" + Request.Url.Port].Value.ToString() != string.Empty)
@@ -192,7 +192,7 @@ namespace MVCProject.Controllers
             catch
             {
             }
-              */
+
         }
     }
 }

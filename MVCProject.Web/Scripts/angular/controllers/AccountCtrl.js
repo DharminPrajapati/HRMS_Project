@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module("MVCApp").controller('AccountCtrl', [
-            '$scope', '$rootScope', '$uibModal', 'AccountService', 'CommonFunctions', 'CommonService', AccountCtrl
-        ]);
+        '$scope', '$rootScope', '$uibModal', 'AccountService', 'CommonFunctions', 'CommonService', AccountCtrl
+    ]);
 
     //BEGIN AccountCtrl
     function AccountCtrl($scope, $rootScope, $uibModal, AccountService, CommonFunctions, CommonService) {
@@ -53,17 +53,18 @@
                 if (res) {
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
-                        CommonService.CreateSession(data.Result).then(function (response) {
-                            $rootScope.isAjaxLoadingChild = true;
-                            if (Login.Remember) {
-                                var userdata = Login.UserName + "░" + Login.UserPassword;
-                                userdata = CommonFunctions.EncryptData(userdata);
-                                CommonFunctions.SetCookie("REM", userdata);
-                            } else {
-                                CommonFunctions.SetCookie("REM", "");
-                            }
-                            CommonFunctions.RedirectToDefaultUrl();
-                        });
+                        //CommonService.CreateSession(data.Result).then(function (response) {
+                        //    $rootScope.isAjaxLoadingChild = true;
+                        //    if (Login.Remember) {
+                        //        var userdata = Login.UserName + "░" + Login.UserPassword;
+                        //        userdata = CommonFunctions.EncryptData(userdata);
+                        //        CommonFunctions.SetCookie("REM", userdata);
+                        //    } else {
+                        //        CommonFunctions.SetCookie("REM", "");
+                        //    }
+                        //    CommonFunctions.RedirectToDefaultUrl();
+                        //});
+                        window.open("http://localhost:56563/EmployeeManagement/Employee")
                     } else {
                         $("#txtUserName").focus();
                         toastr.error(data.Message, errorTitle);
@@ -91,13 +92,13 @@
                 toastr.success(sessionStorage.getItem("resetPasswordSuccessMessage"));
                 sessionStorage.removeItem("resetPasswordSuccessMessage");
             }
-        } ();
+        }();
     }
     //END AccountCtrl
 
     angular.module("MVCApp").controller('ResetPasswordModel', [
-           "$scope", "$rootScope", "$filter", "$uibModalInstance", 'AccountService', ResetPasswordModel
-        ]);
+        "$scope", "$rootScope", "$filter", "$uibModalInstance", 'AccountService', ResetPasswordModel
+    ]);
 
     //BEGIN AccountCtrl
     function ResetPasswordModel($scope, $rootScope, $filter, $uibModalInstance, AccountService) {

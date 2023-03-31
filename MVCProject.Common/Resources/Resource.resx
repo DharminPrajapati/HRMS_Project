@@ -906,4 +906,10 @@
   <data name="Employee Search" xml:space="preserve">
     <value>Employee Search</value>
   </data>
+  <data name="UserMaster" xml:space="preserve">
+    <value>UserMaster</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>FirstName</value>
+  </data>
 </root>

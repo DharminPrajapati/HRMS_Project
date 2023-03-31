@@ -165,6 +165,7 @@
     <Compile Include="Areas\Configuration\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Configuration\Controllers\DesignationController.cs" />
     <Compile Include="Areas\Configuration\Controllers\SalaryConfigController.cs" />
+    <Compile Include="Areas\Configuration\Controllers\UserMasterController.cs" />
     <Compile Include="Areas\EmployeeManagement\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ResetLoginController.cs" />
     <Compile Include="Areas\Configuration\Controllers\RoleController.cs" />
@@ -224,11 +225,13 @@
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DesignationCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ResetToLoginCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\SalaryConfigCtrl.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\controllers\UserMasterCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ApplicationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DepartmentService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DesignationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ResetToLoginService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\SalaryConfigService.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\services\UserMasterService.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\angular\controllers\EmployeeCtrl.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\angular\controllers\SearchEmployeeCtrl.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\angular\services\EmployeeService.js" />
@@ -508,6 +511,7 @@
     <Content Include="Areas\Salary\Views\Salary\Index.cshtml" />
     <Content Include="Areas\Configuration\Views\Salary\Index.cshtml" />
     <Content Include="Areas\EmployeeManagement\Views\SearchEmployee\Index.cshtml" />
+    <Content Include="Areas\Configuration\Views\UserMaster\Index.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />

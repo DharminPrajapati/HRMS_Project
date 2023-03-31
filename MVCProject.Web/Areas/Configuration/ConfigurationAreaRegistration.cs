@@ -96,6 +96,10 @@ namespace MVCProject.Areas.Configuration
             bundles.Add(new ScriptBundle("~/bundles/Configuration/Salary")
                 .Include("~/Areas/Configuration/Scripts/angular/services/SalaryConfigService.js")
                 .Include("~/Areas/Configuration/Scripts/angular/controllers/SalaryConfigCtrl.js"));
+            // UserMaster
+            bundles.Add(new ScriptBundle("~/bundles/Configuration/UserMaster")
+                .Include("~/Areas/Configuration/Scripts/angular/services/UserMasterService.js")
+                .Include("~/Areas/Configuration/Scripts/angular/controllers/UserMasterCtrl.js"));
 
 
         }
