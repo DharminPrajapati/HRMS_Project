@@ -74,7 +74,7 @@ namespace MVCProject.Api.Controllers.Configuration
         }
 
 
-
+        //auto complete
         [HttpGet]
         public ApiResponse GetFullname(bool isActive, string searchText)
         {
@@ -101,16 +101,16 @@ namespace MVCProject.Api.Controllers.Configuration
         /// <param name="UserId">UserMaster id.</param>
         /// <returns>Returns response type of <see cref="ApiResponse"/> class.></returns>
         [HttpGet]
-        public ApiResponse GetUserMasterById(int userId)
+        public ApiResponse GetUserMasterById(int UserId)
         {
             var userMasterDetail = this.entities.UserMaster
 
-                 .Where(a => a.UserId == userId).ToList()
+                 .Where(a => a.UserId == UserId).ToList()
                         .Select(g => new
                         {
                             UserId = g.UserId,
                             UserName = g.UserName,
-                            EmpId = g.EmployeeId,
+                            EmployeeId = g.EmployeeId,
                             FirstName = g.EmployeeId > 0 ? this.entities.TblEmployees.FirstOrDefault(x => x.EmployeeId == g.EmployeeId).FirstName : string.Empty,
                             UserPassword = g.UserPassword,
                             IsActive = g.IsActive,

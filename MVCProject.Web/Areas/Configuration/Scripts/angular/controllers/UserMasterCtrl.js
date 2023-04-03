@@ -58,7 +58,7 @@
         $scope.userMasterDetailScope = {
             UserId: 0,
             UserName: '',
-            EmployeeId: '',
+            EmployeeId: 0,
             FirstName: '',
             Password: '',
             UserPassword: '',

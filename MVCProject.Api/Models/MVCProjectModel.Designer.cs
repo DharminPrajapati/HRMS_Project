@@ -23,7 +23,6 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_despartmentId", "TblDepartment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.TblDepartment), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_EmployeeId", "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.TblEmployee), "Attendance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.Attendance), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_empId", "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MVCProject.Api.Models.TblEmployee), "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserMaster), true)]
-[assembly: EdmRelationshipAttribute("MVCProjectModel", "FK_UserMaster_UserMaster", "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MVCProject.Api.Models.UserMaster), "UserMaster1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserMaster), true)]
 
 #endregion
 
@@ -3332,82 +3331,6 @@ namespace MVCProject.Api.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<TblEmployee>("MVCProjectModel.fk_empId", "TblEmployee", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "FK_UserMaster_UserMaster", "UserMaster1")]
-        public UserMaster UserMaster1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK_UserMaster_UserMaster", "UserMaster1").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK_UserMaster_UserMaster", "UserMaster1").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<UserMaster> UserMaster1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK_UserMaster_UserMaster", "UserMaster1");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserMaster>("MVCProjectModel.FK_UserMaster_UserMaster", "UserMaster1", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "FK_UserMaster_UserMaster", "UserMaster")]
-        public UserMaster UserMaster2
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK_UserMaster_UserMaster", "UserMaster").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK_UserMaster_UserMaster", "UserMaster").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<UserMaster> UserMaster2Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK_UserMaster_UserMaster", "UserMaster");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserMaster>("MVCProjectModel.FK_UserMaster_UserMaster", "UserMaster", value);
                 }
             }
         }

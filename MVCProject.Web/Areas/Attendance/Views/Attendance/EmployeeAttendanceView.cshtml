@@ -162,8 +162,9 @@
                                         <h2>Attendance Details:</h2>
                                         <p>Date: {{ formatDate(SelectedEvent.start) }}</p>
                                         @*<h2 style="color: #ffffff;">{{SelectedEvent.title}}</h2>*@
-                                        <p>In Time: {{SelectedEvent.intimedescription}}</p>
-                                        <p>Out Time: {{SelectedEvent.outtimetdescription}}</p>
+                                        <p>In Time: {{ SelectedEvent.intimedescription | date: 'hh:mm a' }}</p>
+                                        <p>Out Time: {{ SelectedEvent.outtimetdescription | date: 'hh:mm a' }}</p>
+
                                         <p>In Discription: {{SelectedEvent.indescription}}</p>
                                         <p>Out Discription: {{SelectedEvent.outdescription}}</p>
 

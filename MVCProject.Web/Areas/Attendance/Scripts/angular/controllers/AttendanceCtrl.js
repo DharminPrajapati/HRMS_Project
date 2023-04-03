@@ -187,8 +187,8 @@
                 // push event to events array
                 $scope.events.push({
                     title: '',
-                    intimedescription: formatTime(value.InTime,false), // In Time in AM format
-                    outtimetdescription: formatTime(value.OutTime,true), // Out Time in PM format
+                    intimedescription:value.InTime,// In Time in AM format
+                    outtimetdescription:value.OutTime, // Out Time in PM format
                     indescription: value.InDiscription,
                     outdescription: value.OutDiscription,
                     start: $scope.formatDate(value.Date),

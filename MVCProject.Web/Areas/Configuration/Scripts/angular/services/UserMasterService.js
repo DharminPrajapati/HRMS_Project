@@ -50,10 +50,11 @@
         }
 
         // Get UserMaster Items
-        list.GetUserMasterById = function (userId) {
+        list.GetUserMasterById = function (UserId) {
+            debugger
             return $http({
                 method: 'GET',
-                url: $rootScope.apiURL + '/UserMasters/GetUserMasterById?userId=' + userId
+                url: $rootScope.apiURL + '/UserMasters/GetUserMasterById?UserId=' + UserId
             });
         };
 

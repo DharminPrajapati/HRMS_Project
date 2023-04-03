@@ -111,12 +111,11 @@ namespace MVCProject.Api.Controllers.Attendance
             return this.Response(Utilities.MessageTypes.Success, string.Empty, Attendanelist);
 
         }
-
         [HttpGet]
 
-        public ApiResponse GetAttendanceById(int employeeId)
+        public ApiResponse GetAttendanceById(int employeeId,DateTime date)
         {
-            var attendanceDetail = this.entities.Attendance.Where(x => x.EmployeeId == employeeId)
+            var attendanceDetail = this.entities.Attendance.Where(x => x.EmployeeId == employeeId && x.Date==date)
                    .Select(d => new
                    {
                        AttendanceId = d.AttendanceId,
@@ -139,7 +138,35 @@ namespace MVCProject.Api.Controllers.Attendance
             {
                 return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
             }
-        }
+        }     
+        //[HttpGet]
+
+        //public ApiResponse GetAttendanceById(int employeeId)
+        //{
+        //    var attendanceDetail = this.entities.Attendance.Where(x => x.EmployeeId == employeeId)
+        //           .Select(d => new
+        //           {
+        //               AttendanceId = d.AttendanceId,
+        //               EmployeeId = d.EmployeeId,
+        //               Date = d.Date,
+        //               InTime = d.InTime,
+        //               OutTime = d.OutTime,
+        //               InLatitude = d.InLatitude,
+        //               OutLatitude = d.OutLatitude,
+        //               InLongitude = d.InLongitude,
+        //               InDiscription = d.InDiscription,
+        //               OutDiscription = d.OutDiscription
+
+        //           }).SingleOrDefault();
+        //    if (attendanceDetail != null)
+        //    {
+        //        return this.Response(Utilities.MessageTypes.Success, string.Empty, attendanceDetail);
+        //    }
+        //    else
+        //    {
+        //        return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
+        //    }
+        //}
 
 
         [HttpGet]
