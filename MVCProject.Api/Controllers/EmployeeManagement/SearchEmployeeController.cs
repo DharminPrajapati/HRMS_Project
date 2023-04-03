@@ -28,6 +28,26 @@
             this.entities = new MVCProjectEntities();
         }
 
+        [HttpPost]
+        public ApiResponse AdvancedActionSearch([FromBody] PagingParams searchDetailParams,[FromUri] SearchParmas searchParmas)
+        {
+            var result = this.entities.sp_hrms_searchemp(searchParmas.FirstName, searchParmas.DepartmentId, searchParmas.DesignationId).ToList();
+            var TotalRecords = result.Count();
+            var advancedsearch = result.Select(g => new
+            {
+                EmployeeId = g.EmployeeId,
+                FirstName = g.FirstName,
+                DepartmentId = g.DepartmentId,
+                DesignationId = g.DesignationId,
+                DepartmentName = g.DepartmentName,
+                DesignationName = g.DesignationName,
+                TotalRecords
+            }).AsEnumerable()
+            .Skip((searchDetailParams.CurrentPageNumber - 1) * searchDetailParams.PageSize).Take(searchDetailParams.PageSize);
+            return this.Response(MessageTypes.Success, string.Empty, advancedsearch);
+
+        }
+
         ///Get All Employee Details
         //[HttpPost]
         //public ApiResponse GetAllEmployees(PagingParams employeeDetailsParams)

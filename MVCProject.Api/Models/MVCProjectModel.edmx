@@ -200,8 +200,25 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="UserId">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="1" />
+          <End Role="UserMaster1" Type="Self.UserMaster" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserMaster1">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="sp_Emp_GetAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sp_HRMS_Attendance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_hrms_searchemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DepartmentId" Type="int" Mode="In" />
+          <Parameter Name="DesignationId" Type="int" Mode="In" />
+        </Function>
         <Function Name="Sp_Salary_DisplayAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MVCProjectModelStoreContainer">
           <EntitySet Name="AddSalary" EntityType="Self.AddSalary" Schema="dbo" store:Type="Tables" />
@@ -228,6 +245,10 @@
           <AssociationSet Name="fk_EmployeeId" Association="Self.fk_EmployeeId">
             <End Role="TblEmployee" EntitySet="TblEmployee" />
             <End Role="Attendance" EntitySet="Attendance" />
+          </AssociationSet>
+          <AssociationSet Name="UserId" Association="Self.UserId">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="UserMaster1" EntitySet="UserMaster" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -353,6 +374,15 @@
             <End Role="TblEmployee" EntitySet="TblEmployees" />
             <End Role="UserMaster" EntitySet="UserMaster" />
           </AssociationSet>
+          <AssociationSet Name="UserId" Association="MVCProjectModel.UserId">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="UserMaster1" EntitySet="UserMaster" />
+          </AssociationSet>
+          <FunctionImport Name="sp_hrms_searchemp" ReturnType="Collection(MVCProjectModel.sp_hrms_searchemp_Result)">
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="DepartmentId" Mode="In" Type="Int32" />
+            <Parameter Name="DesignationId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="AttachmentMaster">
           <Key>
@@ -516,6 +546,8 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="IsLock" Type="Boolean" />
           <NavigationProperty Name="TblEmployee" Relationship="MVCProjectModel.fk_empId" FromRole="UserMaster" ToRole="TblEmployee" />
+          <NavigationProperty Name="UserMaster1" Relationship="MVCProjectModel.UserId" FromRole="UserMaster" ToRole="UserMaster1" />
+          <NavigationProperty Name="UserMaster2" Relationship="MVCProjectModel.UserId" FromRole="UserMaster1" ToRole="UserMaster" />
         </EntityType>
         <Association Name="fk_empId">
           <End Type="MVCProjectModel.TblEmployee" Role="TblEmployee" Multiplicity="1" />
@@ -529,6 +561,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="UserId">
+          <End Type="MVCProjectModel.UserMaster" Role="UserMaster" Multiplicity="1" />
+          <End Type="MVCProjectModel.UserMaster" Role="UserMaster1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="UserMaster1">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_hrms_searchemp_Result">
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
+          <Property Type="Int32" Name="DesignationId" Nullable="true" />
+          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DesignationName" Nullable="true" MaxLength="250" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -765,6 +817,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_hrms_searchemp" FunctionName="MVCProjectModel.Store.sp_hrms_searchemp">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.sp_hrms_searchemp_Result">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
