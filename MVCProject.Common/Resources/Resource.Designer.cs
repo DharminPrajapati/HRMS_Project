@@ -2374,6 +2374,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        public static string UserRole {
+            get {
+                return ResourceManager.GetString("UserRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Users.
         /// </summary>
         public static string Users {

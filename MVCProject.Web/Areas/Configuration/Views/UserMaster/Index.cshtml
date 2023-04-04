@@ -28,8 +28,8 @@
         max-width: 60px !important;
     }
 </style>
-@*<script src="~/Scripts/js/jquery-3.6.3.js"></script>
-    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
+<script src="~/Scripts/js/jquery-3.6.3.js"></script>
+@*<link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet">
     <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script>
     <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>*@
 
@@ -41,9 +41,9 @@
         <h4 class="header-title-sub l">@Resource.UserMaster</h4>
         <!-- start button-->
         <div class="pull-right">
-            @*<button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()">
-                    <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
-                </button>*@
+            <button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()">
+                <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
+            </button>
         </div>
         <!-- end button-->
     </div>
@@ -63,13 +63,14 @@
                                     Name <span class="required-field">*</span>
                                 </label>
 
-                                @*<select name="Rolename" ng-init="namelist()"  class="form-control" ng-model="userMasterDetailScope.FullName">
+                                @*<select name="Rolename" ng-init="namelist()"  class="form-control" ng-model="userMasterDetailScope.FirstName">
                                     <option>Select fullname</option>
 
                                     <option ng-repeat="Namelists in name" value="{{Namelists.Id}}" >{{Namelists.Name}}</option>
 
                                     </select>*@
                                 @*<input type="text" class="form-control" ng-focus="true" required tabindex="1" placeholder="@Resource.FirstName" maxlength="250">*@
+                                @*{{userMasterDetailScope.FirstName}}*@
 
                                 <div angucomplete-alt
                                      name="txtUserMaster"
@@ -81,8 +82,8 @@
                                      remote-url="{{FullnameURL}}"
                                      remote-url-data-field="Result"
                                      model-field="userMasterDetailScope.FirstName"
-                                     @*remote -url-request-formatter="remoteUrlRequestFn" *@
-                                     @*remote -url-data-field="items" *@
+                                     @*remote -url-request-formatter="remoteUrlRequestFn"
+                                     remote -url-data-field="items"*@
                                      initial-value="userMasterDetailScope.FirstName"
                                      title-field="Name"
                                      description-field="description"
@@ -129,23 +130,23 @@
                         </div>
                     </div>
 
-                    <!--<div class="row">
+
 
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label required tabindex="2" placeholder="Resource.UserRole" maxlength="250">
-                                Resource.UserRole {{ userMasterDetailScope.UserRole}} <span class="required-field">*</span>
-                            </label>-->
-                    @*<select name="Rolename" ng-init="rolelist()" class="form-control">
-                            <option>Select role</option>
+                            <label required tabindex="2" placeholder="@Resource.UserRole" maxlength="250" id="txtUserRole" name="txtUserRole">
+                                @Resource.UserRole <span class="required-field">*</span>
+                            </label>
+                            @*<select name="Rolename" ng-init="rolelist()" class="form-control">
+                                    <option>Select role</option>
 
-                            <option ng-repeat="Rolelists in role">{{Rolelists.Name}}</option>
+                                    <option ng-repeat="Rolelists in role">{{Rolelists.Name}}</option>
 
-                        </select>*@
+                                </select>*
 
-                    @*<input type="text" class="form-control" id="txtUserMaster" ng-focus="true" name="txtUserMaster" ng-focus="true" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">*@
+                                            @*<input type="text" class="form-control" id="txtUserMaster" ng-focus="true" name="txtUserMaster" ng-focus="true" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">*@
 
-                    <!--<div ng-dropdown-multiselect=""
+                            <div ng-dropdown-multiselect=""
                                  ng-model="userMasterDetailScope.UserRole"
                                  ng-init="roleScope()"
                                  extra-settings="multiselectsettingrole"
@@ -157,13 +158,12 @@
 
                             <div class="c">
                             </div>
-                            <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMaster.$dirty && frmUserMaster.txtUserMaster.$invalid">
-                                <span data-ng-show="frmUserMaster.txtUserMaster.$error.required"></span>
+                            <div class="label label-danger" data-ng-show="!userMasterDetailScope.UserRole || userMasterDetailScope.UserRole.$invalid">
+                                <span data-ng-show="userMasterDetailScope.UserRole.$error.required">@Resource.UserRole</span>
                             </div>
                         </div>
-                    </div>-->
-                    @*
-                        </div>*@
+                    </div>
+
 
                     <div class="col-md-3">
                         <!--IsActive -->
@@ -233,9 +233,9 @@
                                         <td data-title="'@Resource.UserName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.UserName}}">
                                             {{h.UserName}}
                                         </td>
-                                        @*<td data-title="'@Resource.UserRole'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.UserRoleName}}">
-                                                {{h.UserRoleName}}
-                                            </td>*@
+                                        <td data-title="'@Resource.UserRole'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.UserRoleName}}">
+                                            {{h.UserRoleName}}
+                                        </td>
 
                                         @*<td data-title="'@Resource.UserRole'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.UserRoleName}}">
                                                 <span ng-if="h.UserRole && h.UserRole.length > 0">

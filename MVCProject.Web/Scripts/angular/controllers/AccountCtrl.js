@@ -64,7 +64,7 @@
                         //    }
                         //    CommonFunctions.RedirectToDefaultUrl();
                         //});
-                        window.open("http://localhost:56563/EmployeeManagement/Employee")
+                        window.open("http://localhost:56563/EmployeeManagement/Employee", "_self");
                     } else {
                         $("#txtUserName").focus();
                         toastr.error(data.Message, errorTitle);

@@ -2,13 +2,13 @@
     .service('UserMasterService', ['$rootScope', '$http', function ($rootScope, $http) {
         var list = [];
 
-        ////dropdown for userrole
-        //list.getrolelist = function () {
-        //    return $http({
-        //        method: 'GET',
-        //        url: $rootScope.apiURL + '/Dropdown/Getuserroledropdown'
-        //    });
-        //};
+        //dropdown for userrole
+        list.getrolelist = function () {
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/UserMasters/Getuserroledropdown'
+            });
+        };
 
         //autocmplete full name
         list.GetFullname = function (IsActive) {
@@ -59,13 +59,18 @@
         };
 
 
-        ////create excel report
-        //list.Export = function () {
-        //    return $http({
-        //        method: 'GET',
-        //        url: $rootScope.apiURL + '/UserMasters/Export'
-        //    });
-        //};
+        //create excel report
+        list.Export = function () {
+            debugger
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/UserMasters/Export'
+            });
+        };
 
         return list;
     }]);
+
+
+
+

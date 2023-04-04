@@ -19,16 +19,16 @@ namespace MVCProject.Api.Controllers.Configuration
     using MVCProject.Api.Utilities;
     using MVCProject.Api.ViewModel;
     using MVCProject.Common.Resources;
-    //using System.IO;
-    //using System.Net.Http.Headers;
-    //using System.Web;
-    //using Newtonsoft.Json;
-    //using NPOI.SS.UserModel;
-    //using NPOI.XSSF.UserModel;
-    //using NPOI.HSSF.UserModel;
-    //using NPOI.SS.Util;
-    //using System.Web.Hosting;
-    //using NPOI.HPSF;
+    using System.IO;
+    using System.Net.Http.Headers;
+    using System.Web;
+    using Newtonsoft.Json;
+    using NPOI.SS.UserModel;
+    using NPOI.XSSF.UserModel;
+    using NPOI.HSSF.UserModel;
+    using NPOI.SS.Util;
+    using System.Web.Hosting;
+    using NPOI.HPSF;
     #endregion
     public class UserMastersController : BaseController
     {
@@ -63,9 +63,9 @@ namespace MVCProject.Api.Controllers.Configuration
                                       Password = s.UserPassword,
                                       IsActive = s.IsActive,
                                       IsLock = s.IsLock,
-                                      //UserRoleName = String.Join(",", (from r in this.entities.UserRole.Where(x => x.UserId == s.UserId).ToList()
-                                      //                                 join rm in this.entities.UserRoleMaster on r.RoleId equals rm.RoleId
-                                      //                                 select rm.UserRoleName).ToArray()),
+                                      UserRoleName = String.Join(",", (from r in this.entities.UserRole.Where(x => x.UserId == s.UserId).ToList()
+                                                                       join rm in this.entities.UserRoleMaster on r.RoleId equals rm.RoleId
+                                                                       select rm.UserRoleName).ToArray()),
                                       TotalRecords
                                       //}).AsQueryable().Skip((userMasterDetailParams.CurrentPageNumber - 1) * userMasterDetailParams.PageSize).Take(userMasterDetailParams.PageSize);
                                   }).AsQueryable().OrderByField(userMasterDetailParams.OrderByColumn, userMasterDetailParams.IsAscending).Skip((userMasterDetailParams.CurrentPageNumber - 1) * userMasterDetailParams.PageSize).Take(userMasterDetailParams.PageSize);
@@ -115,11 +115,12 @@ namespace MVCProject.Api.Controllers.Configuration
                             UserPassword = g.UserPassword,
                             IsActive = g.IsActive,
                             IsLock = g.IsLock,
-                            //UserRole = this.entities.UserRole.Where(x => x.UserId == g.UserId).Select(r => new {
-                            //    r.RoleId,
-                            //    r.UserRoleId,
-                            //    r.UserId
-                            //}).ToList(),
+                            UserRole = this.entities.UserRole.Where(x => x.UserId == g.UserId).Select(r => new
+                            {
+                                r.RoleId,
+                                r.UserRoleId,
+                                r.UserId
+                            }).ToList(),
                             //Remarks = g.Remarks,
                             // EntryBy = g.EntryBy,
                             //EntryDate = g.EntryDate,
@@ -190,7 +191,7 @@ namespace MVCProject.Api.Controllers.Configuration
                     existinguserMasterDetail.UserPassword = userMasterDetail.UserPassword;
                     existinguserMasterDetail.EmployeeId = userMasterDetail.EmployeeId;
                     existinguserMasterDetail.UserId = userMasterDetail.UserId;
-                    //existinguserMasterDetail.UserRole = userMasterDetail.UserRole;
+                    existinguserMasterDetail.UserRole = userMasterDetail.UserRole;
                     existinguserMasterDetail.IsActive = userMasterDetail.IsActive;
                     existinguserMasterDetail.IsLock = userMasterDetail.IsLock;
                     // existinguserMasterDetail.Remarks = userMasterDetail.Remarks;
@@ -200,22 +201,22 @@ namespace MVCProject.Api.Controllers.Configuration
 
                 }
 
-                //var existingUserRole = this.entities.UserRole.Where(ur => ur.UserId == userMasterDetail.UserId).ToList();
-                //if (existingUserRole != null)
-                //{
-                //    foreach (var item in existingUserRole)
-                //    {
-                //        this.entities.UserRole.DeleteObject(item);
-                //        this.entities.SaveChanges();
-                //    }
-                //}
+                var existingUserRole = this.entities.UserRole.Where(ur => ur.UserId == userMasterDetail.UserId).ToList();
+                if (existingUserRole != null)
+                {
+                    foreach (var item in existingUserRole)
+                    {
+                        this.entities.UserRole.DeleteObject(item);
+                        this.entities.SaveChanges();
+                    }
+                }
 
-                //foreach (UserRole userRole in userMasterDetail.UserRole.ToList())
-                //{
-                //    userRole.UserId = userMasterDetail.UserId;
-                //    userRole.UserMaster = null;
-                //    this.entities.UserRole.AddObject(userRole);
-                //}
+                foreach (UserRole userRole in userMasterDetail.UserRole.ToList())
+                {
+                    userRole.UserId = userMasterDetail.UserId;
+                    userRole.UserMaster = null;
+                    this.entities.UserRole.AddObject(userRole);
+                }
                 this.entities.SaveChanges();
 
                 //foreach (UserRole userRole in userMasterDetail.UserRole)
@@ -245,10 +246,87 @@ namespace MVCProject.Api.Controllers.Configuration
 
         }
 
+
+        [HttpGet]
+        public ApiResponse Getuserroledropdown()
+        {
+            var data = this.entities.UserRoleMaster.Where(x => x.IsActive.Value).Select(x => new { Name = x.UserRoleName, RoleId = x.RoleId }).OrderBy(x => x.Name).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+        }
         /// <summary>
         /// Disposes expensive resources.
         /// </summary>
         /// <param name="disposing">A value indicating whether to dispose or not.</param>
+        ///
+        [HttpGet]
+        public ApiResponse Export()
+        {
+            //var data = entities.CompanyMaster.ToList();
+            var data = this.entities.UserMaster.ToList().Select(s => new
+            {
+                UserId = s.UserId,
+                EmployeeId = s.EmployeeId,
+                EmpName = s.EmployeeId > 0 ? this.entities.TblEmployees.FirstOrDefault(x => x.EmployeeId == s.EmployeeId).FirstName : string.Empty,
+                UserName = s.UserName,
+                UserPassword = s.UserPassword,
+                IsActive = s.IsActive != null ? s.IsActive == true ? "Active" : "InActive" : string.Empty,
+                IsLock = s.IsLock,
+                UserRoleName = (from r in this.entities.UserRole.Where(x => x.UserId == s.UserId).ToList()
+                                join rm in this.entities.UserRoleMaster on r.RoleId equals rm.RoleId
+                                select rm.UserRoleName).ToList(),
+
+            });
+
+
+            //Create a new workbook
+            IWorkbook workbook = new XSSFWorkbook();
+            ISheet sheet = workbook.CreateSheet("Sheet1");
+
+            //Add some data to the sheet
+            IRow headerRow = sheet.CreateRow(0);
+            headerRow.CreateCell(0).SetCellValue("UserId");
+            headerRow.CreateCell(1).SetCellValue("FullName");
+            headerRow.CreateCell(2).SetCellValue("UserName");
+            headerRow.CreateCell(3).SetCellValue("UserRoleName");
+            headerRow.CreateCell(4).SetCellValue("IsActive");
+
+            int rowNumber = 1;
+            foreach (var UserMaster in data)
+            {
+                IRow row = sheet.CreateRow(rowNumber++);
+                row.CreateCell(0).SetCellValue(UserMaster.UserId);
+                row.CreateCell(1).SetCellValue(UserMaster.EmpName);
+                row.CreateCell(2).SetCellValue(UserMaster.UserName);
+                row.CreateCell(3).SetCellValue(string.Join(",", UserMaster.UserRoleName.Select(x => x.ToString()).ToList()));
+                row.CreateCell(4).SetCellValue(UserMaster.IsActive);
+
+            }
+
+            //Set the File Path.
+            string filePath = HttpContext.Current.Server.MapPath("~/Reports/UserMaster.xlsx");
+            string fileName = Path.GetFileName(filePath);
+            //if (File.Exists(filePath))
+            //{
+            //    File.Delete(filePath);
+            //}
+
+            FileStream fileStream = new FileStream(filePath, FileMode.Create);
+            workbook.Write(fileStream);
+            var memorystream = new MemoryStream();
+            var byteArray = memorystream.ToArray();
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+            response.Content = new ByteArrayContent(byteArray);
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = "MyExcelFile.xlsx";
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.Content.Headers.ContentLength = byteArray.Length;
+            Console.WriteLine(response);
+            //return response;
+
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, filePath);
+        }
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

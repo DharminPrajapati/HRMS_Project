@@ -35,22 +35,24 @@
                 });
         }
 
-        ////Get the userRole Multiselect Dropdown
-        //$scope.rolelist = [];
-        //$scope.Role = [];
-        //$scope.multiselectsettingrole = {
-        //    idProp: 'RoleId',
-        //    displayProp: 'Name',
-        //    externalIdProp: 'RoleId',
-        //    scrollabe: true
-        //}
+        //Get the userRole Multiselect Dropdown
+        $scope.rolelist = [];
+        $scope.Role = [];
+        $scope.multiselectsettingrole = {
+            idProp: 'RoleId',
+            displayProp: 'Name',
+            externalIdProp: 'RoleId',
+            scrollabe: true
+        }
 
-        //$scope.roleScope = function () {
-        //    UserMasterService.getrolelist()
-        //        .then(function (res) {
-        //            $scope.Role = res.data.Result;
-        //        });
-        //}
+        $scope.roleScope = function () {
+            debugger
+            UserMasterService.getrolelist()
+                .then(function (res) {
+                    debugger
+                    $scope.Role = res.data.Result;
+                });
+        }
 
         /* Initial Declaration */
         $scope.sampleDate = new Date();
@@ -62,10 +64,10 @@
             FirstName: '',
             Password: '',
             UserPassword: '',
-            //UserRole: [],
-            //UserRoleName: '',
-            //RoleId: 0,
-            //UserRoleId: 0,
+            UserRole: [],
+            UserRoleName: '',
+            RoleId: 0,
+            UserRoleId: 0,
             IsLock: true,
             IsActive: true,
 
@@ -83,6 +85,7 @@
             if (frmUserMaster.$valid) {
                 UserMasterService.SaveuserMasterDetails(userMasterDetailScope).then(function (res) {
                     if (res) {
+                        debugger;
                         var data = res.data;
                         if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
                             $scope.ClearFormData(frmUserMaster);
@@ -143,10 +146,10 @@
                 EmployeeId: 0,
                 FirstName: '',
                 Password: '',
-                //UserRole: [],
-                //UserRoleName: '',
-                //RoleId: 0,
-                //UserRoleId: 0,
+                UserRole: [],
+                UserRoleName: '',
+                RoleId: 0,
+                UserRoleId: 0,
                 IsLock: true,
                 IsActive: true,
                 FullnameURL: '',
@@ -158,44 +161,46 @@
             CommonFunctions.ScrollToTop();
         };
 
-        //// export to excel using npoi
-        //$scope.Export = function () {
-        //    UserMasterService.Export().then(function (res) {
-        //        var data = res.data;
-        //        if (res.data.MessageType == messageTypes.Success) {// Success
-        //            var fileName = res.data.Result;
-        //            var params = { fileName: fileName };
-        //            var form = document.createElement("form");
-        //            form.setAttribute("method", "POST");
-        //            form.setAttribute("action", "/UserMaster/DownloadFile");
-        //            form.setAttribute("target", "_blank");
+        // export to excel using npoi
+        $scope.Export = function () {
+            debugger
+            UserMasterService.Export().then(function (res) {
+                debugger
+                var data = res.data;
+                if (res.data.MessageType == messageTypes.Success) {// Success
+                    var fileName = res.data.Result;
+                    var params = { fileName: fileName };
+                    var form = document.createElement("form");
+                    form.setAttribute("method", "POST");
+                    form.setAttribute("action", "/UserMaster/DownloadFile");
+                    form.setAttribute("target", "_blank");
 
-        //            for (var key in params) {
-        //                if (params.hasOwnProperty(key)) {
-        //                    var hiddenField = document.createElement("input");
-        //                    hiddenField.setAttribute("type", "hidden");
-        //                    hiddenField.setAttribute("name", key);
-        //                    hiddenField.setAttribute("value", params[key]);
+                    for (var key in params) {
+                        if (params.hasOwnProperty(key)) {
+                            var hiddenField = document.createElement("input");
+                            hiddenField.setAttribute("type", "hidden");
+                            hiddenField.setAttribute("name", key);
+                            hiddenField.setAttribute("value", params[key]);
 
-        //                    form.appendChild(hiddenField);
-        //                }
-        //            }
+                            form.appendChild(hiddenField);
+                        }
+                    }
 
-        //            document.body.appendChild(form);
-        //            form.submit();
+                    document.body.appendChild(form);
+                    form.submit();
 
-        //            $defer.resolve(res.data.Result);
-        //            if (res.data.Result.length == 0) {
-        //            } else {
-        //                params.total(res.data.Result[0].TotalRecords);
-        //            }
-        //        } else if (res.data.MessageType == messageTypes.Error) {// Error
-        //            toastr.error(res.data.Message, errorTitle);
-        //        }
-        //        $rootScope.isAjaxLoadingChild = false;
-        //        CommonFunctions.SetFixHeader();
-        //    });
-        //};
+                    $defer.resolve(res.data.Result);
+                    if (res.data.Result.length == 0) {
+                    } else {
+                        params.total(res.data.Result[0].TotalRecords);
+                    }
+                } else if (res.data.MessageType == messageTypes.Error) {// Error
+                    toastr.error(res.data.Message, errorTitle);
+                }
+                $rootScope.isAjaxLoadingChild = false;
+                CommonFunctions.SetFixHeader();
+            });
+        };
 
         //Load UserMaster List
         $scope.tableParams = new ngTableParams({
@@ -228,4 +233,3 @@
         });
     }
 })();
-

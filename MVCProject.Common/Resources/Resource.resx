@@ -912,4 +912,7 @@
   <data name="FirstName" xml:space="preserve">
     <value>FirstName</value>
   </data>
+  <data name="UserRole" xml:space="preserve">
+    <value>Role</value>
+  </data>
 </root>
