@@ -30,9 +30,9 @@
         }
 
         [HttpPost]
-        public ApiResponse AdvancedSearchEmployee([FromBody] PagingParams SearchEmployeeDetailsParams, [FromUri] SearchParam SearchParam)
+        public ApiResponse AdvancedSearchEmployee( SearchParam searchParam)
         {
-            var result = this.entities.sp_hrms_searchemp(SearchParam.FirstName, SearchParam.DepartmentId, SearchParam.DesignationId).ToList();
+            var result = this.entities.sp_hrms_searchemp(searchParam.FirstName, searchParam.DepartmentId, searchParam.DesignationId).ToList();
             var TotalRecords = result.Count();
             var searchemployee = result.Select(g => new
             {
@@ -43,8 +43,8 @@
                 DepartmentName = g.DepartmentName,
                 DesignationName = g.DesignationName,
                 TotalRecords
-            }).AsEnumerable()
-            .Skip((SearchEmployeeDetailsParams.CurrentPageNumber - 1) * SearchEmployeeDetailsParams.PageSize).Take(SearchEmployeeDetailsParams.PageSize);
+            }).AsEnumerable().FirstOrDefault();
+            //.Skip((SearchEmployeeDetailsParams.CurrentPageNumber - 1) * SearchEmployeeDetailsParams.PageSize).Take(SearchEmployeeDetailsParams.PageSize);
             return this.Response(MessageTypes.Success, string.Empty, searchemployee);
 
         }

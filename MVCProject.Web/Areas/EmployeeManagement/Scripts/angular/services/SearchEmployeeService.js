@@ -38,12 +38,12 @@ angular.module('MVCApp')
             });
         }
 
-        SearchEmployee = function (SearchEmployeeDetailsParams, SearchParam) {
+        list.SearchEmp = function (SearchemployeeDetailScope) {
             debugger
             return $http({
                 method: 'POST',
-                url: $rootScope.apiURL + '/SearchEmployee/AdvancedSearchEmployee?SearchParam=' + SearchParam.FirstName + 'DepartmentId=' + SearchParam.DepartmentId + 'DesignationId=' + SearchParam.DesignationId,
-                data:JSON.stringify(SearchEmployeeDetailsParams)
+                url: $rootScope.apiURL + '/SearchEmployee/AdvancedSearchEmployee',
+                data: JSON.stringify(SearchemployeeDetailScope)
             })
         }
 
