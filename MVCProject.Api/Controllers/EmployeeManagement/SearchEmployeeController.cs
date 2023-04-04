@@ -12,6 +12,7 @@
     using System.Web;
     using System.Web.Http;
     using MVCProject.Api.Models;
+    using MVCProject.Api.Models.Extended.FilterCriterias;
     using MVCProject.Api.Utilities;
     using MVCProject.Api.ViewModel;
     using MVCProject.Common.Resources;
@@ -29,11 +30,11 @@
         }
 
         [HttpPost]
-        public ApiResponse AdvancedActionSearch([FromBody] PagingParams searchDetailParams,[FromUri] SearchParmas searchParmas)
+        public ApiResponse AdvancedSearchEmployee([FromBody] PagingParams SearchEmployeeDetailsParams, [FromUri] SearchParam SearchParam)
         {
-            var result = this.entities.sp_hrms_searchemp(searchParmas.FirstName, searchParmas.DepartmentId, searchParmas.DesignationId).ToList();
+            var result = this.entities.sp_hrms_searchemp(SearchParam.FirstName, SearchParam.DepartmentId, SearchParam.DesignationId).ToList();
             var TotalRecords = result.Count();
-            var advancedsearch = result.Select(g => new
+            var searchemployee = result.Select(g => new
             {
                 EmployeeId = g.EmployeeId,
                 FirstName = g.FirstName,
@@ -43,8 +44,8 @@
                 DesignationName = g.DesignationName,
                 TotalRecords
             }).AsEnumerable()
-            .Skip((searchDetailParams.CurrentPageNumber - 1) * searchDetailParams.PageSize).Take(searchDetailParams.PageSize);
-            return this.Response(MessageTypes.Success, string.Empty, advancedsearch);
+            .Skip((SearchEmployeeDetailsParams.CurrentPageNumber - 1) * SearchEmployeeDetailsParams.PageSize).Take(SearchEmployeeDetailsParams.PageSize);
+            return this.Response(MessageTypes.Success, string.Empty, searchemployee);
 
         }
 

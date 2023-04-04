@@ -23,7 +23,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_despartmentId", "TblDepartment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.TblDepartment), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_EmployeeId", "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.TblEmployee), "Attendance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.Attendance), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_empId", "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MVCProject.Api.Models.TblEmployee), "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserMaster), true)]
-[assembly: EdmRelationshipAttribute("MVCProjectModel", "UserId", "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MVCProject.Api.Models.UserMaster), "UserMaster1", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserMaster), true)]
+[assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__UserRole__UserId__0CDAE408", "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserMaster), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserRole), true)]
+[assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__UserRole__RoleId__0BE6BFCF", "UserRoleMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserRoleMaster), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserRole), true)]
 
 #endregion
 
@@ -218,6 +219,38 @@ namespace MVCProject.Api.Models
             }
         }
         private ObjectSet<UserMaster> _UserMaster;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<UserRole> UserRole
+        {
+            get
+            {
+                if ((_UserRole == null))
+                {
+                    _UserRole = base.CreateObjectSet<UserRole>("UserRole");
+                }
+                return _UserRole;
+            }
+        }
+        private ObjectSet<UserRole> _UserRole;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<UserRoleMaster> UserRoleMaster
+        {
+            get
+            {
+                if ((_UserRoleMaster == null))
+                {
+                    _UserRoleMaster = base.CreateObjectSet<UserRoleMaster>("UserRoleMaster");
+                }
+                return _UserRoleMaster;
+            }
+        }
+        private ObjectSet<UserRoleMaster> _UserRoleMaster;
 
         #endregion
 
@@ -293,6 +326,22 @@ namespace MVCProject.Api.Models
         public void AddToUserMaster(UserMaster userMaster)
         {
             base.AddObject("UserMaster", userMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the UserRole EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUserRole(UserRole userRole)
+        {
+            base.AddObject("UserRole", userRole);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the UserRoleMaster EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUserRoleMaster(UserRoleMaster userRoleMaster)
+        {
+            base.AddObject("UserRoleMaster", userRoleMaster);
         }
 
         #endregion
@@ -3383,16 +3432,147 @@ namespace MVCProject.Api.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "UserId", "UserMaster1")]
-        public UserMaster UserMaster1
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "FK__UserRole__UserId__0CDAE408", "UserRole")]
+        public EntityCollection<UserRole> UserRole
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.UserId", "UserMaster1").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserRole>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserRole");
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.UserId", "UserMaster1").Value = value;
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserRole>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserRole", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MVCProjectModel", Name="UserRole")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class UserRole : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new UserRole object.
+        /// </summary>
+        /// <param name="userRoleId">Initial value of the UserRoleId property.</param>
+        public static UserRole CreateUserRole(global::System.Int32 userRoleId)
+        {
+            UserRole userRole = new UserRole();
+            userRole.UserRoleId = userRoleId;
+            return userRole;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 UserRoleId
+        {
+            get
+            {
+                return _UserRoleId;
+            }
+            set
+            {
+                if (_UserRoleId != value)
+                {
+                    OnUserRoleIdChanging(value);
+                    ReportPropertyChanging("UserRoleId");
+                    _UserRoleId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("UserRoleId");
+                    OnUserRoleIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _UserRoleId;
+        partial void OnUserRoleIdChanging(global::System.Int32 value);
+        partial void OnUserRoleIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> RoleId
+        {
+            get
+            {
+                return _RoleId;
+            }
+            set
+            {
+                OnRoleIdChanging(value);
+                ReportPropertyChanging("RoleId");
+                _RoleId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("RoleId");
+                OnRoleIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _RoleId;
+        partial void OnRoleIdChanging(Nullable<global::System.Int32> value);
+        partial void OnRoleIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> UserId
+        {
+            get
+            {
+                return _UserId;
+            }
+            set
+            {
+                OnUserIdChanging(value);
+                ReportPropertyChanging("UserId");
+                _UserId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UserId");
+                OnUserIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _UserId;
+        partial void OnUserIdChanging(Nullable<global::System.Int32> value);
+        partial void OnUserIdChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "FK__UserRole__UserId__0CDAE408", "UserMaster")]
+        public UserMaster UserMaster
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserMaster").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserMaster").Value = value;
             }
         }
         /// <summary>
@@ -3400,17 +3580,17 @@ namespace MVCProject.Api.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<UserMaster> UserMaster1Reference
+        public EntityReference<UserMaster> UserMasterReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.UserId", "UserMaster1");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserMaster");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserMaster>("MVCProjectModel.UserId", "UserMaster1", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserMaster>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserMaster", value);
                 }
             }
         }
@@ -3421,16 +3601,16 @@ namespace MVCProject.Api.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "UserId", "UserMaster")]
-        public UserMaster UserMaster2
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "FK__UserRole__RoleId__0BE6BFCF", "UserRoleMaster")]
+        public UserRoleMaster UserRoleMaster
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.UserId", "UserMaster").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserRoleMaster>("MVCProjectModel.FK__UserRole__RoleId__0BE6BFCF", "UserRoleMaster").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.UserId", "UserMaster").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserRoleMaster>("MVCProjectModel.FK__UserRole__RoleId__0BE6BFCF", "UserRoleMaster").Value = value;
             }
         }
         /// <summary>
@@ -3438,17 +3618,172 @@ namespace MVCProject.Api.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<UserMaster> UserMaster2Reference
+        public EntityReference<UserRoleMaster> UserRoleMasterReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.UserId", "UserMaster");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserRoleMaster>("MVCProjectModel.FK__UserRole__RoleId__0BE6BFCF", "UserRoleMaster");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserMaster>("MVCProjectModel.UserId", "UserMaster", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserRoleMaster>("MVCProjectModel.FK__UserRole__RoleId__0BE6BFCF", "UserRoleMaster", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MVCProjectModel", Name="UserRoleMaster")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class UserRoleMaster : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new UserRoleMaster object.
+        /// </summary>
+        /// <param name="roleId">Initial value of the RoleId property.</param>
+        public static UserRoleMaster CreateUserRoleMaster(global::System.Int32 roleId)
+        {
+            UserRoleMaster userRoleMaster = new UserRoleMaster();
+            userRoleMaster.RoleId = roleId;
+            return userRoleMaster;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 RoleId
+        {
+            get
+            {
+                return _RoleId;
+            }
+            set
+            {
+                if (_RoleId != value)
+                {
+                    OnRoleIdChanging(value);
+                    ReportPropertyChanging("RoleId");
+                    _RoleId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("RoleId");
+                    OnRoleIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _RoleId;
+        partial void OnRoleIdChanging(global::System.Int32 value);
+        partial void OnRoleIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String UserRoleName
+        {
+            get
+            {
+                return _UserRoleName;
+            }
+            set
+            {
+                OnUserRoleNameChanging(value);
+                ReportPropertyChanging("UserRoleName");
+                _UserRoleName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("UserRoleName");
+                OnUserRoleNameChanged();
+            }
+        }
+        private global::System.String _UserRoleName;
+        partial void OnUserRoleNameChanging(global::System.String value);
+        partial void OnUserRoleNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsActive;
+        partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SortCode
+        {
+            get
+            {
+                return _SortCode;
+            }
+            set
+            {
+                OnSortCodeChanging(value);
+                ReportPropertyChanging("SortCode");
+                _SortCode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SortCode");
+                OnSortCodeChanged();
+            }
+        }
+        private global::System.String _SortCode;
+        partial void OnSortCodeChanging(global::System.String value);
+        partial void OnSortCodeChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "FK__UserRole__RoleId__0BE6BFCF", "UserRole")]
+        public EntityCollection<UserRole> UserRole
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserRole>("MVCProjectModel.FK__UserRole__RoleId__0BE6BFCF", "UserRole");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserRole>("MVCProjectModel.FK__UserRole__RoleId__0BE6BFCF", "UserRole", value);
                 }
             }
         }

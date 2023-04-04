@@ -209,6 +209,7 @@
     <Compile Include="Models\Common\RegisterModel.cs" />
     <Compile Include="Models\Common\ResetPasswordModel.cs" />
     <Compile Include="Models\Extended\Configuration.cs" />
+    <Compile Include="Models\Extended\FilterCriterias\SearchParam.cs" />
     <Compile Include="Models\Extended\GroupCurriculumMatrixMaster.cs" />
     <Compile Include="Models\Extended\GroupMaster.cs" />
     <Compile Include="Models\Extended\SubGroupMaster.cs" />
@@ -285,7 +286,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Attachments\Temp\" />
     <Folder Include="Help\Templates\" />
-    <Folder Include="Models\FilterCriterias\" />
     <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>

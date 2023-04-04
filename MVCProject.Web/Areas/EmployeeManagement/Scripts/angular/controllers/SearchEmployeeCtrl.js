@@ -9,6 +9,7 @@
         //Initial Declaration
         var SearchEmployeeDetailsParams = {};
         var employeeDetailsParams = {};
+       
 
 
 
@@ -79,6 +80,7 @@
             debugger
             $scope.designationScope();
             $scope.departmentsScope();
+           /* $scope.SearchEmployeeScope();*/
 
         }
 
@@ -94,6 +96,13 @@
                 $scope.Departments = res.data.Result;
             });
         };
+
+        //$scope.SearchEmployeeScope = function () {
+        //    debugger
+        //    SearchEmployeeService.AdvancedSearchEmployee().then(function (res) {
+        //        $scope.AdvancedSearchEmployee = res.data.Result;
+        //    });
+        //};
 
 
         $scope.ClearFormData = function (frmSearchemployee) {

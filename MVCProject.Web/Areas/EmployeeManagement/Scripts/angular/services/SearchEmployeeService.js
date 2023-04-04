@@ -1,4 +1,6 @@
-﻿angular.module('MVCApp')
+﻿/*const { search } = require("modernizr");*/
+
+angular.module('MVCApp')
     .service('SearchEmployeeService', ['$rootScope', '$http', function ($rootScope, $http) {
         var list = [];
 
@@ -34,6 +36,15 @@
                 url: $rootScope.apiURL + '/Employee/GetAllEmployees/',
                 data: JSON.stringify(employeeDetailsParams)
             });
+        }
+
+        SearchEmployee = function (SearchEmployeeDetailsParams, SearchParam) {
+            debugger
+            return $http({
+                method: 'POST',
+                url: $rootScope.apiURL + '/SearchEmployee/AdvancedSearchEmployee?SearchParam=' + SearchParam.FirstName + 'DepartmentId=' + SearchParam.DepartmentId + 'DesignationId=' + SearchParam.DesignationId,
+                data:JSON.stringify(SearchEmployeeDetailsParams)
+            })
         }
 
         //list.GetAllEmployees = function (/*employeeDetailsParams*/)

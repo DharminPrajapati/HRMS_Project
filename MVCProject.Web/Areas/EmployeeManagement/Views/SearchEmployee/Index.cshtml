@@ -50,9 +50,10 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
-                                    EmployeeName 
+                                    EmployeeName
                                 </label>
-                                <input type="text" class="form-control" name="FirstName" id="FirstName"  ng-focus="true" ng-model="SearchemployeeDetailScope.FirstName" tabindex="1" value="{{employeesScope.FirstName}}" @*placeholder="@Resource.DA"*@ maxlength="250" />
+                                <input type="text" class="form-control" name="FirstName" id="FirstName" ng-change="isSearchClicked = false;" ng-focus="true" ng-model="search" @*ng-model="SearchemployeeDetailScope.FirstName"*@ tabindex="1" value="{{employeesScope.FirstName}}" @*placeholder="@Resource.DA"*@ maxlength="250" />
+                               
                                 <div class="c">
                                 </div>
 
@@ -65,9 +66,9 @@
                                     Designation 
                                 </label>
 
-                                <select class="form-control input-with-icon" id="selectDesignation" ng-model="SearchemployeeDetailScope.DesignationId" ng-options="a.Id as a.Name for a in Designation" ng-focus="true" name="selectDesignation " tabindex="7">
+                                <select class="form-control input-with-icon" id="selectDesignation"  ng-change="isSearchClicked = false;"  ng-model="SearchemployeeDetailScope.DepartmentId"  ng-options="a.Id as a.Name for a in Designation" ng-focus="true" name="selectDesignation "  tabindex="7">
 
-                                    <option value="">Select Designation </option>
+                                <option value="">Select Designation </option>
 
 
                                 </select>
@@ -89,7 +90,7 @@
                             <div class="col-md-10">
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
-                                            ng-disabled="frmSearchemployee.EmployeeName.$invalid" tabindex="3">@Resource.Search
+                                            ng-disabled="frmSearchemployee.EmployeeName.$invalid" ng-click="isSearchClicked = true;tableParams.page(1);tableParams.reload();" tabindex="3">@Resource.Search
                                         @*{{SearchemployeeDetailScope.EmployeeId > 0 ? '@Resource.Update' : '@Resource.Search'}}*@
                                     </button>
                                     <button type="button" ng-click="ClearFormData(frmSearchemployee)" class="btn btn-info waves-effect w-md waves-light m-b-5"
