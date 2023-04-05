@@ -163,6 +163,7 @@
 
         // export to excel using npoi
         $scope.Export = function () {
+
             debugger
             UserMasterService.Export().then(function (res) {
                 debugger

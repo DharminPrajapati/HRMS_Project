@@ -85,7 +85,9 @@
 
         }
 
+        //for designation dropdown
         $scope.designationScope = function () {
+
             debugger
             SearchEmployeeService.GetDesignationlist().then(function (res) {
                 $scope.Designation = res.data.Result;
