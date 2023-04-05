@@ -74,7 +74,6 @@
         list.CreateExcelReport = function () {
             return $http({
                 method: 'GET',
-                responseType: 'blob',
                 url: $rootScope.apiURL + '/Employee/CreateEmployeeListReport'
             });
         };

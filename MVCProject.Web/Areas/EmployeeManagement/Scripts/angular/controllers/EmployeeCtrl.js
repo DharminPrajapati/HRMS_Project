@@ -387,49 +387,45 @@
     //        CommonFunctions.DownloadReport('/Employee/CreateEmployeeListReport', filename);
     //    };
     //};
-        $scope.createReport = function () {
+        $scope.Export = function () {
             debugger
             EmployeeService.CreateExcelReport().then(function (res) {
                 var data = res.data;
-                debugger
+                
                 if (res.data.MessageType == messageTypes.Success) {
 
                     var fileName = res.data.Result;
                     var params = { fileName: fileName };
-                    //    var form = document.createElement("form");
-                    //    form.setAttribute("method", "POST");
-                    //    form.setAttribute("action", "Employee/DownloadFile");
-                    //    form.setAttribute("target", "_blank");
+                        var form = document.createElement("form");
+                        form.setAttribute("method", "POST");
+                        form.setAttribute("action", "/EmployeeManagement/Employee/DownloadFile");
+                        form.setAttribute("target", "_blank");
 
-                    //    for (var key in params) {
-                    //        if (params.hasOwnProperty(key)) {
-                    //            var hiddenField = new document.createElement("input");
-                    //            hiddenField.setAttribute("type", "hidden");
-                    //            hiddenField.setAttribute("name", key);
-                    //            hiddenField.setAttribute("value", params[key]);
+                        for (var key in params) {
+                            if (params.hasOwnProperty(key)) {
+                                var hiddenField =  document.createElement("input");
+                                hiddenField.setAttribute("type", "hidden");
+                                hiddenField.setAttribute("name", key);
+                                hiddenField.setAttribute("value", params[key]);
 
-                    //            form.appendChild(hiddenField);
-                    //        }
+                                form.appendChild(hiddenField);
+                            }
 
-                    //    }
-                    //    document.body.appendChild(form);
-                    //    form.submit();
+                        }
+                        document.body.appendChild(form);
+                        form.submit();
 
-                    //    $defer.resolve(res.data.Result);
-                    //    if (res.data.Result.length == 0) { }
-                    //    else {
-                    //        params.total(res.data.Result[0].TotalRecords);
-                    //    }
-                    //}
-                    //else if (res.data.MessageType == messageTypes.Error) {
-                    //    toastr.error(res.data.Message, errorTitle);
-                    //}
-                    CommonFunctions.DownloadReport('/Employee/CreateEmployeeListReport', fileName);
+                        $defer.resolve(res.data.Result);
+                        if (res.data.Result.length == 0) { }
+                        else {
+                            params.total(res.data.Result[0].TotalRecords);
+                        }
+                }
+               
                     $rootScope.isAjaxLoadingChild = false;
                     CommonFunctions.SetFixHeader();
-                }
-                    debugger
-                });
+                
+            });
        
         };
 
