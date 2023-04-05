@@ -155,27 +155,27 @@
 
             $scope.tableParams.reload();
         };
+        $scope.ClearFormData = function (frmSearchemployee) {
+            $scope.searchDetail = {
+
+                EmployeeId: 0,
+                FirstName: '',
+                DepartmentName: '',
+                DesignationName: '',
+                //IsActive: true
+
+            };
+
+            frmSearchemployee.$setPristine();
+            $("#frmSearchemployee").focus();
+            CommonFunctions.ScrollToTop();
+        };
 
 
     };
 
 
-    //$scope.ClearFormData = function (frmSearchemployee) {
-    //    $scope.SearchemployeeDetailScope = {
-
-    //        EmployeeId: 0,
-    //        FirstName: '',
-    //        DepartmentName: '',
-    //        DesignationName: '',
-    //        //IsActive: true
-
-    //    };
-
-    //    frmSearchemployee.$setPristine();
-    //    $("#FirstName").focus();
-    //    CommonFunctions.ScrollToTop();
-    //};
-
+  
 
 })();
 

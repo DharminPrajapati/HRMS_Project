@@ -12,15 +12,15 @@
     }
 
     .colPosition {
-        width: 200px !important;
-        min-width: 200px !important;
-        max-width: 200px !important;
+        width: 180px !important;
+        min-width: 180px !important;
+        max-width: 180px !important;
     }
 
     .colActive {
-        width: 60px !important;
-        min-width: 60px !important;
-        max-width: 60px !important;
+        width: 70px !important;
+        min-width: 70px !important;
+        max-width: 70px !important;
     }
 
     .colAction {
@@ -45,7 +45,7 @@
     <div class="card-box">
         <div class="row">
             <div class="col-md-12">
-                <!-- start Department form -->
+                <!-- start Salary form -->
                 <form name="frmSalary" ng-submit="SaveSalaryDetails(salaryDetailScope,frmSalary)" novalidate ng-init="Init()">
                     <div class="row">
                         <div class="col-md-4">
@@ -70,8 +70,9 @@
                                      description-field="description"
                                      minlength="1"
                                      input-class="form-control form-control-small "
-                                     match-class="highlight">
-
+                                     match-class="highlight"
+                                     ng-focus="true">
+                                    
                                 </div>
                                 
                             </div>
@@ -82,7 +83,7 @@
                                 <label>
                                     Designation
                                 </label>
-                                <input type="text" class="form-control" ng-disabled="true" ng-focus="true" ng-model="salaryDetailScope.DesignationName" ng-change="getEmployeebyId(Id)"   placeholder="@Resource.Designation" @*placeholder="{{data.DesignationName}}"*@ maxlength="250" />
+                                <input type="text" class="form-control" ng-disabled="true" ng-model="salaryDetailScope.DesignationName" ng-change="getEmployeebyId(Id)"   placeholder="@Resource.Designation" @*placeholder="{{data.DesignationName}}"*@ maxlength="250" />
                                 <div class="c">
                                 </div>
 
@@ -94,7 +95,7 @@
                                 <label>
                                     Department
                                 </label>
-                                <input type="text" class="form-control" ng-disabled="true" ng-focus="true" ng-model="salaryDetailScope.DepartmentName" ng-change="getEmployeebyId(Id)"  placeholder="@Resource.Department" maxlength="250" />
+                                <input type="text" class="form-control" ng-disabled="true"  ng-model="salaryDetailScope.DepartmentName" ng-change="getEmployeebyId(Id)"  placeholder="@Resource.Department" maxlength="250" />
                                 <div class="c">
                                 </div>
 
@@ -107,7 +108,7 @@
                                 <label>
                                     Basic Salary <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="basicsalary" id="basicsalary" required ng-focus="true" ng-model="salaryDetailScope.BasicSalary" tabindex="1" ng-change="calculateSalary()" placeholder="@Resource.BasicSalary" maxlength="250" />
+                                <input type="text" class="form-control" name="basicsalary" id="basicsalary"  ng-model="salaryDetailScope.BasicSalary" tabindex="1" ng-change="calculateSalary()" placeholder="@Resource.BasicSalary" maxlength="250" />
                                 <div class="c">
                                 </div>
                                
@@ -137,7 +138,7 @@
                             <label>
                                 DA <span>(%)</span>
                             </label>
-                            <input type="text" class="form-control" name="DA" id="DA" required ng-focus="true" ng-model="salaryDetailScope.DA" tabindex="2" placeholder="@Resource.DA" ng-change="calculateSalary()" value="{{SalaryDetails.DA}}" maxlength="250" />
+                            <input type="text" class="form-control" name="DA" id="DA" required ng-model="salaryDetailScope.DA" tabindex="2" placeholder="@Resource.DA" ng-change="calculateSalary()" value="{{SalaryDetails.DA}}" maxlength="250" />
                             <div class="c">
                             </div>
 
@@ -149,7 +150,7 @@
                                 <label>
                                     DA <span>(₹)</span>
                                 </label>
-                                <input type="text" class="form-control" name="DA" id="DA" ng-disabled="true" required ng-focus="true" ng-model="salaryDetailScope.DAamt"  placeholder="@Resource.DA" maxlength="250" />
+                                <input type="text" class="form-control" name="DA" id="DA" ng-disabled="true" required  ng-model="salaryDetailScope.DAamt"  placeholder="@Resource.DA" maxlength="250" />
                                 <div class="c">
                                 </div>
 
@@ -163,7 +164,7 @@
                                 <label>
                                     HRA <span>(%)</span>
                                 </label>
-                                <input type="text" class="form-control" name="HRA" id="HRA" required ng-focus="true" ng-model="salaryDetailScope.HRA" ng-change="calculateSalary()" tabindex="3" placeholder="@Resource.HRA" value="{{SalaryDetails.HRA}}" maxlength="250" />
+                                <input type="text" class="form-control" name="HRA" id="HRA" required  ng-model="salaryDetailScope.HRA" ng-change="calculateSalary()" tabindex="3" placeholder="@Resource.HRA" value="{{SalaryDetails.HRA}}" maxlength="250" />
                                 <div class="c">
                                 </div>
 
@@ -174,7 +175,7 @@
                                 <label>
                                     HRA <span>(₹)</span>
                                 </label>
-                                <input type="text" class="form-control" name="HRA" id="HRA" ng-disabled="true" required ng-focus="true"  ng-model="salaryDetailScope.HRAamt"  placeholder="@Resource.HRA" maxlength="250" />
+                                <input type="text" class="form-control" name="HRA" id="HRA" ng-disabled="true" required   ng-model="salaryDetailScope.HRAamt"  placeholder="@Resource.HRA" maxlength="250" />
                                 <div class="c">
                                 </div>
 
@@ -188,7 +189,7 @@
                                 <label>
                                     PF <span>(%)</span>
                                 </label>
-                                <input type="text" class="form-control" name="PF" id="PF" required ng-focus="true" ng-model="salaryDetailScope.PF" ng-change="calculateSalary()" tabindex="4" placeholder="@Resource.PF" value="{{SalaryDetails.PF}}" maxlength="250" />
+                                <input type="text" class="form-control" name="PF" id="PF" required  ng-model="salaryDetailScope.PF" ng-change="calculateSalary()" tabindex="4" placeholder="@Resource.PF" value="{{SalaryDetails.PF}}" maxlength="250" />
                                 <div class="c">
                                 </div>
                             </div>
@@ -198,7 +199,7 @@
                                 <label>
                                     PF<span>(₹)</span>
                                 </label>
-                                <input type="text" class="form-control" name="PF" id="PF" ng-focus="true" ng-disabled="true" ng-model="salaryDetailScope.PFamt"  placeholder="@Resource.PF" maxlength="250" />
+                                <input type="text" class="form-control" name="PF" id="PF"  ng-disabled="true" ng-model="salaryDetailScope.PFamt"  placeholder="@Resource.PF" maxlength="250" />
                                 <div class="c">
                                 </div>
                             </div>
@@ -210,7 +211,7 @@
                                     <label>
                                         Net Salary<span>(₹)</span>
                                     </label>
-                                    <input type="text" class="form-control" name="netsalary" id="netsalary" ng-disabled="true" ng-focus="true" ng-model="salaryDetailScope.netSalary" placeholder="Net Salary" maxlength="250" />
+                                    <input type="text" class="form-control" name="netsalary" id="netsalary" ng-disabled="true"  ng-model="salaryDetailScope.netSalary" placeholder="Net Salary" maxlength="250" />
                                     <div class="c">
                                     </div>
 
@@ -235,9 +236,9 @@
 
                 </form>
 
-                <!-- End Department form -->
+                <!-- End Salary form -->
                 <hr />
-                @* Start Department Details List*@
+                @* Start Salary Details List*@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="row">
@@ -276,10 +277,10 @@
                                             <td data-title="'Name'" sortable="'Name'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.Name}}">
                                                 {{dt.FirstName}} {{dt.LastName}}
                                             </td>
-                                            <td data-title="'Department Name'" sortable="'DepartmentName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DepartmentId}}">
+                                            <td data-title="'Department'" sortable="'DepartmentName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DepartmentId}}">
                                                 {{dt.DepartmentName}}
                                             </td>
-                                            <td data-title="'Designation Name'" sortable="'DesignationId'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DesignationId}}">
+                                            <td data-title="'Designation'" sortable="'DesignationId'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DesignationId}}">
                                                 {{dt.DesignationName}}
                                             </td>
                                             <td data-title="'@Resource.BasicSalary'" sortable="'BasicSalary'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.BasicSalary}}">
@@ -302,7 +303,7 @@
                                                        ng-disabled="true" />
                                             </td>
                                             <td data-title="'Generate Palyslip'" ng-click="PayslipGenerate(dt.EmployeeId)" sortable="'PF'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.EmployeeId}}">
-                                                <a herf="#" class="btn btn-sm btn-primary"> PaySlip_{{dt.SalaryId}}</a>
+                                                <a herf="#" class="btn m-r-5 btn-sm btn-custom "> PaySlip_{{dt.SalaryId}}</a>
                                             </td>
                                             <td data-title="'@Resource.Action'" header-class="'colAction'" ng-class="'colAction text-center'">
                                                 <a class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit" title="Edit"
@@ -318,7 +319,7 @@
                         </div>
                     </div>
                 </div>
-                <!--End Department Details List-->
+                <!--End Salary Details List-->
 
             </div>
         </div>
