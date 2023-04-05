@@ -106,11 +106,11 @@
                             <label>
                                 @Resource.UserName <span class="required-field">*</span>
                             </label>
-                            <input type="text" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserName" name="txtUserMaster" required tabindex="1" placeholder="@Resource.UserName" maxlength="250">
+                            <input type="text" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserName" name="txtUserMasterName" required tabindex="1" placeholder="@Resource.UserName" maxlength="250">
                             <div class="c">
                             </div>
-                            <div class="label label-danger" data-ng-show="">
-                                <span data-ng-show="">@Resource.UserNameRequired</span>
+                            <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMasterName.$dirty && frmUserMaster.txtUserMasterName.$invalid">
+                                <span data-ng-show="frmUserMaster.txtUserMasterName.$error.required">@Resource.UserNameRequired</span>
                             </div>
                         </div>
                     </div>
@@ -121,11 +121,11 @@
                             <label>
                                 @Resource.Password <span class="required-field">*</span>
                             </label>
-                            <input type="password" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserPassword" name="txtUserMaster" required tabindex="1" placeholder="@Resource.Password" maxlength="250">
+                            <input type="password" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserPassword" name="txtUserMasterpassword" required tabindex="1" placeholder="@Resource.Password" maxlength="250">
                             <div class="c">
                             </div>
-                            <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMaster.$dirty && frmUserMaster.txtUserMaster.$invalid">
-                                <span data-ng-show="frmUserMaster.txtUserMaster.$error.required">@Resource.Password</span>
+                            <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMasterpassword.$dirty && frmUserMaster.txtUserMasterpassword.$invalid">
+                                <span data-ng-show="frmUserMaster.txtUserMasterpassword.$error.required">@Resource.PasswordRequired</span>
                             </div>
                         </div>
                     </div>
@@ -227,8 +227,8 @@
                                         <td data-title="'@Resource.SrNo'" header-class="'colSrno'" ng-class="'colSrno text-right'">
                                             {{(tableParams.$params.page-1)*tableParams.$params.count+($index + 1)}}
                                         </td>
-                                        <td data-title="'@Resource.FirstName'" sortable="'Fullname'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.FirstName}}">
-                                            {{h.FirstName}}
+                                        <td data-title="'Full Name'" sortable="'Fullname'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.FirstName}}">
+                                            {{h.FirstName}} {{h.LastName}}
                                         </td>
                                         <td data-title="'@Resource.UserName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.UserName}}">
                                             {{h.UserName}}

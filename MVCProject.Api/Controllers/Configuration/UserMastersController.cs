@@ -1,10 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Net;
-//using System.Net.Http;
-//using System.Web.Http;
-
+﻿
 namespace MVCProject.Api.Controllers.Configuration
 {
 
@@ -59,6 +53,7 @@ namespace MVCProject.Api.Controllers.Configuration
                                       UserId = s.UserId,
                                       EmpId = s.EmployeeId,
                                       FirstName = s.EmployeeId > 0 ? this.entities.TblEmployees.FirstOrDefault(x => x.EmployeeId == s.EmployeeId).FirstName : string.Empty,
+                                      LastName = s.EmployeeId > 0 ? this.entities.TblEmployees.FirstOrDefault(x => x.EmployeeId == s.EmployeeId).LastName : string.Empty,
                                       UserName = s.UserName,
                                       Password = s.UserPassword,
                                       IsActive = s.IsActive,
@@ -78,7 +73,7 @@ namespace MVCProject.Api.Controllers.Configuration
         [HttpGet]
         public ApiResponse GetFullname(bool isActive, string searchText)
         {
-            var data = this.entities.TblEmployees.Where(x => x.IsActive.Value == isActive && x.FirstName.Contains(searchText)).Select(x => new { Name = x.FirstName, Id = x.EmployeeId }).OrderBy(x => x.Name).ToList();
+            var data = this.entities.TblEmployees.Where(x => x.IsActive.Value == isActive && x.FirstName.Contains(searchText)).Select(x => new { Name = x.FirstName +" "+ x.LastName, Id = x.EmployeeId }).OrderBy(x => x.Name).ToList();
             return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
         }
 
