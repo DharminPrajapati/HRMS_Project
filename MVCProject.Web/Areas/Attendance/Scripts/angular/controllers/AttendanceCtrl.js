@@ -48,23 +48,67 @@
         $scope.selectedYear = currentDate.getFullYear();
 
         
+        $scope.currentPage = 1;
+        $scope.pageSize = 10;
+        $scope.count = 0;
+        $scope.pageCount = 0;
+
         $scope.getAttendance = function () {
-           
-            AttendanceService.GetHRAttendance($scope.selectedMonth, $scope.selectedYear).then(function (res) {
+            
+
+            AttendanceService.GetHRAttendance($scope.selectedMonth, $scope.selectedYear, $scope.pageSize, $scope.currentPage, $scope.search).then(function (res) {
+                
                 $scope.headers = [];
-                $scope.employees = res.data.Result;
-                $scope.dates = res.data.Result[0];
-                console.log($scope.employees);
+                $scope.employees = res.data.Result.result;
+                $scope.dates = res.data.Result.result[0];
+                $scope.count = res.data.Result.TotalRecords;
 
                 angular.forEach(Object.keys($scope.dates), function (selected) {
-                    if (selected != 'FirstName' && selected != 'LastName' && selected != 'EmployeeId' && selected != 'EmployeeId1') {
+                    if (selected != 'FirstName' && selected != 'LastName' && selected != 'EmployeeId' && selected != 'EmployeeId1' && selected != 'RowNum') {
                         $scope.headers.push({ Date: selected });
                     }
                 });
-
+                $scope.pageCount = Math.ceil($scope.count / $scope.pageSize);
             }, function (error) {
                 console.log(error);
             });
+        };
+        $scope.nextPage = function () {
+            
+            if ($scope.currentPage < $scope.pageCount) {
+                $scope.currentPage++;
+                $scope.getAttendance();
+            }
+
+        };
+
+        $scope.previousPage = function () {
+            if ($scope.currentPage > 1) {
+                $scope.currentPage--;
+                $scope.getAttendance();
+            }
+        };
+
+
+
+        $scope.range = function () {
+            
+            var rangeSize = 5; // number of pages displayed at a time
+            var start = Math.max(1, $scope.currentPage - Math.floor(rangeSize / 2));
+            var end = Math.min(start + rangeSize - 1);
+
+            var range = [];
+
+            for (var i = start; i <= end; i++) {
+                range.push(i);
+            }
+
+            return range;
+        };
+
+        $scope.setPage = function (page) {
+            $scope.currentPage = page;
+            $scope.getAttendance();
         };
 
         $scope.getAttendance();

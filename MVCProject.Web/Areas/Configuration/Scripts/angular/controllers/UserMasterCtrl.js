@@ -46,10 +46,10 @@
         }
 
         $scope.roleScope = function () {
-            debugger
+           
             UserMasterService.getrolelist()
                 .then(function (res) {
-                    debugger
+                  
                     $scope.Role = res.data.Result;
                 });
         }
@@ -104,7 +104,7 @@
 
         // BEGIN Bind form data for edit UserMaster
         $scope.EditUserMasterDetails = function (UserId) {
-            debugger;
+          
             UserMasterService.GetUserMasterById(UserId).then(function (res) {
                 if (res) {
                     var data = res.data;
@@ -164,9 +164,9 @@
         // export to excel using npoi
         $scope.Export = function () {
 
-            debugger
+            
             UserMasterService.Export().then(function (res) {
-                debugger
+                
                 var data = res.data;
                 if (res.data.MessageType == messageTypes.Success) {// Success
                     var fileName = res.data.Result;

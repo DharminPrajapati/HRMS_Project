@@ -247,6 +247,9 @@
                                     <label class="table-title">
                                         @Resource.Salary @Resource.Details
                                     </label>
+                                    <button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()">
+                                        <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
+                                    </button>
                                 </h3>
                             </div>
                             <div class="col-md-5">
@@ -273,34 +276,37 @@
                                             <td data-title="'Name'" sortable="'Name'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.Name}}">
                                                 {{dt.FirstName}} {{dt.LastName}}
                                             </td>
-                                            <td data-title="'DepartmentName'" sortable="'DepartmentName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DepartmentId}}">
+                                            <td data-title="'Department Name'" sortable="'DepartmentName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DepartmentId}}">
                                                 {{dt.DepartmentName}}
                                             </td>
-                                            <td data-title="'DesignationName'" sortable="'DesignationId'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DesignationId}}">
+                                            <td data-title="'Designation Name'" sortable="'DesignationId'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DesignationId}}">
                                                 {{dt.DesignationName}}
                                             </td>
                                             <td data-title="'@Resource.BasicSalary'" sortable="'BasicSalary'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.BasicSalary}}">
                                                 {{dt.BasicSalary |currency:'&#8377;'}}
                                             </td>
-                                            @*<td data-title="'@Resource.DA'" sortable="'DA'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DA}}">
-                                                {{dt.DAamt|currency:'&#8377;'}}
-                                              </td>
-                                            <td data-title="'@Resource.HRA'" sortable="'HRA'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.HRA}}">
-                                                {{dt.HRAamt|currency:'&#8377;'}}
-                                            </td>
-                                            <td data-title="'@Resource.PF'" sortable="'PF'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.PF}}">
-                                                {{dt.PFamt|currency:'&#8377;'}}
-                                            </td>*@
-                                            <td data-title="'Net Salary(₹)'" sortable="'PF'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.netSalary}}">
+                                                    @*<td data-title="'@Resource.DA'" sortable="'DA'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DA}}">
+                                                        {{dt.DAamt|currency:'&#8377;'}}
+                                                      </td>
+                                                    <td data-title="'@Resource.HRA'" sortable="'HRA'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.HRA}}">
+                                                        {{dt.HRAamt|currency:'&#8377;'}}
+                                                    </td>
+                                                    <td data-title="'@Resource.PF'" sortable="'PF'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.PF}}">
+                                                        {{dt.PFamt|currency:'&#8377;'}}
+                                                    </td>*@
+                                                    <td data-title="'Net Salary(₹)'" sortable="'PF'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.netSalary}}">
                                                 {{dt.netSalary|currency:'&#8377;'}}
                                             </td>
                                             <td data-title="'@Resource.Active'" sortable="'IsActive'" header-class="'colActive'" ng-class="'colActive text-center'">
                                                 <input type="checkbox" class="js-switch" ui-switch options="switchOptions" ng-model="dt.IsActive"
                                                        ng-disabled="true" />
                                             </td>
+                                            <td data-title="'Generate Palyslip'" ng-click="PayslipGenerate(dt.EmployeeId)" sortable="'PF'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.EmployeeId}}">
+                                                <a herf="#" class="btn btn-sm btn-primary"> PaySlip_{{dt.SalaryId}}</a>
+                                            </td>
                                             <td data-title="'@Resource.Action'" header-class="'colAction'" ng-class="'colAction text-center'">
                                                 <a class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit" title="Edit"
-                                                   ng-click="EditSalaryDetails(dt.SalaryId)">
+                                                   ng-click="EditSalaryDetails(dt.SalaryId,frmSalary)">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>

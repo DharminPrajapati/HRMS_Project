@@ -17,12 +17,15 @@
             });
         }
 
-        list.GetHRAttendance = function (month, year) {
-            return $http({
-                method: 'GET',               
-                url: $rootScope.apiURL + '/Attendance/GetHRAttendanceByMonthYear?month=' + month + '&year=' + year,
-                data: { month: month, year: year}
-            });
+        list.GetHRAttendance = function (month, year, pagesize, pageNumber, search = '') {
+            
+            var url = $rootScope.apiURL + '/Attendance/GetHRAttendanceByMonthYear?month=' + month + '&year=' + year + '&pagesize=' + pagesize + '&pageNumber=' + pageNumber;
+            if (search) {
+                url += '&search=' + search;
+            }
+
+            return $http.get(url);
+            debugger
         }
         // list.GetHRAttendance = function (month, year, pagingParams) {
         //    return $http({

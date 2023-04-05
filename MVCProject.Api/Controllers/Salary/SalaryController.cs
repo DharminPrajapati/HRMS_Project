@@ -5,14 +5,20 @@ namespace MVCProject.Api.Controllers.Salary
     #region NameSapces
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Web;
     using System.Web.Http;
     using MVCProject.Api.Models;
     using MVCProject.Api.Utilities;
     using MVCProject.Api.ViewModel;
     using MVCProject.Common.Resources;
+    using NPOI.SS.UserModel;
+    using NPOI.XSSF.UserModel;
+    using NReco.PdfGenerator;
     #endregion
     public class SalaryController : BaseController
     {
@@ -211,6 +217,235 @@ namespace MVCProject.Api.Controllers.Salary
                 return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
             }
         }
+
+        [HttpGet]
+
+        public ApiResponse CreateEmployeeListReport()
+        {
+            var employeeDetail = this.entities.Sp_Salary_DisplayAllEmployees().Select(d => new
+            {
+                SalaryId = d.SalaryId,
+                EmployeeId = d.EmployeeId,
+                Name = d.FirstName + ' ' + d.LastName,
+                DepartmentId = d.DepartmentId,
+                DesignationId = d.DepartmentId,
+                DesignationName = d.DesignationName,
+                DepartmentName = d.DepartmentName,
+                BasicSalary = d.BasicSalary,
+                DAamt = d.DAamt,
+                HRAamt = d.HRAamt,
+                PFamt = d.PFamt,
+                netSalary = d.netSalary,
+                IsActive = d.IsActive != null ? d.IsActive == true ? "Active" : "InActive" : string.Empty
+            }).ToList();
+
+            IWorkbook workbook = new XSSFWorkbook();
+            ISheet sheet = workbook.CreateSheet("Sheet1");
+
+            // Add Some Data to Sheet
+            // 
+            IRow headerRow = sheet.CreateRow(0);
+            headerRow.CreateCell(0).SetCellValue("Employee Id");
+            headerRow.CreateCell(1).SetCellValue("Employee Name");
+            headerRow.CreateCell(2).SetCellValue("Designation Name");
+            headerRow.CreateCell(3).SetCellValue("Department Name");
+            headerRow.CreateCell(4).SetCellValue("Basic Salary");
+            headerRow.CreateCell(5).SetCellValue("DA");
+            headerRow.CreateCell(6).SetCellValue("HRA");
+            headerRow.CreateCell(7).SetCellValue("PF");
+            headerRow.CreateCell(8).SetCellValue("Net Salary");
+            headerRow.CreateCell(9).SetCellValue("IsActive");
+
+            int rowNumber = 1;
+            foreach (var emp in employeeDetail)
+            {
+                IRow row = sheet.CreateRow(rowNumber++);
+                row.CreateCell(0).SetCellValue((double)emp.EmployeeId);
+                row.CreateCell(1).SetCellValue(emp.Name);
+                row.CreateCell(2).SetCellValue(emp.DesignationName);
+                row.CreateCell(3).SetCellValue(emp.DepartmentName);
+                row.CreateCell(4).SetCellValue((double)emp.BasicSalary);
+                row.CreateCell(5).SetCellValue(emp.DAamt);
+                row.CreateCell(6).SetCellValue(emp.HRAamt);
+                row.CreateCell(7).SetCellValue(emp.PFamt);
+                row.CreateCell(8).SetCellValue((double)emp.netSalary);
+                row.CreateCell(9).SetCellValue(emp.IsActive);
+            }
+
+
+            string filePath = HttpContext.Current.Server.MapPath("~/Reports/SalaryDetails.xlsx");
+            string fileName = Path.GetFileName(filePath);
+            //if (File.Exists(filePath))
+            //{
+            //    File.Delete(filePath);
+            //}
+            FileStream fileStream = new FileStream(filePath, FileMode.Create);
+            workbook.Write(fileStream);
+            var memorystream = new MemoryStream();
+            var byteArray = memorystream.ToArray();
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+
+            response.Content = new ByteArrayContent(byteArray);
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = "MyExcelFile__Salary_Details.xlsx";
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.Content.Headers.ContentLength = byteArray.Length;
+            Console.WriteLine(response);
+
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, filePath);
+        }
+
+
+        [System.Web.Http.HttpGet]
+        public ApiResponse GeneratePaySlipByEmployeeId(int employeeId)
+        {
+            var employeeDetails = this.entities.Sp_Salary_DisplayAllEmployees().Where(d => d.EmployeeId == employeeId).ToList().Select(d => new
+            {
+                SalaryId = d.SalaryId,
+                EmployeeId = d.EmployeeId,
+                Name = d.FirstName + ' ' + d.LastName,
+                DepartmentId = d.DepartmentId,
+                DesignationId = d.DepartmentId,
+                DesignationName = d.DesignationName,
+                DepartmentName = d.DepartmentName,
+                BasicSalary = d.BasicSalary,
+                DAamt = d.DAamt,
+                HRAamt = d.HRAamt,
+                PFamt = d.PFamt,
+                netSalary = d.netSalary,
+                IsActive = d.IsActive != null ? d.IsActive == true ? "Active" : "InActive" : string.Empty
+            }).FirstOrDefault();
+
+            var pdfGenerator = new HtmlToPdfConverter();
+            pdfGenerator.CustomWkHtmlArgs = "--page-size A4";
+            pdfGenerator.Orientation = PageOrientation.Portrait;
+
+            var Payslip = this.entities.Sp_Salary_DisplayAllEmployees().FirstOrDefault(x => x.EmployeeId == employeeId);
+
+            // Html Pdf Generator
+
+            var htmlContent = $@"
+                    <html>
+                    <body>
+                    <div class=""page - wrapper"">
+
+                      < div class=""content container-fluid"">
+
+                    <div class=""page-header"">
+                    <div class=""row align-items-center"">
+                    <div class=""col"">
+                    <h3 class=""page-title"">Payslip</h3>
+                    <ul class=""breadcrumb"">
+                    < li class=""breadcrumb-item active"">Payslip</li>
+                    </ul>
+                    </div>
+                    </div>
+
+                    <div class=""row"">
+                    <div class=""col-md-12"">
+                    <div class=""card"">
+                    <div class=""card-body"">
+                    <h4 class=""payslip-title"">Payslip for the month of Feb 2019</h4>
+                    <div class=""row"">
+                    <div class=""col-sm-6 m-b-20"">
+                    <img src = ""E:\HRMS_Project\MVCProject.Web\Content\images\company_logo.png"" class="""" alt="""">
+                    <ul class=""list-unstyled mb-0"">
+                    <li>Dreamguy's Technologies</li>
+                    <li>3864 Quiet Valley Lane,</li>
+                    <li>Sherman Oaks, CA, 91403</li>
+                    </ul>
+                    </div>
+                    <div class=""col-sm-6 m-b-20"">
+                    <div class=""invoice-details"">
+                    <h3 class=""text-uppercase"">Payslip #49029</h3>
+                    <ul class=""list-unstyled"">
+                    <li>Salary Month: <span>March, 2019</span></li>
+                    </ul>
+                    </div>
+                    </div>
+                    </div>
+                    <div class=""row"">
+                    <div class=""col-lg-12 m-b-20"">
+                    <ul class=""list-unstyled"">
+                    <li><h5 class=""mb-0""><strong>{Payslip.FirstName + ' ' + Payslip.LastName}</strong></h5></li>
+                    <li><span>{Payslip.DepartmentName}</span></li>
+                    <li>Employee ID: {Payslip.EmployeeId}</li>
+                    <li>Joining Date: {Payslip.EntryDate}</li>
+                    </ul>
+                    </div>
+                    </div>
+                    <div class=""row"">
+                    <div class=""col-sm-6"">
+                    <div>
+                    <h4 class=""m-b-10""><strong>Earnings</strong></h4>
+                    <table class=""table table-bordered"">
+                    <tbody>
+                    <tr>
+                    <td><strong>Basic Salary</strong> <span class=""float-end"">&#8377;{Payslip.BasicSalary}</span></td>
+                    </tr>
+                    <tr>
+                    <td><strong>House Rent Allowance(H.R.A.)</strong> <span class=""float-end"">&#8377;{Payslip.HRAamt}</span></td>
+                    </tr>
+                    <tr>
+                    <td><strong>Conveyance</strong> <span class=""float-end"">$55</span></td>
+                    </tr>
+                    <tr>
+                    <td><strong>Other Allowance</strong> <span class=""float-end"">0</span></td>
+                    </tr>
+                    <tr>
+                    <td><strong>Total Earnings</strong> <span class=""float-end""><strong></strong></span></td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    </div>
+                    </div>
+                    <div class=""col-sm-6"">
+                    <div>
+                    <h4 class=""m-b-10""><strong>Deductions</strong></h4>
+                    <table class=""table table-bordered"">
+                    <tbody>
+                     <tr>
+                    <td><strong>Provident Fund </strong> <span class=""float-end"">&#8377;{Payslip.PFamt}</span></td>
+                    </tr>             
+                    <tr>
+                    <td><strong>Loan</strong> <span class=""float-end"">0</span></td>
+                    </tr>
+                    <tr>
+                    <td><strong>Total Deductions</strong> <span class=""float-end""><strong></strong></span></td>
+                    </tr>
+                    </tbody>
+                    </table>
+                    </div>
+                    </div>
+                    <div class=""col-sm-12"">
+                    <p><strong>Net Salary: &#8377;{Payslip.netSalary} </strong></p>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </body>
+                    </html>";
+            var pdfBytes = pdfGenerator.GeneratePdf(htmlContent);
+
+
+            var documentsFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+            var pdfFilePath = Path.Combine(documentsFolder, Payslip.EmployeeId + "_" + Payslip.FirstName + "_" + Payslip.LastName + "_Payslip.pdf");
+            System.IO.File.WriteAllBytes(pdfFilePath, pdfBytes);
+            if (employeeDetails != null)
+            {
+
+                return this.Response(Utilities.MessageTypes.Success, string.Empty, employeeDetails);
+            }
+
+            return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

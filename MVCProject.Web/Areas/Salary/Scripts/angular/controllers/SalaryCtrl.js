@@ -58,24 +58,36 @@
     
   
 
-        $scope.EditSalaryDetails = function (salaryId) {
-        debugger
-        SalaryService.GetSalaryById(salaryId).then(function (res) {
-            if (res) {
-                var data = res.data;
-                if (data.MessageType == messageTypes.Success) {
-                    debugger;
-                    $scope.salaryDetailScope = data.Result;
-                    $scope.lastStorageAudit = angular.copy(data.Result);
-                    CommonFunctions.ScrollUpAndFocus("txtSalary");
+        $scope.EditSalaryDetails = function (salaryId, frmSalary) {
+            debugger
+            // $scope.ClearFormData(frmSalary);
+
+            SalaryService.GetSalaryById(salaryId).then(function (res) {
+                if (res) {
+                    var data = res.data;
+                    if (data.MessageType == messageTypes.Success) {
+                        
+
+                        $scope.FullnameURL = SalaryService.GetFullName(true);
+                        $scope.salaryDetailScope = data.Result;
+                        $scope.lastStorageAudit = angular.copy(data.Result);
+                        CommonFunctions.ScrollUpAndFocus("txtSalary");
+                        //$scope.FullnameURL = SalaryService.GetFullName(true);
+                        // $scope.salaryDetailScope.Name = data.Result.Name;
+                        console.log("Salary Details:", $scope.salaryDetailScope);
+                        console.log("Full Name: ", $scope.salaryDetailScope.Name);
+                        $scope.$broadcast('angucomplete-alt:clearInput');
+                    }
+
+                    else if (data.MessageType == messageTypes.Error) {
+                        toastr.error(data.Message, errorTitle);
+                    }
+
                 }
-                else if (data.MessageType == messageTypes.Error) {
-                    toastr.error(data.Message, errorTitle);
-                }
-            }
-            $rootScope.isAjaxLoadingChild = false;
-        });
-    }
+                $rootScope.isAjaxLoadingChild = false;
+
+            });
+        }
 
     $scope.tableParams = new ngTableParams({
         page: 1,
@@ -183,7 +195,7 @@
 
         $scope.getEmployeebyId = function (Id) {
             SalaryService.getEmployeebyId(Id).then(function (res) {
-                debugger
+             
                 var data = res.data;
                 if (!angular.isUndefined(data.Result) && data.Result != '') {
                     $scope.salaryDetailScope = res.data.Result;
@@ -206,6 +218,63 @@
                 }
             })
         }
+
+        $scope.Export = function () {
+           
+            SalaryService.CreateExcelReport().then(function (res) {
+                var data = res.data;
+              
+                if (data.MessageType == messageTypes.Success) {
+
+                    var fileName = res.data.Result;
+                    var params = { fileName: fileName };
+                    var form = document.createElement("form");
+                    form.setAttribute("method", "POST");
+                    form.setAttribute("action", "/Salary/Salary/DownloadFile");
+                    form.setAttribute("target", "_blank");
+
+                    for (var key in params) {
+                        if (params.hasOwnProperty(key)) {
+                            var hiddenField = document.createElement("input");
+                            hiddenField.setAttribute("type", "hidden");
+                            hiddenField.setAttribute("name", key);
+                            hiddenField.setAttribute("value", params[key]);
+
+                            form.appendChild(hiddenField);
+                        }
+
+                    }
+                  
+                    document.body.appendChild(form);
+                    form.submit();
+
+                    $defer.resolve(res.data.Result);
+                    if (res.data.Result.length == 0) { }
+                    else {
+                        params.total(res.data.Result[0].TotalRecords);
+                    }
+                }
+                //else if (res.data.MessageType == messageTypes.Error) {
+                //    toastr.error(res.data.Message, errorTitle);
+                //}
+                //  CommonFunctions.DownloadReport('/Employee/CreateEmployeeListReport', fileName);
+                $rootScope.isAjaxLoadingChild = false;
+                CommonFunctions.SetFixHeader();
+
+                debugger
+            });
+
+        };
+
+        $scope.PayslipGenerate = function (employeeId) {
+            if (employeeId != undefined) {
+                SalaryService.GeneratePayslip(employeeId).then(function (res) {
+                    if (res != null) {
+                        $scope.PayslipGenerate = res.data.Result;
+                    }
+                });
+            }
+        };
 
 }
 })();

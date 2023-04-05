@@ -61,7 +61,22 @@
             });
 
         };
+        //Create Excel Salray Report For Employees
+        list.CreateExcelReport = function () {
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/Salary/CreateEmployeeListReport'
+            });
+        };
 
+        //Generate Pdf Payslip
+        list.GeneratePayslip = function (employeeId) {
+
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/Salary/GeneratePaySlipByEmployeeId?employeeId=' + employeeId
+            });
+        }
 
         return list;
     }]);

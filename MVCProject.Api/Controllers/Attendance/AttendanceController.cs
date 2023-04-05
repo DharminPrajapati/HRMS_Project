@@ -73,9 +73,9 @@ namespace MVCProject.Api.Controllers.Attendance
         [HttpPost]
         public ApiResponse UpdateAttendance([FromBody] Attendance AttendanceDetail)
         {
-            Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.EmployeeId == AttendanceDetail.EmployeeId).FirstOrDefault();
+            Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.EmployeeId == AttendanceDetail.EmployeeId && x.Date == DateTime.Today).FirstOrDefault();
 
-            TimeSpan outtime = TimeSpan.ParseExact(DateTime.Now.ToString("hh:mm:ss"), "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+            TimeSpan outtime = TimeSpan.ParseExact(DateTime.UtcNow.ToString("hh:mm:ss"), "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
             existingAttendanceDetail.OutTime = outtime;
             existingAttendanceDetail.OutLatitude = AttendanceDetail.OutLatitude;
             existingAttendanceDetail.OutLongitude = AttendanceDetail.OutLongitude;
@@ -138,7 +138,120 @@ namespace MVCProject.Api.Controllers.Attendance
             {
                 return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
             }
-        }     
+        }
+
+        [HttpGet]
+
+        public ApiResponse GetAllAttendanceById(int employeeId)
+        {
+            var attendanceDetail = this.entities.Attendance.Where(x => x.EmployeeId == employeeId)
+                   .Select(d => new
+                   {
+                       AttendanceId = d.AttendanceId,
+                       EmployeeId = d.EmployeeId,
+                       Date = d.Date,
+                       InTime = d.InTime,
+                       OutTime = d.OutTime,
+                       InLatitude = d.InLatitude,
+                       OutLatitude = d.OutLatitude,
+                       InLongitude = d.InLongitude,
+                       InDiscription = d.InDiscription,
+                       OutDiscription = d.OutDiscription
+
+                   }).ToList();
+            if (attendanceDetail != null)
+            {
+                return this.Response(Utilities.MessageTypes.Success, string.Empty, attendanceDetail);
+            }
+            else
+            {
+                return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
+            }
+        }
+
+        [HttpGet]
+        public ApiResponse AttendanceStatus(int employeeId)
+        {
+            var data = this.entities.Attendance.Where(x => x.EmployeeId == employeeId && x.Date == DateTime.Today && x.OutLatitude != null && x.OutLongitude != null && x.OutDiscription != null).Any();
+            if (data == true)
+            {
+                return this.Response(Utilities.MessageTypes.Success, responseToReturn: true);
+            }
+            else
+            {
+                return this.Response(Utilities.MessageTypes.Success, responseToReturn: false);
+            }
+        }
+
+        ///// <summary>
+        ///// HR Attendance By Date Using Store Procedure
+        ///// </summary>
+        ///// <param name="month"></param>
+        ///// <param name="year"></param>
+        ///// <returns></returns>
+        [HttpGet]
+        public ApiResponse GetHRAttendanceByMonthYear(int month, int year, int? pagesize = null, int? pageNumber = null, string search = null)
+        {
+            object result = null;
+            int totalRecords = 0;
+            DataSet ds = new DataSet("CalendarData");
+            string providerString = ((EntityConnection)this.entities.Connection).StoreConnection.ConnectionString;
+            using (var conn = new System.Data.SqlClient.SqlConnection(providerString))
+            {
+                SqlCommand cmd = new SqlCommand("usp_EmployeeDaysInMonth", conn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandTimeout = 0;
+                cmd.Parameters.AddWithValue("@Month", month);
+                cmd.Parameters.AddWithValue("@Year", year);
+                if (pagesize != null)
+                {
+                    cmd.Parameters.AddWithValue("@PageSize", pagesize);
+                }
+                if (pageNumber != null)
+                {
+                    cmd.Parameters.AddWithValue("@PageNumber", pageNumber);
+                }
+                if (!string.IsNullOrEmpty(search))
+                {
+                    // Escape single quote characters in the search parameter
+                    search = search.Replace("'", "''");
+                    cmd.Parameters.AddWithValue("@Search", search);
+                }
+                conn.Open();
+                SqlDataAdapter da = new SqlDataAdapter();
+                da.SelectCommand = cmd;
+                da.Fill(ds);
+                conn.Close();
+                if (ds.Tables.Count > 0)
+                {
+                    var table = ds.Tables[0];
+                    if (pagesize != null && pageNumber != null)
+                    {
+                        int count = pagesize.Value * (pageNumber.Value - 1);
+                        var rows = table.AsEnumerable().Take(pagesize.Value).ToList();
+                        if (rows.Any())
+                        {
+                            result = rows.CopyToDataTable();
+                            totalRecords = table.Rows.Count;
+                        }
+                        else
+                        {
+                            result = table.Clone();
+                        }
+                    }
+                    else
+                    {
+                        result = table;
+                        totalRecords = table.Rows.Count;
+                    }
+                }
+                else
+                {
+                    result = new DataTable();
+                }
+            }
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, new { result = result, TotalRecords = totalRecords });
+        }
         //[HttpGet]
 
         //public ApiResponse GetAttendanceById(int employeeId)
@@ -169,19 +282,19 @@ namespace MVCProject.Api.Controllers.Attendance
         //}
 
 
-        [HttpGet]
-        public ApiResponse AttendanceStatus(int employeeId)
-        {
-            var data = this.entities.Attendance.Where(x => x.EmployeeId == employeeId && x.Date == DateTime.Today).Any();
-            if (data == true)
-            {
-                return this.Response(Utilities.MessageTypes.Success, responseToReturn: true);
-            }
-            else
-            {
-                return this.Response(Utilities.MessageTypes.Success, responseToReturn: false);
-            }
-        }
+        //[HttpGet]
+        //public ApiResponse AttendanceStatus(int employeeId)
+        //{
+        //    var data = this.entities.Attendance.Where(x => x.EmployeeId == employeeId && x.Date == DateTime.Today).Any();
+        //    if (data == true)
+        //    {
+        //        return this.Response(Utilities.MessageTypes.Success, responseToReturn: true);
+        //    }
+        //    else
+        //    {
+        //        return this.Response(Utilities.MessageTypes.Success, responseToReturn: false);
+        //    }
+        //}
 
         //[HttpGet]
         //public ApiResponse GetHRAttendanceByMonthYear(int month, int year,PagingParams pagingParams)
