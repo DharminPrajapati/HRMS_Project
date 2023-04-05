@@ -6,7 +6,7 @@ angular.module('MVCApp')
 
         //Get designationlist 
         list.GetDesignationlist = function () {
-            debugger
+            
             return $http({
                 methd: 'GET',
                 url: $rootScope.apiURL + '/Employee/GetDesignationDropDown'
@@ -38,19 +38,19 @@ angular.module('MVCApp')
             });
         }
 
-        list.SearchEmp = function (SearchemployeeDetailScope) {
-            debugger
+        list.SearchEmp = function (SearchEmployeeDetailsParams, searchDetail) {
+            
             return $http({
                 method: 'POST',
-                url: $rootScope.apiURL + '/SearchEmployee/AdvancedSearchEmployee',
-                data: JSON.stringify(SearchemployeeDetailScope)
+                url: $rootScope.apiURL + "/SearchEmployee/AdvancedSearchEmployee?FirstName=" + searchDetail.FirstName + "&DepartmentId=" + searchDetail.DepartmentId + "&DesignationId=" + searchDetail.DesignationId,
+                data: JSON.stringify(SearchEmployeeDetailsParams)
             })
         }
 
         //list.GetAllEmployees = function (/*employeeDetailsParams*/)
         //{
         //    return $http({
-        //        method: 'GET',
+        //        method: 'GET',0
         //        url: $rootScope.apiURL + '/Employee/GetAllEmployees/'
         //    });
         //}

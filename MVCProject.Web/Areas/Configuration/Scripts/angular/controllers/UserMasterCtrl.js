@@ -85,7 +85,7 @@
             if (frmUserMaster.$valid) {
                 UserMasterService.SaveuserMasterDetails(userMasterDetailScope).then(function (res) {
                     if (res) {
-                        debugger;
+                        
                         var data = res.data;
                         if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
                             $scope.ClearFormData(frmUserMaster);

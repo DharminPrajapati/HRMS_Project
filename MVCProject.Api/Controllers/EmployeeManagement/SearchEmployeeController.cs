@@ -30,7 +30,7 @@
         }
 
         [HttpPost]
-        public ApiResponse AdvancedSearchEmployee( SearchParam searchParam)
+        public ApiResponse AdvancedSearchEmployee([FromBody] PagingParams SearchEmployeeDetailsParams, [FromUri] SearchParam searchParam)
         {
             var result = this.entities.sp_hrms_searchemp(searchParam.FirstName, searchParam.DepartmentId, searchParam.DesignationId).ToList();
             var TotalRecords = result.Count();
@@ -42,12 +42,55 @@
                 DesignationId = g.DesignationId,
                 DepartmentName = g.DepartmentName,
                 DesignationName = g.DesignationName,
+                BatchNo = g.BatchNo,
+                LastName = g.LastName,
+                Email = g.Email,
+                Password = g.Password,
+                JoiningDate = g.JoiningDate,
+                PhoneNumber = g.PhoneNumber,
+                AlternatePhoneNumber = g.AlternatePhoneNumber,
+                BirthDate = g.BirthDate,
+                Gender = g.Gender,
+                PermanentAddress = g.PermanentAddress,
+                TemporaryAddress = g.TemporaryAddress,
+                Pincode = g.Pincode,
+                InstitutionName = g.InstitutionName,
+                CourseName = g.CourseName,
+                CourseStartDate = g.CourseStartDate,
+                CourseEndDate = g.CourseEndDate,
+                Grade = g.Grade,
+                Degree = g.Degree,
+                CompanyName = g.CompanyName,
+                LastJobLocation = g.LastJobLocation,
+                JobPosition = g.JobPosition,
+                FromPeriod = g.FromPeriod,
+                ToPeriod = g.ToPeriod,
                 TotalRecords
-            }).AsEnumerable().FirstOrDefault();
-            //.Skip((SearchEmployeeDetailsParams.CurrentPageNumber - 1) * SearchEmployeeDetailsParams.PageSize).Take(SearchEmployeeDetailsParams.PageSize);
+            }).AsEnumerable()
+            .Skip((SearchEmployeeDetailsParams.CurrentPageNumber - 1) * SearchEmployeeDetailsParams.PageSize).Take(SearchEmployeeDetailsParams.PageSize);
             return this.Response(MessageTypes.Success, string.Empty, searchemployee);
 
         }
+
+        //[HttpPost]
+        //public ApiResponse AdvancedSearchEmployee([FromBody] PagingParams SearchEmployeeDetailsParams, [FromUri] SearchParam searchParam)
+        //{
+        //    var result = this.entities.sp_hrms_searchemp(searchParam.FirstName, searchParam.DepartmentId, searchParam.DesignationId).ToList();
+        //    var TotalRecords = result.Count();
+        //    var searchemployee = result.Select(g => new
+        //    {
+        //        EmployeeId = g.EmployeeId,
+        //        FirstName = g.FirstName,
+        //        DepartmentId = g.DepartmentId,
+        //        DesignationId = g.DesignationId,
+        //        DepartmentName = g.DepartmentName,
+        //        DesignationName = g.DesignationName,
+        //        TotalRecords
+        //    }).AsEnumerable()
+        //    .Skip((SearchEmployeeDetailsParams.CurrentPageNumber - 1) * SearchEmployeeDetailsParams.PageSize).Take(SearchEmployeeDetailsParams.PageSize);
+        //    return this.Response(MessageTypes.Success, string.Empty, searchemployee);
+
+        //}
 
         ///Get All Employee Details
         //[HttpPost]

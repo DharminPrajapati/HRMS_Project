@@ -88,7 +88,7 @@
             });
         };
         list.AddFileToDB = function (filedata) {
-            debugger
+           
             return $http({
                 method: 'POST',
                 url: $rootScope.apiURL + '/Employee/FileUploadTODB',
@@ -96,7 +96,7 @@
             });
         }
         list.GeneratePdf = function () {
-            debugger
+           
             return $http({
                 method: 'GET',                
                 url: $rootScope.apiURL + '/Employee/GeneratePdf'

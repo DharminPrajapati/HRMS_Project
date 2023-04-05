@@ -11,8 +11,17 @@
         var SearchEmployeeDetailsParams = {};
         var employeeDetailsParams = {};
         var SearchemployeeDetailScope = {};
+        var searchDetailParams = {};
 
+        $scope.searchDetail = {
 
+            /*EmployeeId:0,*/
+            FirstName: '',
+            DepartmentId: null,
+            /* DepartmentName: '',*/
+            DesignationId: null
+            /* DesignationName:''*/
+        };
 
 
         $scope.SearchemployeeDetailScope = {
@@ -20,8 +29,8 @@
 
             EmployeeId: null,
             FirstName: null,
-            DepartmentId:null,
-            DesignationId:null,
+            DepartmentId: null,
+            DesignationId: null,
             // IsActive: true
         };
 
@@ -39,18 +48,18 @@
             sort: { FirstName: 'asc' }
         }, {
             getData: function ($defer, params) {
-                if (employeeDetailsParams == null) {
-                    employeeDetailsParams = {};
+                if (SearchEmployeeDetailsParams == null) {
+                    SearchEmployeeDetailsParams = {};
                 }
 
-                employeeDetailsParams.Paging = CommonFunctions.GetPagingParams(params);
-                employeeDetailsParams.Paging.Search = $scope.isSearchClicked ? $scope.search : '';
+                SearchEmployeeDetailsParams.Paging = CommonFunctions.GetPagingParams(params);
+                //SearchEmployeeDetailsParams.Paging.Search = $scope.isSearchClicked ? $scope.search : '';
 
-                SearchEmployeeService.GetAllEmployees(employeeDetailsParams.Paging).then(function (res) {
-
+                SearchEmployeeService.SearchEmp(SearchEmployeeDetailsParams.Paging, $scope.searchDetail).then(function (res) {
+                    
                     if (res) {
                         var data = res.data;
-                        if (res.data.MessageType == messageTypes.Success) {
+                        if (res.data.MessageType == messageTypes.Success) {//success
                             $defer.resolve(res.data.Result);
                             if (res.data.Result.length == 0) { }
                             else { params.total(res.data.Result[0].TotalRecords); }
@@ -78,17 +87,17 @@
         //    // debugger
         //}
         $scope.Init = function () {
-            debugger
+           
             $scope.designationScope();
             $scope.departmentsScope();
-           /* $scope.searchemployee();*/
+            /* $scope.searchemployee();*/
 
         }
 
         //for designation dropdown
         $scope.designationScope = function () {
 
-            debugger
+            
             SearchEmployeeService.GetDesignationlist().then(function (res) {
                 $scope.Designation = res.data.Result;
             });
@@ -135,39 +144,39 @@
 
         //});
 
-        $scope.searchemployee = function (SearchemployeeDetailScope) {
-            debugger
-            console.log(SearchemployeeDetailScope);
-            //SearchemployeeDetailScope = SearchemployeeDetailScope;
-            SearchemployeeDetailScope.FirstName = SearchemployeeDetailScope.FirstName/*.angular(SearchemployeeDetailScope.FirstName)*/;
-            SearchemployeeDetailScope.DepartmentId = SearchemployeeDetailScope.DepartmentId/*.angular(SearchemployeeDetailScope.DepartmentId)*/;
-            SearchemployeeDetailScope.DesignationId = SearchemployeeDetailScope.DesignationId/*.angular(SearchemployeeDetailScope.DesignationId)*/;
-            SearchEmployeeService.SearchEmp(SearchemployeeDetailScope).then(function (res) {
-                $scope.data = res.data.Result;
-                $scope.tableParams.reload();
-            });
-            
-            
+        $scope.searchemployee = function (searchDetail) {
+          
+            console.log(searchDetail);
+            $scope.searchDetail = searchDetail;
+
+            searchDetail.FirstName = searchDetail.FirstName;
+            searchDetail.DepartmentId = searchDetail.DepartmentId;
+            searchDetail.DesignationId = searchDetail.DesignationId;
+
+            $scope.tableParams.reload();
         };
 
 
-        $scope.ClearFormData = function (frmSearchemployee) {
-            $scope.SearchemployeeDetailScope = {
+    };
 
-                EmployeeId: 0,
-                FirstName: '',
-                DepartmentName: '',
-                DesignationName: '',
-                //IsActive: true
 
-            };
+    //$scope.ClearFormData = function (frmSearchemployee) {
+    //    $scope.SearchemployeeDetailScope = {
 
-            frmSearchemployee.$setPristine();
-            $("#FirstName").focus();
-            CommonFunctions.ScrollToTop();
-        };
+    //        EmployeeId: 0,
+    //        FirstName: '',
+    //        DepartmentName: '',
+    //        DesignationName: '',
+    //        //IsActive: true
 
-    }
+    //    };
+
+    //    frmSearchemployee.$setPristine();
+    //    $("#FirstName").focus();
+    //    CommonFunctions.ScrollToTop();
+    //};
+
+
 })();
 
 

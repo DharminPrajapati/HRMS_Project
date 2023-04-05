@@ -60,12 +60,12 @@
         //    });
         //};
         list.GetSalConfig = function () {
-            debugger
+            
             return $http({
                 methd: 'GET',
                 url: $rootScope.apiURL + '/SalaryConfig/GetSalConfig'
             });
-            debugger
+            
         };
 
         return list;

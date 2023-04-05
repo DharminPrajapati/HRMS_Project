@@ -107,7 +107,7 @@
         });
 
         $scope.employeesScope = function () {
-            debugger
+           
             SalaryConfigService.GetSalConfig().then(function (res) {
                 var data = res.data.Result;
                 $scope.salaryDetailScope = data;

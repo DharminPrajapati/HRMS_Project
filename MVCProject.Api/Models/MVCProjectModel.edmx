@@ -581,8 +581,38 @@
           <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="DepartmentId" Nullable="true" />
           <Property Type="Int32" Name="DesignationId" Nullable="true" />
-          <Property Type="String" Name="DepartmentName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="DesignationName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="SrNo" Nullable="true" />
+          <Property Type="String" Name="BatchNo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Email" Nullable="true" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="JoiningDate" Nullable="true" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AlternatePhoneNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="String" Name="ProfileImageName" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="BirthDate" Nullable="true" />
+          <Property Type="String" Name="PermanentAddress" Nullable="true" />
+          <Property Type="String" Name="TemporaryAddress" Nullable="true" />
+          <Property Type="Int32" Name="Pincode" Nullable="true" />
+          <Property Type="String" Name="InstitutionName" Nullable="true" />
+          <Property Type="String" Name="CourseName" Nullable="true" />
+          <Property Type="DateTime" Name="CourseStartDate" Nullable="true" />
+          <Property Type="DateTime" Name="CourseEndDate" Nullable="true" />
+          <Property Type="String" Name="Grade" Nullable="true" />
+          <Property Type="String" Name="Degree" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CompanyName" Nullable="true" />
+          <Property Type="String" Name="LastJobLocation" Nullable="true" />
+          <Property Type="String" Name="JobPosition" Nullable="true" />
+          <Property Type="DateTime" Name="FromPeriod" Nullable="true" />
+          <Property Type="DateTime" Name="ToPeriod" Nullable="true" />
+          <Property Type="Int32" Name="Gender" Nullable="true" />
+          <Property Type="Int32" Name="EntryBy" Nullable="true" />
+          <Property Type="DateTime" Name="EntryDate" Nullable="true" />
+          <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedDate" Nullable="true" />
         </ComplexType>
         <EntityType Name="UserMaster">
           <Key>
@@ -886,6 +916,36 @@
                 <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
                 <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="SrNo" ColumnName="SrNo" />
+                <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="AlternatePhoneNumber" ColumnName="AlternatePhoneNumber" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ProfileImageName" ColumnName="ProfileImageName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
+                <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
+                <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+                <ScalarProperty Name="InstitutionName" ColumnName="InstitutionName" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="CourseStartDate" ColumnName="CourseStartDate" />
+                <ScalarProperty Name="CourseEndDate" ColumnName="CourseEndDate" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="LastJobLocation" ColumnName="LastJobLocation" />
+                <ScalarProperty Name="JobPosition" ColumnName="JobPosition" />
+                <ScalarProperty Name="FromPeriod" ColumnName="FromPeriod" />
+                <ScalarProperty Name="ToPeriod" ColumnName="ToPeriod" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
