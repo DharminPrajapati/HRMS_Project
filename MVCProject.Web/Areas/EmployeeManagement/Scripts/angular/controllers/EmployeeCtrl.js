@@ -1,5 +1,4 @@
 ﻿
-
 (function () {
     'use strict';
 
@@ -10,8 +9,6 @@
     function EmployeeCtrl($scope, $rootScope, ngTableParams, CommonFunctions, FileService, EmployeeService) {
         //Initial Declaration
         var employeeDetailsParams = {};
-
-
 
         $scope.emplyeeDetailScope = {
             EmployeeId: 0,
@@ -41,10 +38,15 @@
             ToPeriod: null,
             IsActive: true,
             Attachment: null,
+            file: '',
+            output: '',
 
         };
 
         $scope.max = new Date();
+
+        $scope.IsImg = false;
+        $scope.AllReadyUpload = false;
 
         $scope.isSearchClicked = false;
         $scope.lastStorageAudit = $scope.lastStorageAudit || {};
@@ -56,14 +58,14 @@
 
 
         $scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees) {
-           
-           
+            debugger;
+
             if (emplyeeDetailScope.FirstName == null || emplyeeDetailScope.FirstName == "") {
                 toastr.warning(" First Name Required", warningTitle);
                 $("#txtEmployee").focus();
                 return;
             }
-            else if (emplyeeDetailScope.LastName == null || emplyeeDetailScope.LastName == "" ) {
+            else if (emplyeeDetailScope.LastName == null || emplyeeDetailScope.LastName == "") {
                 toastr.warning("Last Name Required", warningTitle);
                 $("#txtEmpln").focus();
             }
@@ -137,47 +139,61 @@
             else if (emplyeeDetailScope.Degree == null || emplyeeDetailScope.Degree == "") {
                 toastr.warning("Degree Required ", warningTitle);
                 $("#degree").focus();
-            }          
+            }
             //else if (emplyeeDetailScope.FromPeriod >= emplyeeDetailScope.ToPeriod) {
             //    toastr.warning("FromPeriod date should be grater then ToPeriod ", warningTitle);
             //    $("#txtEmployee").focus();
             //    return;
             //}
-            if (frmEmployees.$valid) {                
 
-                //emplyeeDetailScope.Attachment = [];
-                //emplyeeDetailScope.Attachment = emplyeeDetailScope.Attachment.push($scope.FileData)
-                debugger
-                emplyeeDetailScope.Attachment = $scope.FileData;
+            if (output.src) {
+                $scope.AllReadyUpload = true;
+            }
+            if ($scope.AllReadyUpload) {
 
-                EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res) {
-                    if (res) {
-                        var data = res.data;
-                        if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
-                            $scope.ClearFormData(frmEmployees);
-                            toastr.success(data.Message, successTitle);
-                            $scope.tableParams.reload();
-                        }
-                        else if (data.MessageType == messageTypes.Error) {
-                            toastr.error(data.Message, errorTitle);
-                        }
-                        else if (data.MessageType == messageTypes.Warning) {
-                            toastr.warning(data.Message, warningTitle);
-                        }
+                if (frmEmployees.$valid) {
+                    if ($scope.FileData) {
+
+                        //emplyeeDetailScope.Attachment = [];
+                        //emplyeeDetailScope.Attachment = emplyeeDetailScope.Attachment.push($scope.FileData)
+
+                        emplyeeDetailScope.Attachment = $scope.FileData;
                     }
 
-                });
-            }
+                    EmployeeService.SaveEmployeeDetails(emplyeeDetailScope).then(function (res) {
+                        if (res) {
+                            var data = res.data;
+                            if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
+                                $scope.ClearFormData(frmEmployees);
+                                toastr.success(data.Message, successTitle);
+                                $scope.tableParams.reload();
+                            }
+                            else if (data.MessageType == messageTypes.Error) {
+                                toastr.error(data.Message, errorTitle);
+                            }
+                            else if (data.MessageType == messageTypes.Warning) {
+                                toastr.warning(data.Message, warningTitle);
+                            }
+                        }
 
+                    });
+                } else {
+                    toastr.warning("click upload Image");
+                }
+            }
+            else {
+                toastr.warning("Select Image.", warningTitle);
+            }
         }
 
         $scope.EditEmployeeDetails = function (employeeId) {
-           
+            debugger
             EmployeeService.GetEmployeeById(employeeId).then(function (res) {
                 if (res) {
-                   
+                    debugger
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success) {
+                        debugger
                         $scope.emplyeeDetailScope = data.Result;
                         $scope.emplyeeDetailScope.JoiningDate = new Date($scope.emplyeeDetailScope.JoiningDate);
                         $scope.emplyeeDetailScope.BirthDate = new Date($scope.emplyeeDetailScope.BirthDate);
@@ -187,19 +203,20 @@
                         $scope.emplyeeDetailScope.ToPeriod = new Date($scope.emplyeeDetailScope.ToPeriod);
 
 
-                        
-                        ///$scope.emplyeeDetailScope = data.Result;
-                        $scope.file = data.Result.Attachment[0];
-                        var output = document.getElementById('output');
-                        var binaryData = [];
-                        binaryData.push($scope.file);
-                        output.src = URL.createObjectURL(new Blob(binaryData, { type: "image /png/jpeg/jpg" }))
-                        //output.src = URL.createObjectURL($scope.file);
-                        output.onload = function () {
-                            URL.revokeObjectURL(output.src)//free memory
-                        }
-                        $scope.lastStorageAudit = angular.copy(data.Result);
-                        CommonFunctions.ScrollUpAndFocus("txtEmployees");
+
+                        ////$scope.emplyeeDetailScope = data.Result;
+                        //$scope.file = data.Result.Attachment[0];
+                        //var output = document.getElementById('output');
+                        //var binaryData = [];
+                        //binaryData.push($scope.file);
+                        //output.src = URL.createObjectURL(new Blob(binaryData, { type: "image /png/jpeg/jpg" }))
+                        ////output.src = URL.createObjectURL($scope.file);
+                        //output.onload = function () {
+                        //    URL.revokeObjectURL(output.src)//free memory
+                        //}
+                        $scope.emplyeeDetailScope = data.Result;
+                        var attachmentData = data.Result.Attachment;
+                        output.src = attachmentData.RelativePath;
                     }
                     else if (data.MessageType == messageTypes.Error) {
                         toastr.error(data.Message, errorTitle);
@@ -243,43 +260,85 @@
             //}
         };
 
+        //Display Image onload and validation
+        $scope.loadFile = function (event) {
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var fileName = input.files[0].name;
+                var extension = fileName.split('.').pop().toLowerCase();
+                if (extension !== 'jpg' && extension !== 'jepg' && extension !== 'png' && extension !== 'gif') {
+                    toastr.warning("Select Valid Image File", warningTitle);
+                    $("#file").focus();
+                    input.value = '';
+                } else {
+                    var output = document.getElementById('output');
+                    output.src = URL.createObjectURL(event.target.files[0]);
+                    output.onload = function () {
+                        URL.revokeObjectURL(output.src)//free memory
+                        $scope.emplyeeDetailScope.Attachment = null
+                    }
+                }
+            }
+        };
+
         //fileupload
-        $scope.uploadFile = function () {
-            
+        $scope.uploadFile = function (fileobj) {
             var fileInput = document.getElementById('file');
-            //fileInput.click();
+            if (fileInput.files.length > 0) {
+                $scope.IsImg = true;
+                var fileInput = document.getElementById('file');
+                if (fileInput.files.length === 0) return; //do nothing if there's no files
+                var file = fileInput.files[0];
+                var payload = new FormData();
+                payload.append("file", file);
 
-            //do nothing if there's no files
-            if (fileInput.files.length === 0) return;
+                var url = $rootScope.apiURL + '/Upload/UploadImage/'
 
-            var file = fileInput.files[0];
-
-            var payload = new FormData();
-            payload.append("file", file);
-
-            var url = $rootScope.apiURL + '/Upload/UploadImage/'
-            FileService.uploadFile(url, payload).then(function sucessCallback(response) {
-                alert("Image uploaded");
-                $scope.FileData = response.data.Result;
-                $scope.emplyeeDetailScope.Attachment = response.data.Result;
-            }).catch(function (response) {
-
-                response
-                //bummer
-            });
-            //$scope.FileDataTODB = function () {
-            //    debugger
-            //    EmployeeService.AddFileToDB($scope.FileData, $scope.emplyeeDetailScope)
-            //        .then(function (res) {
-            //            console.log(res.data.Result);
-            //        })
-            //}
-
+                FileService.uploadFile(url, payload).then(function sucessCallback(response) {
+                    toastr.success("Image uploaded", successTitle);
+                    $scope.FileData = response.data.Result;
+                }).catch(function (response) {
+                    response
+                });
+            } else {
+                toster.warning("Select image to upload", warningTitle);
+                $("#file").focus();
+            }
         }
 
 
 
+        ////fileupload
+        //$scope.uploadFile = function () {
 
+        //    var fileInput = document.getElementById('file');
+        //    //fileInput.click();
+
+        //    //do nothing if there's no files
+        //    if (fileInput.files.length === 0) return;
+
+        //    var file = fileInput.files[0];
+
+        //    var payload = new FormData();
+        //    payload.append("file", file);
+
+        //    var url = $rootScope.apiURL + '/Upload/UploadImage/'
+        //    FileService.uploadFile(url, payload).then(function sucessCallback(response) {
+        //        alert("Image uploaded");
+        //        $scope.FileData = response.data.Result;
+        //        $scope.emplyeeDetailScope.Attachment = response.data.Result;
+        //    }).catch(function (response) {
+
+        //        response
+        //        //bummer
+        //    });
+        //$scope.FileDataTODB = function () {
+        //    debugger
+        //    EmployeeService.AddFileToDB($scope.FileData, $scope.emplyeeDetailScope)
+        //        .then(function (res) {
+        //            console.log(res.data.Result);
+        //        })
+        //}
         //}
 
         $scope.tableParams = new ngTableParams({
@@ -346,11 +405,13 @@
                 FromPeriod: null,
                 ToPeriod: null,
                 IsActive: true,
-                Attachment:null,
-                file: null,
-                output:''
+                Attachment: null,
+                file: '',
+                output: ''
             };
             //after save image is removed
+            $scope.IsImg = false;
+            $scope.OnclickUpload = false;
             $scope.output = document.getElementById('output');//preview id
             $scope.file = document.getElementById('file');//image input id
             output.src = '';
@@ -368,7 +429,7 @@
 
         $scope.designationScope = function () {
             EmployeeService.GetDesignationlist().then(function (res) {
-                $scope.Designation = res.data.Result;               
+                $scope.Designation = res.data.Result;
             });
         };
 
@@ -376,60 +437,60 @@
 
         $scope.departmentsScope = function () {
             EmployeeService.GetDepartmentlist().then(function (res) {
-                $scope.Departments = res.data.Result;               
+                $scope.Departments = res.data.Result;
             });
         };
 
-    //    //Create Excel Report of Employees
-    //    $scope.createReport = function () {
-    //        if (!$rootScope.permission.CanWrite) { return; }
-    //        var filename = "Employee_" + $rootScope.fileDateName + ".xls";
-    //        CommonFunctions.DownloadReport('/Employee/CreateEmployeeListReport', filename);
-    //    };
-    //};
+        //    //Create Excel Report of Employees
+        //    $scope.createReport = function () {
+        //        if (!$rootScope.permission.CanWrite) { return; }
+        //        var filename = "Employee_" + $rootScope.fileDateName + ".xls";
+        //        CommonFunctions.DownloadReport('/Employee/CreateEmployeeListReport', filename);
+        //    };
+        //};
         $scope.Export = function () {
-            
+            debugger
             EmployeeService.CreateExcelReport().then(function (res) {
                 var data = res.data;
-                
+
                 if (res.data.MessageType == messageTypes.Success) {
 
                     var fileName = res.data.Result;
                     var params = { fileName: fileName };
-                        var form = document.createElement("form");
-                        form.setAttribute("method", "POST");
-                        form.setAttribute("action", "/EmployeeManagement/Employee/DownloadFile");
-                        form.setAttribute("target", "_blank");
+                    var form = document.createElement("form");
+                    form.setAttribute("method", "POST");
+                    form.setAttribute("action", "/EmployeeManagement/Employee/DownloadFile");
+                    form.setAttribute("target", "_blank");
 
-                        for (var key in params) {
-                            if (params.hasOwnProperty(key)) {
-                                var hiddenField =  document.createElement("input");
-                                hiddenField.setAttribute("type", "hidden");
-                                hiddenField.setAttribute("name", key);
-                                hiddenField.setAttribute("value", params[key]);
+                    for (var key in params) {
+                        if (params.hasOwnProperty(key)) {
+                            var hiddenField = document.createElement("input");
+                            hiddenField.setAttribute("type", "hidden");
+                            hiddenField.setAttribute("name", key);
+                            hiddenField.setAttribute("value", params[key]);
 
-                                form.appendChild(hiddenField);
-                            }
-
+                            form.appendChild(hiddenField);
                         }
-                        document.body.appendChild(form);
-                        form.submit();
 
-                        $defer.resolve(res.data.Result);
-                        if (res.data.Result.length == 0) { }
-                        else {
-                            params.total(res.data.Result[0].TotalRecords);
-                        }
+                    }
+                    document.body.appendChild(form);
+                    form.submit();
+
+                    $defer.resolve(res.data.Result);
+                    if (res.data.Result.length == 0) { }
+                    else {
+                        params.total(res.data.Result[0].TotalRecords);
+                    }
                 }
-               
-                    $rootScope.isAjaxLoadingChild = false;
-                    CommonFunctions.SetFixHeader();
-                
+
+                $rootScope.isAjaxLoadingChild = false;
+                CommonFunctions.SetFixHeader();
+
             });
-       
+
         };
 
-    
+
         //$scope.generatePdf = function () {
         //    debugger
         //    EmployeeService.GeneratePdf().then(function (res) {
@@ -491,7 +552,7 @@
                             doc.setFont('helvetica', 'bold');
                             doc.text('Employee List - Page ' + currentPage, 80, 20);
                             doc.setFontSize(10); // set font size for page number
-                            doc.text("Page: " + currentPage,135, 15 /*+ " of " + data.length, 150, 290*/); // add page number
+                            doc.text("Page: " + currentPage, 135, 15 /*+ " of " + data.length, 150, 290*/); // add page number
 
                             //// Add the image to the page
                             //doc.addImage(imgURL, 'PNG', 10, 280, 40, 40);
@@ -510,7 +571,7 @@
                     currentPage++;
                     doc.setFontSize(10);
                     doc.setFont('helvetica', 'bold');
-                    doc.text("Page: " + currentPage,135 , 15/*+ " of " + data.length, 150, 290*/);
+                    doc.text("Page: " + currentPage, 135, 15/*+ " of " + data.length, 150, 290*/);
 
                     doc.save('Employees.pdf');
                 }
@@ -522,37 +583,22 @@
 
 
     angular.module("MVCApp").factory('FileService', ['$http', function ($http) {
-        /*  debugger;*/
+
         return {
-            uploadFile: function (url, file) {
+            uploadFile: function (url, payload) {
                 return $http({
                     url: url,
                     method: 'POST',
-                    data: file,
+                    data: payload,
                     headers: { 'Content-Type': undefined }, //this is important
                     transformRequest: angular.identity //also important
                 });
             },
-            otherFunctionHere: function (url, stuff) {
-                return $http.get(url);
-            }
+            //otherFunctionHere: function (url, stuff) {
+            //    return $http.get(url);
+            //}
         };
     }]);
 
 })();
-
-//$scope.exportToPDF = function () {
-//    var doc = new jsPDF();
-//    var data = [];
-//    angular.forEach($scope.employees, function (employee) {
-//        data.push([employee.name, employee.email, employee.phone]);
-//    });
-//    doc.text('Employee List', 10, 10);
-//    doc.autoTable({
-//        startY: 20,
-//        head: [['Name', 'Email', 'Phone']],
-//        body: data
-//    });
-//    doc.save('employee_list.pdf');
-//};
 

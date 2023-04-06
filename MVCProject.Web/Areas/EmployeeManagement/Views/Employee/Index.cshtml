@@ -32,13 +32,6 @@
         <h4 class="header-title-sub l">
 
             @Resource.Employee
-            <button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()"style="margin-left: 900px; border-radius: 12px; ">
-                <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
-            </button>
-            <button type="button" class="btn btn-danger btn-xs waves-effect" ng-click="generatePdf()"style="border-radius: 12px;">
-                <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToPDF
-            </button>
-            <script src="~/Scripts/js/jspdf.js"></script>
         </h4>
         <!-- start button-->
         @*<div class="pull-right">
@@ -72,7 +65,7 @@
                                 <label>
                                     First Name <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" tabindex="1" id="txtEmployee" ng-focus="true" name="txtEmployee" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)" ng-model="emplyeeDetailScope.FirstName" required  placeholder="First Name" maxlength="250">
+                                <input type="text" class="form-control" tabindex="1" id="txtEmployee" ng-focus="true" name="txtEmployee" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)" ng-model="emplyeeDetailScope.FirstName" required placeholder="First Name" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.txtEmployee.$dirty && frmEmployees.txtEmployee.$invalid">
@@ -85,7 +78,7 @@
                                 <label>
                                     Last Name <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="txtEmpln" @*ng-focus="true"*@ name="txtEmpln" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)" ng-model="emplyeeDetailScope.LastName" required tabindex="2" placeholder="Last Name" maxlength="250">
+                                <input type="text" class="form-control" id="txtEmpln" ng-focus="true" name="txtEmpln" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)" ng-model="emplyeeDetailScope.LastName" required tabindex="2" placeholder="Last Name" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.txtEmpln.$dirty && frmEmployees.txtEmpln.$invalid">
@@ -98,7 +91,7 @@
                                 <label>
                                     Email <span class="required-field">*</span>
                                 </label>
-                                <input type="email" class="form-control" id="email" @*ng-focus="true"*@ name="email" ng-model="emplyeeDetailScope.Email" required tabindex="3" placeholder="Email" maxlength="250">
+                                <input type="email" class="form-control" id="email" ng-focus="true" name="email" ng-model="emplyeeDetailScope.Email" required tabindex="3" placeholder="Email" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.email.$dirty && frmEmployees.email.$invalid">
@@ -114,7 +107,7 @@
                                 <label>
                                     Joining Date <span class="required-field">*</span>
                                 </label>
-                                <input type="date" class="form-control" id="joindate" @*ng-focus="true"*@ name="joindate" ng-model="emplyeeDetailScope.JoiningDate" required tabindex="4" placeholder="Select JoinDate" maxlength="250">
+                                <input type="date" class="form-control" id="joindate" ng-focus="true" name="joindate" ng-model="emplyeeDetailScope.JoiningDate" required tabindex="4" placeholder="Select JoinDate" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.joindate.$dirty && frmEmployees.joindate.$invalid">
@@ -127,7 +120,7 @@
                                 <label>
                                     Phone Number <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="phno" @*ng-focus="true"*@ name="phno" integer tabindex="5" ng-model="emplyeeDetailScope.PhoneNumber" onkeypress="return event.charCode >=48 && event.charCode <=57" required placeholder="Phone Number" maxlength="10">
+                                <input type="text" class="form-control" id="phno" ng-focus="true" name="phno" integer tabindex="5" ng-model="emplyeeDetailScope.PhoneNumber" onkeypress="return event.charCode >=48 && event.charCode <=57" required placeholder="Phone Number" maxlength="10">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmEmployees.phno.$dirty && frmEmployees.phno.$invalid">
@@ -141,7 +134,7 @@
                                 <label>
                                     Alternate Phone Number
                                 </label>
-                                <input type="text" class="form-control" id="alphno" @*ng-focus="true"*@ name="alphno" integer @*minlength="10"*@ ng-model="emplyeeDetailScope.AlternatePhoneNumber" onkeypress="return event.charCode >=48 && event.charCode <=57" tabindex="6" placeholder="Alternate Phone Number" maxlength="10">
+                                <input type="text" class="form-control" id="alphno" ng-focus="true" name="alphno" integer @*minlength="10"*@ ng-model="emplyeeDetailScope.AlternatePhoneNumber" onkeypress="return event.charCode >=48 && event.charCode <=57" tabindex="6" placeholder="Alternate Phone Number" maxlength="10">
                             </div>
                         </div>
                     </div>
@@ -152,7 +145,7 @@
                                     Designation <span class="required-field ">*</span>
                                 </label>
 
-                                <select class="form-control input-with-icon" id="selectDesignation" ng-model="emplyeeDetailScope.DesignationId" ng-options="a.Id as a.Name for a in Designation" @*ng-focus="true"*@ name="selectDesignation " tabindex="7" required>
+                                <select class="form-control input-with-icon" id="selectDesignation" ng-model="emplyeeDetailScope.DesignationId" ng-options="a.Id as a.Name for a in Designation" ng-focus="true" name="selectDesignation " tabindex="7" required>
 
                                     <option value="">Select Designation </option>
 
@@ -165,7 +158,7 @@
                                 <label>
                                     Department <span class="required-field">*</span>
                                 </label>
-                                <select class="form-control input-with-icon" " id="selectDepartments" ng-model="emplyeeDetailScope.DepartmentId" ng-options="a.DeptId as a.DeptName for a in Departments" @*ng-focus="true"*@ name="selectDepartments" tabindex="8" required>
+                                <select class="form-control input-with-icon" id="selectDepartments" ng-model="emplyeeDetailScope.DepartmentId" ng-options="a.DeptId as a.DeptName for a in Departments" ng-focus="true" name="selectDepartments" tabindex="8" required>
                                     <option value="">Select Department</option>
                                 </select>
                             </div>
@@ -189,351 +182,339 @@
                     </div>
 
 
-
-
                     <div class="row">
-
-                        <div class="col-md-12">
+                        <div class="col-md-6 mb-3">
+                            <!--Slider Image View -->
                             <div class="form-group">
-
-                                <div class="col-md-10">
-                                    @*<input type="file" id="file" name="file" tabindex="27" accept="image/*" onchange="loadFile(event)" />*@
-                                    <input type="file" id="file" name="file" tabindex="10" accept="image/*" ng-model="file" onchange="loadFile(event)" />
-
-                                    <div>
-                                        @*<img id="output" height="100px" width="100px" />*@
-
-                                        @*<button ng-click="uploadFile()">Upload</button>*@
-
-                                        <script>
-                                            var loadFile = function (event) {
-                                                var output = document.getElementById('output');
-                                                output.src = URL.createObjectURL(event.target.files[0]);
-                                                output.onload = function () {
-                                                    URL.revokeObjectURL(output.src) // free memory
-                                                }
-                                            };
-                                        </script>
-                                        <div class="label label-danger" data-ng-show="frmEmployees.file.$dirty && frmEmployees.file.$invalid">
-                                            <span data-ng-show="frmEmployees.file.$error.pattern">@Resource.EmployeeImage</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <button type="button" class="btn btn-info waves-effect w-md waves-light m-b-5" id="img" ng-click="uploadFile(file)">UploadImage</button>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                            <img id="output" height="200px" width="200px" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-                @*<div class="main-page-title title-icon relative l">
-                        <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
-                        <h4 class="header-title-sub l">
-
-
-                            Personal Details
-                        </h4>
-                    </div>*@
-                <!-- Personal Details Form -->
-                <div class="card-box">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <h3 class="strip">
-                                    <i class="fa fa-address-book-o"></i>
-                                    Personal Details
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    Birth Date <span class="required-field">*</span>
-                                </label>
-                                <input type="date" class="form-control" id="birthdate" @*ng-focus="true"*@ name="birthdate" required max="{{max}}" ng-model="emplyeeDetailScope.BirthDate" required tabindex="11" placeholder="BirthDate" maxlength="250">
+                                <img id="output" ng-model="emplyeeDetailScope.Attachment.RelativePath" height="100px" width="100px" />
                                 <div class="c">
                                 </div>
-                                <div class="label label-danger" data-ng-show="frmEmployees.birthdate.$dirty && frmEmployees.birthdate.$invalid">
-                                    <span data-ng-show="frmEmployees.birthdate.$error.required">Birth Date required</span>
-                                    <span data-ng-show="frmEmployees.birthdate.$error.max" class="help-block">Birth Date can't be in future'</span>
-                                </div> 
+                                <div class="label label-danger" data-ng-show="">
+                                    <span data-ng-show="frmEmployees.txtSliderImage.$error.required">@Resource.UploadImage</span>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-4">
+                            <!--Select Image  -->
                             <div class="form-group">
-                                <label class="gender">
-                                    @Resource.Gender
-                                </label>
+                                <input type="file" class="form-control" id="file" name="file" ng-focus="true" ng-model="emplyeeDetailScope.file" tabindex="1" placeholder="@Resource.UploadImage" maxlength="250" accept="image/*" onchange="angular.element(this).scope().loadFile(event)">
+                                @Resource.UploadImage
+                                <div class="label label-danger" data-ng-show="frmEmployees.file.$dirty && frmEmployees.file.$invalid">
+                                    <span data-ng-show="frmEmployees.file.$error.pattern">@Resource.Upload</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <!--Upload Image Button -->
+                            <div class="form-group">
+                                <button type="button" class="btn btn-info waves-effect w-md waves-light m-b-5" id="imu" ng-click="uploadFile(file)"
+                                        tabindex="4">
+                                    @Resource.UploadImage
+                                </button>
+                            </div>
+                        </div>
 
-                                <div class="radio-custom gender">
-                                    <input type="radio" name="rdGender" id="rdMale" ng-value="1" ng-model="emplyeeDetailScope.Gender" ng-required="true" ng-disabled="isDisabled" />
-                                    <label for="rdMale">
-                                        Male
+                    </div>
+
+                    <!--<div class="row">
+
+
+                    </div>
+                    @*<div class="main-page-title title-icon relative l">
+                            <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
+                            <h4 class="header-title-sub l">
+
+
+                                Personal Details
+                            </h4>
+                        </div>*@
+                    <!-- Personal Details Form -->
+                    <div class="card-box">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <h3 class="strip">
+                                        <i class="fa fa-address-book-o"></i>
+                                        Personal Details
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        Birth Date <span class="required-field">*</span>
+                                    </label>
+                                    <input type="date" class="form-control" id="birthdate" ng-focus="true" name="birthdate" required max="{{max}}" ng-model="emplyeeDetailScope.BirthDate" required tabindex="11" placeholder="BirthDate" maxlength="250">
+                                    <div class="c">
+                                    </div>
+                                    <div class="label label-danger" data-ng-show="frmEmployees.birthdate.$dirty && frmEmployees.birthdate.$invalid">
+                                        <span data-ng-show="frmEmployees.birthdate.$error.required">Birth Date required</span>
+                                        <span data-ng-show="frmEmployees.birthdate.$error.max" class="help-block">Birth Date can't be in future'</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="gender">
+                                        @Resource.Gender
                                     </label>
 
-                                    <input type="radio" name="rdGender" id="rdFemale" ng-value="2" ng-model="emplyeeDetailScope.Gender" ng-required="true" ng-disabled="isDisabled" />
-                                    <label for="rdFemale">
-                                        Female
+                                    <div class="radio-custom gender">
+                                        <input type="radio" name="rdGender" id="rdMale" ng-value="1" ng-model="emplyeeDetailScope.Gender" ng-required="true" ng-disabled="isDisabled" />
+                                        <label for="rdMale">
+                                            Male
+                                        </label>
+
+                                        <input type="radio" name="rdGender" id="rdFemale" ng-value="2" ng-model="emplyeeDetailScope.Gender" ng-required="true" ng-disabled="isDisabled" />
+                                        <label for="rdFemale">
+                                            Female
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        Pincode <span class="required-field">*</span>
                                     </label>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    Pincode <span class="required-field">*</span>
-                                </label>
-                                <input type="text" class="form-control" id="pincode" @*ng-focus="true"*@ integer name="pincode" minlength="6" ng-model="emplyeeDetailScope.Pincode" required tabindex="12" placeholder="Pincode Number" maxlength="6">
-                                <div class="c">
-                                </div>
-                                <div class="label label-danger" data-ng-show="frmEmployees.pincode.$dirty && frmEmployees.pincode.$invalid">
-                                    <span data-ng-show="frmEmployees.pincode.$error.integer">Pincode must have Number</span>
-                                    <span data-ng-show="frmEmployees.pincode.$error.required">Pincode required</span>
-                                    <span data-ng-show="frmEmployees.pincode.$error.minlength">Pincode must have 6 Digits</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>
-                                    Address <span class="required-field">*</span>
-                                </label>
-                                <textarea class="form-control" tabindex="13" maxlength="250" @*ng-focus="true"*@ ng-model="emplyeeDetailScope.PermanentAddress" placeholder="Permanent Address" required> </textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>
-                                    Temporary Address
-                                </label>
-                                <textarea class="form-control" tabindex="14" maxlength="250" @*ng-focus="true"*@ ng-model="emplyeeDetailScope.TemporaryAddress" placeholder="Temporary Address"> </textarea>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <!-- Education Details Form -->
-
-                <div class="card-box">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <h3 class="strip">
-                                    <i class="fa fa-university"></i>
-                                    Education Details
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    Institution Name <span class="required-field">*</span>
-                                </label>
-                                <input type="text" class="form-control" id="institutename" @*ng-focus="true"*@ name="institutename"  onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122) || (event.charCode == 95) || (event.charCode == 46)"  ng-model="emplyeeDetailScope.InstitutionName" required tabindex="15" placeholder="Institution Name" maxlength="250">
-                                <div class="c">
-                                </div>
-                                <div class="label label-danger" data-ng-show="frmEmployees.institutename.$dirty && frmEmployees.institutename.$invalid">
-                                    <span data-ng-show="frmEmployees.institutename.$error.required">Institution Name required</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    Course Name <span class="required-field">*</span>
-                                </label>
-                                <input type="text" class="form-control" id="coursename" @*ng-focus="true"*@ name="coursename" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122) || (event.charCode == 95) || (event.charCode == 46)" ng-model="emplyeeDetailScope.CourseName" required tabindex="16" placeholder="Course Name" maxlength="250">
-                                <div class="c">
-                                </div>
-                                <div class="label label-danger" data-ng-show="frmEmployees.coursename.$dirty && frmEmployees.coursename.$invalid">
-                                    <span data-ng-show="frmEmployees.coursename.$error.required">Course Name required</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    Course Start Date <span class="required-field">*</span>
-                                </label>
-                                <input type="date" class="form-control" required max="{{max}}" id="coursestartdate" @*ng-focus="true"*@ name="coursestartdate" ng-model="emplyeeDetailScope.CourseStartDate"  tabindex="17" placeholder="Select Course Start Date">
-                                <div class="c">
-                                </div>
-                                <div class="label label-danger" data-ng-show="frmEmployees.coursestartdate.$dirty && frmEmployees.coursestartdate.$invalid">
-                                    <span data-ng-show="frmEmployees.coursestartdate.$error.required">Course Start date required</span>
-                                    <span data-ng-show="frmEmployees.coursestartdate.$error.max" class="help-block">Cource Date can't be in future</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    Course End Date <span class="required-field">*</span>
-                                </label>
-                                <input type="date" class="form-control" id="courseEnddate" @*ng-focus="true"*@ name="courseEnddate"  required max="{{max}}" ng-model="emplyeeDetailScope.CourseEndDate"  tabindex="18" placeholder="Select Course End Date">
-                                <div class="c">
-                                </div>
-                                <div class="label label-danger" data-ng-show="frmEmployees.courseEnddate.$dirty && frmEmployees.courseEnddate.$invalid">
-                                    <span data-ng-show="frmEmployees.courseEnddate.$error.required">Course End Date required</span>
-                                    <span data-ng-show="frmEmployees.courseEnddate.$error.max" class="help-block">Cource Date can't be in future</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    Grade <span class="required-field">*</span>
-                                </label>
-                                <input type="text" class="form-control" id="grade" @*ng-focus="true"*@ name="grade" ng-model="emplyeeDetailScope.Grade" required tabindex="19" placeholder="Grade" maxlength="250">
-                                <div class="c">
-                                </div>
-                                <div class="label label-danger" data-ng-show="frmEmployees.grade.$dirty && frmEmployees.grade.$invalid">
-                                    <span data-ng-show="frmEmployees.grade.$error.required">Grade required</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    Degree <span class="required-field">*</span>
-                                </label>
-                                <input type="text" class="form-control" id="degree" @*ng-focus="true"*@ name="degree" ng-model="emplyeeDetailScope.Degree" required tabindex="20" placeholder="Degree" maxlength="250">
-                                <div class="c">
-                                </div>
-                                <div class="label label-danger" data-ng-show="frmEmployees.degree.$dirty && frmEmployees.degree.$invalid">
-                                    <span data-ng-show="frmEmployees.degree.$error.required">Degree required</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!--Experience Details  Form-->
-
-                <div class="card-box">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <h3 class="strip">
-                                    <i class="fa fa-history"></i>
-
-                                    Experience Details
-                                </h3>
-
-
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                        </div>
+                                    <input type="text" class="form-control" id="pincode" ng-focus="true" integer name="pincode" minlength="6" ng-model="emplyeeDetailScope.Pincode" required tabindex="12" placeholder="Pincode Number" maxlength="6">
+                                    <div class="c">
+                                    </div>
+                                    <div class="label label-danger" data-ng-show="frmEmployees.pincode.$dirty && frmEmployees.pincode.$invalid">
+                                        <span data-ng-show="frmEmployees.pincode.$error.integer">Pincode must have Number</span>
+                                        <span data-ng-show="frmEmployees.pincode.$error.required">Pincode required</span>
+                                        <span data-ng-show="frmEmployees.pincode.$error.minlength">Pincode must have 6 Digits</span>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>
-                                                Company Name
-                                            </label>
-                                            <input type="text" class="form-control" id="companyname" @*ng-focus="true"*@ name="companyname" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122) || (event.charCode == 95) || (event.charCode == 46)" ng-model="emplyeeDetailScope.CompanyName" @*required*@ tabindex="21" placeholder="Company Name" maxlength="250">
-                                            <div class="c">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Address <span class="required-field">*</span>
+                                    </label>
+                                    <textarea class="form-control" tabindex="13" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.PermanentAddress" placeholder="Permanent Address" required> </textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>
+                                        Temporary Address
+                                    </label>
+                                    <textarea class="form-control" tabindex="14" maxlength="250" ng-focus="true" ng-model="emplyeeDetailScope.TemporaryAddress" placeholder="Temporary Address"> </textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Education Details Form -->
+
+                    <div class="card-box">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <h3 class="strip">
+                                        <i class="fa fa-university"></i>
+                                        Education Details
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        Institution Name <span class="required-field">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="institutename" ng-focus="true" name="institutename" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122) || (event.charCode == 95) || (event.charCode == 46)" ng-model="emplyeeDetailScope.InstitutionName" required tabindex="15" placeholder="Institution Name" maxlength="250">
+                                    <div class="c">
+                                    </div>
+                                    <div class="label label-danger" data-ng-show="frmEmployees.institutename.$dirty && frmEmployees.institutename.$invalid">
+                                        <span data-ng-show="frmEmployees.institutename.$error.required">Institution Name required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        Course Name <span class="required-field">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="coursename" ng-focus="true" name="coursename" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122) || (event.charCode == 95) || (event.charCode == 46)" ng-model="emplyeeDetailScope.CourseName" required tabindex="16" placeholder="Course Name" maxlength="250">
+                                    <div class="c">
+                                    </div>
+                                    <div class="label label-danger" data-ng-show="frmEmployees.coursename.$dirty && frmEmployees.coursename.$invalid">
+                                        <span data-ng-show="frmEmployees.coursename.$error.required">Course Name required</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        Course Start Date <span class="required-field">*</span>
+                                    </label>
+                                    <input type="date" class="form-control" required max="{{max}}" id="coursestartdate" ng-focus="true" name="coursestartdate" ng-model="emplyeeDetailScope.CourseStartDate" tabindex="17" placeholder="Select Course Start Date">
+                                    <div class="c">
+                                    </div>
+                                    <div class="label label-danger" data-ng-show="frmEmployees.coursestartdate.$dirty && frmEmployees.coursestartdate.$invalid">
+                                        <span data-ng-show="frmEmployees.coursestartdate.$error.required">Course Start date required</span>
+                                        <span data-ng-show="frmEmployees.coursestartdate.$error.max" class="help-block">Cource Date can't be in future</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        Course End Date <span class="required-field">*</span>
+                                    </label>
+                                    <input type="date" class="form-control" id="courseEnddate" ng-focus="true" name="courseEnddate" required max="{{max}}" ng-model="emplyeeDetailScope.CourseEndDate" tabindex="18" placeholder="Select Course End Date">
+                                    <div class="c">
+                                    </div>
+                                    <div class="label label-danger" data-ng-show="frmEmployees.courseEnddate.$dirty && frmEmployees.courseEnddate.$invalid">
+                                        <span data-ng-show="frmEmployees.courseEnddate.$error.required">Course End Date required</span>
+                                        <span data-ng-show="frmEmployees.courseEnddate.$error.max" class="help-block">Cource Date can't be in future</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        Grade <span class="required-field">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="grade" ng-focus="true" name="grade" ng-model="emplyeeDetailScope.Grade" required tabindex="19" placeholder="Grade" maxlength="250">
+                                    <div class="c">
+                                    </div>
+                                    <div class="label label-danger" data-ng-show="frmEmployees.grade.$dirty && frmEmployees.grade.$invalid">
+                                        <span data-ng-show="frmEmployees.grade.$error.required">Grade required</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>
+                                        Degree <span class="required-field">*</span>
+                                    </label>
+                                    <input type="text" class="form-control" id="degree" ng-focus="true" name="degree" ng-model="emplyeeDetailScope.Degree" required tabindex="20" placeholder="Degree" maxlength="250">
+                                    <div class="c">
+                                    </div>
+                                    <div class="label label-danger" data-ng-show="frmEmployees.degree.$dirty && frmEmployees.degree.$invalid">
+                                        <span data-ng-show="frmEmployees.degree.$error.required">Degree required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--Experience Details  Form-->
+
+                    <div class="card-box">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <h3 class="strip">
+                                        <i class="fa fa-history"></i>
+
+                                        Experience Details
+                                    </h3>
+
+
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="form-group">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>
-                                                Last Job Location
-                                            </label>
-                                            <input type="text" class="form-control" id="lastjoblocation" @*ng-focus="true"*@ name="lastjoblocation" ng-model="emplyeeDetailScope.LastJobLocation" tabindex="22" placeholder="Last job Location" maxlength="250">
-                                            <div class="c">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>
+                                                    Company Name
+                                                </label>
+                                                <input type="text" class="form-control" id="companyname" ng-focus="true" name="companyname" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122) || (event.charCode == 95) || (event.charCode == 46)" ng-model="emplyeeDetailScope.CompanyName" @*required*@ tabindex="21" placeholder="Company Name" maxlength="250">
+                                                <div class="c">
+                                                </div>
                                             </div>
-
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>
-                                                Job Position
-                                            </label>
-                                            <input type="text" class="form-control" id="jobposition" @*ng-focus="true"*@ name="jobposition" ng-model="emplyeeDetailScope.JobPosition" tabindex="23" placeholder="Job Position" maxlength="250">
-                                            <div class="c">
-                                            </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>
+                                                    Last Job Location
+                                                </label>
+                                                <input type="text" class="form-control" id="lastjoblocation" ng-focus="true" name="lastjoblocation" ng-model="emplyeeDetailScope.LastJobLocation" tabindex="22" placeholder="Last job Location" maxlength="250">
+                                                <div class="c">
+                                                </div>
 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>
-                                                From Period
-                                            </label>
-                                            <input type="date" @*required max="{{max}}"*@ class="form-control" id="fromperiod" @*ng-focus="true"*@ name="fromperiod" ng-model="emplyeeDetailScope.FromPeriod" tabindex="24" placeholder="Select From Period">
-                                            <div class="c">
                                             </div>
-                                            <!--<div class="label label-danger" data-ng-show="frmEmployees.fromperiod.$dirty && frmEmployees.fromperiod.$invalid">-->
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>
+                                                    Job Position
+                                                </label>
+                                                <input type="text" class="form-control" id="jobposition" ng-focus="true" name="jobposition" ng-model="emplyeeDetailScope.JobPosition" tabindex="23" placeholder="Job Position" maxlength="250">
+                                                <div class="c">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>
+                                                    From Period
+                                                </label>
+                                                <input type="date" required max="{{max}}" class="form-control" id="fromperiod" ng-focus="true" name="fromperiod" ng-model="emplyeeDetailScope.FromPeriod" tabindex="24" placeholder="Select From Period">
+                                                <div class="c">
+                                                </div>
+                                                <!--<div class="label label-danger" data-ng-show="frmEmployees.fromperiod.$dirty && frmEmployees.fromperiod.$invalid">-->
                                                 @*<span data-ng-show="frmEmployees.fromperiod.$error.required">Course End Date required</span>*@
                                                 <!--<span data-ng-show="frmEmployees.fromperiod.$error.max" class="help-block">From Date can't be in future</span>
-                                            </div>-->
+                                                </div>-->
 
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>
-                                                To Period
-                                            </label>
-                                            <input type="date"  @*required max="{{max}}"*@ class="form-control" id="toperiod" @*ng-focus="true"*@ name="toperiod" ng-model="emplyeeDetailScope.ToPeriod" tabindex="25" placeholder="Select From Period">
-                                            <div class="c">
                                             </div>
-                                            <!--<div class="label label-danger" data-ng-show="frmEmployees.toperiod.$dirty && frmEmployees.toperiod.$invalid">-->
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>
+                                                    To Period
+                                                </label>
+                                                <input type="date" required max="{{max}}" class="form-control" id="toperiod" ng-focus="true" name="toperiod" ng-model="emplyeeDetailScope.ToPeriod" tabindex="25" placeholder="Select From Period">
+                                                <div class="c">
+                                                </div>
+                                                <!--<div class="label label-danger" data-ng-show="frmEmployees.toperiod.$dirty && frmEmployees.toperiod.$invalid">-->
                                                 @*<span data-ng-show="frmEmployees.fromperiod.$error.required">Course End Date required</span>*@
                                                 <!--<span data-ng-show="frmEmployees.toperiod.$error.max" class="help-block">To Date can't be in future</span>
-                                            </div>-->
+                                                </div>-->
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
-                                                    @*ng-disabled="frmEmployees.txtEmployee.$invalid"*@ tabindex="26">
-                                                {{emplyeeDetailScope.EmployeeId > 0 ? '@Resource.Update' : '@Resource.Save'}}
-                                            </button>
-                                            <button type="button" ng-click="ClearFormData(frmEmployees)" class="btn btn-info waves-effect w-md waves-light m-b-5"
-                                                    tabindex="27">
-                                                @Resource.Clear
-                                            </button>
+                                    <div class="row">
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                                                        @*ng-disabled="frmEmployees.txtEmployee.$invalid"*@ tabindex="26">
+                                                    {{emplyeeDetailScope.EmployeeId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                                                </button>
+                                                <button type="button" ng-click="ClearFormData(frmEmployees)" class="btn btn-info waves-effect w-md waves-light m-b-5"
+                                                        tabindex="27">
+                                                    @Resource.Clear
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
             </form>
         </div>
     </div>
@@ -555,7 +536,13 @@
                                 @Resource.Employee @Resource.Details
                             </label>
 
-                           
+                            <button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()">
+                                <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs waves-effect" ng-click="generatePdf()">
+                                <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToPDF
+                            </button>
+                            <script src="~/Scripts/js/jspdf.js"></script>
                         </h3>
                     </div>
                     <div class="col-md-6">

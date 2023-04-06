@@ -101,13 +101,13 @@
 
         }
 
-    
+
 
         [HttpGet]
 
         public ApiResponse GetEmployeeList(bool isGetAll = false)
         {
-            var result = this.entities.TblEmployees.Where(x => (isGetAll || x.IsActive.Value)).Select(x => new  { Id = x.EmployeeId, Name = x.FirstName,srno=x.SrNo }).OrderBy(e => e.Name).ToList();
+            var result = this.entities.TblEmployees.Where(x => (isGetAll || x.IsActive.Value)).Select(x => new { Id = x.EmployeeId, Name = x.FirstName, srno = x.SrNo }).OrderBy(e => e.Name).ToList();
             return this.Response(Utilities.MessageTypes.Success, string.Empty, result);
         }
 
@@ -128,7 +128,7 @@
                 d.AlternatePhoneNumber,
                 d.DesignationId,
                 d.DepartmentId,
-                DesignationName = this.entities.Designations.FirstOrDefault(x=>x.DesignationId==d.DesignationId).DesignationName,
+                DesignationName = this.entities.Designations.FirstOrDefault(x => x.DesignationId == d.DesignationId).DesignationName,
                 DepartmentName = this.entities.TblDepartments.FirstOrDefault(x => x.DepartmentId == d.DepartmentId).DepartmentName,
                 d.BirthDate,
                 Gender = d.Gender == 1 ? "Male" : "Female",
@@ -220,11 +220,11 @@
             Console.WriteLine(response);
 
             return this.Response(Utilities.MessageTypes.Success, string.Empty, filePath);
-        }       
-        
+        }
+
         /// <summary>
-                 /// Get Employees By Id
-                 /// </summary>
+        /// Get Employees By Id
+        /// </summary>
         //[HttpGet]
 
         //public ApiResponse GetEmployeeById(int employeeId)
@@ -271,30 +271,35 @@
         //        return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
         //    }
         //}
-        
+
         /// Get Employee using Store Procedure
         /// </summary>
         [HttpGet]
 
         public ApiResponse GetEmployeeById(int employeeId)
         {
+            string root = string.Empty;
+            string directory = string.Format(AppUtility.GetEnumDescription(MVCProject.Api.Utilities.DirectoryPath.Attachment_Temp), string.Empty);
+            directory = directory.Replace(@"\", "/");
+            Uri uri = HttpContext.Current.Request.Url;
+            root = uri.OriginalString.Replace(uri.PathAndQuery, "/");
             var employeeDetail = this.entities.sp_Emp_GetAllEmployees().Where(x => x.EmployeeId == employeeId)
                    .Select(d => new
                    {
                        EmployeeId = d.EmployeeId,
                        FirstName = d.FirstName,
                        LastName = d.LastName,
-                       Email = d.Email,                      
+                       Email = d.Email,
                        JoiningDate = d.JoiningDate,
                        PhoneNumber = d.PhoneNumber,
                        AlternatePhoneNumber = d.AlternatePhoneNumber,
                        DesignationId = d.DesignationId,
                        DepartmentId = d.DepartmentId,
-                       DesignationName=d.DesignationName,
-                       DepartmentName=d.DepartmentName,
+                       DesignationName = d.DesignationName,
+                       DepartmentName = d.DepartmentName,
                        BirthDate = d.BirthDate,
                        Gender = d.Gender,
-                       GenderName=d.Gender==1?"Male":"Female",
+                       GenderName = d.Gender == 1 ? "Male" : "Female",
                        PermanentAddress = d.PermanentAddress,
                        TemporaryAddress = d.TemporaryAddress,
                        Pincode = d.Pincode,
@@ -309,7 +314,17 @@
                        JobPosition = d.JobPosition,
                        FromPeriod = d.FromPeriod,
                        ToPeriod = d.ToPeriod,
-                       IsActive = d.IsActive
+                       IsActive = d.IsActive,
+                       Attachment = this.entities.AttachmentMaster.Where(a => a.RefrencedId == d.EmployeeId && a.IsActive == true).ToList().Select(b => new
+                       {
+                           AttachmentId = b.AttachmentId,
+                           FileName = b.FileName,
+                           Filepath = b.Filepath,
+                           FileRelativePath = b.FileRelativePath,
+                           OriginalFileName = b.OriginalFileName,
+                           RelativePath = string.Format("{0}{1}{2}", root, directory, b.FileName),
+                       }).FirstOrDefault()
+
                    }).SingleOrDefault();
             if (employeeDetail != null)
             {
@@ -335,8 +350,8 @@
             TblEmployee existingEmployeeDetail = this.entities.TblEmployees.Where(x => x.EmployeeId == employeeDetail.EmployeeId).FirstOrDefault();
             if (existingEmployeeDetail == null)
             {
-                var Srno=this.entities.TblEmployees.Max(x => x.SrNo)+1;
-                var Batch = string.Format("{0}{1}","ASK_",(Srno));
+                var Srno = this.entities.TblEmployees.Max(x => x.SrNo) + 1;
+                var Batch = string.Format("{0}{1}", "ASK_", (Srno));
 
                 employeeDetail.SrNo = Srno;
                 employeeDetail.BatchNo = Batch;
@@ -345,8 +360,8 @@
                 {
                     return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Employee));
                 }
-               
-               // return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Employee));
+
+                // return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Employee));
             }
 
 
@@ -402,7 +417,7 @@
                 }
             }
             var attachfile = employeeDetail.Attachment;
-            attachfile.RefrencedId = employeeDetail.EmployeeId;           
+            attachfile.RefrencedId = employeeDetail.EmployeeId;
             attachfile.IsActive = employeeDetail.IsActive;
             this.entities.AttachmentMaster.AddObject(attachfile);
             this.entities.SaveChanges();
@@ -446,7 +461,7 @@
 
 
             return this.Response(Utilities.MessageTypes.Success, string.Empty, new { list = results, Total = TotalRecords });
-           
+
         }
 
         [HttpGet]
@@ -471,5 +486,5 @@
 
     }
 }
-    
+
 

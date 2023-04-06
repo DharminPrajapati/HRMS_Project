@@ -2275,6 +2275,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to UploadImage.
+        /// </summary>
+        public static string UploadImage {
+            get {
+                return ResourceManager.GetString("UploadImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Upper Limit.
         /// </summary>
         public static string UpperLimit {

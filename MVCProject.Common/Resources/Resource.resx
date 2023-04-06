@@ -915,4 +915,7 @@
   <data name="UserRole" xml:space="preserve">
     <value>Role</value>
   </data>
+  <data name="UploadImage" xml:space="preserve">
+    <value>UploadImage</value>
+  </data>
 </root>
