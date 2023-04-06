@@ -121,7 +121,7 @@
                         <label>
                             @Resource.Password <span class="required-field">*</span>
                         </label>
-                        <input type="password" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserPassword" name="txtUserMasterpassword" required tabindex="1" placeholder="@Resource.Password" maxlength="250">
+                        <input type="password" class="form-control" id="txtUserMaster" @*ng-focus="true"*@ ng-model="userMasterDetailScope.UserPassword" name="txtUserMasterpassword" required tabindex="1" placeholder="@Resource.Password" maxlength="250">
                         <div class="c">
                         </div>
                         <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMasterpassword.$dirty && frmUserMaster.txtUserMasterpassword.$invalid">

@@ -187,13 +187,13 @@
         }
 
         $scope.EditEmployeeDetails = function (employeeId) {
-            debugger
+           
             EmployeeService.GetEmployeeById(employeeId).then(function (res) {
                 if (res) {
-                    debugger
+                    
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success) {
-                        debugger
+                       
                         $scope.emplyeeDetailScope = data.Result;
                         $scope.emplyeeDetailScope.JoiningDate = new Date($scope.emplyeeDetailScope.JoiningDate);
                         $scope.emplyeeDetailScope.BirthDate = new Date($scope.emplyeeDetailScope.BirthDate);

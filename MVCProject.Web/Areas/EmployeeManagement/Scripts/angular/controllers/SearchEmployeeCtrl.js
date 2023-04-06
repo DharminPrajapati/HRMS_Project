@@ -169,6 +169,8 @@
             frmSearchemployee.$setPristine();
             $("#frmSearchemployee").focus();
             CommonFunctions.ScrollToTop();
+            $scope.tableParams.reload();
+
         };
 
 
