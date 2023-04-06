@@ -141,100 +141,105 @@
 <div ng-app="MVCApp" ng-controller="AttendanceCtrl">
     <div class="card-box">
         <div class="row">
-            <div class="col-md-7 ">
+            <div class="col-md-8 ">
 
                 @*<h2 style="background-color:blue;color: white; text-align: center; font-style: oblique">Calendar</h2>*@
 
                 <div id="calendar" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="myCalendar"></div>
             </div>
 
-            <div class="col-md-5">
-                
+            <div class="col-md-4">
+
+                <div class="timeline " style="margin-top: 133px;margin-left: -72px;/* width: 493px; */">
+                    <div class="container_t right card-box" style=" width: 345px; height: 160px; /* margin-right: -290px; */ margin-left: 2px; box-shadow: 0px 0px 12px 3px #2b2baf; ">
+                        <i class="icon_t ">
+                            <img src="/Content/images/Group 1.png" style="height: 40px;margin-top: -11px; width: 40px; margin-left: -2px;">
+                        </i>
+                        <div class="content"style="top: -44px;">
+                            <div class="attendance_e">
+                                <h2>Employee Details:</h2>
+                            </div>
+                            <p>
+                                First Name: Urvashi Borse
+                            </p>
+                            <p>
+                                Department: Software
+                            </p>
+                            <p>
+                                Designation: System User
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
                 <div ng-show="SelectedEvent" class="alert alert-success" style="margin-top: 71px; margin-right: 144px;">
-                    
-                            <div class="timeline" style="margin-top:45px;">
 
-                                <div class="container_t right">
-                                    <i class="icon_t">
-                                        <img src="/Content/images/Group 1.png" style="height: 40px;margin-top: -11px; width: 40px; margin-left: -2px;">
-                                    </i>
-                                    <div class="content">
-                                        <h2>Attendance Details:</h2>
-                                        <p>Date: {{ formatDate(SelectedEvent.start) }}</p>
-                                        @*<h2 style="color: #ffffff;">{{SelectedEvent.title}}</h2>*@
-                                        <p>In Time: {{ SelectedEvent.intimedescription | date: 'hh:mm a' }}</p>
-                                        <p>Out Time: {{ SelectedEvent.outtimetdescription | date: 'hh:mm a' }}</p>
-
-                                        <p>In Discription: {{SelectedEvent.indescription}}</p>
-                                        <p>Out Discription: {{SelectedEvent.outdescription}}</p>
-
-                                        @*<p>Date:{{SelectedEvent.end}}</p>*@
-                                        @*<p>Date:{{SelectedEvent.end}}</p>*@
-                                    </div>
+                    <div class="timeline " style="margin-top: 23px; margin-left: 0px; /* width: 493px;">
+                        <div class="container_t right card-box" style=" width: 345px; height: 230px; /* margin-right: -290px; */ margin-left: -30px; top: -42px; box-shadow: 0px 0px 12px 3px #2b2baf; ">
+                            <i class="icon_t">
+                                <img src="/Content/images/Group 1.png" style="height: 40px;margin-top: -11px; width: 40px; margin-left: -2px;">
+                            </i>
+                            <div class="content" style="top:-50px;">
+                                <div class="attendance">
+                                <h2>Attendance Details:</h2>
                                 </div>
+                                @*<h2 style="color: #ffffff;">{{SelectedEvent.title}}</h2>*@
+                                <p>Date: {{ formatDate(SelectedEvent.start) }}</p>
+                                <p>In Time: {{SelectedEvent.intimedescription}}</p>
+                                <p>Out Time: {{SelectedEvent.outtimetdescription}}</p>
+                                <p>In Discription: {{SelectedEvent.indescription}}</p>
+                                <p>Out Discription: {{SelectedEvent.outdescription}}</p>
+
+                                @*<p>Date:{{SelectedEvent.end}}</p>*@
+                                @*<p>Date:{{SelectedEvent.end}}</p>*@
                             </div>
                         </div>
-                        <div class="timeline" style="margin-top: 100px; margin-left: -72px; ">
-                            <div class="container_t right">
-                                <i class="icon_t ">
-                                    <img src="/Content/images/Group 1.png" style="height: 40px;margin-top: -11px; width: 40px; margin-left: -2px;">
-                                </i>
-                                <div class="content">
-
-                                    <p>
-                                        First Name: Urvashi Borse
-                                    </p>
-                                    <p>
-                                        Department: Software
-                                    </p>
-                                    <p>
-                                        Designation: System User
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-        </div>
-               
-           
-        
-    </div>
-   
-
-    @*</div>
-        </div>*@
-
-
-
-
-
-
-
-
-    @*<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true" ng-show="SelectedEvent" ng-model="eventSources">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="eventModalLabel">{{SelectedEvent.title}}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="SelectedEvent=null">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>{{SelectedEvent.intimedescription}}</p>
-                        <p>{{SelectedEvent.outtimetdescription}}</p>
-                        <p>{{SelectedEvent.indescription}}</p>
-                        <p>{{SelectedEvent.outdescription}}</p>
-                        <p>{{SelectedEvent.start}}</p>
-                        <p>{{SelectedEvent.end}}</p>
                     </div>
                 </div>
             </div>
-        </div>*@
 
+
+        </div>
+    </div>
 </div>
+
+
+
+    </div>
+
+
+@*</div>
+    </div>*@
+
+
+
+
+
+
+
+
+@*<div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true" ng-show="SelectedEvent" ng-model="eventSources">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="eventModalLabel">{{SelectedEvent.title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="SelectedEvent=null">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>{{SelectedEvent.intimedescription}}</p>
+                    <p>{{SelectedEvent.outtimetdescription}}</p>
+                    <p>{{SelectedEvent.indescription}}</p>
+                    <p>{{SelectedEvent.outdescription}}</p>
+                    <p>{{SelectedEvent.start}}</p>
+                    <p>{{SelectedEvent.end}}</p>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+
 
 
 

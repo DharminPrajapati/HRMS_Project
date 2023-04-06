@@ -199,7 +199,7 @@
                             URL.revokeObjectURL(output.src)//free memory
                         }
                         $scope.lastStorageAudit = angular.copy(data.Result);
-                        CommonFunctions.ScrollUpAndFocus("txtEmployee");
+                        CommonFunctions.ScrollUpAndFocus("txtEmployees");
                     }
                     else if (data.MessageType == messageTypes.Error) {
                         toastr.error(data.Message, errorTitle);

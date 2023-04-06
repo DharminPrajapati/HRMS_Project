@@ -329,14 +329,13 @@ namespace MVCProject.Api.Controllers.Salary
                     <body>
                     <div class=""page - wrapper"">
 
-                      < div class=""content container-fluid"">
 
                     <div class=""page-header"">
                     <div class=""row align-items-center"">
                     <div class=""col"">
                     <h3 class=""page-title"">Payslip</h3>
                     <ul class=""breadcrumb"">
-                    < li class=""breadcrumb-item active"">Payslip</li>
+                
                     </ul>
                     </div>
                     </div>

@@ -51,7 +51,7 @@ h2 {
 
 h3 {
     line-height: 32px;
-    background: linear-gradient(to right, #0e0e23 0%, #b4b4eb 100%);
+    background: linear-gradient(to right, #0f0f5e 0%, #b4b4eb 100%);
 }
 
 
@@ -2617,14 +2617,14 @@ a.editable-click:hover {
         }
 
     .timeline:before {
-        background-color: rgba(152, 166, 173, 0.3);
-        bottom: 0px;
+        /*        background-color: rgba(152, 166, 173, 0.3);*/
+        /*bottom: 0px;
         content: "";
         left: 50%;
         position: absolute;
         top: 30px;
         width: 1px;
-        z-index: 0;
+        z-index: 0;*/
     }
 
     .timeline .timeline-icon {
@@ -5567,10 +5567,10 @@ table.dataTable td.focus {
     .dropdown-multiselect .btn-default-multi {
         color: #565656;
         background: #fff;
-        border: 1px solid #E3E3E3;
-        border-radius: 4px;
+        border: 1px solid #acace2;
+        border-radius: 5px;
         padding: 7px 6px 7px 16px;
-        /*height: 38px;*/
+        height: 43px;
         text-align: left;
         width: 100%;
     }
@@ -7505,7 +7505,7 @@ multilevel-accordion uib-accordion .panel-group {
 .attendance_btn {
     width: 100%;
     margin-top: 5px;
-    background: #34444c;
+    background: #3f3f7f;
     color: white;
     height: 38px;
 }
@@ -7599,7 +7599,7 @@ multilevel-accordion uib-accordion .panel-group {
 newcss*/
 .login-card {
     margin-top: 160px;
-  /*  height: 445px;*/
+    /*  height: 445px;*/
 }
 
 .login {
@@ -7628,12 +7628,13 @@ newcss*/
         background: #3f3f7f;
         top: -50px;
         bottom: -66px;
+        height: 362px;
         left: 50%;
-        margin-left: -149px;
+        margin-left: -109px;
     }
 
 .container_t {
-   /* padding: 15px 30px;*/
+    /* padding: 15px 30px;*/
     position: relative;
     background: inherit;
     width: 50%;
@@ -7644,7 +7645,7 @@ newcss*/
     }
 
     .container_t.right {
-        left: 50%;
+        left: 32%;
     }
 
     .container_t::after {
@@ -7661,25 +7662,25 @@ newcss*/
     }
 
     .container_t.right::after {
-        left: -155px;
-        background: #ffffff;
-        border: 2px solid #0e0e23;
-
+        left: -46px;
+        background: #d07d1c;
+        border: 2px solid #d07d1c;
     }
 
     .container_t::before {
         content: '';
         position: absolute;
-        width: 50px;
+        width: 43px;
         height: 2px;
         top: calc(50% - 1px);
         right: 8px;
-        background: #006E51;
+        background: #b8375d;
         z-index: 1;
     }
 
+
     .container_t.right::before {
-        left: -153px;
+        left: -35px;
     }
 
     .container_t .date {
@@ -7724,7 +7725,7 @@ newcss*/
     }
 
     .container_t.right .icon_t {
-        left: -120px;
+        left: -20px;
         position: absolute;
         display: inline-block;
         width: 40px;
@@ -7742,33 +7743,34 @@ newcss*/
 
     .container_t .content {
         padding: 30px 90px 30px 30px;
-        background: #f2f2f2;
+      /*  background: #f2f2f2;*/
         position: relative;
         border-radius: 0 500px 500px 0;
-        margin-left: -147px;
+        margin-left: -23px;
         width: 448px;
     }
 
     .container_t.right .content {
-        padding: 6px 16px 7px 90px;
-        border-radius: 500px 0 0 500px;
-        border: 1px solid;
+/*        padding: 6px 16px 7px 90px;
+*/        /*border-radius: 500px 0 0 500px;
+        border: 1px solid;*/
     }
 
 
 
     .container_t .content h2 {
         margin: 0 0 10px 0;
-        font-size: 18px;
+        font-size: 25px;
         font-weight: normal;
-        color: #272729;
-        font-family: sans-serif;
+        color: #d3d3d2;
+        margin-left: 10px;
+        font-family:serif;
     }
 
     .container_t .content p {
         margin: 0;
         font-size: 16px;
-        line-height: 22px;
+        line-height: 37px;
         color: #3f3f7f;
         font-family: sans-serif;
         font-weight: 600;
@@ -7818,4 +7820,24 @@ newcss*/
                 border-radius: 500px 0 0 500px;
             }
 }
-
+.attendance {
+    background: #3f3f7f;
+    color: white;
+    margin-left: -28px;
+    /* border-radius: 1px; */
+    margin-top: 0px;
+    width: 346px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+    top: 10px;
+}
+.attendance_e {
+    background: #3f3f7f;
+    color: white;
+    margin-left: -28px;
+    /* border-radius: 1px; */
+    margin-top: -6px;
+    width: 346px;
+    border-top-right-radius: 7px;
+    border-top-left-radius: 7px;
+}

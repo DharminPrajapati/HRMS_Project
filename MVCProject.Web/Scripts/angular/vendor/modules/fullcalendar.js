@@ -5305,7 +5305,7 @@
 			}
 
 			titleHtml =
-				'<span class="fa fa-check">' +
+				'<span class="">' +
 				(htmlEscape(event.title || '') || '&nbsp;') + // we always want one line of height
 				'</span>';
 

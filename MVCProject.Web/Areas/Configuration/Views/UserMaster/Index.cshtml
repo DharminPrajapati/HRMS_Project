@@ -51,162 +51,167 @@
     <!-- start body section-->
     <div class="card-box">
         <div class="row">
-            <div class="col-md-12">
-                <!-- start designation form -->
-                <form name="frmUserMaster" ng-submit="SaveuserMasterDetails(userMasterDetailScope,frmUserMaster)"
-                      novalidate>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>
-                                    Name <span class="required-field">*</span>
-                                </label>
+            <!-- start designation form -->
+            <form name="frmUserMaster" ng-submit="SaveuserMasterDetails(userMasterDetailScope,frmUserMaster)"
+                  novalidate>
 
-                                @*<select name="Rolename" ng-init="namelist()"  class="form-control" ng-model="userMasterDetailScope.FirstName">
-                                    <option>Select fullname</option>
 
-                                    <option ng-repeat="Namelists in name" value="{{Namelists.Id}}" >{{Namelists.Name}}</option>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            Name <span class="required-field">*</span>
+                        </label>
 
-                                    </select>*@
-                                @*<input type="text" class="form-control" ng-focus="true" required tabindex="1" placeholder="@Resource.FirstName" maxlength="250">*@
-                                @*{{userMasterDetailScope.FirstName}}*@
+                        @*<select name="Rolename" ng-init="namelist()"  class="form-control" ng-model="userMasterDetailScope.FirstName">
+                <option>Select fullname</option>
 
-                                <div angucomplete-alt
-                                     name="txtUserMaster"
-                                     id="GetFullname"
-                                     input-name="GetFullname"
-                                     placeholder="Full name"
-                                     pause="200"
-                                     selected-object="selectedProject"
-                                     remote-url="{{FullnameURL}}"
-                                     remote-url-data-field="Result"
-                                     model-field="userMasterDetailScope.FirstName"
-                                     @*remote -url-request-formatter="remoteUrlRequestFn"
+                <option ng-repeat="Namelists in name" value="{{Namelists.Id}}" >{{Namelists.Name}}</option>
+
+                </select>*@
+                        @*<input type="text" class="form-control" ng-focus="true" required tabindex="1" placeholder="@Resource.FirstName" maxlength="250">*@
+                        @*{{userMasterDetailScope.FirstName}}*@
+
+                        <div angucomplete-alt
+                             name="txtUserMaster"
+                             id="GetFullname"
+                             input-name="GetFullname"
+                             placeholder="Full name"
+                             pause="200"
+                             selected-object="selectedProject"
+                             remote-url="{{FullnameURL}}"
+                             remote-url-data-field="Result"
+                             model-field="userMasterDetailScope.FirstName"
+                             @*remote -url-request-formatter="remoteUrlRequestFn"
                                      remote -url-data-field="items"*@
-                                     initial-value="userMasterDetailScope.FirstName"
-                                     title-field="Name"
-                                     description-field="description"
-                                     minlength="3"
-                                     input-class="form-control form-control-small"
-                                     match-class="highlight">
-                                </div>
+                             initial-value="userMasterDetailScope.FirstName"
+                             title-field="Name"
+                             description-field="description"
+                             minlength="3"
+                             input-class="form-control form-control-small"
+                             match-class="highlight">
+                        </div>
 
-                                <div class="c">
-                                </div>
-                                <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMaster.$dirty && frmUserMaster.txtUserMaster.$invalid">
-                                    <span data-ng-show="frmUserMaster.txtUserMaster.$error.required">Name</span>
-                                </div>
-                            </div>
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMaster.$dirty && frmUserMaster.txtUserMaster.$invalid">
+                            <span data-ng-show="frmUserMaster.txtUserMaster.$error.required">Name</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>
-                                @Resource.UserName <span class="required-field">*</span>
-                            </label>
-                            <input type="text" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserName" name="txtUserMasterName" required tabindex="1" placeholder="@Resource.UserName" maxlength="250">
-                            <div class="c">
-                            </div>
-                            <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMasterName.$dirty && frmUserMaster.txtUserMasterName.$invalid">
-                                <span data-ng-show="frmUserMaster.txtUserMasterName.$error.required">@Resource.UserNameRequired</span>
-                            </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.UserName <span class="required-field">*</span>
+                        </label>
+                        <input type="text" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserName" name="txtUserMasterName" required tabindex="1" placeholder="@Resource.UserName" maxlength="250">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMasterName.$dirty && frmUserMaster.txtUserMasterName.$invalid">
+                            <span data-ng-show="frmUserMaster.txtUserMasterName.$error.required">@Resource.UserNameRequired</span>
                         </div>
                     </div>
+                </div>
 
 
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>
-                                @Resource.Password <span class="required-field">*</span>
-                            </label>
-                            <input type="password" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserPassword" name="txtUserMasterpassword" required tabindex="1" placeholder="@Resource.Password" maxlength="250">
-                            <div class="c">
-                            </div>
-                            <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMasterpassword.$dirty && frmUserMaster.txtUserMasterpassword.$invalid">
-                                <span data-ng-show="frmUserMaster.txtUserMasterpassword.$error.required">@Resource.PasswordRequired</span>
-                            </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>
+                            @Resource.Password <span class="required-field">*</span>
+                        </label>
+                        <input type="password" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserPassword" name="txtUserMasterpassword" required tabindex="1" placeholder="@Resource.Password" maxlength="250">
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMasterpassword.$dirty && frmUserMaster.txtUserMasterpassword.$invalid">
+                            <span data-ng-show="frmUserMaster.txtUserMasterpassword.$error.required">@Resource.PasswordRequired</span>
                         </div>
                     </div>
+                </div>
 
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label required tabindex="2" placeholder="@Resource.UserRole" maxlength="250" id="txtUserRole" name="txtUserRole">
+                            @Resource.UserRole <span class="required-field">*</span>
+                        </label>
+                        @*<select name="Rolename" ng-init="rolelist()" class="form-control">
+                    <option>Select role</option>
 
+                    <option ng-repeat="Rolelists in role">{{Rolelists.Name}}</option>
 
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label required tabindex="2" placeholder="@Resource.UserRole" maxlength="250" id="txtUserRole" name="txtUserRole">
-                                @Resource.UserRole <span class="required-field">*</span>
-                            </label>
-                            @*<select name="Rolename" ng-init="rolelist()" class="form-control">
-                                    <option>Select role</option>
+                </select>*
 
-                                    <option ng-repeat="Rolelists in role">{{Rolelists.Name}}</option>
+                            @*<input type="text" class="form-control" id="txtUserMaster" ng-focus="true" name="txtUserMaster" ng-focus="true" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">*@
 
-                                </select>*
+                        <div ng-dropdown-multiselect=""
+                             ng-model="userMasterDetailScope.UserRole"
+                             ng-init="roleScope()"
+                             extra-settings="multiselectsettingrole"
+                             options="Role"
+                             Selected-model="userMasterDetailScope.UserRole"
+                             checkboxes="true"
+                             title="{{userMasterDetailScope.UserRole}}">
+                        </div>
 
-                                            @*<input type="text" class="form-control" id="txtUserMaster" ng-focus="true" name="txtUserMaster" ng-focus="true" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">*@
-
-                            <div ng-dropdown-multiselect=""
-                                 ng-model="userMasterDetailScope.UserRole"
-                                 ng-init="roleScope()"
-                                 extra-settings="multiselectsettingrole"
-                                 options="Role"
-                                 Selected-model="userMasterDetailScope.UserRole"
-                                 checkboxes="true"
-                                 title="{{userMasterDetailScope.UserRole}}">
-                            </div>
-
-                            <div class="c">
-                            </div>
-                            <div class="label label-danger" data-ng-show="!userMasterDetailScope.UserRole || userMasterDetailScope.UserRole.$invalid">
-                                <span data-ng-show="userMasterDetailScope.UserRole.$error.required">@Resource.UserRole</span>
-                            </div>
+                        <div class="c">
+                        </div>
+                        <div class="label label-danger" data-ng-show="!userMasterDetailScope.UserRole || userMasterDetailScope.UserRole.$invalid">
+                            <span data-ng-show="userMasterDetailScope.UserRole.$error.required">@Resource.UserRole</span>
                         </div>
                     </div>
+                </div>
+</div>
 
 
-                    <div class="col-md-3">
-                        <!--IsActive -->
-                        <div class="form-group">
-                            <label>
-                            </label>
-                            <div class="form-control-static">
-                                <div class="checkbox checkbox-info">
-                                    <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="userMasterDetailScope.IsActive" tabindex="2" />
-                                    <label for="chkDesignationActive">
-                                        @Resource.IsActive
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+        <div class="row">
+        <div class="col-md-3">
+            <!--IsActive -->
+            <div class="form-group">
+                <label>
+                </label>
+                <div class="form-control-static">
+                    <div class="checkbox checkbox-info">
+                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="userMasterDetailScope.IsActive" tabindex="2" />
+                        <label for="chkDesignationActive">
+                            @Resource.IsActive
+                        </label>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
-                                        ng-disabled="frmUserMaster.txtUserMaster.$invalid" tabindex="3">
-                                    {{userMasterDetailScope.UserId > 0 ? '@Resource.Update' : '@Resource.Save'}}
-                                </button>
-                                <button type="button" ng-click="ClearFormData()" class="btn btn-info waves-effect w-md waves-light m-b-5"
-                                        tabindex="4">
-                                    @Resource.Clear
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <!-- end usermaster form -->
-                <hr />
-                <!-- start usermaster details list -->
+                </div>
             </div>
+        </div>
+            </div>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                            ng-disabled="frmUserMaster.txtUserMaster.$invalid" tabindex="3">
+                        {{userMasterDetailScope.UserId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                    </button>
+                    <button type="button" ng-click="ClearFormData()" class="btn btn-info waves-effect w-md waves-light m-b-5"
+                            tabindex="4">
+                        @Resource.Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+        </form>
+        <!-- end usermaster form -->
+        <hr />
+        <!-- start usermaster details list -->
+    </div>
+
+<div class="card-box">
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-7">
-                            <label class="table-title">
-                                @Resource.UserMaster @Resource.Details
-                            </label>
+                            <h3 class="strip">
+                                <i class="fa fa-gears" aria-hidden="true"></i>
+                                <label class="table-title">
+                                    @Resource.UserMaster @Resource.Details
+                                </label>
+                                </h3>
                         </div>
                         <div class="col-md-5">
                             <div class="input-group">
@@ -280,9 +285,9 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
+    
 
+</div>
 <!-- end body section-->
 
 @section scripts {

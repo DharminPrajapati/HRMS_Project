@@ -32,6 +32,13 @@
         <h4 class="header-title-sub l">
 
             @Resource.Employee
+            <button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()"style="margin-left: 900px; border-radius: 12px; ">
+                <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
+            </button>
+            <button type="button" class="btn btn-danger btn-xs waves-effect" ng-click="generatePdf()"style="border-radius: 12px;">
+                <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToPDF
+            </button>
+            <script src="~/Scripts/js/jspdf.js"></script>
         </h4>
         <!-- start button-->
         @*<div class="pull-right">
@@ -548,13 +555,7 @@
                                 @Resource.Employee @Resource.Details
                             </label>
 
-                            <button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()">
-                                    <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
-                                </button> 
-                            <button type="button" class="btn btn-danger btn-xs waves-effect" ng-click="generatePdf()">
-                                    <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToPDF
-                                </button>
-                            <script src="~/Scripts/js/jspdf.js"></script>
+                           
                         </h3>
                     </div>
                     <div class="col-md-6">

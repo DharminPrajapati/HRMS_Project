@@ -230,7 +230,7 @@
                 }
                 // push event to events array
                 $scope.events.push({
-                    title: '',
+                    title: 'Present',
                     intimedescription:value.InTime,// In Time in AM format
                     outtimetdescription:value.OutTime, // Out Time in PM format
                     indescription: value.InDiscription,
