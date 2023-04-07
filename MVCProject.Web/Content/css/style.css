@@ -4671,8 +4671,8 @@ div.hopscotch-bubble {
         .table-bordered > tfoot > tr > th,
         .table-bordered > thead > tr > td,
         .table-bordered > tbody > tr > td,
-        .table-bordered > tfoot > tr > td {
-            border: 1px solid #ebeff2;
+        \.table-bordered > tfoot > tr > td {
+            border:0.5px solid #c2d5e7;
         }
 
     .table > thead > tr > th {
@@ -7841,4 +7841,9 @@ newcss*/
     width: 346px;
     border-top-right-radius: 7px;
     border-top-left-radius: 7px;
+}
+img#output {
+    height: auto;
+    width: 100px;
+    border-radius:50%;
 }
