@@ -71,12 +71,13 @@
                         $scope.FullnameURL = SalaryService.GetFullName(true);
                         $scope.salaryDetailScope = data.Result;
                         $scope.lastStorageAudit = angular.copy(data.Result);
+                        $scope.$broadcast('angucomplete-alt:changeInput', 'txtEmp', $scope.salaryDetailScope.Name);
                         CommonFunctions.ScrollUpAndFocus("txtSalary");
                         //$scope.FullnameURL = SalaryService.GetFullName(true);
                         // $scope.salaryDetailScope.Name = data.Result.Name;
                         console.log("Salary Details:", $scope.salaryDetailScope);
                         console.log("Full Name: ", $scope.salaryDetailScope.Name);
-                        $scope.$broadcast('angucomplete-alt:clearInput');
+                        
                     }
 
                     else if (data.MessageType == messageTypes.Error) {
