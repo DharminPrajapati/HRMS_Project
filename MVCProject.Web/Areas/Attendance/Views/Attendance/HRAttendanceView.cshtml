@@ -24,7 +24,7 @@
                     <div class="col-md-3 m-t-5">
                         <div class="form-group">
                             <label>
-                                Employee
+
                             </label>
                             <input type="text" class="form-control" id="txtEmpName" ng-focus="true" name="txtEmpName" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1} {2}", Resource.Search, Resource.Employee, Resource.Details)" ng-model="search" tabindex="1" maxlength="250">
                             <div class="c">
@@ -35,8 +35,8 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="month">
-                                Month
-                                
+                                Month:
+                                {{selectedMonth}}
                             </label>
                             <select id="month" class="form-control" ng-model="selectedMonth" ng-options="m.value as m.name for m in months" ng-change="getAttendance()"></select>
                         </div>
@@ -44,8 +44,8 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>
-                                Year
-                                
+                                Year:
+                                {{selectedYear}}
                             </label>
                             <select id="year" class="form-control" ng-model="selectedYear" ng-options="y for y in years" ng-change="getAttendance()"></select>
                         </div>

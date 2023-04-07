@@ -104,15 +104,13 @@
 
         // BEGIN Bind form data for edit UserMaster
         $scope.EditUserMasterDetails = function (UserId) {
-          debugger
+          
             UserMasterService.GetUserMasterById(UserId).then(function (res) {
                 if (res) {
-                    debugger    
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success) {// Success
                         $scope.userMasterDetailScope = data.Result;
                         $scope.lastStorageAudit = angular.copy(data.Result);
-                        $scope.$broadcast('angucomplete-alt:changeInput', 'txtUserMaster', $scope.userMasterDetailScope.FirstName);
                         CommonFunctions.ScrollUpAndFocus("txtUserMaster");
                     } else if (data.MessageType == messageTypes.Error) {// Error
                         toastr.error(data.Message, errorTitle);
@@ -121,27 +119,6 @@
                 $rootScope.isAjaxLoadingChild = false;
             });
         };
-
-        //// BEGIN Bind form data for edit UserMaster
-        //$scope.EditUserMasterDetails = function (UserId) {
-        //    UserMasterService.GetUserMasterById(UserId).then(function (res) {
-        //        if (res) {
-        //            var data = res.data;
-        //            if (data.MessageType == messageTypes.Success) {// Success
-        //                $scope.userMasterDetailScope = data.Result;
-        //                $scope.lastStorageAudit = angular.copy(data.Result);
-        //                $scope.$broadcast('angucomplete-alt:changeInput', 'txtUserMaster', $scope.userMasterDetailScope.EmpName);
-        //                CommonFunctions.ScrollUpAndFocus("txtUserMaster");
-        //            } else if (data.MessageType == messageTypes.Error) {// Error
-        //                toastr.error(data.Message, errorTitle);
-        //            }
-        //        }
-        //        $rootScope.isAjaxLoadingChild = false;
-        //    });
-        //};
-        
-
-
 
         //  Create Excel Report of UserMaster
         //$scope.createReport = function () {
