@@ -25,6 +25,16 @@
             data: JSON.stringify(user)
         });
     }
+    //for create session
+    list.CreateSession = function (response) {
+        return $http({
+            method: 'POST',
+            url: '/Account/CreateSession',
+            data: JSON.stringify(response)
+        });
+    }
+
+
 
     // Change current role of user
     list.ChangeRole = function (roleId) {

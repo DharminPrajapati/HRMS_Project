@@ -50,21 +50,22 @@
             }
             Login.TimeZoneMinutes = CommonFunctions.GetTimeZoneMinutes();
             AccountService.DoLogin(Login).then(function (res) {
+                debugger
                 if (res) {
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
-                        //CommonService.CreateSession(data.Result).then(function (response) {
-                        //    $rootScope.isAjaxLoadingChild = true;
-                        //    if (Login.Remember) {
-                        //        var userdata = Login.UserName + "░" + Login.UserPassword;
-                        //        userdata = CommonFunctions.EncryptData(userdata);
-                        //        CommonFunctions.SetCookie("REM", userdata);
-                        //    } else {
-                        //        CommonFunctions.SetCookie("REM", "");
-                        //    }
-                        //    CommonFunctions.RedirectToDefaultUrl();
-                        //});
-                        window.open("http://localhost:56563/EmployeeManagement/Employee", "_self");
+                        AccountService.CreateSession(data.Result).then(function (response) {
+                            $rootScope.isAjaxLoadingChild = true;
+                            if (Login.Remember) {
+                                var userdata = Login.UserName + "░" + Login.UserPassword;
+                                userdata = CommonFunctions.EncryptData(userdata);
+                                CommonFunctions.SetCookie("REM", userdata);
+                            } else {
+                                CommonFunctions.SetCookie("REM", "");
+                            }
+                            CommonFunctions.RedirectToDefaultUrl();
+                        });
+                        //window.open("http://localhost:56563/EmployeeManagement/Employee", "_self");
                     } else {
                         $("#txtUserName").focus();
                         toastr.error(data.Message, errorTitle);

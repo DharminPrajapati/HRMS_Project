@@ -43,16 +43,16 @@ namespace MVCProject.Api.Controllers.Common
                 userContext.EmployeeId = (int)emp.EmployeeId;
                 userContext.UserId = emp.UserId;
                 userContext.UserName = emp.UserName;
+                userContext.RoleId = (int)emp.UserRole.FirstOrDefault().RoleId;
+                userContext.Ticks = DateTime.Now.Ticks;
+                userContext.TimeZoneMinutes = 330;
+                userContext.Token = SecurityUtility.GetToken(userContext);
 
-                this.UserContext.EmployeeId = userContext.EmployeeId;
-                this.UserContext.UserId = userContext.UserId;
-                this.UserContext.UserName = userContext.UserName;
                 //return this.Response(Utilities.MessageTypes.Success, string.Empty);
 
                 return this.Response(Utilities.MessageTypes.Success, responseToReturn: userContext);
 
                 //return new ApiResponse { Status = "Success", Message = "login sucessfull." };
-
 
             }
         }
