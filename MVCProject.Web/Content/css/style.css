@@ -759,9 +759,9 @@ textarea.form-control {
 
     .form-control:focus {
         /* background-color: #FFFFFF; */
-        border: 5px solid #3f3f7f;
+        border: 2px solid #3f3f7f;
         -webkit-box-shadow: none;
-        box-shadow: none;
+        box-shadow:inset;
         outline: 0 !important;
         color: #333333;
     }
@@ -6311,7 +6311,8 @@ header {
     }
 
     .eternity-form input[type="checkbox"] {
-        width: 30px;
+        width: 12px;
+        height: 12px;
     }
 
     .eternity-form .blue {
