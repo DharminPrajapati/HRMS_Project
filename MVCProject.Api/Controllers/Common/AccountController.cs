@@ -57,6 +57,12 @@ namespace MVCProject.Api.Controllers.Common
             }
         }
 
+        [HttpPost]
+        public ApiResponse Logout()
+        {
+            UserContext.Token = null;
+            return this.Response(Utilities.MessageTypes.Success);
+        }
     }
 }
 
