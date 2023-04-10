@@ -3446,9 +3446,9 @@ div.hopscotch-bubble {
 
 
 .btn-white {
-    background-color: #fff;
+    background-color: #151563;
     border-color: #C1C1C1;
-    color: #60666D;
+    color: #eaeaf5;
 }
 
     .btn-white:hover,
@@ -7631,7 +7631,7 @@ newcss*/
         bottom: -66px;
         height: 362px;
         left: 50%;
-        margin-left: -109px;
+        margin-left: -110px;
     }
 
 .container_t {

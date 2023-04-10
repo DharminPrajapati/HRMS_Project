@@ -169,12 +169,17 @@
                                 <label>
                                 </label>
                                 <div class="form-control-static">
-                                    <div class="checkbox checkbox-info">
+                                    <div class="checkbox checkbox-info  col-sm-offset-2">
                                         <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="emplyeeDetailScope.IsActive"
                                                tabindex="9" />
                                         <label for="chkDesignationActive">
                                             @Resource.IsActive
                                         </label>
+
+                                        <button type="button" class="btn btn-info waves-effect w-md waves-light m-b-5  col-sm-offset-2" id="imu" ng-click="uploadFile(file)"
+                                                tabindex="4">
+                                            @Resource.UploadImage
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -183,6 +188,17 @@
 
 
                     <div class="row">
+
+                        <div class="col-md-4">
+                            <!--Select Image  -->
+                            <div class="form-group">
+                                <input type="file" class="form-control" id="file" name="file" @*ng-focus="true"*@ ng-model="emplyeeDetailScope.file" tabindex="1" placeholder="@Resource.UploadImage" maxlength="250" accept="image/*" onchange="angular.element(this).scope().loadFile(event)">
+                                @Resource.UploadImage
+                                <div class="label label-danger" data-ng-show="frmEmployees.file.$dirty && frmEmployees.file.$invalid">
+                                    <span data-ng-show="frmEmployees.file.$error.pattern">@Resource.Upload</span>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-2 mb-3">
                             <!--Slider Image View -->
                             <div class="form-group">
@@ -195,25 +211,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <!--Select Image  -->
-                            <div class="form-group">
-                                <input type="file" class="form-control" id="file" name="file" @*ng-focus="true"*@ ng-model="emplyeeDetailScope.file" tabindex="1" placeholder="@Resource.UploadImage" maxlength="250" accept="image/*" onchange="angular.element(this).scope().loadFile(event)">
-                                @Resource.UploadImage
-                                <div class="label label-danger" data-ng-show="frmEmployees.file.$dirty && frmEmployees.file.$invalid">
-                                    <span data-ng-show="frmEmployees.file.$error.pattern">@Resource.Upload</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
+                        <!--<div class="col-md-2">-->
                             <!--Upload Image Button -->
-                            <div class="form-group">
-                                <button type="button" class="btn btn-info waves-effect w-md waves-light m-b-5" id="imu" ng-click="uploadFile(file)"
-                                        tabindex="4">
-                                    @Resource.UploadImage
-                                </button>
+                            <!--<div class="form-group">
+
                             </div>
-                        </div>
+                        </div>-->
 
                     </div>
                     </div>
