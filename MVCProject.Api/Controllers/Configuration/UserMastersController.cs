@@ -277,6 +277,15 @@ namespace MVCProject.Api.Controllers.Configuration
             IWorkbook workbook = new XSSFWorkbook();
             ISheet sheet = workbook.CreateSheet("Sheet1");
 
+            // Create a cell style with a background color and border
+            ICellStyle headerCellStyle = workbook.CreateCellStyle();
+            headerCellStyle.FillForegroundColor = IndexedColors.Grey25Percent.Index;
+            headerCellStyle.FillPattern = FillPattern.SolidForeground;
+            headerCellStyle.BorderBottom = BorderStyle.Thin;
+            headerCellStyle.BorderTop = BorderStyle.Thin;
+            headerCellStyle.BorderLeft = BorderStyle.Thin;
+            headerCellStyle.BorderRight = BorderStyle.Thin;
+
             //Add some data to the sheet
             IRow headerRow = sheet.CreateRow(0);
             headerRow.CreateCell(0).SetCellValue("UserId");
@@ -284,6 +293,24 @@ namespace MVCProject.Api.Controllers.Configuration
             headerRow.CreateCell(2).SetCellValue("UserName");
             headerRow.CreateCell(3).SetCellValue("UserRoleName");
             headerRow.CreateCell(4).SetCellValue("IsActive");
+
+            // Set the cell style of each header cell
+            for (int i = 0; i < headerRow.LastCellNum; i++)
+            {
+                ICell headerCell = headerRow.GetCell(i);
+                headerCell.CellStyle = headerCellStyle;
+                // Automatically adjust the column width to fit the widest cell value
+                sheet.AutoSizeColumn(i);
+            }
+            // Loop through all the rows and columns to adjust the cell size
+            for (int i = 0; i < sheet.LastRowNum; i++)
+            {
+                IRow row = sheet.GetRow(i);
+                for (int j = 0; j < row.LastCellNum; j++)
+                {
+                    sheet.AutoSizeColumn(j);
+                }
+            }
 
             int rowNumber = 1;
             foreach (var UserMaster in data)
