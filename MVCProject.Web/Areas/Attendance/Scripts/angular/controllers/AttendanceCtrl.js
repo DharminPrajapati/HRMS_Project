@@ -198,36 +198,38 @@
                 
 
                  //format time in AM/PM format
-                function formatTime(timeString, isOutTime) {
-                    var time = new Date('2000-01-01T' + timeString + 'Z');
-                    var timeZoneOffset = time.getTimezoneOffset(); // get timezone offset in minutes
-                    time.setTime(time.getTime() + timeZoneOffset * 60 * 1000); // adjust time object based on timezone offset
-                    if (isNaN(time.getTime())) {
-                        return '';
-                    }
-                    var hours = time.getHours();
-                    var minutes = time.getMinutes();
-                    var suffix = isOutTime ? 'PM' : 'AM';
-                    hours = hours % 24;
-                    hours = hours ? hours : 24; // the hour '0' should be '12'
-                    minutes = minutes < 10 ? '0' + minutes : minutes;
-                    var strTime = hours + ':' + minutes + ' ' + suffix;
-                    return strTime;
+                function formatTime(dateString) {
+                    var date = new Date(dateString);
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var timeSuffix = hours >= 12 ? "PM" : "AM";
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // "0" hour should be "12"
+                    var formattedTime = hours + ":" + (minutes < 10 ? "0" + minutes : minutes) + " " + timeSuffix;
+                    return formattedTime;
+                }
+                function convertUTCToLocal(dateString) {
+                    var date = new Date(dateString);
+                    var localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+                    return localDate.toLocaleString();
                 }
                 
-                
 
 
 
 
-                //format date
+                // format date
                 $scope.formatDate = function (dateString) {
                     var date = new Date(dateString);
+                    var monthNames = ["January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December"
+                    ];
+                    var monthIndex = date.getMonth();
                     var year = date.getFullYear();
-                    var month = date.getMonth() + 1;
                     var day = date.getDate();
-                    return year + '-' + (month < 10 ? '0' + month : month) + '-' + (day < 10 ? '0' + day : day);
+                    return monthNames[monthIndex] + " " + day + ", " + year;
                 }
+
                 // push event to events array
                 $scope.events.push({
                     title: 'Present',
