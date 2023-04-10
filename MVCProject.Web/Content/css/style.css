@@ -7775,6 +7775,7 @@ newcss*/
         color: #3f3f7f;
         font-family: sans-serif;
         font-weight: 600;
+    
     }
 
 @media (max-width: 767.98px) {
@@ -7827,7 +7828,7 @@ newcss*/
     margin-left: -28px;
     /* border-radius: 1px; */
     margin-top: 0px;
-    width: 346px;
+    width: 351px;
     border-top-right-radius: 7px;
     border-top-left-radius: 7px;
     top: 10px;
