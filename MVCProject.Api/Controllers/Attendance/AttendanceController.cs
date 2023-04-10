@@ -53,11 +53,11 @@ namespace MVCProject.Api.Controllers.Attendance
         public ApiResponse SaveAttendanceDetails([FromBody] Attendance AttendanceDetail)
         {
 
-           
+
             if (AttendanceDetail.EmployeeId > 0)
             {
-                AttendanceDetail.Date = DateTime.Now;
-                TimeSpan intime = TimeSpan.ParseExact(DateTime.Now.ToString("hh:mm:ss"), "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+                AttendanceDetail.Date = DateTime.Today;
+                TimeSpan intime = DateTime.UtcNow.TimeOfDay;
                 AttendanceDetail.InTime = intime;
                 entities.Attendance.AddObject(AttendanceDetail);
                 if (!(this.entities.SaveChanges() > 0))
@@ -74,8 +74,8 @@ namespace MVCProject.Api.Controllers.Attendance
         public ApiResponse UpdateAttendance([FromBody] Attendance AttendanceDetail)
         {
             Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.EmployeeId == AttendanceDetail.EmployeeId && x.Date == DateTime.Today).FirstOrDefault();
-
-            TimeSpan outtime = TimeSpan.ParseExact(DateTime.UtcNow.ToString("hh:mm:ss"), "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+            TimeSpan outtime = DateTime.UtcNow.TimeOfDay;
+            //TimeSpan outtime = TimeSpan.ParseExact(DateTime.UtcNow.ToString("hh:mm:ss"), "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
             existingAttendanceDetail.OutTime = outtime;
             existingAttendanceDetail.OutLatitude = AttendanceDetail.OutLatitude;
             existingAttendanceDetail.OutLongitude = AttendanceDetail.OutLongitude;
@@ -91,6 +91,50 @@ namespace MVCProject.Api.Controllers.Attendance
 
             return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Attendance), AttendanceDetail.EmployeeId);
         }
+        //[HttpPost]
+        //public ApiResponse SaveAttendanceDetails([FromBody] Attendance AttendanceDetail)
+        //{
+
+
+        //    if (AttendanceDetail.EmployeeId > 0)
+        //    {
+        //        AttendanceDetail.Date = DateTime.UtcNow;
+        //        //TimeSpan intime = TimeSpan.ParseExact(DateTime.UtcNow.ToString("HH:mm:ss"), "HH.mm.ss", CultureInfo.InvariantCulture);
+        //        TimeSpan intime = TimeSpan.ParseExact(DateTime.UtcNow.ToString("HH:mm:ss"), "HH\\:mm\\:ss", CultureInfo.InvariantCulture);
+
+        //        AttendanceDetail.InTime = intime;
+        //        entities.Attendance.AddObject(AttendanceDetail);
+        //        if (!(this.entities.SaveChanges() > 0))
+        //        {
+        //            return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Attendance));
+        //        }
+        //    }
+        //    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Attendance), AttendanceDetail.EmployeeId);
+
+
+        //}
+
+        //[HttpPost]
+        //public ApiResponse UpdateAttendance([FromBody] Attendance AttendanceDetail)
+        //{
+        //    Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.EmployeeId == AttendanceDetail.EmployeeId && x.Date == DateTime.Today).FirstOrDefault();
+
+        //    TimeSpan outtime = TimeSpan.ParseExact(DateTime.UtcNow.ToString("HH:mm:ss"), "HH\\:mm\\:ss", CultureInfo.InvariantCulture);
+        //    existingAttendanceDetail.OutTime = outtime;
+        //    existingAttendanceDetail.OutLatitude = AttendanceDetail.OutLatitude;
+        //    existingAttendanceDetail.OutLongitude = AttendanceDetail.OutLongitude;
+        //    existingAttendanceDetail.OutDiscription = AttendanceDetail.OutDiscription;
+
+
+
+        //    this.entities.Attendance.ApplyCurrentValues(existingAttendanceDetail);
+        //    if (!(this.entities.SaveChanges() > 0))
+        //    {
+        //        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Attendance));
+        //    }
+
+        //    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Attendance), AttendanceDetail.EmployeeId);
+        //}
 
         [HttpGet]
         public ApiResponse GetAllAttendance()
