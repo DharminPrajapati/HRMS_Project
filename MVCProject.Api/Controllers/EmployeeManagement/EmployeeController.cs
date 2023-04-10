@@ -112,9 +112,7 @@
         }
 
 
-
         [HttpGet]
-
         public ApiResponse CreateEmployeeListReport()
         {
             var employeeDetail = this.entities.TblEmployees.Select(d => new
@@ -147,9 +145,25 @@
             IWorkbook workbook = new XSSFWorkbook();
             ISheet sheet = workbook.CreateSheet("Sheet1");
 
+            //// Create a cell style with a background color
+            //ICellStyle headerCellStyle = workbook.CreateCellStyle();
+            //headerCellStyle.FillForegroundColor = IndexedColors.Grey25Percent.Index;
+            //headerCellStyle.FillPattern = FillPattern.SolidForeground;
+
+
+            // Create a cell style with a background color and border
+            ICellStyle headerCellStyle = workbook.CreateCellStyle();
+            headerCellStyle.FillForegroundColor = IndexedColors.Grey25Percent.Index;
+            headerCellStyle.FillPattern = FillPattern.SolidForeground;
+            headerCellStyle.BorderBottom = BorderStyle.Thin;
+            headerCellStyle.BorderTop = BorderStyle.Thin;
+            headerCellStyle.BorderLeft = BorderStyle.Thin;
+            headerCellStyle.BorderRight = BorderStyle.Thin;
+
             // Add Some Data to Sheet
-            // 
             IRow headerRow = sheet.CreateRow(0);
+
+            headerRow.HeightInPoints = 20; // Set the height of the header row
             headerRow.CreateCell(0).SetCellValue("Employee Id");
             headerRow.CreateCell(1).SetCellValue("First Name");
             headerRow.CreateCell(2).SetCellValue("Last Name");
@@ -171,6 +185,23 @@
             headerRow.CreateCell(18).SetCellValue("Grade");
             headerRow.CreateCell(19).SetCellValue("Degree");
             headerRow.CreateCell(20).SetCellValue("IsActive");
+            // Set the cell style of each header cell
+            for (int i = 0; i < headerRow.LastCellNum; i++)
+            {
+                ICell headerCell = headerRow.GetCell(i);
+                headerCell.CellStyle = headerCellStyle;
+                // Automatically adjust the column width to fit the widest cell value
+                sheet.AutoSizeColumn(i);
+            }
+            // Loop through all the rows and columns to adjust the cell size
+            for (int i = 0; i < sheet.LastRowNum; i++)
+            {
+                IRow row = sheet.GetRow(i);
+                for (int j = 0; j < row.LastCellNum; j++)
+                {
+                    sheet.AutoSizeColumn(j);
+                }
+            }
 
             int rowNumber = 1;
             foreach (var emp in employeeDetail)
@@ -180,20 +211,21 @@
                 row.CreateCell(1).SetCellValue(emp.FirstName);
                 row.CreateCell(2).SetCellValue(emp.LastName);
                 row.CreateCell(3).SetCellValue(emp.Email);
-                row.CreateCell(4).SetCellValue((DateTime)emp.JoiningDate);
+                row.CreateCell(4).SetCellValue(((DateTime)emp.JoiningDate).ToString("dd/MM/yyyy"));
                 row.CreateCell(5).SetCellValue(emp.PhoneNumber);
                 row.CreateCell(6).SetCellValue(emp.AlternatePhoneNumber);
                 row.CreateCell(7).SetCellValue(emp.DesignationName);
                 row.CreateCell(8).SetCellValue(emp.DepartmentName);
-                row.CreateCell(9).SetCellValue((DateTime)emp.BirthDate);
+                //row.CreateCell(9).SetCellValue((DateTime)emp.BirthDate);
+                row.CreateCell(9).SetCellValue(((DateTime)emp.BirthDate).ToString("dd/MM/yyyy"));
                 row.CreateCell(10).SetCellValue(emp.Gender);
                 row.CreateCell(11).SetCellValue(emp.PermanentAddress);
                 row.CreateCell(12).SetCellValue(emp.TemporaryAddress);
                 row.CreateCell(13).SetCellValue((double)emp.Pincode);
                 row.CreateCell(14).SetCellValue(emp.InstitutionName);
                 row.CreateCell(15).SetCellValue(emp.CourseName);
-                row.CreateCell(16).SetCellValue((DateTime)emp.CourseStartDate);
-                row.CreateCell(17).SetCellValue((DateTime)emp.CourseEndDate);
+                row.CreateCell(16).SetCellValue(((DateTime)emp.CourseStartDate).ToString("dd/MM/yyyy"));
+                row.CreateCell(17).SetCellValue(((DateTime)emp.CourseEndDate).ToString("dd/MM/yyyy"));
                 row.CreateCell(18).SetCellValue(emp.Grade);
                 row.CreateCell(19).SetCellValue(emp.Degree);
                 row.CreateCell(20).SetCellValue(emp.IsActive);
@@ -221,6 +253,7 @@
 
             return this.Response(Utilities.MessageTypes.Success, string.Empty, filePath);
         }
+
 
         /// <summary>
         /// Get Employees By Id
