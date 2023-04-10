@@ -195,29 +195,14 @@
             $scope.events.length = 0;
             angular.forEach(data.data.Result, function (value) {
 
+                // format time
+                var formatTime = function (timeString) {
+                    var time = new Date("1970-01-01T" + timeString + "Z");
+                    return time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                };
+
+
                 
-
-                 //format time in AM/PM format
-                function formatTime(dateString) {
-                    var date = new Date(dateString);
-                    var hours = date.getHours();
-                    var minutes = date.getMinutes();
-                    var timeSuffix = hours >= 12 ? "PM" : "AM";
-                    hours = hours % 12;
-                    hours = hours ? hours : 12; // "0" hour should be "12"
-                    var formattedTime = hours + ":" + (minutes < 10 ? "0" + minutes : minutes) + " " + timeSuffix;
-                    return formattedTime;
-                }
-                function convertUTCToLocal(dateString) {
-                    var date = new Date(dateString);
-                    var localDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
-                    return localDate.toLocaleString();
-                }
-                
-
-
-
-
                 // format date
                 $scope.formatDate = function (dateString) {
                     var date = new Date(dateString);
@@ -233,8 +218,8 @@
                 // push event to events array
                 $scope.events.push({
                     title: 'Present',
-                    intimedescription:value.InTime,// In Time in AM format
-                    outtimetdescription:value.OutTime, // Out Time in PM format
+                    intimedescription: formatTime(value.InTime),
+                    outtimetdescription: formatTime(value.OutTime),
                     indescription: value.InDiscription,
                     outdescription: value.OutDiscription,
                     start: $scope.formatDate(value.Date),
