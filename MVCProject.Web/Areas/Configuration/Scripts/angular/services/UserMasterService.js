@@ -61,7 +61,7 @@
 
         //create excel report
         list.Export = function () {
-            debugger
+           
             return $http({
                 method: 'GET',
                 url: $rootScope.apiURL + '/UserMasters/Export'

@@ -58,7 +58,7 @@
 
 
         $scope.SaveEmployeeDetails = function (emplyeeDetailScope, frmEmployees) {
-            debugger;
+          
 
             if (emplyeeDetailScope.FirstName == null || emplyeeDetailScope.FirstName == "") {
                 toastr.warning(" First Name Required", warningTitle);

@@ -50,7 +50,7 @@
             }
             Login.TimeZoneMinutes = CommonFunctions.GetTimeZoneMinutes();
             AccountService.DoLogin(Login).then(function (res) {
-                debugger
+              
                 if (res) {
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
