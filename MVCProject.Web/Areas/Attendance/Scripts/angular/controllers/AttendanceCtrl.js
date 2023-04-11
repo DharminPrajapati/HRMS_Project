@@ -193,7 +193,7 @@
         
 
         //Load events from server
-        $http.get($rootScope.apiURL + '/Attendance/GetAllAttendance/', {
+        $http.get($rootScope.apiURL + '/Attendance/GetAllAttendance?EmployeeId='+userContext.EmployeeId, {
             cache: true,
             params: {}
         }).then(function (data) {

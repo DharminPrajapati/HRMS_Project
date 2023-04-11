@@ -137,11 +137,13 @@ namespace MVCProject.Api.Controllers.Attendance
         //}
 
         [HttpGet]
-        public ApiResponse GetAllAttendance()
+        public ApiResponse GetAllAttendance(int employeeId)
         {
             //var employeelist = this.entities.TblEmployee.ToList();
-            var Attendanelist = this.entities.Attendance.Select(d => new {
+            var Attendanelist = this.entities.Attendance.Where(x=>x.EmployeeId == employeeId)
+                .Select(d => new {
                 AttendanceId = d.AttendanceId,
+                EmployeeId = d.EmployeeId,
                 Date = d.Date,
                 InTime = d.InTime,
                 OutTime = d.OutTime,
