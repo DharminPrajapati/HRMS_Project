@@ -40,9 +40,10 @@ namespace MVCProject.Api.Controllers.Common
             else
             {
                 UserContext userContext = new UserContext();
-                userContext.EmployeeId = (int)emp.EmployeeId;
+                userContext.EmployeeId = (int)emp.EmployeeId;               
                 userContext.UserId = emp.UserId;
                 userContext.UserName = emp.UserName;
+
                 userContext.RoleId = (int)emp.UserRole.FirstOrDefault().RoleId;
                 userContext.Ticks = DateTime.Now.Ticks;
                 userContext.TimeZoneMinutes = 330;

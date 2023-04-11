@@ -24,6 +24,10 @@
 
         $scope.isSearchClicked = false;
 
+       
+        $scope.Username = $rootScope.userContext.UserName;
+        
+
 
         var currentDate = new Date();
         $scope.months = [
