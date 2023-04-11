@@ -294,22 +294,10 @@ namespace MVCProject.Api.Controllers.Configuration
             headerRow.CreateCell(3).SetCellValue("UserRoleName");
             headerRow.CreateCell(4).SetCellValue("IsActive");
 
-            // Set the cell style of each header cell
-            for (int i = 0; i < headerRow.LastCellNum; i++)
+            // Set the cell style for the header row
+            foreach (var cell in headerRow.Cells)
             {
-                ICell headerCell = headerRow.GetCell(i);
-                headerCell.CellStyle = headerCellStyle;
-                // Automatically adjust the column width to fit the widest cell value
-                sheet.AutoSizeColumn(i);
-            }
-            // Loop through all the rows and columns to adjust the cell size
-            for (int i = 0; i < sheet.LastRowNum; i++)
-            {
-                IRow row = sheet.GetRow(i);
-                for (int j = 0; j < row.LastCellNum; j++)
-                {
-                    sheet.AutoSizeColumn(j);
-                }
+                cell.CellStyle = headerCellStyle;
             }
 
             int rowNumber = 1;
@@ -323,7 +311,10 @@ namespace MVCProject.Api.Controllers.Configuration
                 row.CreateCell(4).SetCellValue(UserMaster.IsActive);
 
             }
-
+            for (int i = 0; i < headerRow.LastCellNum; i++)
+            {
+                sheet.AutoSizeColumn(i);
+            }
             //Set the File Path.
             string filePath = HttpContext.Current.Server.MapPath("~/Reports/UserMaster.xlsx");
             string fileName = Path.GetFileName(filePath);

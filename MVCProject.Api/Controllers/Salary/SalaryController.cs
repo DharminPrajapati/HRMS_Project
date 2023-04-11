@@ -242,6 +242,8 @@ namespace MVCProject.Api.Controllers.Salary
             IWorkbook workbook = new XSSFWorkbook();
             ISheet sheet = workbook.CreateSheet("Sheet1");
 
+
+
             // Create a cell style with a background color
             ICellStyle headerCellStyle = workbook.CreateCellStyle();
             headerCellStyle.FillForegroundColor = IndexedColors.Grey25Percent.Index;
@@ -262,7 +264,11 @@ namespace MVCProject.Api.Controllers.Salary
             headerRow.CreateCell(8).SetCellValue("Net Salary");
             headerRow.CreateCell(9).SetCellValue("IsActive");
 
-
+            // Set the cell style for the header row
+            foreach (var cell in headerRow.Cells)
+            {
+                cell.CellStyle = headerCellStyle;
+            }
 
             int rowNumber = 1;
             foreach (var emp in employeeDetail)
@@ -280,7 +286,10 @@ namespace MVCProject.Api.Controllers.Salary
                 row.CreateCell(9).SetCellValue(emp.IsActive);
             }
 
-            
+            for (int i = 0; i < headerRow.LastCellNum; i++)
+            {
+                sheet.AutoSizeColumn(i);
+            }
 
             string filePath = HttpContext.Current.Server.MapPath("~/Reports/SalaryDetails.xlsx");
             string fileName = Path.GetFileName(filePath);
