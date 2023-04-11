@@ -250,7 +250,7 @@ body .container.body .right_col {
 
     .nav_title a img {
         margin-left: 26px;
-        max-height: 56px;
+        max-height: 55px;
         max-width: 213px;
         background: #0e0e23;
         margin-top: 5px;
@@ -665,7 +665,9 @@ table.no-margin .progress {
 }
 
 .nav li.current-page {
-    background: rgb(63 63 127);
+    background: rgb(144 144 182);
+    border-top-right-radius: 23px;
+    border-bottom-right-radius: 23px;
 }
 
 .nav li li li.current-page {
