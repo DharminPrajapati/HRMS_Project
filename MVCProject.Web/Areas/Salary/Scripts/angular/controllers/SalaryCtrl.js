@@ -33,10 +33,10 @@
 
         $scope.SaveSalaryDetails = function (salaryDetailScope , frmSalary) {
             if (frmSalary.$valid) {
-                debugger;
+                
                 SalaryService.SaveSalaryDetails(salaryDetailScope).then(function (res) {
                     if (res) {
-                        debugger
+                       
                         var data = res.data;
                         if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
                             $scope.ClearFormData(frmSalary);

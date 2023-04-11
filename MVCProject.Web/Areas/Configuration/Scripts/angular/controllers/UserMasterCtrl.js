@@ -104,10 +104,10 @@
 
         // BEGIN Bind form data for edit UserMaster
         $scope.EditUserMasterDetails = function (UserId) {
-          debugger
+         
             UserMasterService.GetUserMasterById(UserId).then(function (res) {
                 if (res) {
-                    debugger    
+                   
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success) {// Success
                         $scope.userMasterDetailScope = data.Result;

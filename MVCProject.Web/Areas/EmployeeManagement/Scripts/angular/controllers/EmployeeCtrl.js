@@ -449,7 +449,7 @@
         //    };
         //};
         $scope.Export = function () {
-            debugger
+            
             EmployeeService.CreateExcelReport().then(function (res) {
                 var data = res.data;
 
