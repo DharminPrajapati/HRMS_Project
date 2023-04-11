@@ -25,7 +25,8 @@
         $scope.isSearchClicked = false;
 
        
-        $scope.Username = $rootScope.userContext.UserName;
+        //$scope.Username = $rootScope.userContext.UserName;
+        $scope.EmployeeName = $rootScope.userContext.EmployeeName;
         
 
 
