@@ -79,6 +79,12 @@ namespace MVCProject.Api.Models
         /// <summary>
         /// Gets or sets Employee Id
         /// </summary>
+          public string Department { get; set; }
+
+        /// <summary>
+        /// Gets or sets Employee Id
+        /// </summary>
+
         public int EmployeeId { get; set; }
 
         /// <summary>

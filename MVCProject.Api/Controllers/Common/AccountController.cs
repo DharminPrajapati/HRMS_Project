@@ -44,6 +44,9 @@ namespace MVCProject.Api.Controllers.Common
                 userContext.UserId = emp.UserId;
                 userContext.UserName = emp.UserName;
                 userContext.EmployeeName = emp.TblEmployee.FirstName + " " + emp.TblEmployee.LastName;
+                userContext.Designation = emp.TblEmployee.Designation.DesignationName.ToString();
+                userContext.Department = emp.TblEmployee.TblDepartment.DepartmentName.ToString();
+
                 userContext.RoleId = (int)emp.UserRole.FirstOrDefault().RoleId;
                 userContext.Ticks = DateTime.Now.Ticks;
                 userContext.TimeZoneMinutes = 330;

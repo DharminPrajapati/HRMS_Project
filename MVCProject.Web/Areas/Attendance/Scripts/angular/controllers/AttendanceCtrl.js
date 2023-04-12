@@ -27,6 +27,9 @@
        
         //$scope.Username = $rootScope.userContext.UserName;
         $scope.EmployeeName = $rootScope.userContext.EmployeeName;
+        $scope.Designation = $rootScope.userContext.Designation;
+        $scope.Department = $rootScope.userContext.Department;
+
         
 
 
