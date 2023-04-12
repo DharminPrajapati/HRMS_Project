@@ -45,6 +45,7 @@
             { name: 'November', value: 11 },
             { name: 'December', value: 12 }
         ];
+
         $scope.years = [];
         for (var i = currentDate.getFullYear() - 10; i <= currentDate.getFullYear() + 5; i++) {
             $scope.years.push(i);
@@ -78,6 +79,8 @@
                 console.log(error);
             });
         };
+
+
         $scope.nextPage = function () {
             
             if ($scope.currentPage < $scope.pageCount) {
