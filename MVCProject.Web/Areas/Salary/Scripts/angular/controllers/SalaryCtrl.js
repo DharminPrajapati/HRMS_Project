@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module("MVCApp").controller('SalaryCtrl', [
-        '$scope', '$rootScope', 'ngTableParams', 'CommonFunctions', 'FileService', 'SalaryService', SalaryCtrl
+        '$scope', '$rootScope', '$location','ngTableParams', 'CommonFunctions', 'FileService', 'SalaryService', SalaryCtrl
     ]);
 
-    function SalaryCtrl($scope, $rootScope, ngTableParams, CommonFunctions, FileService, SalaryService) {
+    function SalaryCtrl($scope, $rootScope, $location, ngTableParams, CommonFunctions, FileService, SalaryService) {
         //Initial Declaration
         var salaryDetailsParams = {};
         
@@ -59,7 +59,7 @@
   
 
         $scope.EditSalaryDetails = function (salaryId, frmSalary) {
-            debugger
+          
             // $scope.ClearFormData(frmSalary);
 
             SalaryService.GetSalaryById(salaryId).then(function (res) {
@@ -277,6 +277,18 @@
             }
         };
 
+        $scope.GetData = function (employeeId) {
+           
+            var param = $location.search();
+            $scope.employeeId = param.EmployeeId;
+            
+            SalaryService.GetEmployeeById($scope.employeeId).then(function (res) {
+                if (res != null) {
+                    
+                    $scope.employeeData = res.data.Result;
+                }
+            });
+        }
 }
 })();
 

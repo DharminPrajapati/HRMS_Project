@@ -101,6 +101,44 @@ namespace MVCProject.Api.Controllers.Salary
             }
         }
 
+        /// <summary>
+        /// Get Employees By Id
+        /// </summary>
+        [HttpGet]
+
+        public ApiResponse GetEmployeeById(int employeeId)
+        {
+            var salaryDetail = this.entities.Sp_Salary_DisplayAllEmployees().Where(x => x.EmployeeId == employeeId)
+                .Select(d => new
+                {
+                    SalaryId = d.SalaryId,
+                    EmployeeId = d.EmployeeId,
+                    BatchNo = d.BatchNo,
+                    Name = d.FirstName + ' ' + d.LastName,
+                    DepartmentId = d.DepartmentId,
+                    DesignationId = d.DepartmentId,
+                    DesignationName = d.DesignationName,
+                    DepartmentName = d.DepartmentName,
+                    BasicSalary = d.BasicSalary,
+                    DA = d.DA,
+                    HRA = d.HRA,
+                    PF = d.PF,
+                    DAamt = d.DAamt,
+                    HRAamt = d.HRAamt,
+                    PFamt = d.PFamt,
+                    netSalary = d.netSalary,
+                    IsActive = d.IsActive
+                }).SingleOrDefault();
+
+            if (salaryDetail != null)
+            {
+                return this.Response(Utilities.MessageTypes.Success, string.Empty, salaryDetail);
+            }
+            else
+            {
+                return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
+            }
+        }
 
         ///Get All Salary Details
         [HttpPost]

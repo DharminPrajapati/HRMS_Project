@@ -23,7 +23,7 @@
             });
         }
 
-        // Get Employees By Id
+        // Get Employees By Salary Id
         list.GetSalaryById = function (salaryId) {
             return $http({
                 method: 'GET',
@@ -31,6 +31,13 @@
             });
         };
 
+        // Get Employees By Employee Id
+        list.GetEmployeeById = function (employeeId) {
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/Salary/GetEmployeeById?employeeId=' + employeeId
+            });
+        };
         //Get employee DropDown
         list.GetEmployeelist = function () {
             return $http({
