@@ -34,7 +34,7 @@
                     if (res) {
                         var data = res.data;
                         if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
-                            $scope.ClearFormData(frmSalary);
+                            /*$scope.ClearFormData(frmSalary);*/
                             toastr.success(data.Message, successTitle);
                             $scope.tableParams.reload();
                         }
