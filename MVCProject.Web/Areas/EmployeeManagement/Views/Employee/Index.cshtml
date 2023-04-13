@@ -191,7 +191,7 @@
                         <div class="col-md-4">
                             <!--Select Image  -->
                             <div class="form-group">
-                                <input type="file" class="form-control" id="file" name="file" @*ng-focus="true"*@ ng-model="emplyeeDetailScope.file" tabindex="1" placeholder="@Resource.UploadImage" maxlength="250" accept="image/*" onchange="angular.element(this).scope().loadFile(event)">
+                                <input type="file" class="form-control" id="file" name="file" @*ng-focus="true"*@ ng-model="emplyeeDetailScope.file" tabindex="" placeholder="@Resource.UploadImage" maxlength="250" accept="image/*" onchange="angular.element(this).scope().loadFile(event)">
                                 @*@Resource.UploadImage*@
                                 <div class="label label-danger" data-ng-show="frmEmployees.file.$dirty && frmEmployees.file.$invalid">
                                     <span data-ng-show="frmEmployees.file.$error.pattern">@Resource.Upload</span>

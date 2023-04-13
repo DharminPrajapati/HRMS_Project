@@ -30,7 +30,7 @@
         }
 
         /// <summary>
-        /// Get All Designation
+        /// Get All Designation dropdown
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -40,7 +40,7 @@
             return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
         }
 
-        /// Get All Departments 
+        /// Get All Departments dropdown
         [HttpGet]
         public ApiResponse GetDepartmentDropDown()
         {
@@ -102,7 +102,11 @@
         }
 
 
-
+        /// <summary>
+        /// for all record or active record
+        /// </summary>
+        /// <param name="isGetAll"></param>
+        /// <returns></returns>
         [HttpGet]
 
         public ApiResponse GetEmployeeList(bool isGetAll = false)
@@ -111,7 +115,10 @@
             return this.Response(Utilities.MessageTypes.Success, string.Empty, result);
         }
 
-
+        /// <summary>
+        /// excel sheet
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ApiResponse CreateEmployeeListReport()
         {
@@ -468,6 +475,12 @@
         //    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Employee));
         //}
 
+
+        /// <summary>
+        /// sp for employee list
+        /// </summary>
+        /// <param name="employeeDetailsParams"></param>
+        /// <returns></returns>
         [HttpPost]
         public ApiResponse GetEmployeeDetails(PagingParams employeeDetailsParams)
         {
@@ -483,12 +496,19 @@
 
         }
 
+
+        /// <summary>
+        /// using js pdf
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ApiResponse GeneratePdf()
         {
             var records = this.entities.sp_Emp_GetAllEmployees().ToList();
             return this.Response(Utilities.MessageTypes.Success, string.Empty, records);
         }
+
+
         /// Disposes expensive resources.
         protected override void Dispose(bool disposing)
         {

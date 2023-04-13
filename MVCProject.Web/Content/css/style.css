@@ -437,10 +437,12 @@ a:focus {
     -moz-border-radius: 5px;
     background-clip: padding-box;
     margin-bottom: 60px;
-    background-color: #ffffff;
+    background-image: url('../images/liquid-cheese (1).svg');
+    /*background-color: #ffffff;*/
     float: left;
     width: 100%;
     margin-top: -43px;
+    background-size:cover;
 }
 
     .card-box .card-drop {
@@ -761,7 +763,7 @@ textarea.form-control {
         /* background-color: #FFFFFF; */
         border: 2px solid #3f3f7f;
         -webkit-box-shadow: none;
-        box-shadow:inset;
+        box-shadow:2px 2px #5B69BC;
         outline: 0 !important;
         color: #333333;
     }
