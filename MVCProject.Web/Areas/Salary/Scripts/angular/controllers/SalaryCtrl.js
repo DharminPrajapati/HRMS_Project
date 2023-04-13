@@ -160,7 +160,6 @@
                 IsActive: true
                 
             };
-            $scope.SalaryDetails();
             $scope.salaryDetailScope.PFamt = "";
             $scope.salaryDetailScope.HRAamt = "";
             $scope.salaryDetailScope.DAamt = "";           
