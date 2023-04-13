@@ -1,7 +1,7 @@
 ﻿@model  MVCProject.Web.Models.EmployeeData
 @{
     ViewBag.Title = "Payslip";
-    Layout = "~/Views/Shared/_LayoutPayslip.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <html>
@@ -208,15 +208,49 @@
 
                                 <div class="col-sm-12">
 
-                                    <p style="margin-left: 12px;"><strong>Net Salary: &#8377; @Model.Result.netSalary</strong> </p>
+                                    <p style="margin-left: 12px;"><strong>Net Salary: &#8377; @Model.Result.netSalary</strong>  (<span id="netSalaryInWords"></span>) </p>
 
                                 </div>
+                                <script>
+
+                                    const netSalaryInWords = convertToWords(@Model.Result.netSalary);
+                                    document.getElementById("netSalaryInWords").innerHTML = netSalaryInWords;
+
+                                    function convertToWords(number) {
+
+
+                                        const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+                                        const tens = ['', 'ten', 'twenty', 'thirty', 'fourty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+                                        const suffixes = ['', 'thousand', 'million', 'billion'];
+
+                                        if (number === 0) return 'zero';
+
+                                        const numStr = number.toString();
+                                        if (numStr.length > 12) throw new Error('Number too large');
+                                        const numArr = numStr.padStart(12, '0').match(/(\d{3})/g).map(x => parseInt(x, 10));
+
+                                        let result = '';
+                                        for (let i = 0; i < numArr.length; i++) {
+                                            const group = numArr[i];
+                                            if (group === 0) continue;
+                                            const hundreds = Math.floor(group / 100);
+                                            const tensUnits = group % 100;
+                                            const tensStr = tens[tensUnits >= 10 ? Math.floor(tensUnits / 10) : 0];
+                                            const onesStr = ones[tensUnits >= 10 ? tensUnits % 10 : tensUnits];
+                                            const suffix = suffixes[numArr.length - i - 1];
+                                            const groupStr = (hundreds > 0 ? ones[hundreds] + ' hundred ' : '') + tensStr + ' ' + onesStr + ' ' + suffix + ' ';
+                                            result += groupStr;
+                                        }
+                                        result += "Rupeeys Only.";
+                                        return result.trim();
+                                    }
+                                </script>
 
                             </div>
                             <div class="row col-sm-12">
-                                @Html.ActionLink("Back", "Index", "Salary", new { @class = "btn btn-white back" })
+                              
                                 <center>
-                                    @* <a class=" fa fa-print   " href="/Salary/Salary/SaveAboutPage?employeeId=@Model.Result.EmployeeId" target="_blank">PDF</a>*@
+                                    <a class="btn btn-white fa fa-print fa-lg  " href="/Salary/Salary/SaveAboutPage?employeeId=@Model.Result.EmployeeId" download="Payslip_@Model.Result.BatchNo _.pdf">PDF</a>
                                     <a class="btn btn-white fa fa-print fa-lg  " href="/Salary/Salary/PrintAboutPage?employeeId=@Model.Result.EmployeeId" target="_blank">Print</a>
                                 </center>
                             </div>

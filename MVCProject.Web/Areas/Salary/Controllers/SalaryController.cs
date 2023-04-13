@@ -43,6 +43,27 @@ namespace MVCProject.Areas.Salary.Controllers
                 }
             }
         }
+        /// <summary>
+        /// Open PaySlip
+        /// </summary>
+        /// <param name="employeeId"></param>
+        /// <returns></returns>
+        public async Task<ActionResult> _Payslip(int employeeId)
+        {
+            using (var client = new HttpClient())
+            {
+                var response = await client.GetAsync($"http://localhost:56562/api/Salary/GetEmployeeById?employeeId={employeeId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var employeeData = await response.Content.ReadAsAsync<EmployeeData>();
+                    return View(employeeData);
+                }
+                else
+                {
+                    return RedirectToAction("Error");
+                }
+            }
+        }
 
         /// <summary>
         /// Print Page
@@ -57,7 +78,7 @@ namespace MVCProject.Areas.Salary.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     var employeeData = await response.Content.ReadAsAsync<EmployeeData>();
-                    var report = new Rotativa.ViewAsPdf("Payslip", employeeData);
+                    var report = new Rotativa.ViewAsPdf("_Payslip", employeeData);
                     return report;
                 }
                 else
@@ -75,7 +96,7 @@ namespace MVCProject.Areas.Salary.Controllers
         {
             string fileName = "Payslip.pdf";
             string fullPath = "E:\\New folder\\HRMS_Project\\MVCProject.Api\\Reports\\" + fileName;
-            var report = new Rotativa.ActionAsPdf("Payslip", new { employeeId })
+            var report = new Rotativa.ActionAsPdf("_Payslip", new { employeeId })
             {
                 PageOrientation = Rotativa.Options.Orientation.Portrait,
                 PageSize = Rotativa.Options.Size.A4,
