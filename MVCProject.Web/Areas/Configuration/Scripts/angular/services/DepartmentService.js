@@ -37,5 +37,12 @@
             });
         };
 
+        // Excel
+        list.CreateExcelReport = function () {
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/Department/CreateEmployeeListReport'
+            });
+        };
         return list;
     }]);

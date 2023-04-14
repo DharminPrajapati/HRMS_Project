@@ -508,6 +508,77 @@
             return this.Response(Utilities.MessageTypes.Success, string.Empty, records);
         }
 
+        /// <summary>
+        /// Generate PDf 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ApiResponse ExportPDF()
+        {
+            var data = this.entities.TblEmployees.Select(d => new {
+                d.EmployeeId,
+                d.FirstName,
+                d.LastName,
+                d.Email,
+                d.DesignationId,
+                d.DepartmentId,
+                DesignationName = this.entities.Designations.FirstOrDefault(x => x.DesignationId == d.DesignationId).DesignationName,
+                DepartmentName = this.entities.TblDepartments.FirstOrDefault(x => x.DepartmentId == d.DepartmentId).DepartmentName,
+                IsActive = d.IsActive != null ? d.IsActive == true ? "Active" : "InActive" : string.Empty
+            }).ToList();
+
+            string filePath = HttpContext.Current.Server.MapPath("~/Reports/Employee.pdf");
+            string fileName = Path.GetFileName(filePath);
+
+            using (iTextSharp.text.Document document = new iTextSharp.text.Document())
+            {
+                using (FileStream fs = new FileStream(filePath, FileMode.Create))
+                using (iTextSharp.text.pdf.PdfWriter writer = iTextSharp.text.pdf.PdfWriter.GetInstance(document, fs))
+                {
+                    document.Open();
+
+                    iTextSharp.text.pdf.PdfPTable table = new iTextSharp.text.pdf.PdfPTable(6);
+                    table.WidthPercentage = 100;
+                    table.SetWidths(new float[] { 1.5f, 2f, 1.5f, 2f, 1.5f, 1.5f });
+
+                    iTextSharp.text.pdf.PdfPCell headerCell = new iTextSharp.text.pdf.PdfPCell(new iTextSharp.text.Phrase("Employee Report"));
+                    headerCell.Colspan = 6;
+                    headerCell.HorizontalAlignment = iTextSharp.text.Element.ALIGN_CENTER; //Center
+                    headerCell.HorizontalAlignment = 1; //0=Left, 1=Centre, 2=Right
+                    headerCell.BackgroundColor = new iTextSharp.text.BaseColor(0, 119, 187); // Blue color
+                    headerCell.BorderColor = iTextSharp.text.BaseColor.WHITE;
+
+                    headerCell.PaddingTop = 10f;
+                    headerCell.PaddingBottom = 10f;
+                    table.AddCell(headerCell);
+                    // cell.BackgroundColor = new BaseColor(255, 0, 0); // Set background color to red
+                    table.AddCell("First Name");
+                    table.AddCell("Last Name");
+                    table.AddCell("Email");
+                    table.AddCell("Designation Name");
+                    table.AddCell("Department Name");
+                    table.AddCell("IsActive");
+
+
+                    foreach (var dt in data)
+                    {
+                        table.AddCell(dt.FirstName);
+                        table.AddCell(dt.LastName);
+                        table.AddCell(dt.Email);
+                        table.AddCell(dt.DepartmentName);
+                        table.AddCell(dt.DesignationName);
+                        table.AddCell(dt.IsActive);
+                    }
+
+                    document.Add(table);
+
+                    document.Close();
+                }
+            }
+
+            //Return a response containing the file path
+            return this.Response(MVCProject.Api.Utilities.MessageTypes.Success, string.Empty, filePath);
+        }
 
         /// Disposes expensive resources.
         protected override void Dispose(bool disposing)

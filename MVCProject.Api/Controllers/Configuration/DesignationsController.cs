@@ -21,6 +21,9 @@ namespace MVCProject.Api.Controllers.Configuration
     using MVCProject.Api.Utilities;
     using MVCProject.Api.ViewModel;
     using MVCProject.Common.Resources;
+    using NPOI.SS.UserModel;
+    using NPOI.XSSF.UserModel;
+    using System.Web;
 
     #endregion
 
@@ -191,6 +194,85 @@ namespace MVCProject.Api.Controllers.Configuration
             var userCurrentRoles = userContext;
             return this.Response(Utilities.MessageTypes.Success, responseToReturn: userContext);
         }
+
+        /// <summary>
+        ///  Create Excel Report Of Designation
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+
+        public ApiResponse CreateEmployeeListReport()
+        {
+            var designationDetails = this.entities.Designations.Select(d => new
+            {
+                DesignationId=d.DesignationId,
+                DesignationName=d.DesignationName,
+                Remarks=d.Remarks,
+                IsActive = d.IsActive != null ? d.IsActive == true ? "Active" : "InActive" : string.Empty
+            }).ToList();
+
+            IWorkbook workbook = new XSSFWorkbook();
+            ISheet sheet = workbook.CreateSheet("Sheet1");
+
+
+
+            // Create a cell style with a background color
+            ICellStyle headerCellStyle = workbook.CreateCellStyle();
+            headerCellStyle.FillForegroundColor = IndexedColors.Grey25Percent.Index;
+            headerCellStyle.FillPattern = FillPattern.SolidForeground;
+
+
+            // Add Some Data to Sheet
+            // 
+            IRow headerRow = sheet.CreateRow(0);
+            headerRow.CreateCell(0).SetCellValue("Designation Id");
+            headerRow.CreateCell(1).SetCellValue("Designation Name");
+            headerRow.CreateCell(2).SetCellValue("Remarks");
+            headerRow.CreateCell(3).SetCellValue("IsActive");
+
+            // Set the cell style for the header row
+            foreach (var cell in headerRow.Cells)
+            {
+                cell.CellStyle = headerCellStyle;
+            }
+
+            int rowNumber = 1;
+            foreach (var de in designationDetails)
+            {
+                IRow row = sheet.CreateRow(rowNumber++);
+                row.CreateCell(0).SetCellValue(de.DesignationId);
+                row.CreateCell(1).SetCellValue(de.DesignationName);
+                row.CreateCell(2).SetCellValue(de.Remarks);
+                row.CreateCell(3).SetCellValue(de.IsActive);
+            }
+
+            for (int i = 0; i < headerRow.LastCellNum; i++)
+            {
+                sheet.AutoSizeColumn(i);
+            }
+
+            string filePath = HttpContext.Current.Server.MapPath("~/Reports/Designation.xlsx");
+            string fileName = Path.GetFileName(filePath);
+            //if (File.Exists(filePath))
+            //{
+            //    File.Delete(filePath);
+            //}
+            FileStream fileStream = new FileStream(filePath, FileMode.Create);
+            workbook.Write(fileStream);
+            var memorystream = new MemoryStream();
+            var byteArray = memorystream.ToArray();
+            var response = new HttpResponseMessage(HttpStatusCode.OK);
+
+            response.Content = new ByteArrayContent(byteArray);
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = "MyExcelFile_Designation.xlsx";
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+            response.Content.Headers.ContentLength = byteArray.Length;
+            Console.WriteLine(response);
+
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, filePath);
+        }
+
 
         /// <summary>
         /// Disposes expensive resources.

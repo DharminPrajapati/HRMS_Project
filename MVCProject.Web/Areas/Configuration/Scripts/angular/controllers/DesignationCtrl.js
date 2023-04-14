@@ -24,7 +24,7 @@
 
         // BEGIN Add/Update Designation details
         $scope.SaveDesignationDetails = function (designationDetailScope, frmDesignations) {
-            debugger
+         
             //if (!$rootScope.permission.CanWrite) { return; }
             if (frmDesignations.$valid) {
                 DesignationService.SaveDesignationDetails(designationDetailScope).then(function (res) {
@@ -43,7 +43,7 @@
                     }
                 });
             }
-            debugger
+            
         };
 
         // BEGIN Bind form data for edit Designation
@@ -121,5 +121,50 @@
                 });
             }
         });
+
+    
+        $scope.Export = function () {
+
+            DesignationService.CreateExcelReport().then(function (res) {
+                var data = res.data;
+
+                if (data.MessageType == messageTypes.Success) {
+
+                    var fileName = res.data.Result;
+                    var params = { fileName: fileName };
+                    var form = document.createElement("form");
+                    form.setAttribute("method", "POST");
+                    form.setAttribute("action", "/Designation/DownloadFile");
+                    form.setAttribute("target", "_blank");
+
+                    for (var key in params) {
+                        if (params.hasOwnProperty(key)) {
+                            var hiddenField = document.createElement("input");
+                            hiddenField.setAttribute("type", "hidden");
+                            hiddenField.setAttribute("name", key);
+                            hiddenField.setAttribute("value", params[key]);
+
+                            form.appendChild(hiddenField);
+                        }
+
+                    }
+
+                    document.body.appendChild(form);
+                    form.submit();
+
+                    $defer.resolve(res.data.Result);
+                    if (res.data.Result.length == 0) { }
+                    else {
+                        params.total(res.data.Result[0].TotalRecords);
+                    }
+                }
+              
+                $rootScope.isAjaxLoadingChild = false;
+                CommonFunctions.SetFixHeader();
+
+               
+            });
+
+        };
     }
 })();

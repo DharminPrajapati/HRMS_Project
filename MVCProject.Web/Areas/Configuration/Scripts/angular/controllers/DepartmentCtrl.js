@@ -126,5 +126,49 @@
                 });
             }
         });
+
+        $scope.Export = function () {
+
+            DepartmentService.CreateExcelReport().then(function (res) {
+                var data = res.data;
+
+                if (data.MessageType == messageTypes.Success) {
+
+                    var fileName = res.data.Result;
+                    var params = { fileName: fileName };
+                    var form = document.createElement("form");
+                    form.setAttribute("method", "POST");
+                    form.setAttribute("action", "/Department/DownloadFile");
+                    form.setAttribute("target", "_blank");
+
+                    for (var key in params) {
+                        if (params.hasOwnProperty(key)) {
+                            var hiddenField = document.createElement("input");
+                            hiddenField.setAttribute("type", "hidden");
+                            hiddenField.setAttribute("name", key);
+                            hiddenField.setAttribute("value", params[key]);
+
+                            form.appendChild(hiddenField);
+                        }
+
+                    }
+
+                    document.body.appendChild(form);
+                    form.submit();
+
+                    $defer.resolve(res.data.Result);
+                    if (res.data.Result.length == 0) { }
+                    else {
+                        params.total(res.data.Result[0].TotalRecords);
+                    }
+                }
+
+                $rootScope.isAjaxLoadingChild = false;
+                CommonFunctions.SetFixHeader();
+
+
+            });
+
+        };
     }
 })();
