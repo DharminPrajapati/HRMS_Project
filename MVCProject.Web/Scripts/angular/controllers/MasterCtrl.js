@@ -150,6 +150,20 @@
             $rootScope.userContext = userContext;
             $rootScope.userContext.ProfilePicturePath = $scope.GetProfilePicturePath(userContext.CompanyDB, userContext.ProfilePicturePath);
             $rootScope.userContext.ApplicationLogo = userContext.ApplicationLogo || "/Content/images/company-logo.png";
+
+            AccountService.GetRoles($rootScope.userContext.UserId).then(function (res) {
+                
+                if (res) {
+                    var data = res.data;
+                    if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
+                        $rootScope.userCurrentRoles = data.Result;
+                    }
+                    else {
+                        toastr.error(data.Message);
+                    }
+                }
+            });
+
             if (sessionStorage.getItem("IsSmallMenu") != null) {
                 $scope.isSmallMenu = true;
             }

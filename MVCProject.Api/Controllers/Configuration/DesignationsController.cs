@@ -167,6 +167,31 @@ namespace MVCProject.Api.Controllers.Configuration
         }
 
 
+        [HttpGet]
+        public ApiResponse GetRoles(int UserId)
+        {
+            //UserContext userContext1 = new UserContext();
+            var userContext = (from role in this.entities.UserRole
+                               join user in this.entities.UserMaster on role.UserId equals user.UserId
+                               join userRole in this.entities.UserRoleMaster on role.RoleId equals userRole.RoleId
+                               where user.UserId == UserId
+                               select new
+                               {
+                                   //user.UserId,
+                                   //user.EmpId,
+                                   //user.UserName,
+                                   //user.Password,
+                                   //userRole.UserRoleName,
+                                   //IsActive = user.IsActive != null ? user.IsActive == true ? "Active" : "InActive" : string.Empty,
+                                   //role.RoleId,
+                                   //user.UserRole
+                                   RoleId = userRole.RoleId,
+                                   UserRoleName = userRole.UserRoleName
+                               }).ToList();
+            var userCurrentRoles = userContext;
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: userContext);
+        }
+
         /// <summary>
         /// Disposes expensive resources.
         /// </summary>

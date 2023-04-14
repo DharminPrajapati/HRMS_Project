@@ -34,6 +34,14 @@
         });
     }
 
+    //for display role
+    list.GetRoles = function (UserId) {
+       
+        return $http({
+            method: 'GET',
+            url: $rootScope.apiURL + '/Designations/GetRoles?UserId=' + UserId
+        });
+    }
 
 
     // Change current role of user
