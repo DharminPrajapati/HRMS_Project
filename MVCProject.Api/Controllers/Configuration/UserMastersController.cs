@@ -161,7 +161,7 @@ namespace MVCProject.Api.Controllers.Configuration
         {
             if (this.entities.UserMaster.Any(x => x.UserId != userMasterDetail.UserId && x.UserName.Trim() == userMasterDetail.UserName.Trim()))
             {
-                return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.UserMaster));
+                return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.User_Master));
             }
             else
             {
@@ -177,7 +177,7 @@ namespace MVCProject.Api.Controllers.Configuration
                         return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.User));
                     }
 
-                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.UserMaster));
+                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.User_Master));
                 }
                 else
                 {
@@ -236,7 +236,7 @@ namespace MVCProject.Api.Controllers.Configuration
                 //        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError), Resource.UserMaster);
                 //    }
                 //}
-                return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.UserMaster));
+                return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.User_Master));
             }
 
         }

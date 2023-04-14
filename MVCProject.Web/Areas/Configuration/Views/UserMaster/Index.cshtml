@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = Resource.UserMaster;
+    ViewBag.Title = Resource.User_Master;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
@@ -38,7 +38,7 @@
     <!-- start title section-->
     <div class="main-page-title title-icon relative l">
         <i class="ti-id-badge icon-position" style="padding-top: 8px;"></i>
-        <h4 class="header-title-sub l">@Resource.UserMaster</h4>
+        <h4 class="header-title-sub l">@Resource.User_Master</h4>
         <!-- start button-->
         <div class="pull-right">
             <button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()">
@@ -89,12 +89,13 @@
                              description-field="description"
                              minlength="3"
                              input-class="form-control form-control-small"
-                             match-class="highlight">
+                             match-class="highligh">
+                           
                         </div>
 
                         <div class="c">
                         </div>
-                        <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMaster.$dirty && frmUserMaster.txtUserMaster.$invalid">
+                        <div class="label label-danger" tabindex="1" data-ng-show="frmUserMaster.txtUserMaster.$dirty && frmUserMaster.txtUserMaster.$invalid">
                             <span data-ng-show="frmUserMaster.txtUserMaster.$error.required">Name</span>
                         </div>
                     </div>
@@ -106,7 +107,7 @@
                         <label>
                             @Resource.UserName <span class="required-field">*</span>
                         </label>
-                        <input type="text" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserName" name="txtUserMasterName" required tabindex="1" placeholder="@Resource.UserName" maxlength="250">
+                        <input type="text" class="form-control" id="txtUserMaster" ng-focus="true" ng-model="userMasterDetailScope.UserName" name="txtUserMasterName" required tabindex="2" placeholder="@Resource.UserName" maxlength="250">
                         <div class="c">
                         </div>
                         <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMasterName.$dirty && frmUserMaster.txtUserMasterName.$invalid">
@@ -121,7 +122,7 @@
                         <label>
                             @Resource.Password <span class="required-field">*</span>
                         </label>
-                        <input type="password" class="form-control" id="txtUserMaster" @*ng-focus="true"*@ ng-model="userMasterDetailScope.UserPassword" name="txtUserMasterpassword" required tabindex="1" placeholder="@Resource.Password" maxlength="250">
+                        <input type="password" class="form-control" id="txtUserMaster" @*ng-focus="true"*@ ng-model="userMasterDetailScope.UserPassword" name="txtUserMasterpassword" required tabindex="3" placeholder="@Resource.Password" maxlength="250">
                         <div class="c">
                         </div>
                         <div class="label label-danger" data-ng-show="frmUserMaster.txtUserMasterpassword.$dirty && frmUserMaster.txtUserMasterpassword.$invalid">
@@ -132,7 +133,7 @@
 
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label required tabindex="2" placeholder="@Resource.UserRole" maxlength="250" id="txtUserRole" name="txtUserRole">
+                        <label required tabindex="4" placeholder="@Resource.UserRole" maxlength="250" id="txtUserRole" name="txtUserRole">
                             @Resource.UserRole <span class="required-field">*</span>
                         </label>
                         @*<select name="Rolename" ng-init="rolelist()" class="form-control">
@@ -161,7 +162,8 @@
                         </div>
                     </div>
                 </div>
-</div>
+                </form>
+                </div>
 
 
         <div class="row">
@@ -172,7 +174,7 @@
                 </label>
                 <div class="form-control-static">
                     <div class="checkbox checkbox-info">
-                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="userMasterDetailScope.IsActive" tabindex="2" />
+                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="userMasterDetailScope.IsActive" tabindex="5" />
                         <label for="chkDesignationActive">
                             @Resource.IsActive
                         </label>
@@ -185,17 +187,17 @@
             <div class="col-md-10">
                 <div class="form-group">
                     <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
-                            ng-disabled="frmUserMaster.txtUserMaster.$invalid" tabindex="3">
+                            ng-disabled="frmUserMaster.txtUserMaster.$invalid" tabindex="6">
                         {{userMasterDetailScope.UserId > 0 ? '@Resource.Update' : '@Resource.Save'}}
                     </button>
                     <button type="button" ng-click="ClearFormData()" class="btn btn-info waves-effect w-md waves-light m-b-5"
-                            tabindex="4">
+                            tabindex="5">
                         @Resource.Clear
                     </button>
                 </div>
             </div>
         </div>
-        </form>
+        
         <!-- end usermaster form -->
         <hr />
         <!-- start usermaster details list -->
@@ -206,16 +208,16 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-7">
-                            <h3 class="strip">
-                                <i class="fa fa-gears" aria-hidden="true"></i>
+                            <h2 class="">
+                                @*<i class="fa fa-gears" aria-hidden="true"></i>*@
                                 <label class="table-title">
-                                    @Resource.UserMaster @Resource.Details
+                                    @Resource.User_Master @Resource.Details
                                 </label>
-                                </h3>
+                                </h2>
                         </div>
                         <div class="col-md-5">
                             <div class="input-group">
-                                <input type="text" tabindex="104" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1} {2}", Resource.Search, Resource.User, Resource.Details)" />
+                                <input type="text" tabindex="7" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1} {2}", Resource.Search, Resource.User, Resource.Details)" />
                                 <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked = true;tableParams.page(1);tableParams.reload();">
                                     <i class="fa fa-search"></i>
                                 </a>

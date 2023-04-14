@@ -251,13 +251,15 @@
     margin-left: 15px;
 }
 
-.table-title
-{
-    font-size: 16px;
+.table-title {
+    font-size: 17px;
     font-weight: normal;
     padding: 0;
-    color: #ffffff;
+    font-weight: 700;
+    color: #0e0e23;
     margin-top: 0px !important;
+    margin-left: 14px;
+}
 }
 
 .btn-colorpicker

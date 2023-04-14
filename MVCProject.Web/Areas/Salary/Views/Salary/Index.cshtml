@@ -36,13 +36,7 @@
         <i class="fa fa-inr icon-position" style="padding-top:8px;"></i>
         <h4 class="header-title-sub l">
             @Resource.Salary
-            <button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()" style="
-    /* margin-right: -410px; */
-    margin-left: 1170px;
-    border-radius: 12px;
-">
-                <i class="fa fa-file-excel-o m-r-5" aria-hidden="true"></i>Export To Excel
-            </button>
+            
             </h4>
         <div class="pull-right">
 
@@ -252,13 +246,19 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-7">
-                                <h3 class="strip">
-                                    <i class="fa fa-inr"></i>
+                                <h2 class="">
+                                    @*<i class="fa fa-inr"></i>*@
                                     <label class="table-title">
                                         @Resource.Salary @Resource.Details
                                     </label>
-                                    
-                                </h3>
+                                    <button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()" style="
+    /* margin-right: -410px; */
+   /* margin-left: 470px;*/
+ /*   border-radius: 12px;*/
+">
+                                        <i class="fa fa-file-excel-o m-r-5" aria-hidden="true"></i>Export To Excel
+                                    </button>
+                                </h2>
                             </div>
                             <div class="col-md-5">
                                 <div class="input-group">

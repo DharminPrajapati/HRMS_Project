@@ -334,6 +334,7 @@
     <Content Include="Content\images\Safty2.jpg" />
     <Content Include="Content\images\Safty3.jpg" />
     <Content Include="Content\images\selectimage.png" />
+    <Content Include="Content\images\SHORT.svg" />
     <Content Include="Content\images\skin.png" />
     <Content Include="Content\images\sprit.png" />
     <Content Include="Content\images\zydus-logo.jpg" />

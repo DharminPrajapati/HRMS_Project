@@ -33,7 +33,7 @@
     <!--Start Title Section-->
     <div class="main-page-title title-icon relative l">
         <i class="fa fa-user icon-position" style="padding-top:8px;"></i>
-        <h4 class="header-title-sub l">@*@Resource.Salary*@Search Employee</h4>
+        <h4 class="header-title-sub l">@*@Resource.Salary*@Employee Search</h4>
         <div class="pull-right">
 
         </div>
@@ -50,7 +50,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
-                                    EmployeeName
+                                    Search
                                 </label>
                                 <input type="text" class="form-control" name="FirstName" id="FirstName" ng-focus="true" ng-model="searchDetail.FirstName" tabindex="1" value="{{employeesScope.FirstName}}" placeholder="Search Employee" maxlength="250" />
 
@@ -117,8 +117,8 @@
                 <div class="col-md-12">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3 class="strip">
-                                <i class="fa fa-user"></i>
+                            <h2 class="">
+                                @*<i class="fa fa-user"></i>*@
                                 <label class="table-title">
                                     @Resource.Employee @Resource.Details
                                 </label>
@@ -130,7 +130,7 @@
                                         <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToPDF
                                     </button>
                                     <script src="~/Scripts/js/jspdf.js"></script>*@
-                            </h3>
+                            </h2>
                         </div>
                         @*<div class="col-md-6">
                                 <div class="input-group">

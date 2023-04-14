@@ -906,8 +906,8 @@
   <data name="Employee Search" xml:space="preserve">
     <value>Employee Search</value>
   </data>
-  <data name="UserMaster" xml:space="preserve">
-    <value>UserMaster</value>
+  <data name="User Master" xml:space="preserve">
+    <value>User Master</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>FirstName</value>
@@ -923,5 +923,8 @@
   </data>
   <data name="HR Attendance" xml:space="preserve">
     <value>HR Attendance</value>
+  </data>
+  <data name="Attendance Management" xml:space="preserve">
+    <value>Attendance Management</value>
   </data>
 </root>

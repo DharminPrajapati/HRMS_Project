@@ -44,7 +44,7 @@ namespace System.Web.Mvc
                     menuString.Append(GetSubMenu(Resource.Designations, "", "/Configuration/Designation"));
                     menuString.Append(GetSubMenu(Resource.Department, "", "/Configuration/Department"));
                     menuString.Append(GetSubMenu(Resource.Salary, "", "/Configuration/Salary"));
-                    menuString.Append(GetSubMenu(Resource.UserMaster, "", "/Configuration/UserMaster"));
+                    menuString.Append(GetSubMenu(Resource.User_Master, "", "/Configuration/UserMaster"));
                     menuString.Append("</ul></li>");
                     
                     menuString.Append("<li>");
@@ -55,10 +55,10 @@ namespace System.Web.Mvc
                     menuString.Append("</ul></li>");
 
                     menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Attendance, "fa fa-check-square"));
+                    menuString.AppendFormat(GetParentMenu(Resource.Attendance_Management, "fa fa-check-square"));
                     menuString.Append("<ul class='nav child_menu'>");
                     menuString.Append(GetSubMenu(Resource.EmployeeAttendance, "", "/Attendance/Attendance/EmployeeAttendanceView"));
-                    menuString.Append(GetSubMenu(Resource.HR_Attendance, "", "/Attendance/Attendance/HRAttendanceView"));
+                    menuString.Append(GetSubMenu(Resource.Attendance, "", "/Attendance/Attendance/HRAttendanceView"));
                     menuString.Append("</ul></li>");
 
                     menuString.Append("<li>");
