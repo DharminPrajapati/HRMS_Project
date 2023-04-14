@@ -918,4 +918,10 @@
   <data name="UploadImage" xml:space="preserve">
     <value>UploadImage</value>
   </data>
+  <data name="Employee Details" xml:space="preserve">
+    <value>Employee Details</value>
+  </data>
+  <data name="HR Attendance" xml:space="preserve">
+    <value>HR Attendance</value>
+  </data>
 </root>

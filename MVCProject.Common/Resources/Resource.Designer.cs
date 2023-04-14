@@ -754,6 +754,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee Details.
+        /// </summary>
+        public static string Employee_Details {
+            get {
+                return ResourceManager.GetString("Employee Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee Search.
         /// </summary>
         public static string Employee_Search {
@@ -1083,6 +1092,15 @@ namespace MVCProject.Common.Resources {
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HR Attendance.
+        /// </summary>
+        public static string HR_Attendance {
+            get {
+                return ResourceManager.GetString("HR Attendance", resourceCulture);
             }
         }
         
