@@ -50,7 +50,7 @@ namespace System.Web.Mvc
                     menuString.Append("<li>");
                     menuString.AppendFormat(GetParentMenu(Resource.EmployeeManagement, "fa fa-user"));
                     menuString.Append("<ul class='nav child_menu'>");
-                    menuString.Append(GetSubMenu(Resource.Employee, "", "/EmployeeManagement/Employee"));
+                    menuString.Append(GetSubMenu(Resource.Employee_Details, "", "/EmployeeManagement/Employee"));
                     menuString.Append(GetSubMenu(Resource.Employee_Search, "", "/EmployeeManagement/SearchEmployee"));
                     menuString.Append("</ul></li>");
 
@@ -58,7 +58,7 @@ namespace System.Web.Mvc
                     menuString.AppendFormat(GetParentMenu(Resource.Attendance, "fa fa-check-square"));
                     menuString.Append("<ul class='nav child_menu'>");
                     menuString.Append(GetSubMenu(Resource.EmployeeAttendance, "", "/Attendance/Attendance/EmployeeAttendanceView"));
-                    menuString.Append(GetSubMenu(Resource.Attendance, "", "/Attendance/Attendance/HRAttendanceView"));
+                    menuString.Append(GetSubMenu(Resource.HR_Attendance, "", "/Attendance/Attendance/HRAttendanceView"));
                     menuString.Append("</ul></li>");
 
                     menuString.Append("<li>");
