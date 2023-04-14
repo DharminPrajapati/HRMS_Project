@@ -472,6 +472,7 @@
     <Folder Include="Areas\Public\Views\Shared\" />
     <Folder Include="Areas\Salary\Models\" />
     <Folder Include="Areas\Salary\Views\Shared\" />
+    <Folder Include="Reports\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

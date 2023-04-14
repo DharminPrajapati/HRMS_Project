@@ -108,7 +108,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
-                                    Joining Date <span class="required-field">*</span>
+                                    Date of Joining  <span class="required-field">*</span>
                                 </label>
                                 <input type="date" class="form-control" id="joindate" @*ng-focus="true"*@ name="joindate" ng-model="emplyeeDetailScope.JoiningDate" required tabindex="4" placeholder="Select JoinDate" maxlength="250">
                                 <div class="c">
@@ -136,9 +136,15 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
-                                    Alternate Phone Number
+                                    Emergency  Phone Number<span class="required-field">*</span>
                                 </label>
                                 <input type="text" class="form-control" id="alphno" @*ng-focus="true"*@ name="alphno" integer @*minlength="10"*@ ng-model="emplyeeDetailScope.AlternatePhoneNumber" onkeypress="return event.charCode >=48 && event.charCode <=57" tabindex="6" placeholder="Alternate Phone Number" maxlength="10">
+                                <div class="c">
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmEmployees.alphno.$dirty && frmEmployees.alphno.$invalid">
+                                    <span data-ng-show="frmEmployees.alphno.$error.required"> Emergency Phone Number required</span>
+                                    <span data-ng-show="frmEmployees.alphno.$error.integer">Emergency Phone Number Needs to be Integer</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -252,7 +258,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        Birth Date <span class="required-field">*</span>
+                                        Date Of Birth  <span class="required-field">*</span>
                                     </label>
                                     <input type="date" class="form-control" id="birthdate" @*ng-focus="true"*@ name="birthdate" required max="{{max}}" ng-model="emplyeeDetailScope.BirthDate" required tabindex="11" placeholder="BirthDate" maxlength="250">
                                     <div class="c">
@@ -283,12 +289,12 @@
 
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <!--<div class="col-md-4">
                                 <div class="form-group">
                                     <label>
                                         Pincode <span class="required-field">*</span>
                                     </label>
-                                    <input type="text" class="form-control" id="pincode" @*ng-focus="true"*@ integer name="pincode" minlength="6" ng-model="emplyeeDetailScope.Pincode" required tabindex="12" placeholder="Pincode Number" maxlength="6">
+                                    <input type="text" class="form-control" id="pincode"--> @*ng-focus="true"*@ <!--integer name="pincode" minlength="6" ng-model="emplyeeDetailScope.Pincode" required tabindex="12" placeholder="Pincode Number" maxlength="6">
                                     <div class="c">
                                     </div>
                                     <div class="label label-danger" data-ng-show="frmEmployees.pincode.$dirty && frmEmployees.pincode.$invalid">
@@ -297,13 +303,13 @@
                                         <span data-ng-show="frmEmployees.pincode.$error.minlength">Pincode must have 6 Digits</span>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>
-                                        Address <span class="required-field">*</span>
+                                        Permanent Address <span class="required-field">*</span>
                                     </label>
                                     <textarea class="form-control" tabindex="13" maxlength="250" @*ng-focus="true"*@ ng-model="emplyeeDetailScope.PermanentAddress" placeholder="Permanent Address" required> </textarea>
                                 </div>
@@ -365,13 +371,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        Course Start Date <span class="required-field">*</span>
+                                        Course Start Date @*<span class="required-field">*</span>*@
                                     </label>
-                                    <input type="date" class="form-control" required max="{{max}}" id="coursestartdate" @*ng-focus="true"*@ name="coursestartdate" ng-model="emplyeeDetailScope.CourseStartDate" tabindex="17" placeholder="Select Course Start Date">
+                                    <input type="date" class="form-control" @*required*@ max="{{max}}" id="coursestartdate" @*ng-focus="true"*@ name="coursestartdate" ng-model="emplyeeDetailScope.CourseStartDate" tabindex="17" placeholder="Select Course Start Date">
                                     <div class="c">
                                     </div>
                                     <div class="label label-danger" data-ng-show="frmEmployees.coursestartdate.$dirty && frmEmployees.coursestartdate.$invalid">
-                                        <span data-ng-show="frmEmployees.coursestartdate.$error.required">Course Start date required</span>
+                                        @*<span data-ng-show="frmEmployees.coursestartdate.$error.required">Course Start date required</span>*@
                                         <span data-ng-show="frmEmployees.coursestartdate.$error.max" class="help-block">Cource Date can't be in future</span>
                                     </div>
                                 </div>
@@ -381,13 +387,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        Course End Date <span class="required-field">*</span>
+                                        Course End Date @*<span class="required-field">*</span>*@
                                     </label>
-                                    <input type="date" class="form-control" id="courseEnddate" @*ng-focus="true"*@ name="courseEnddate" required max="{{max}}" ng-model="emplyeeDetailScope.CourseEndDate" tabindex="18" placeholder="Select Course End Date">
+                                    <input type="date" class="form-control" id="courseEnddate" @*ng-focus="true"*@ name="courseEnddate" @*required*@ max="{{max}}" ng-model="emplyeeDetailScope.CourseEndDate" tabindex="18" placeholder="Select Course End Date">
                                     <div class="c">
                                     </div>
                                     <div class="label label-danger" data-ng-show="frmEmployees.courseEnddate.$dirty && frmEmployees.courseEnddate.$invalid">
-                                        <span data-ng-show="frmEmployees.courseEnddate.$error.required">Course End Date required</span>
+                                        @*<span data-ng-show="frmEmployees.courseEnddate.$error.required">Course End Date required</span>*@
                                         <span data-ng-show="frmEmployees.courseEnddate.$error.max" class="help-block">Cource Date can't be in future</span>
                                     </div>
                                 </div>
@@ -395,14 +401,14 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>
-                                        Grade <span class="required-field">*</span>
+                                        Grade @*<span class="required-field">*</span>*@
                                     </label>
-                                    <input type="text" class="form-control" id="grade" @*ng-focus="true"*@ name="grade" ng-model="emplyeeDetailScope.Grade" required tabindex="19" placeholder="Grade" maxlength="250">
+                                    <input type="text" class="form-control" id="grade" @*ng-focus="true"*@ name="grade" ng-model="emplyeeDetailScope.Grade" @*required*@ tabindex="19" placeholder="Grade" maxlength="250">
                                     <div class="c">
                                     </div>
-                                    <div class="label label-danger" data-ng-show="frmEmployees.grade.$dirty && frmEmployees.grade.$invalid">
+                                    @*<div class="label label-danger" data-ng-show="frmEmployees.grade.$dirty && frmEmployees.grade.$invalid">
                                         <span data-ng-show="frmEmployees.grade.$error.required">Grade required</span>
-                                    </div>
+                                    </div>*@
                                 </div>
                             </div>
                             <div class="col-md-4">

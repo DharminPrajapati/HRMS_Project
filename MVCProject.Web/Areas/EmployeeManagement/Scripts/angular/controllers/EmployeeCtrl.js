@@ -81,32 +81,30 @@
                 toastr.warning("Phone Number Required", warningTitle);
                 $("#phno").focus();
             }
+            else if (emplyeeDetailScope.AlternatePhoneNumber == null || emplyeeDetailScope.AlternatePhoneNumber == "") {
+                toastr.warning("Alternate Phone Number Required", warningTitle);
+                $("#alphno").focus();
+            }
             else if (emplyeeDetailScope.DesignationId == null || emplyeeDetailScope.DesignationId == "") {
                 toastr.warning("Designation Required", warningTitle);
                 $("#selectDesignation").focus();
             }
-            //else if (!$("#selectDesignation").val()) {
-            //    toastr.warning("Please fill Designation", warningTitle);
-            //    $("#selectDesignation").focus();
-            //}
+            
 
             else if (emplyeeDetailScope.DepartmentId == null || emplyeeDetailScope.DepartmentId == "") {
                 toastr.warning("Department Required", warningTitle);
                 $("#selectDepartments").focus();
             }
-            //else if (!$("#selectDepartments").val()) {
-            //    toastr.warning("Please fill Department", warningTitle);
-            //    $("#selectDepartments").focus();
-            //}
+            
             else if (emplyeeDetailScope.BirthDate == null || emplyeeDetailScope.BirthDate == "") {
                 toastr.warning("Birth Date Required", warningTitle);
                 $("#birthdate").focus();
             }
 
-            else if (emplyeeDetailScope.Pincode == null || emplyeeDetailScope.Pincode == "") {
-                toastr.warning("Pincode Required", warningTitle);
-                $("#pincode").focus();
-            }
+            //else if (emplyeeDetailScope.Pincode == null || emplyeeDetailScope.Pincode == "") {
+            //    toastr.warning("Pincode Required", warningTitle);
+            //    $("#pincode").focus();
+            //}
             else if (emplyeeDetailScope.PermanentAddress == null || emplyeeDetailScope.PermanentAddress == "") {
                 toastr.warning("Address Required", warningTitle);
                 $("#permanentAddress").focus();
@@ -119,23 +117,23 @@
                 toastr.warning("Course Name Required", warningTitle);
                 $("#CourseName").focus();
             }
-            else if (emplyeeDetailScope.CourseStartDate == null || emplyeeDetailScope.CourseStartDate == "") {
-                toastr.warning("Course Start-Date Required", warningTitle);
-                $("#CourseStartDate").focus();
-            }
-            else if (emplyeeDetailScope.CourseEndDate == null || emplyeeDetailScope.CourseEndDate == "") {
-                toastr.warning("Course End-Date Required", warningTitle);
-                $("#CourseStartDate").focus();
-            }
-            else if (emplyeeDetailScope.CourseStartDate >= emplyeeDetailScope.CourseEndDate) {
-                toastr.warning("Course Start date should be grater then end date", warningTitle);
-                $("#CourseStartDate").focus();
-                return;
-            }
-            else if (emplyeeDetailScope.Grade == null || emplyeeDetailScope.Grade == "") {
-                toastr.warning("Grade Required", warningTitle);
-                $("#grade").focus();
-            }
+            //else if (emplyeeDetailScope.CourseStartDate == null || emplyeeDetailScope.CourseStartDate == "") {
+            //    toastr.warning("Course Start-Date Required", warningTitle);
+            //    $("#CourseStartDate").focus();
+            //}
+            //else if (emplyeeDetailScope.CourseEndDate == null || emplyeeDetailScope.CourseEndDate == "") {
+            //    toastr.warning("Course End-Date Required", warningTitle);
+            //    $("#CourseStartDate").focus();
+            //}
+            //else if (emplyeeDetailScope.CourseStartDate >= emplyeeDetailScope.CourseEndDate) {
+            //    toastr.warning("Course Start date should be grater then end date", warningTitle);
+            //    $("#CourseStartDate").focus();
+            //    return;
+            //}
+            //else if (emplyeeDetailScope.Grade == null || emplyeeDetailScope.Grade == "") {
+            //    toastr.warning("Grade Required", warningTitle);
+            //    $("#grade").focus();
+            //}
             else if (emplyeeDetailScope.Degree == null || emplyeeDetailScope.Degree == "") {
                 toastr.warning("Degree Required ", warningTitle);
                 $("#degree").focus();

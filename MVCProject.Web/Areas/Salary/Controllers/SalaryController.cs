@@ -95,22 +95,24 @@ namespace MVCProject.Areas.Salary.Controllers
         public ActionResult SaveAboutPage(int employeeId)
         {
             string fileName = "Payslip.pdf";
-            string fullPath = "E:\\New folder\\HRMS_Project\\MVCProject.Api\\Reports\\" + fileName;
+            string virtualpath = "~/Reports/" + fileName;
+            string phsicalpath = Server.MapPath(virtualpath);
+            //string fullPath = "E:\\New folder\\HRMS_Project\\MVCProject.Api\\Reports\\" + fileName;
             var report = new Rotativa.ActionAsPdf("_Payslip", new { employeeId })
             {
                 PageOrientation = Rotativa.Options.Orientation.Portrait,
                 PageSize = Rotativa.Options.Size.A4,
                 PageMargins = new Margins(0, 0, 0, 0),
             };
-            if (!System.IO.File.Exists(fullPath))
+            if (!System.IO.File.Exists(phsicalpath))
             {
                 var byteArray = report.BuildPdf(ControllerContext);
-                var fileStream = new FileStream(fullPath, FileMode.Create, FileAccess.Write);
+                var fileStream = new FileStream(phsicalpath, FileMode.Create, FileAccess.Write);
                 fileStream.Write(byteArray, 0, byteArray.Length);
                 fileStream.Close();
             }
             return report;
-
+            //return File(virtualpath, "application/pdf", fileName);
         }
 
 
