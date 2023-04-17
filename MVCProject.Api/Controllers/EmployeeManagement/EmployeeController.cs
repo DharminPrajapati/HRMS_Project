@@ -172,21 +172,21 @@
             headerRow.CreateCell(3).SetCellValue("Email");
             headerRow.CreateCell(4).SetCellValue("Joining Date");
             headerRow.CreateCell(5).SetCellValue("Phone Number");
-            headerRow.CreateCell(6).SetCellValue("Alternate Phone Number");
+            headerRow.CreateCell(6).SetCellValue("Emergency Phone Number");
             headerRow.CreateCell(7).SetCellValue("Designation Name");
             headerRow.CreateCell(8).SetCellValue("Department Name");
             headerRow.CreateCell(9).SetCellValue("Birth Date");
             headerRow.CreateCell(10).SetCellValue("Gender");
             headerRow.CreateCell(11).SetCellValue("Permanent Address");
             headerRow.CreateCell(12).SetCellValue("Temporary Address");
-            headerRow.CreateCell(13).SetCellValue("Pincode");
-            headerRow.CreateCell(14).SetCellValue("Institution Name");
-            headerRow.CreateCell(15).SetCellValue("Course Name");
-            headerRow.CreateCell(16).SetCellValue("Course Start Date");
-            headerRow.CreateCell(17).SetCellValue("Course End Date");
-            headerRow.CreateCell(18).SetCellValue("Grade");
-            headerRow.CreateCell(19).SetCellValue("Degree");
-            headerRow.CreateCell(20).SetCellValue("IsActive");
+            //headerRow.CreateCell(13).SetCellValue("Pincode");
+            headerRow.CreateCell(13).SetCellValue("Institution Name");
+            headerRow.CreateCell(14).SetCellValue("Course Name");
+            //headerRow.CreateCell(16).SetCellValue("Course Start Date");
+            //headerRow.CreateCell(17).SetCellValue("Course End Date");
+            headerRow.CreateCell(15).SetCellValue("Grade");
+            headerRow.CreateCell(16).SetCellValue("Degree");
+            headerRow.CreateCell(17).SetCellValue("IsActive");
             // Set the cell style for the header row
             foreach (var cell in headerRow.Cells)
             {
@@ -211,14 +211,14 @@
                 row.CreateCell(10).SetCellValue(emp.Gender);
                 row.CreateCell(11).SetCellValue(emp.PermanentAddress);
                 row.CreateCell(12).SetCellValue(emp.TemporaryAddress);
-                row.CreateCell(13).SetCellValue((double)emp.Pincode);
-                row.CreateCell(14).SetCellValue(emp.InstitutionName);
-                row.CreateCell(15).SetCellValue(emp.CourseName);
-                row.CreateCell(16).SetCellValue(((DateTime)emp.CourseStartDate).ToString("dd/MM/yyyy"));
-                row.CreateCell(17).SetCellValue(((DateTime)emp.CourseEndDate).ToString("dd/MM/yyyy"));
-                row.CreateCell(18).SetCellValue(emp.Grade);
-                row.CreateCell(19).SetCellValue(emp.Degree);
-                row.CreateCell(20).SetCellValue(emp.IsActive);
+               // row.CreateCell(13).SetCellValue((double)emp.Pincode);
+                row.CreateCell(13).SetCellValue(emp.InstitutionName);
+                row.CreateCell(14).SetCellValue(emp.CourseName);
+                //row.CreateCell(16).SetCellValue(((DateTime)emp.CourseStartDate).ToString("dd/MM/yyyy"));
+                //row.CreateCell(17).SetCellValue(((DateTime)emp.CourseEndDate).ToString("dd/MM/yyyy"));
+                row.CreateCell(15).SetCellValue(emp.Grade);
+                row.CreateCell(16).SetCellValue(emp.Degree);
+                row.CreateCell(17).SetCellValue(emp.IsActive);
             }
             for (int i = 0; i < headerRow.LastCellNum; i++)
             {
