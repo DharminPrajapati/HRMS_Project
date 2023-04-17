@@ -529,7 +529,10 @@
 
             string filePath = HttpContext.Current.Server.MapPath("~/Reports/Employee.pdf");
             string fileName = Path.GetFileName(filePath);
-
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
             using (iTextSharp.text.Document document = new iTextSharp.text.Document())
             {
                 using (FileStream fs = new FileStream(filePath, FileMode.Create))

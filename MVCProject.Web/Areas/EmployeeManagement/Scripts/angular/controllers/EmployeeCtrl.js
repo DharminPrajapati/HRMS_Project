@@ -488,7 +488,64 @@
 
         };
 
+        $scope.ExportPDF = function()
+        {
+            
+            EmployeeService.ExportPDF().then(function (res)
+            {
+               
+                var data = res.data;
+                if (res.data.MessageType == messageTypes.Success) {
+                    var filename = res.data.Result;
+                    var params = { filename: filename };
+                    var form = document.createElement("form");
+                    form.setAttribute("method", "POST");
+                    form.setAttribute("action", "/EmployeeManagement/Employee/DownloadPDF");
+                    form.setAttribute("target", "_blank");
 
+                    for (var dt in params) {
+
+                        if (params.hasOwnProperty(dt)) {
+                            var hiddenField = document.createElement("input");
+                            hiddenField.setAttribute("type", "hidden");
+                            hiddenField.setAttribute("name", dt);
+                            hiddenField.setAttribute("value", params[dt]);
+
+                            form.appendChild(hiddenField);
+                        }
+                    }
+                    document.body.appendChild(form);
+                    form.submit();
+
+                    $defer.resolve(res.data.Result);
+                    if (data.Result.length == 0) {
+                    }
+                    else {
+                        params.total(data.Result[0].TotalRecords);
+                    }
+                }
+
+                $rootScope.isAjaxLoadingChild = false;
+                CommonFunctions.SetFixHeader();
+            });
+        }
+
+        $scope.totalExp = {};
+
+        $scope.calExper = function (fromPeriod, toPeriod) {
+            debugger
+            var start = new Date(fromPeriod);
+            var end = new Date(toPeriod);
+            var diff = end.getTime() - start.getTime();
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var months = Math.floor(days / 30);
+            var years = Math.floor(months / 12);
+            var remainingDays = days - (months * 30);
+            $scope.totalExp.years = years + ' years';
+            $scope.totalExp.months = months + ' months';
+            $scope.totalExp.remainingDays = remainingDays + ' days';
+           
+        }
         //$scope.generatePdf = function () {
         //    debugger
         //    EmployeeService.GeneratePdf().then(function (res) {

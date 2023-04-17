@@ -101,7 +101,15 @@
                 method: 'GET',                
                 url: $rootScope.apiURL + '/Employee/GeneratePdf'
             });
-            debugger
+            
+        }
+
+        list.ExportPDF = function () {
+            
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/Employee/ExportPDF'
+            });
         }
 
         return list;

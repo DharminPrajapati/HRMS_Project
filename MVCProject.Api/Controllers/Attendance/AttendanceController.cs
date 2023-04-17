@@ -57,7 +57,9 @@ namespace MVCProject.Api.Controllers.Attendance
             if (AttendanceDetail.EmployeeId > 0)
             {
                 AttendanceDetail.Date = DateTime.Today;
-                TimeSpan intime = DateTime.UtcNow.TimeOfDay;
+                //TimeSpan intime = DateTime.UtcNow.TimeOfDay;
+                TimeSpan intime = TimeSpan.ParseExact(DateTime.UtcNow.ToString("hh:mm:ss"), "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+
                 AttendanceDetail.InTime = intime;
                 entities.Attendance.AddObject(AttendanceDetail);
                 if (!(this.entities.SaveChanges() > 0))
@@ -74,8 +76,8 @@ namespace MVCProject.Api.Controllers.Attendance
         public ApiResponse UpdateAttendance([FromBody] Attendance AttendanceDetail)
         {
             Attendance existingAttendanceDetail = this.entities.Attendance.Where(x => x.EmployeeId == AttendanceDetail.EmployeeId && x.Date == DateTime.Today).FirstOrDefault();
-            TimeSpan outtime = DateTime.UtcNow.TimeOfDay;
-            //TimeSpan outtime = TimeSpan.ParseExact(DateTime.UtcNow.ToString("hh:mm:ss"), "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
+            //TimeSpan outtime = DateTime.UtcNow.TimeOfDay;
+            TimeSpan outtime = TimeSpan.ParseExact(DateTime.UtcNow.ToString("hh:mm:ss"), "hh\\:mm\\:ss", CultureInfo.InvariantCulture);
             existingAttendanceDetail.OutTime = outtime;
             existingAttendanceDetail.OutLatitude = AttendanceDetail.OutLatitude;
             existingAttendanceDetail.OutLongitude = AttendanceDetail.OutLongitude;

@@ -33,6 +33,22 @@ namespace MVCProject.Areas.EmployeeManagement.Controllers
             return File(filedata, contentType);
         }
 
+        public ActionResult DownloadPDF(string filename)
+        {
+            byte[] filedata = System.IO.File.ReadAllBytes(filename);
+            string ext = Path.GetExtension(filename);
+            string contentType = "application/"+ext;
+
+            var cd = new System.Net.Mime.ContentDisposition
+            { 
+                FileName=filename,
+                Inline=true
+            };
+
+            Response.AppendHeader("Content-Disposition",cd.ToString());
+            return File(filedata,contentType);
+        }
+
 
     }
 }
