@@ -163,6 +163,7 @@
     <Compile Include="Areas\Configuration\ConfigurationAreaRegistration.cs" />
     <Compile Include="Areas\Configuration\Controllers\AllowanceMasterController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ApplicationController.cs" />
+    <Compile Include="Areas\Configuration\Controllers\DeductionMasterController.cs" />
     <Compile Include="Areas\Configuration\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Configuration\Controllers\DesignationController.cs" />
     <Compile Include="Areas\Configuration\Controllers\SalaryConfigController.cs" />
@@ -224,6 +225,7 @@
     <Content Include="Areas\Attendance\Scripts\angular\services\AttendanceService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\AllowanceMasterCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ApplicationCtrl.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\controllers\DeductionMasterCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DepartmentCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DesignationCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ResetToLoginCtrl.js" />
@@ -231,6 +233,7 @@
     <Content Include="Areas\Configuration\Scripts\angular\controllers\UserMasterCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\AllowanceMasterService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ApplicationService.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\services\DeductionMasterService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DepartmentService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DesignationService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ResetToLoginService.js" />
@@ -522,6 +525,7 @@
     <Content Include="Areas\Salary\Views\Salary\Payslip.cshtml" />
     <Content Include="Areas\Salary\Views\Salary\_Payslip.cshtml" />
     <Content Include="Areas\Configuration\Views\AllowanceMaster\Index.cshtml" />
+    <Content Include="Areas\Configuration\Views\DeductionMaster\Index.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />

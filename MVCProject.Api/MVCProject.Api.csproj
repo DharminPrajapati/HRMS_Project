@@ -189,6 +189,7 @@
     <Compile Include="Controllers\Common\AccountController.cs" />
     <Compile Include="Controllers\Common\CommonController.cs" />
     <Compile Include="Controllers\Configuration\AllowanceMasterController.cs" />
+    <Compile Include="Controllers\Configuration\DeductionMasterController.cs" />
     <Compile Include="Controllers\Configuration\DepartmentController.cs" />
     <Compile Include="Controllers\Configuration\DesignationsController.cs" />
     <Compile Include="Controllers\Common\UploadController.cs" />

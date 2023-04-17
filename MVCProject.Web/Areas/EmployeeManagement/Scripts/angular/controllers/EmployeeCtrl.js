@@ -533,7 +533,7 @@
         $scope.totalExp = {};
 
         $scope.calExper = function (fromPeriod, toPeriod) {
-            debugger
+          
             var start = new Date(fromPeriod);
             var end = new Date(toPeriod);
             var diff = end.getTime() - start.getTime();
