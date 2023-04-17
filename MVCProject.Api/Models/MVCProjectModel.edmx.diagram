@@ -22,6 +22,8 @@
         <AssociationConnector Association="MVCProjectModel.fk_empId" />
         <AssociationConnector Association="MVCProjectModel.FK__UserRole__UserId__0CDAE408" />
         <AssociationConnector Association="MVCProjectModel.FK__UserRole__RoleId__0BE6BFCF" />
+        <EntityTypeShape EntityType="MVCProjectModel.AllowanceMaster" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MVCProjectModel.DeductionMaster" Width="1.5" PointX="2.75" PointY="9.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -19,7 +19,7 @@ namespace MVCProject.Common.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resource {
@@ -120,6 +120,15 @@ namespace MVCProject.Common.Resources {
         public static string AddMedicineStock {
             get {
                 return ResourceManager.GetString("AddMedicineStock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allowance Master.
+        /// </summary>
+        public static string Allowance_Master {
+            get {
+                return ResourceManager.GetString("Allowance Master", resourceCulture);
             }
         }
         
@@ -2032,6 +2041,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ShortCode.
+        /// </summary>
+        public static string ShortCode {
+            get {
+                return ResourceManager.GetString("ShortCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show/Hide From Email Password.
         /// </summary>
         public static string ShowHideFromEmailPassword {
@@ -2424,6 +2442,15 @@ namespace MVCProject.Common.Resources {
         public static string Users {
             get {
                 return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
             }
         }
         

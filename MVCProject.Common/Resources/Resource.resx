@@ -927,4 +927,13 @@
   <data name="Attendance Management" xml:space="preserve">
     <value>Attendance Management</value>
   </data>
+  <data name="Allowance Master" xml:space="preserve">
+    <value>Allowance Master</value>
+  </data>
+  <data name="ShortCode" xml:space="preserve">
+    <value>ShortCode</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
+  </data>
 </root>

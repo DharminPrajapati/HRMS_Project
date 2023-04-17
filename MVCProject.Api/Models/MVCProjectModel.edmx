@@ -25,6 +25,20 @@
           <Property Name="UpdateBy" Type="int" />
           <Property Name="UpdatedDate" Type="date" />
         </EntityType>
+        <EntityType Name="AllowanceMaster">
+          <Key>
+            <PropertyRef Name="AllowanceId" />
+          </Key>
+          <Property Name="AllowanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ShortCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryBy" Type="int" />
+          <Property Name="EntryDate" Type="date" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="AttachmentMaster">
           <Key>
             <PropertyRef Name="AttachmentId" />
@@ -66,6 +80,20 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="InDiscription" Type="nvarchar" MaxLength="50" />
           <Property Name="OutDiscription" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DeductionMaster">
+          <Key>
+            <PropertyRef Name="DeductionId" />
+          </Key>
+          <Property Name="DeductionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ShortCode" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EntryBy" Type="int" />
+          <Property Name="EntryDate" Type="date" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="UpdatedDate" Type="date" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Designation">
           <Key>
@@ -251,9 +279,11 @@
         <Function Name="Sp_Salary_DisplayAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MVCProjectModelStoreContainer">
           <EntitySet Name="AddSalary" EntityType="Self.AddSalary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AllowanceMaster" EntityType="Self.AllowanceMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AttachmentMaster" EntityType="Self.AttachmentMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AttachmentType" EntityType="Self.AttachmentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeductionMaster" EntityType="Self.DeductionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalaryConfiguration" EntityType="Self.SalaryConfiguration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDepartment" EntityType="Self.TblDepartment" Schema="dbo" store:Type="Tables" />
@@ -424,6 +454,8 @@
             <End Role="UserRoleMaster" EntitySet="UserRoleMaster" />
             <End Role="UserRole" EntitySet="UserRole" />
           </AssociationSet>
+          <EntitySet Name="AllowanceMaster" EntityType="MVCProjectModel.AllowanceMaster" />
+          <EntitySet Name="DeductionMaster" EntityType="MVCProjectModel.DeductionMaster" />
         </EntityContainer>
         <EntityType Name="AttachmentMaster">
           <Key>
@@ -683,6 +715,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AllowanceMaster">
+          <Key>
+            <PropertyRef Name="AllowanceId" />
+          </Key>
+          <Property Name="AllowanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntryBy" Type="Int32" />
+          <Property Name="EntryDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeductionMaster">
+          <Key>
+            <PropertyRef Name="DeductionId" />
+          </Key>
+          <Property Name="DeductionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EntryBy" Type="Int32" />
+          <Property Name="EntryDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -977,6 +1037,36 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="UserRoleName" ColumnName="UserRoleName" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AllowanceMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.AllowanceMaster">
+              <MappingFragment StoreEntitySet="AllowanceMaster">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="AllowanceId" ColumnName="AllowanceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeductionMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.DeductionMaster">
+              <MappingFragment StoreEntitySet="DeductionMaster">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DeductionId" ColumnName="DeductionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
