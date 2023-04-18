@@ -16,6 +16,7 @@
             CompanyMasterId: 0,
             DepartmentId: 0,
             DesignationName: '',
+            DepartmentName:'',
             IsActive: true
         };
         $scope.isSearchClicked = false;
@@ -26,10 +27,11 @@
 
         // BEGIN Add/Update Designation details
         $scope.SaveDesignationDetails = function (designationDetailScope, frmDesignations) {
-
+            debugger
             //if (!$rootScope.permission.CanWrite) { return; }
             if (frmDesignations.$valid) {
                 DesignationService.SaveDesignationDetails(designationDetailScope).then(function (res) {
+                    debugger
                     if (res) {
                         var data = res.data;
                         if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
@@ -50,16 +52,20 @@
 
         // BEGIN Bind form data for edit Designation
         $scope.EditDesignationDetails = function (designationId) {
+        debugger
             DesignationService.GetDesignationById(designationId).then(function (res) {
                 if (res) {
+                    debugger
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success) {// Success
                         $scope.designationDetailScope = data.Result;
                         $scope.lastStorageAudit = angular.copy(data.Result);
                         CommonFunctions.ScrollUpAndFocus("txtDesignation");
+                        $scope.departmentsScope($scope.designationDetailScope.CompanyMasterId);
                     } else if (data.MessageType == messageTypes.Error) {// Error
                         toastr.error(data.Message, errorTitle);
                     }
+                    console.log(data);
                 }
                 $rootScope.isAjaxLoadingChild = false;
             });
@@ -108,7 +114,7 @@
         };
 
         $scope.departmentsScope = function (id) {
-            debugger
+           debugger
             if (id == undefined) {
                 return
             }

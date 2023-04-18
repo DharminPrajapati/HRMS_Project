@@ -99,6 +99,7 @@ namespace MVCProject.Api.Controllers.Configuration
                                        DesignationId = s.DesignationId,
                                        DesignationName = s.DesignationName,
                                        DepartmentId = s.DepartmentId,
+                                      
                                        CompanyMasterId = s.CompanyMasterId,
                                        IsActive = s.IsActive,
                                        Remarks = s.Remarks,
@@ -158,12 +159,12 @@ namespace MVCProject.Api.Controllers.Configuration
         [HttpPost]
         public ApiResponse SaveDesignationDetails(Designation designationDetail)
         {
-            if (this.entities.Designations.Any(x => x.DesignationId != designationDetail.DesignationId && x.DesignationName.Trim() == designationDetail.DesignationName.Trim()))
-            {
-                return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Designation));
-            }
-            else
-            {
+            //if (this.entities.Designations.Any(x => x.DesignationId != designationDetail.DesignationId && x.DesignationName.Trim() == designationDetail.DesignationName.Trim()))
+            //{
+            //    return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Designation));
+            //}
+            //else
+            //{
                 Designation existingDesignationDetail = this.entities.Designations.Where(a => a.DesignationId == designationDetail.DesignationId).FirstOrDefault();
                 if (existingDesignationDetail == null)
                 {
@@ -196,7 +197,7 @@ namespace MVCProject.Api.Controllers.Configuration
 
                     return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Designation));
                 }
-            }
+            
         }
 
 

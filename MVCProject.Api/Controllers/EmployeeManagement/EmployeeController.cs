@@ -74,6 +74,7 @@
                                     //var employeelist = this.entities.TblEmployee.ToList();
 
                                     EmployeeId = d.EmployeeId,
+                                    CompanyMasterId = d.CompanyMasterId,
                                     SrNo = d.SrNo,
                                     BatchNo = d.BatchNo,
                                     FirstName = d.FirstName,
@@ -323,6 +324,7 @@
                    .Select(d => new
                    {
                        EmployeeId = d.EmployeeId,
+                       CompanyMasterId = d.CompanyMasterId,
                        FirstName = d.FirstName,
                        LastName = d.LastName,
                        Email = d.Email,
@@ -408,6 +410,7 @@
             else
             {
                 existingEmployeeDetail.FirstName = employeeDetail.FirstName;
+                existingEmployeeDetail.CompanyMasterId = employeeDetail.CompanyMasterId;
                 existingEmployeeDetail.LastName = employeeDetail.LastName;
                 existingEmployeeDetail.Email = employeeDetail.Email;
                 existingEmployeeDetail.JoiningDate = employeeDetail.JoiningDate;

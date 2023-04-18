@@ -4062,6 +4062,30 @@ namespace MVCProject.Api.Models
         private global::System.String _BatchNo;
         partial void OnBatchNoChanging(global::System.String value);
         partial void OnBatchNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CompanyMasterId
+        {
+            get
+            {
+                return _CompanyMasterId;
+            }
+            set
+            {
+                OnCompanyMasterIdChanging(value);
+                ReportPropertyChanging("CompanyMasterId");
+                _CompanyMasterId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CompanyMasterId");
+                OnCompanyMasterIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CompanyMasterId;
+        partial void OnCompanyMasterIdChanging(Nullable<global::System.Int32> value);
+        partial void OnCompanyMasterIdChanged();
 
         #endregion
 
@@ -5501,6 +5525,30 @@ namespace MVCProject.Api.Models
         private global::System.String _BatchNo;
         partial void OnBatchNoChanging(global::System.String value);
         partial void OnBatchNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CompanyMasterId
+        {
+            get
+            {
+                return _CompanyMasterId;
+            }
+            set
+            {
+                OnCompanyMasterIdChanging(value);
+                ReportPropertyChanging("CompanyMasterId");
+                _CompanyMasterId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CompanyMasterId");
+                OnCompanyMasterIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CompanyMasterId;
+        partial void OnCompanyMasterIdChanging(Nullable<global::System.Int32> value);
+        partial void OnCompanyMasterIdChanged();
 
         #endregion
 

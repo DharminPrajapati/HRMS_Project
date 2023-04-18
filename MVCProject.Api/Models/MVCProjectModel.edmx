@@ -167,6 +167,7 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="DesignationId" Type="int" />
           <Property Name="ProfileImageName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CompanyMasterId" Type="int" />
           <Property Name="DepartmentId" Type="int" />
           <Property Name="BirthDate" Type="date" />
           <Property Name="PermanentAddress" Type="nvarchar(max)" />
@@ -411,6 +412,7 @@
           <Property Name="BatchNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Attendance" Relationship="MVCProjectModel.fk_EmployeeId" FromRole="TblEmployee" ToRole="Attendance" />
           <NavigationProperty Name="UserMaster" Relationship="MVCProjectModel.fk_empId" FromRole="TblEmployee" ToRole="UserMaster" />
+          <Property Name="CompanyMasterId" Type="Int32" />
         </EntityType>
         <Association Name="fk_designationId">
           <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
@@ -609,6 +611,7 @@
           <Property Type="DateTime" Name="ToPeriod" Nullable="true" />
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
           <Property Type="String" Name="BatchNo" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CompanyMasterId" Nullable="true" />
         </ComplexType>
         <ComplexType Name="Sp_HRMS_Attendance_Result">
           <Property Type="Int32" Name="EmployeeId" Nullable="true" />
@@ -822,6 +825,7 @@
           <EntitySetMapping Name="TblEmployees">
             <EntityTypeMapping TypeName="MVCProjectModel.TblEmployee">
               <MappingFragment StoreEntitySet="TblEmployee">
+                <ScalarProperty Name="CompanyMasterId" ColumnName="CompanyMasterId" />
                 <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
                 <ScalarProperty Name="SrNo" ColumnName="SrNo" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
@@ -981,6 +985,7 @@
                 <ScalarProperty Name="ToPeriod" ColumnName="ToPeriod" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
+                <ScalarProperty Name="CompanyMasterId" ColumnName="CompanyMasterId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
