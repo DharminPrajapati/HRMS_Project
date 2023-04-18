@@ -2,8 +2,8 @@
     'use strict';
 
     angular.module("MVCApp").controller('DesignationCtrl', [
-            '$scope', '$rootScope', 'ngTableParams', 'CommonFunctions', 'FileService', 'DesignationService', DesignationCtrl
-        ]);
+        '$scope', '$rootScope', 'ngTableParams', 'CommonFunctions', 'FileService', 'DesignationService', DesignationCtrl
+    ]);
 
     //BEGIN DesignationCtrl
     function DesignationCtrl($scope, $rootScope, ngTableParams, CommonFunctions, FileService, DesignationService) {
@@ -13,6 +13,8 @@
 
         $scope.designationDetailScope = {
             DesignationId: 0,
+            CompanyMasterId: 0,
+            DepartmentId: 0,
             DesignationName: '',
             IsActive: true
         };
@@ -24,7 +26,7 @@
 
         // BEGIN Add/Update Designation details
         $scope.SaveDesignationDetails = function (designationDetailScope, frmDesignations) {
-         
+
             //if (!$rootScope.permission.CanWrite) { return; }
             if (frmDesignations.$valid) {
                 DesignationService.SaveDesignationDetails(designationDetailScope).then(function (res) {
@@ -43,7 +45,7 @@
                     }
                 });
             }
-            
+
         };
 
         // BEGIN Bind form data for edit Designation
@@ -92,6 +94,29 @@
             CommonFunctions.ScrollToTop();
         };
 
+        $scope.Init = function () {
+            $scope.companyScope();
+            $scope.departmentsScope();
+
+        }
+
+        $scope.companyScope = function () {
+
+            DesignationService.GetCompanyList().then(function (res) {
+                $scope.company = res.data.Result;
+            });
+        };
+
+        $scope.departmentsScope = function (id) {
+            debugger
+            if (id == undefined) {
+                return
+            }
+            DesignationService.GetDepartmentlist(id).then(function (res) {
+                $scope.Departments = res.data.Result;
+            });
+        };
+
         //Load Designation List
         $scope.tableParams = new ngTableParams({
             page: 1,
@@ -122,7 +147,7 @@
             }
         });
 
-    
+
         $scope.Export = function () {
 
             DesignationService.CreateExcelReport().then(function (res) {
@@ -158,11 +183,11 @@
                         params.total(res.data.Result[0].TotalRecords);
                     }
                 }
-              
+
                 $rootScope.isAjaxLoadingChild = false;
                 CommonFunctions.SetFixHeader();
 
-               
+
             });
 
         };

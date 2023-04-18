@@ -10,13 +10,13 @@
                 data: JSON.stringify(CompanyMasterDetailsParams)
             });
         };
-        //// Get All list of Department Details
-        //list.GetDepartmentList = function (isGetAll) {
-        //    return $http({
-        //        method: 'GET',
-        //        url: $rootScope.apiURL + '/Department/GetDepartmentList' + (angular.isDefined(isGetAll) ? '?isGetAll=' + isGetAll : '')
-        //    });
-        //};
+        // Get All list of Department Details
+        list.GetCompanyList = function (isGetAll) {
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/CompanyMaster/GetCompanyList' + (angular.isDefined(isGetAll) ? '?isGetAll=' + isGetAll : '')
+            });
+        };
 
 
 
@@ -32,7 +32,7 @@
 
         // Get Department Items
         list.GetCompanyMasterById = function (CompanyMasterId) {
-            debugger
+
             return $http({
                 method: 'GET',
                 url: $rootScope.apiURL + '/CompanyMaster/GetCompanyMasterById?CompanyMasterId=' + CompanyMasterId

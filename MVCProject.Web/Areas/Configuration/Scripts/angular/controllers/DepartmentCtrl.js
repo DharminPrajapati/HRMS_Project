@@ -12,6 +12,7 @@
 
         $scope.departmentDetailScope = {
             DepartmentId: 0,
+            CompanyMasterId: 0,
             DepartmentName: '',
             EntryById: null,
             EntryDate: null,
@@ -126,6 +127,18 @@
                 });
             }
         });
+
+        $scope.Init = function () {
+            $scope.companyScope();
+
+        }
+
+        $scope.companyScope = function () {
+
+            DepartmentService.GetCompanyList().then(function (res) {
+                $scope.company = res.data.Result;
+            });
+        };
 
         $scope.Export = function () {
 

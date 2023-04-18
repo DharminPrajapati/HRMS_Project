@@ -31,11 +31,23 @@
 
         // Get Department Items
         list.GetDepartmentById = function (departmentId) {
+            debugger
             return $http({
                 method: 'GET',
                 url: $rootScope.apiURL + '/Department/GetDepartmentById?departmentId=' + departmentId
             });
         };
+
+        //Get company DropDown
+        list.GetCompanyList = function () {
+
+            return $http({
+                methd: 'GET',
+                url: $rootScope.apiURL + '/Department/GetcompanyDropDown'
+            });
+        };
+
+
 
         // Excel
         list.CreateExcelReport = function () {

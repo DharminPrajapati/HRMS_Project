@@ -20,7 +20,13 @@
             this.entities = new MVCProjectEntities();
         }
 
-
+        /// Get the company for Dropdown
+        [HttpGet]
+        public ApiResponse GetForDropDown()
+        {
+            var data = this.entities.CompanyMaster.Where(x => x.IsActive.Value).Select(x => new { Name = x.CompanyName, Id = x.CompanyMasterId }).OrderBy(x => x.Name).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+        }
         /// Add/Update company Details
         /// Using "departmentDetail" as Paramter for Department Details.
 
@@ -79,7 +85,7 @@
                 .Select(x => new
                 {
                     CompanyMasterId = x.CompanyMasterId,
-                    CompanyName=x.CompanyName,
+                    CompanyName = x.CompanyName,
                     ShortCode = x.ShortCode,
                     EntryBy = x.EntryBy,
                     EntryDate = x.EntryDate,
@@ -98,6 +104,15 @@
         }
         /// Gets all Department details.
 
+        [HttpGet]
+
+        public ApiResponse GetCompanyList(bool isGetAll = false)
+        {
+            var result = this.entities.CompanyMaster.Where(x => (isGetAll || x.IsActive.Value)).Select(x => new { Id = x.CompanyMasterId, Name = x.CompanyName }).OrderBy(e => e.Name).ToList();
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, result);
+        }
+
+
         [HttpPost]
         public ApiResponse GetAllCompanyMaster(PagingParams CompanyMasterDetailsParams)
         {
@@ -106,19 +121,19 @@
                 CompanyMasterDetailsParams.Search = string.Empty;
             }
             var companyMasterlist = (from d in this.entities.CompanyMaster.AsEnumerable().Where(x => x.CompanyName.Trim().ToLower().Contains(CompanyMasterDetailsParams.Search.Trim().ToLower()))
-                                       let TotalRecords = this.entities.CompanyMaster.AsEnumerable().Where(x => x.CompanyName.Trim().ToLower().Contains(CompanyMasterDetailsParams.Search.Trim().ToLower())).Count()
+                                     let TotalRecords = this.entities.CompanyMaster.AsEnumerable().Where(x => x.CompanyName.Trim().ToLower().Contains(CompanyMasterDetailsParams.Search.Trim().ToLower())).Count()
 
-                                       select new
-                                       {
-                                           CompanyMasterId = d.CompanyMasterId,
-                                           CompanyName = d.CompanyName,
-                                           ShortCode = d.ShortCode,
-                                           EntryBy = d.EntryBy,
-                                           EntryDate = d.EntryDate,
-                                           UpdateBy = d.UpdateBy,
-                                           UpdatedDate = d.UpdateDate,
-                                           IsActive = d.IsActive
-                                       }).AsQueryable().OrderByField(CompanyMasterDetailsParams.OrderByColumn, CompanyMasterDetailsParams.IsAscending).Skip((CompanyMasterDetailsParams.CurrentPageNumber = -1) * CompanyMasterDetailsParams.PageSize).Take(CompanyMasterDetailsParams.PageSize);
+                                     select new
+                                     {
+                                         CompanyMasterId = d.CompanyMasterId,
+                                         CompanyName = d.CompanyName,
+                                         ShortCode = d.ShortCode,
+                                         EntryBy = d.EntryBy,
+                                         EntryDate = d.EntryDate,
+                                         UpdateBy = d.UpdateBy,
+                                         UpdatedDate = d.UpdateDate,
+                                         IsActive = d.IsActive
+                                     }).AsQueryable().OrderByField(CompanyMasterDetailsParams.OrderByColumn, CompanyMasterDetailsParams.IsAscending).Skip((CompanyMasterDetailsParams.CurrentPageNumber = -1) * CompanyMasterDetailsParams.PageSize).Take(CompanyMasterDetailsParams.PageSize);
 
             return this.Response(Utilities.MessageTypes.Success, string.Empty, companyMasterlist);
 

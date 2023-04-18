@@ -45,6 +45,29 @@ namespace MVCProject.Api.Controllers.Configuration
             this.entities = new MVCProjectEntities();
         }
 
+        [HttpGet]
+        public ApiResponse GetForDropDown()
+        {
+            var data = this.entities.Designations.Where(x => x.IsActive.Value).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+        }
+
+        [HttpGet]
+        public ApiResponse GetcompanyDropDown()
+        {
+            var data = this.entities.CompanyMaster.Where(x => x.IsActive.Value).Select(x => new { Name = x.CompanyName, Id = x.CompanyMasterId }).OrderBy(x => x.Name).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+        }
+
+        /// Get All Departments dropdown
+        [HttpGet]
+        public ApiResponse GetDepartmentDropDown(int id)
+        {
+            var data = this.entities.TblDepartments.Where(x => x.IsActive.Value && x.CompanyMasterId == id).Select(x => new { DeptName = x.DepartmentName, DeptId = x.DepartmentId }).OrderBy(x => x.DeptName).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+        }
+
+
         /// <summary>
         /// Get Designations for dropdown
         /// </summary>
@@ -75,8 +98,10 @@ namespace MVCProject.Api.Controllers.Configuration
                                    {
                                        DesignationId = s.DesignationId,
                                        DesignationName = s.DesignationName,
+                                       DepartmentId = s.DepartmentId,
+                                       CompanyMasterId = s.CompanyMasterId,
                                        IsActive = s.IsActive,
-                                       Remarks=s.Remarks,
+                                       Remarks = s.Remarks,
                                        TotalRecords
                                    }).AsQueryable().OrderByField(designationDetailParams.OrderByColumn, designationDetailParams.IsAscending).Skip((designationDetailParams.CurrentPageNumber - 1) * designationDetailParams.PageSize).Take(designationDetailParams.PageSize);
 
@@ -108,9 +133,11 @@ namespace MVCProject.Api.Controllers.Configuration
                         {
                             DesignationId = g.DesignationId,
                             DesignationName = g.DesignationName,
+                            DepartmentId = g.DepartmentId,
+                            CompanyMasterId = g.CompanyMasterId,
                             IsActive = g.IsActive,
                             Remarks = g.Remarks,
-                           // EntryBy = g.EntryBy,
+                            // EntryBy = g.EntryBy,
                             //EntryDate = g.EntryDate,
                         }).SingleOrDefault();
             if (designationDetail != null)
@@ -154,6 +181,9 @@ namespace MVCProject.Api.Controllers.Configuration
                 {
                     // For update record
                     existingDesignationDetail.DesignationName = designationDetail.DesignationName;
+                    existingDesignationDetail.CompanyMasterId = designationDetail.CompanyMasterId;
+                    existingDesignationDetail.DepartmentId = designationDetail.DepartmentId;
+
                     existingDesignationDetail.IsActive = designationDetail.IsActive;
                     existingDesignationDetail.Remarks = designationDetail.Remarks;
                     //existingDesignationDetail.UpdateBy = UserContext.EmployeeId;
@@ -205,9 +235,9 @@ namespace MVCProject.Api.Controllers.Configuration
         {
             var designationDetails = this.entities.Designations.Select(d => new
             {
-                DesignationId=d.DesignationId,
-                DesignationName=d.DesignationName,
-                Remarks=d.Remarks,
+                DesignationId = d.DesignationId,
+                DesignationName = d.DesignationName,
+                Remarks = d.Remarks,
                 IsActive = d.IsActive != null ? d.IsActive == true ? "Active" : "InActive" : string.Empty
             }).ToList();
 
