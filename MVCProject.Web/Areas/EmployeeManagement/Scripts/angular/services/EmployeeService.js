@@ -52,21 +52,30 @@
             });
         };
 
-        //Get Designation DropDown
-        list.GetDesignationlist = function () {
+         //Get company DropDown
+        list.GetCompanyList = function () {
             
             return $http({
                 methd: 'GET',
-                url: $rootScope.apiURL + '/Employee/GetDesignationDropDown'
+                url: $rootScope.apiURL + '/Employee/GetcompanyDropDown'
+            });
+        };
+
+        //Get Designation DropDown
+        list.GetDesignationlist = function (id) {
+           
+            return $http({
+                methd: 'GET',
+                url: $rootScope.apiURL + '/Employee/GetDesignationDropDown?id=' + id
             });
         };
 
         //Get Department DropDown
-        list.GetDepartmentlist = function () {
+        list.GetDepartmentlist = function (id) {
 
             return $http({
                 methd: 'GET',
-                url: $rootScope.apiURL + '/Employee/GetDepartmentDropDown'
+                url: $rootScope.apiURL + '/Employee/GetDepartmentDropDown?id=' + id
             });
         };
 

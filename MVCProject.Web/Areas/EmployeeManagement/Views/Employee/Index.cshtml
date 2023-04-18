@@ -150,6 +150,32 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label>
+                                    Company <span class="required-field ">*</span>
+                                </label>
+
+                                <select class="form-control input-with-icon" id="selectCompany" ng-model="emplyeeDetailScope.CompanyMasterId" ng-options="a.Id as a.Name for a in company" ng-change="departmentsScope(emplyeeDetailScope.CompanyMasterId)" @*ng-focus="true"*@ name="selectCompany " tabindex="7" required>
+
+                                    <option value="">Select Company </option>
+
+
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Department <span class="required-field">*</span>
+                                </label>
+                                <select class="form-control input-with-icon" id="selectDepartments" ng-model="emplyeeDetailScope.DepartmentId" ng-options="a.DeptId as a.DeptName for a in Departments"  ng-change="designationScope(emplyeeDetailScope.DepartmentId)"  @*ng-focus="true"*@ name="selectDepartments" tabindex="8" required>
+                                    <option value="">Select Department</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>
                                     Designation <span class="required-field ">*</span>
@@ -163,16 +189,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    Department <span class="required-field">*</span>
-                                </label>
-                                <select class="form-control input-with-icon" id="selectDepartments" ng-model="emplyeeDetailScope.DepartmentId" ng-options="a.DeptId as a.DeptName for a in Departments" @*ng-focus="true"*@ name="selectDepartments" tabindex="8" required>
-                                    <option value="">Select Department</option>
-                                </select>
-                            </div>
-                        </div>
+
                         <div class="col-md-4">
                             <!--IsActive -->
                             <div class="form-group">

@@ -34,17 +34,27 @@
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public ApiResponse GetDesignationDropDown()
+        public ApiResponse GetDesignationDropDown(int id)
         {
-            var data = this.entities.Designations.Where(x => x.IsActive.Value).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
+            var data = this.entities.Designations.Where(x => x.IsActive.Value && x.DepartmentId == id).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
             return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
         }
 
         /// Get All Departments dropdown
+        /// Get All Departments dropdown
         [HttpGet]
-        public ApiResponse GetDepartmentDropDown()
+        public ApiResponse GetDepartmentDropDown(int id)
         {
-            var data = this.entities.TblDepartments.Where(x => x.IsActive.Value).Select(x => new { DeptName = x.DepartmentName, DeptId = x.DepartmentId }).OrderBy(x => x.DeptName).ToList();
+            var data = this.entities.TblDepartments.Where(x => x.IsActive.Value && x.CompanyMasterId == id).Select(x => new { DeptName = x.DepartmentName, DeptId = x.DepartmentId }).OrderBy(x => x.DeptName).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+        }
+
+
+
+        [HttpGet]
+        public ApiResponse GetcompanyDropDown()
+        {
+            var data = this.entities.CompanyMaster.Where(x => x.IsActive.Value).Select(x => new { Name = x.CompanyName, Id = x.CompanyMasterId }).OrderBy(x => x.Name).ToList();
             return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
         }
 

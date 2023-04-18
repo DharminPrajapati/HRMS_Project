@@ -12,6 +12,7 @@
 
         $scope.emplyeeDetailScope = {
             EmployeeId: 0,
+            CompanyMasterId : 0,
             FirstName: '',
             LastName: '',
             Email: '',
@@ -422,19 +423,29 @@
         $scope.Init = function () {
             $scope.designationScope();
             $scope.departmentsScope();
+            $scope.companyScope();
             $scope.emplyeeDetailScope.Gender;
         }
 
-        $scope.designationScope = function () {
-            EmployeeService.GetDesignationlist().then(function (res) {
+        $scope.designationScope = function (id) {
+            EmployeeService.GetDesignationlist(id).then(function (res) {
                 $scope.Designation = res.data.Result;
             });
         };
 
+        $scope.companyScope = function () {
+          
+            EmployeeService.GetCompanyList().then(function (res) {
+                $scope.company = res.data.Result;
+            });
+        };
 
-
-        $scope.departmentsScope = function () {
-            EmployeeService.GetDepartmentlist().then(function (res) {
+        $scope.departmentsScope = function (id) {
+            
+            if (id == undefined) {
+                return
+            }
+            EmployeeService.GetDepartmentlist(id).then(function (res) {
                 $scope.Departments = res.data.Result;
             });
         };
