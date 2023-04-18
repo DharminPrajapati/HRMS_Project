@@ -385,6 +385,24 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        public static string Company {
+            get {
+                return ResourceManager.GetString("Company", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CompanyRequired.
+        /// </summary>
+        public static string CompanyRequired {
+            get {
+                return ResourceManager.GetString("CompanyRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Level.
         /// </summary>
         public static string ConfigLevel {
@@ -624,6 +642,15 @@ namespace MVCProject.Common.Resources {
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DescriptionRequired.
+        /// </summary>
+        public static string DescriptionRequired {
+            get {
+                return ResourceManager.GetString("DescriptionRequired", resourceCulture);
             }
         }
         
@@ -2068,6 +2095,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ShortCodeRequired.
+        /// </summary>
+        public static string ShortCodeRequired {
+            get {
+                return ResourceManager.GetString("ShortCodeRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show/Hide From Email Password.
         /// </summary>
         public static string ShowHideFromEmailPassword {
@@ -2478,6 +2514,15 @@ namespace MVCProject.Common.Resources {
         public static string ValueIsRequired {
             get {
                 return ResourceManager.GetString("ValueIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ValueRequired.
+        /// </summary>
+        public static string ValueRequired {
+            get {
+                return ResourceManager.GetString("ValueRequired", resourceCulture);
             }
         }
         

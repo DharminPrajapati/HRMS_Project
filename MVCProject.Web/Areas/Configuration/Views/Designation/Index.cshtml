@@ -52,39 +52,67 @@
                 <!-- start designation form -->
                 <form name="frmDesignations" ng-submit="SaveDesignationDetails(designationDetailScope,frmDesignations)"
                 novalidate>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>
-                                @Resource.Designation <span class="required-field">*</span>
-                            </label>
-                            <input type="text" class="form-control" id="txtDesignation" ng-focus="true" name="txtDesignation"  onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">
-                            <div class="c">
-                            </div>
-                            <div class="label label-danger" data-ng-show="frmDesignations.txtDesignation.$dirty && frmDesignations.txtDesignation.$invalid">
-                                <span data-ng-show="frmDesignations.txtDesignation.$error.required">@Resource.DesignationRequired</span>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    @Resource.Company <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="txtCompany" ng-focus="true" name="txtCompany" @*onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)"*@ ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">
+                                <div class="c">
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmCompany.txtCompany.$dirty && frmCompany.txtCompany.$invalid">
+                                    <span data-ng-show="frmCompany.txtCompany.$error.required">@Resource.CompanyRequired</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <!--IsActive -->
-                        <div class="form-group">
-                            <label>
-                            </label>
-                            <div class="form-control-static">
-                                <div class="checkbox checkbox-info">
-                                    <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="designationDetailScope.IsActive"
-                                        tabindex="2" />
-                                    <label for="chkDesignationActive">
-                                        @Resource.IsActive
-                                    </label>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    @Resource.Department <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="txtDepartment" ng-focus="true" name="txtDepartment" @*onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)"*@ ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">
+                                <div class="c">
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmDepartment.txtDepartment.$dirty && frmDepartment.txtDepartment.$invalid">
+                                    <span data-ng-show="frmDepartment.txtDepartment.$error.required">@Resource.CompanyRequired</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    @Resource.Designation <span class="required-field">*</span>
+                                </label>
+                                <input type="text" class="form-control" id="txtDesignation" ng-focus="true" name="txtDesignation" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">
+                                <div class="c">
+                                </div>
+                                <div class="label label-danger" data-ng-show="frmDesignations.txtDesignation.$dirty && frmDesignations.txtDesignation.$invalid">
+                                    <span data-ng-show="frmDesignations.txtDesignation.$error.required">@Resource.DesignationRequired</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!--IsActive -->
+                            <div class="form-group">
+                                <label>
+                                </label>
+                                <div class="form-control-static">
+                                    <div class="checkbox checkbox-info">
+                                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="designationDetailScope.IsActive"
+                                               tabindex="2" />
+                                        <label for="chkDesignationActive">
+                                            @Resource.IsActive
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                     <!--Remarks-->
-                    <div class="row">
+                    @*<div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
@@ -93,7 +121,7 @@
                                 <input type="text" class="form-control" placeholder="Add Remarks" ng-model="designationDetailScope.Remarks"/> 
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                 <div class="row">
                     <div class="col-md-10">
                         <div class="form-group">
@@ -146,9 +174,9 @@
                                         <td data-title="'@Resource.Designation'" sortable="'DesignationName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.DesignationName}}">
                                             {{h.DesignationName}}
                                         </td>
-                                        <td data-title="'@Resource.Remarks'"  header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.Remarks}}">
+                                        @*<td data-title="'@Resource.Remarks'"  header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{h.Remarks}}">
                                             {{h.Remarks}}
-                                        </td>
+                                        </td>*@
                                         <td data-title="'@Resource.Active'" sortable="'IsActive'" header-class="'colActive'" ng-class="'colActive text-center'">
                                             <input type="checkbox" class="js-switch" ui-switch options="switchOptions" ng-model="h.IsActive"
                                                    ng-disabled="true" />

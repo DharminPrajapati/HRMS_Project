@@ -942,4 +942,19 @@
   <data name="DeductionMaster" xml:space="preserve">
     <value>DeductionMaster</value>
   </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="CompanyRequired" xml:space="preserve">
+    <value>CompanyRequired</value>
+  </data>
+  <data name="DescriptionRequired" xml:space="preserve">
+    <value>DescriptionRequired</value>
+  </data>
+  <data name="ShortCodeRequired" xml:space="preserve">
+    <value>ShortCodeRequired</value>
+  </data>
+  <data name="ValueRequired" xml:space="preserve">
+    <value>ValueRequired</value>
+  </data>
 </root>
