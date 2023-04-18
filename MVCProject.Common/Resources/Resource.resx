@@ -957,4 +957,10 @@
   <data name="ValueRequired" xml:space="preserve">
     <value>ValueRequired</value>
   </data>
+  <data name="Company Master" xml:space="preserve">
+    <value>Company Master</value>
+  </data>
+  <data name="Company Name" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
 </root>

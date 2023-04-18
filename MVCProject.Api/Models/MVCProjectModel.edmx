@@ -80,6 +80,21 @@
           <Property Name="IsActive" Type="bit" />
           <Property Name="InDiscription" Type="nvarchar" MaxLength="50" />
           <Property Name="OutDiscription" Type="nvarchar" MaxLength="50" />
+          <Property Name="inImage" Type="nvarchar(max)" />
+          <Property Name="outImage" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CompanyMaster">
+          <Key>
+            <PropertyRef Name="CompanyMasterId" />
+          </Key>
+          <Property Name="CompanyMasterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="EntryBy" Type="int" />
+          <Property Name="EntryDate" Type="date" />
+          <Property Name="UpdateBy" Type="int" />
+          <Property Name="UpdateDate" Type="date" />
+          <Property Name="ShortCode" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="DeductionMaster">
           <Key>
@@ -103,6 +118,9 @@
           <Property Name="DesignationName" Type="varchar" MaxLength="250" />
           <Property Name="IsActive" Type="bit" />
           <Property Name="Remarks" Type="varchar" MaxLength="500" />
+          <Property Name="CompanyMasterId" Type="int" />
+          <Property Name="DepartmentId" Type="int" />
+          <Property Name="ShortCode" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="SalaryConfiguration">
           <Key>
@@ -129,6 +147,8 @@
           <Property Name="UpdateBy" Type="int" />
           <Property Name="UpdatedDate" Type="date" />
           <Property Name="IsActive" Type="bit" />
+          <Property Name="CompanyMasterId" Type="int" />
+          <Property Name="ShortCode" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="TblEmployee">
           <Key>
@@ -283,6 +303,7 @@
           <EntitySet Name="AttachmentMaster" EntityType="Self.AttachmentMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AttachmentType" EntityType="Self.AttachmentType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Attendance" EntityType="Self.Attendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyMaster" EntityType="Self.CompanyMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeductionMaster" EntityType="Self.DeductionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalaryConfiguration" EntityType="Self.SalaryConfiguration" Schema="dbo" store:Type="Tables" />
@@ -329,6 +350,9 @@
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TblEmployees" Relationship="Self.fk_designationId" FromRole="Designation" ToRole="TblEmployee" />
+          <Property Name="CompanyMasterId" Type="Int32" />
+          <Property Name="DepartmentId" Type="Int32" />
+          <Property Name="ShortCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TblDepartment">
           <Key>
@@ -342,6 +366,8 @@
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="TblEmployees" Relationship="Self.fk_despartmentId" FromRole="TblDepartment" ToRole="TblEmployee" />
+          <Property Name="CompanyMasterId" Type="Int32" />
+          <Property Name="ShortCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="TblEmployee">
           <Key>
@@ -456,6 +482,7 @@
           </AssociationSet>
           <EntitySet Name="AllowanceMaster" EntityType="MVCProjectModel.AllowanceMaster" />
           <EntitySet Name="DeductionMaster" EntityType="MVCProjectModel.DeductionMaster" />
+          <EntitySet Name="CompanyMaster" EntityType="MVCProjectModel.CompanyMaster" />
         </EntityContainer>
         <EntityType Name="AttachmentMaster">
           <Key>
@@ -499,6 +526,8 @@
           <Property Name="InDiscription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OutDiscription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblEmployee" Relationship="MVCProjectModel.fk_EmployeeId" FromRole="Attendance" ToRole="TblEmployee" />
+          <Property Name="inImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="outImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="fk_EmployeeId">
           <End Type="MVCProjectModel.TblEmployee" Role="TblEmployee" Multiplicity="0..1" />
@@ -743,6 +772,19 @@
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
         </EntityType>
+        <EntityType Name="CompanyMaster">
+          <Key>
+            <PropertyRef Name="CompanyMasterId" />
+          </Key>
+          <Property Name="CompanyMasterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="EntryBy" Type="Int32" />
+          <Property Name="EntryDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdateBy" Type="Int32" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="0" />
+          <Property Name="ShortCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -752,6 +794,9 @@
           <EntitySetMapping Name="Designations">
             <EntityTypeMapping TypeName="MVCProjectModel.Designation">
               <MappingFragment StoreEntitySet="Designation">
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="CompanyMasterId" ColumnName="CompanyMasterId" />
                 <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
                 <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -762,6 +807,8 @@
           <EntitySetMapping Name="TblDepartments">
             <EntityTypeMapping TypeName="MVCProjectModel.TblDepartment">
               <MappingFragment StoreEntitySet="TblDepartment">
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+                <ScalarProperty Name="CompanyMasterId" ColumnName="CompanyMasterId" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
                 <ScalarProperty Name="EntryById" ColumnName="EntryById" />
@@ -838,6 +885,8 @@
           <EntitySetMapping Name="Attendance">
             <EntityTypeMapping TypeName="MVCProjectModel.Attendance">
               <MappingFragment StoreEntitySet="Attendance">
+                <ScalarProperty Name="outImage" ColumnName="outImage" />
+                <ScalarProperty Name="inImage" ColumnName="inImage" />
                 <ScalarProperty Name="OutDiscription" ColumnName="OutDiscription" />
                 <ScalarProperty Name="InDiscription" ColumnName="InDiscription" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -1067,6 +1116,20 @@
                 <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="DeductionId" ColumnName="DeductionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.CompanyMaster">
+              <MappingFragment StoreEntitySet="CompanyMaster">
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyMasterId" ColumnName="CompanyMasterId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

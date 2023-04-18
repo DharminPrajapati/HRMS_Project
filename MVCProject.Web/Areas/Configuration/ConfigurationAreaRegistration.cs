@@ -109,6 +109,10 @@ namespace MVCProject.Areas.Configuration
             bundles.Add(new ScriptBundle("~/bundles/Configuration/DeductionMaster")
                 .Include("~/Areas/Configuration/Scripts/angular/services/DeductionMasterService.js")
                 .Include("~/Areas/Configuration/Scripts/angular/controllers/DeductionMasterCtrl.js"));
+            // CompanyMaster
+            bundles.Add(new ScriptBundle("~/bundles/Configuration/CompanyMaster")
+                .Include("~/Areas/Configuration/Scripts/angular/services/CompanyMasterService.js")
+                .Include("~/Areas/Configuration/Scripts/angular/controllers/CompanyMasterCtrl.js"));
 
         }
     }

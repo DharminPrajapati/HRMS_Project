@@ -58,7 +58,7 @@
                                 <label>
                                     @Resource.Company <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="txtCompany" ng-focus="true" name="txtCompany" @*onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)"*@ ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">
+                                <input type="text" class="form-control" id="txtCompany" ng-focus="true" name="txtCompany" @*onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)"*@ ng-model="designationDetailScope.CompanyName" required tabindex="1" placeholder="@Resource.Company_Name" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmCompany.txtCompany.$dirty && frmCompany.txtCompany.$invalid">
@@ -72,11 +72,11 @@
                                 <label>
                                     @Resource.Department <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="txtDepartment" ng-focus="true" name="txtDepartment" @*onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)"*@ ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">
+                                <input type="text" class="form-control" id="txtDepartment" ng-focus="true" name="txtDepartment" @*onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)"*@ ng-model="designationDetailScope.DepartmentName" required tabindex="1" placeholder="@Resource.Department" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmDepartment.txtDepartment.$dirty && frmDepartment.txtDepartment.$invalid">
-                                    <span data-ng-show="frmDepartment.txtDepartment.$error.required">@Resource.CompanyRequired</span>
+                                    <span data-ng-show="frmDepartment.txtDepartment.$error.required">@Resource.DepartmentRequired</span>
                                 </div>
                             </div>
                         </div>

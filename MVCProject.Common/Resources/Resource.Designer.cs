@@ -394,6 +394,24 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company Master.
+        /// </summary>
+        public static string Company_Master {
+            get {
+                return ResourceManager.GetString("Company Master", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company Name.
+        /// </summary>
+        public static string Company_Name {
+            get {
+                return ResourceManager.GetString("Company Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CompanyRequired.
         /// </summary>
         public static string CompanyRequired {

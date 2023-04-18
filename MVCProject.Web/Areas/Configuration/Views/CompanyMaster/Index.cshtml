@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = Resource.Department;
+    ViewBag.Title = Resource.Company_Master;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -28,50 +28,47 @@
         max-width: 50px !important;
     }
 </style>
-<div ng-controller="DepartmentCtrl" novalidate>
+<div ng-controller="CompanyMasterCtrl" novalidate>
     <!--Start Title Section-->
     <div class="main-page-title title-icon relative l">
         <i class="fa fa-gears icon-position" style="padding-top:8px;"></i>
-        <h4 class="header-title-sub l">@Resource.Department</h4>
+        <h4 class="header-title-sub l">@Resource.Company_Name</h4>
         <div class="pull-right">
-            <button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()">
-                <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
-            </button>
+
         </div>
     </div>
-    
+
     <!--End Title Section-->
     <!--Start Body Section-->
     <div class="card-box">
         <div class="row">
             <div class="col-md-12">
                 <!-- start Department form -->
-                <form name="frmDepartments" ng-submit=" SaveDepartmentDetails(departmentDetailScope,frmDepartments)" novalidate>
+                <form name="frmCompanyMaster" ng-submit="SaveCompanyMasterDetails(CompanyDetailScope,frmCompanyMaster)" novalidate>
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
-                                    @Resource.Company <span class="required-field">*</span>
+                                    @Resource.Company_Name <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="txtCompany" ng-focus="true" name="txtCompany" @*onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)"*@ ng-model="designationDetailScope.CompanyName" required tabindex="1" placeholder="@Resource.Company_Name" maxlength="250">
+                                <input type="text" class="form-control" name="txtCompanyName" id="txtCompanyName" required ng-focus="true" ng-model="CompanyDetailScope.CompanyName" tabindex="1" placeholder="@Resource.Company_Name" maxlength="250" />
                                 <div class="c">
                                 </div>
-                                <div class="label label-danger" data-ng-show="frmCompany.txtCompany.$dirty && frmCompany.txtCompany.$invalid">
-                                    <span data-ng-show="frmCompany.txtCompany.$error.required">@Resource.CompanyRequired</span>
+                                <div class="label label-danger" data-ng-show="frmCompanyMaster.txtCompanyName.$dirty && frmCompanyMaster.txtCompanyName.$invalid">
+                                    <span data-ng-show="frmCompanyMaster.txtDescription.$error.required">@Resource.Company_Name</span>
                                 </div>
                             </div>
                         </div>
-
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
-                                    @Resource.Department <span class="required-field">*</span>
+                                    @Resource.ShortCode<span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="txtDepartments" id="txtDepartments" required ng-focus="true" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)" ng-model="departmentDetailScope.DepartmentName" tabindex="1" placeholder="@Resource.Department" maxlength="250" />
+                                <input type="text" class="form-control" name="txtShortCode" id="txtShortCode" required ng-focus="true" ng-model="CompanyDetailScope.ShortCode" tabindex="1" placeholder="@Resource.ShortCode" maxlength="250" />
                                 <div class="c">
                                 </div>
-                                <div class="label label-danger" data-ng-show="frmDepartments.txtDepartments.$dirty && frmDepartments.txtDepartments.$invalid">
-                                    <span data-ng-show="frmDepartments.txtDepartments.$error.required">@Resource.DepartmentRequired</span>
+                                <div class="label label-danger" data-ng-show="frmCompanyMaster.txtShortCode.$dirty && frmCompanyMaster.txtShortCode.$invalid">
+                                    <span data-ng-show="frmCompanyMaster.txtShortCode.$error.required">@Resource.ShortCode</span>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +80,7 @@
                                 </label>
                                 <div class="form-control-static">
                                     <div class="checkbox checkbox-info">
-                                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="departmentDetailScope.IsActive"
+                                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="CompanyDetailScope.IsActive"
                                                tabindex="2" />
                                         <label for="chkDesignationActive">
                                             @Resource.IsActive
@@ -97,10 +94,10 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
-                                        ng-disabled="frmDepartments.txtDepartments.$invalid" tabindex="3">
-                                    {{departmentDetailScope.DepartmentId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                                        ng-disabled="frmCompanyMaster.txtCompanyName.$invalid" tabindex="3">
+                                    {{CompanyDetailScope.CompanyMasterId > 0 ? '@Resource.Update' : '@Resource.Save'}}
                                 </button>
-                                <button type="button" ng-click="ClearFormData(frmDepartments)" class="btn btn-info waves-effect w-md waves-light m-b-5"
+                                <button type="button" ng-click="ClearFormData(frmCompanyMaster)" class="btn btn-info waves-effect w-md waves-light m-b-5"
                                         tabindex="4">
                                     @Resource.Clear
                                 </button>
@@ -115,16 +112,16 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-7">
-                                <h2 class="">
-                                    @*<i class="fa fa-gears" aria-hidden="true"></i>*@
+                                <h3 class="strip">
+                                    <i class="fa fa-gears" aria-hidden="true"></i>
                                     <label class="table-title">
-                                        @Resource.Department @Resource.Details
+                                        @Resource.Company_Master @Resource.Details
                                     </label>
-                                </h2>
+                                </h3>
                             </div>
                             <div class="col-md-5">
                                 <div class="input-group">
-                                    <input type="text" tabindex="104" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1} {2}",Resource.Search,Resource.Department,Resource.Details)" />
+                                    <input type="text" tabindex="104" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1}",Resource.Company_Master,Resource.Details)" />
                                     <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked=true;tableParams.page(1);tableParams.reload();"> <i class="fa fa-search"></i></a>
                                 </div>
                             </div>
@@ -136,20 +133,24 @@
                             <div class="form-control-static">
                                 <scrollable-table scroll-height="427">
                                     <table ng-table="tableParams" id="datatable" class="table table-striped table-bordered table-hover">
-                                        <tr ng-repeat="dt in $data" >@*ng-hide="!dt.IsActive">*@
+                                        <tr ng-repeat="dt in $data">
+                                            @*ng-hide="!dt.IsActive">*@
                                             <td data-title="'@Resource.SrNo'" header-class="'colSrno'" ng-class="'colSrno text-right'">
                                                 {{(tableParams.$params.page-1)*tableParams.$params.count+($index + 1)}}
                                             </td>
-                                            <td data-title="'@Resource.Department'" sortable="'DepartmentName'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.DepartmentName}}">
-                                                {{dt.DepartmentName}}
+                                            <td data-title="'@Resource.Company_Name'" sortable="'Companyname'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.CompanyName}}">
+                                                {{dt.CompanyName}}
+                                            </td>
+                                            <td data-title="'@Resource.ShortCode'" sortable="'ShortCode'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.ShortCode}}">
+                                                {{dt.ShortCode}}
                                             </td>
                                             <td data-title="'@Resource.Active'" sortable="'IsActive'" header-class="'colActive'" ng-class="'colActive text-center'">
-                                                <input type="checkbox" class="js-switch" ui-switch options="switchOptions"  ng-model="dt.IsActive"
+                                                <input type="checkbox" class="js-switch" ui-switch options="switchOptions" ng-model="dt.IsActive"
                                                        ng-disabled="true" />
                                             </td>
                                             <td data-title="'@Resource.Action'" header-class="'colAction'" ng-class="'colAction text-center'">
                                                 <a class="btn btn-icon btn-white btn-xs waves-effect waves-light m-r-5 btn-edit" title="Edit"
-                                                   ng-click="EditDepartmentDetails(dt.DepartmentId)">
+                                                   ng-click="EditCompanyMasterDetails(dt.CompanyMasterId)">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
@@ -177,6 +178,7 @@
 
 </div>
 @section scripts {
-    @Scripts.Render("~/bundles/Configuration/Department")
+    @Scripts.Render("~/bundles/Configuration/CompanyMaster")
 }
+
 

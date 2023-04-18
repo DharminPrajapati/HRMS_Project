@@ -283,6 +283,22 @@ namespace MVCProject.Api.Models
             }
         }
         private ObjectSet<DeductionMaster> _DeductionMaster;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CompanyMaster> CompanyMaster
+        {
+            get
+            {
+                if ((_CompanyMaster == null))
+                {
+                    _CompanyMaster = base.CreateObjectSet<CompanyMaster>("CompanyMaster");
+                }
+                return _CompanyMaster;
+            }
+        }
+        private ObjectSet<CompanyMaster> _CompanyMaster;
 
         #endregion
 
@@ -390,6 +406,14 @@ namespace MVCProject.Api.Models
         public void AddToDeductionMaster(DeductionMaster deductionMaster)
         {
             base.AddObject("DeductionMaster", deductionMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CompanyMaster EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCompanyMaster(CompanyMaster companyMaster)
+        {
+            base.AddObject("CompanyMaster", companyMaster);
         }
 
         #endregion
@@ -1860,6 +1884,54 @@ namespace MVCProject.Api.Models
         private global::System.String _OutDiscription;
         partial void OnOutDiscriptionChanging(global::System.String value);
         partial void OnOutDiscriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String inImage
+        {
+            get
+            {
+                return _inImage;
+            }
+            set
+            {
+                OninImageChanging(value);
+                ReportPropertyChanging("inImage");
+                _inImage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("inImage");
+                OninImageChanged();
+            }
+        }
+        private global::System.String _inImage;
+        partial void OninImageChanging(global::System.String value);
+        partial void OninImageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String outImage
+        {
+            get
+            {
+                return _outImage;
+            }
+            set
+            {
+                OnoutImageChanging(value);
+                ReportPropertyChanging("outImage");
+                _outImage = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("outImage");
+                OnoutImageChanged();
+            }
+        }
+        private global::System.String _outImage;
+        partial void OnoutImageChanging(global::System.String value);
+        partial void OnoutImageChanged();
 
         #endregion
 
@@ -1906,6 +1978,235 @@ namespace MVCProject.Api.Models
 
         #endregion
 
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MVCProjectModel", Name="CompanyMaster")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class CompanyMaster : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new CompanyMaster object.
+        /// </summary>
+        /// <param name="companyMasterId">Initial value of the CompanyMasterId property.</param>
+        /// <param name="companyName">Initial value of the CompanyName property.</param>
+        /// <param name="shortCode">Initial value of the ShortCode property.</param>
+        public static CompanyMaster CreateCompanyMaster(global::System.Int32 companyMasterId, global::System.String companyName, global::System.String shortCode)
+        {
+            CompanyMaster companyMaster = new CompanyMaster();
+            companyMaster.CompanyMasterId = companyMasterId;
+            companyMaster.CompanyName = companyName;
+            companyMaster.ShortCode = shortCode;
+            return companyMaster;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 CompanyMasterId
+        {
+            get
+            {
+                return _CompanyMasterId;
+            }
+            set
+            {
+                if (_CompanyMasterId != value)
+                {
+                    OnCompanyMasterIdChanging(value);
+                    ReportPropertyChanging("CompanyMasterId");
+                    _CompanyMasterId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("CompanyMasterId");
+                    OnCompanyMasterIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _CompanyMasterId;
+        partial void OnCompanyMasterIdChanging(global::System.Int32 value);
+        partial void OnCompanyMasterIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CompanyName
+        {
+            get
+            {
+                return _CompanyName;
+            }
+            set
+            {
+                OnCompanyNameChanging(value);
+                ReportPropertyChanging("CompanyName");
+                _CompanyName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CompanyName");
+                OnCompanyNameChanged();
+            }
+        }
+        private global::System.String _CompanyName;
+        partial void OnCompanyNameChanging(global::System.String value);
+        partial void OnCompanyNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsActive;
+        partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> EntryBy
+        {
+            get
+            {
+                return _EntryBy;
+            }
+            set
+            {
+                OnEntryByChanging(value);
+                ReportPropertyChanging("EntryBy");
+                _EntryBy = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EntryBy");
+                OnEntryByChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _EntryBy;
+        partial void OnEntryByChanging(Nullable<global::System.Int32> value);
+        partial void OnEntryByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> EntryDate
+        {
+            get
+            {
+                return _EntryDate;
+            }
+            set
+            {
+                OnEntryDateChanging(value);
+                ReportPropertyChanging("EntryDate");
+                _EntryDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EntryDate");
+                OnEntryDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _EntryDate;
+        partial void OnEntryDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnEntryDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> UpdateBy
+        {
+            get
+            {
+                return _UpdateBy;
+            }
+            set
+            {
+                OnUpdateByChanging(value);
+                ReportPropertyChanging("UpdateBy");
+                _UpdateBy = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UpdateBy");
+                OnUpdateByChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _UpdateBy;
+        partial void OnUpdateByChanging(Nullable<global::System.Int32> value);
+        partial void OnUpdateByChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> UpdateDate
+        {
+            get
+            {
+                return _UpdateDate;
+            }
+            set
+            {
+                OnUpdateDateChanging(value);
+                ReportPropertyChanging("UpdateDate");
+                _UpdateDate = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UpdateDate");
+                OnUpdateDateChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _UpdateDate;
+        partial void OnUpdateDateChanging(Nullable<global::System.DateTime> value);
+        partial void OnUpdateDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ShortCode
+        {
+            get
+            {
+                return _ShortCode;
+            }
+            set
+            {
+                OnShortCodeChanging(value);
+                ReportPropertyChanging("ShortCode");
+                _ShortCode = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ShortCode");
+                OnShortCodeChanged();
+            }
+        }
+        private global::System.String _ShortCode;
+        partial void OnShortCodeChanging(global::System.String value);
+        partial void OnShortCodeChanged();
+
+        #endregion
+
+    
     }
     
     /// <summary>
@@ -2288,6 +2589,78 @@ namespace MVCProject.Api.Models
         private global::System.String _Remarks;
         partial void OnRemarksChanging(global::System.String value);
         partial void OnRemarksChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CompanyMasterId
+        {
+            get
+            {
+                return _CompanyMasterId;
+            }
+            set
+            {
+                OnCompanyMasterIdChanging(value);
+                ReportPropertyChanging("CompanyMasterId");
+                _CompanyMasterId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CompanyMasterId");
+                OnCompanyMasterIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CompanyMasterId;
+        partial void OnCompanyMasterIdChanging(Nullable<global::System.Int32> value);
+        partial void OnCompanyMasterIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DepartmentId
+        {
+            get
+            {
+                return _DepartmentId;
+            }
+            set
+            {
+                OnDepartmentIdChanging(value);
+                ReportPropertyChanging("DepartmentId");
+                _DepartmentId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DepartmentId");
+                OnDepartmentIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DepartmentId;
+        partial void OnDepartmentIdChanging(Nullable<global::System.Int32> value);
+        partial void OnDepartmentIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ShortCode
+        {
+            get
+            {
+                return _ShortCode;
+            }
+            set
+            {
+                OnShortCodeChanging(value);
+                ReportPropertyChanging("ShortCode");
+                _ShortCode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ShortCode");
+                OnShortCodeChanged();
+            }
+        }
+        private global::System.String _ShortCode;
+        partial void OnShortCodeChanging(global::System.String value);
+        partial void OnShortCodeChanged();
 
         #endregion
 
@@ -2766,6 +3139,54 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.Boolean> _IsActive;
         partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
         partial void OnIsActiveChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CompanyMasterId
+        {
+            get
+            {
+                return _CompanyMasterId;
+            }
+            set
+            {
+                OnCompanyMasterIdChanging(value);
+                ReportPropertyChanging("CompanyMasterId");
+                _CompanyMasterId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CompanyMasterId");
+                OnCompanyMasterIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CompanyMasterId;
+        partial void OnCompanyMasterIdChanging(Nullable<global::System.Int32> value);
+        partial void OnCompanyMasterIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ShortCode
+        {
+            get
+            {
+                return _ShortCode;
+            }
+            set
+            {
+                OnShortCodeChanging(value);
+                ReportPropertyChanging("ShortCode");
+                _ShortCode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ShortCode");
+                OnShortCodeChanged();
+            }
+        }
+        private global::System.String _ShortCode;
+        partial void OnShortCodeChanging(global::System.String value);
+        partial void OnShortCodeChanged();
 
         #endregion
 
