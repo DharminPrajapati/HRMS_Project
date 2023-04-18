@@ -120,6 +120,17 @@
             return this.Response(Utilities.MessageTypes.Success, string.Empty, AllowanceMasterlist);
 
         }
+
+        /// <summary>
+        ///  Get All Allowance For Salary 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ApiResponse GetAllowance()
+        {
+            var Allowances = this.entities.AllowanceMaster.ToList();
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, Allowances);
+        }
         /// Disposes expensive resources.
         protected override void Dispose(bool disposing)
         {

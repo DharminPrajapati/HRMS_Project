@@ -52,10 +52,10 @@
 
         // BEGIN Bind form data for edit Designation
         $scope.EditDesignationDetails = function (designationId) {
-        debugger
+      
             DesignationService.GetDesignationById(designationId).then(function (res) {
                 if (res) {
-                    debugger
+                    
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success) {// Success
                         $scope.designationDetailScope = data.Result;
@@ -114,7 +114,7 @@
         };
 
         $scope.departmentsScope = function (id) {
-           debugger
+         
             if (id == undefined) {
                 return
             }

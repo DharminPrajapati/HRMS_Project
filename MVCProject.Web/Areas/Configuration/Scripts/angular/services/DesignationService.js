@@ -31,7 +31,7 @@
 
         // Get Designation Items
         list.GetDesignationById = function (designationId) {
-            debugger
+            
             return $http({
                 method: 'GET',
                 url: $rootScope.apiURL + '/Designations/GetDesignationById?designationId=' + designationId
@@ -48,7 +48,7 @@
 
         //Get Department DropDown
         list.GetDepartmentlist = function (id) {
-            debugger
+          
             return $http({
                 methd: 'GET',
                 url: $rootScope.apiURL + '/Designations/GetDepartmentDropDown?id=' + id

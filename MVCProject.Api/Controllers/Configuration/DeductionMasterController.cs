@@ -126,6 +126,19 @@ namespace MVCProject.Api.Controllers.Configuration
             }
         }
 
+        /// <summary>
+        /// Get All Deductions For Salary
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+
+        public ApiResponse GetAllDeductions()
+        {
+            var Deduction = this.entities.DeductionMaster.ToList();
+
+            return this.Response(Utilities.MessageTypes.Success, string.Empty, Deduction);
+        }
+
         /// Disposes expensive resources.
         protected override void Dispose(bool disposing)
         {

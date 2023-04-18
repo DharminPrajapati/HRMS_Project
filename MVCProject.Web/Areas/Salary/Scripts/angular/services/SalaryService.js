@@ -85,5 +85,21 @@
             });
         }
 
+        // Get Allowances Descirption and Value
+        list.Allowances = function () {
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/AllowanceMaster/GetAllowance/'
+            });
+        };
+
+        //Get Deduction Description and Value
+        list.Deductions = function () {
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/DeductionMaster/GetAllDeductions/'
+            });
+        };
+
         return list;
     }]);
