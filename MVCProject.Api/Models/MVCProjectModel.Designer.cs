@@ -19,12 +19,12 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_designationId", "Designation", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.Designation), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_despartmentId", "TblDepartment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.TblDepartment), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_EmployeeId", "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.TblEmployee), "Attendance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.Attendance), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_empId", "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MVCProject.Api.Models.TblEmployee), "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserMaster), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__UserRole__UserId__0CDAE408", "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserMaster), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserRole), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__UserRole__RoleId__0BE6BFCF", "UserRoleMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserRoleMaster), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserRole), true)]
+[assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_designationId", "Designation", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.Designation), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
 
 #endregion
 
@@ -75,22 +75,6 @@ namespace MVCProject.Api.Models
         #endregion
     
         #region ObjectSet Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Designation> Designations
-        {
-            get
-            {
-                if ((_Designations == null))
-                {
-                    _Designations = base.CreateObjectSet<Designation>("Designations");
-                }
-                return _Designations;
-            }
-        }
-        private ObjectSet<Designation> _Designations;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -299,18 +283,26 @@ namespace MVCProject.Api.Models
             }
         }
         private ObjectSet<CompanyMaster> _CompanyMaster;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Designation> Designation
+        {
+            get
+            {
+                if ((_Designation == null))
+                {
+                    _Designation = base.CreateObjectSet<Designation>("Designation");
+                }
+                return _Designation;
+            }
+        }
+        private ObjectSet<Designation> _Designation;
 
         #endregion
 
         #region AddTo Methods
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Designations EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToDesignations(Designation designation)
-        {
-            base.AddObject("Designations", designation);
-        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the TblDepartments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -414,6 +406,14 @@ namespace MVCProject.Api.Models
         public void AddToCompanyMaster(CompanyMaster companyMaster)
         {
             base.AddObject("CompanyMaster", companyMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Designation EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDesignation(Designation designation)
+        {
+            base.AddObject("Designation", designation);
         }
 
         #endregion
@@ -2571,30 +2571,6 @@ namespace MVCProject.Api.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Remarks
-        {
-            get
-            {
-                return _Remarks;
-            }
-            set
-            {
-                OnRemarksChanging(value);
-                ReportPropertyChanging("Remarks");
-                _Remarks = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Remarks");
-                OnRemarksChanged();
-            }
-        }
-        private global::System.String _Remarks;
-        partial void OnRemarksChanging(global::System.String value);
-        partial void OnRemarksChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int32> CompanyMasterId
         {
             get
@@ -2674,7 +2650,7 @@ namespace MVCProject.Api.Models
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_designationId", "TblEmployee")]
-        public EntityCollection<TblEmployee> TblEmployees
+        public EntityCollection<TblEmployee> TblEmployee
         {
             get
             {
@@ -4098,44 +4074,6 @@ namespace MVCProject.Api.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_designationId", "Designation")]
-        public Designation Designation
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Designation> DesignationReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_despartmentId", "TblDepartment")]
         public TblDepartment TblDepartment
         {
@@ -4208,6 +4146,44 @@ namespace MVCProject.Api.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserMaster>("MVCProjectModel.fk_empId", "UserMaster", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_designationId", "Designation")]
+        public Designation Designation
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Designation> DesignationReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation", value);
                 }
             }
         }

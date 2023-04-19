@@ -124,12 +124,12 @@ namespace MVCProject.Api.Controllers.Configuration
 
         public ApiResponse SaveDepartmentDetails(TblDepartment departmentDetail)
         {
-            if (this.entities.TblDepartments.Any(x => x.DepartmentId != departmentDetail.DepartmentId && x.DepartmentName.Trim() == departmentDetail.DepartmentName.Trim()))
-            {
-                return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Department));
-            }
-            else
-            {
+            //if (this.entities.TblDepartments.Any(x => x.DepartmentId != departmentDetail.DepartmentId && x.DepartmentName.Trim() == departmentDetail.DepartmentName.Trim()))
+            //{
+            //    return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Department));
+            //}
+            //else
+            //{
                 TblDepartment existingDepartmentDetail = this.entities.TblDepartments.Where(x => x.DepartmentId == departmentDetail.DepartmentId).FirstOrDefault();
                 if (existingDepartmentDetail == null)
                 {
@@ -164,7 +164,7 @@ namespace MVCProject.Api.Controllers.Configuration
                 }
 
 
-            }
+            //}
         }
         /// <summary>
         ///  Create Excel Report Of Designation

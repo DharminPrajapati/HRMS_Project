@@ -36,7 +36,7 @@
         [HttpGet]
         public ApiResponse GetDesignationDropDown(int id)
         {
-            var data = this.entities.Designations.Where(x => x.IsActive.Value && x.DepartmentId == id).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
+            var data = this.entities.Designation.Where(x => x.IsActive.Value && x.DepartmentId == id).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
             return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
         }
 
@@ -144,7 +144,7 @@
                 d.AlternatePhoneNumber,
                 d.DesignationId,
                 d.DepartmentId,
-                DesignationName = this.entities.Designations.FirstOrDefault(x => x.DesignationId == d.DesignationId).DesignationName,
+                DesignationName = this.entities.Designation.FirstOrDefault(x => x.DesignationId == d.DesignationId).DesignationName,
                 DepartmentName = this.entities.TblDepartments.FirstOrDefault(x => x.DepartmentId == d.DepartmentId).DepartmentName,
                 d.BirthDate,
                 Gender = d.Gender == 1 ? "Male" : "Female",
@@ -535,7 +535,7 @@
                 d.Email,
                 d.DesignationId,
                 d.DepartmentId,
-                DesignationName = this.entities.Designations.FirstOrDefault(x => x.DesignationId == d.DesignationId).DesignationName,
+                DesignationName = this.entities.Designation.FirstOrDefault(x => x.DesignationId == d.DesignationId).DesignationName,
                 DepartmentName = this.entities.TblDepartments.FirstOrDefault(x => x.DepartmentId == d.DepartmentId).DepartmentName,
                 IsActive = d.IsActive != null ? d.IsActive == true ? "Active" : "InActive" : string.Empty
             }).ToList();
