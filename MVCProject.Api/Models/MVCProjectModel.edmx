@@ -117,7 +117,6 @@
           <Property Name="DesignationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DesignationName" Type="varchar" MaxLength="250" />
           <Property Name="IsActive" Type="bit" />
-          <Property Name="Remarks" Type="varchar" MaxLength="500" />
           <Property Name="CompanyMasterId" Type="int" />
           <Property Name="DepartmentId" Type="int" />
           <Property Name="ShortCode" Type="nvarchar" MaxLength="100" />
@@ -294,6 +293,8 @@
         <Function Name="Sp_HRMS_Attendance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_hrms_searchemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
           <Parameter Name="DepartmentId" Type="int" Mode="In" />
           <Parameter Name="DesignationId" Type="int" Mode="In" />
         </Function>
@@ -342,19 +343,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MVCProjectModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityType Name="Designation">
-          <Key>
-            <PropertyRef Name="DesignationId" />
-          </Key>
-          <Property Name="DesignationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DesignationName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="IsActive" Type="Boolean" />
-          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="TblEmployees" Relationship="Self.fk_designationId" FromRole="Designation" ToRole="TblEmployee" />
-          <Property Name="CompanyMasterId" Type="Int32" />
-          <Property Name="DepartmentId" Type="Int32" />
-          <Property Name="ShortCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="TblDepartment">
           <Key>
             <PropertyRef Name="DepartmentId" />
@@ -402,7 +390,6 @@
           <Property Name="FromPeriod" Type="DateTime" Precision="0" />
           <Property Name="ToPeriod" Type="DateTime" Precision="0" />
           <Property Name="Gender" Type="Int32" />
-          <NavigationProperty Name="Designation" Relationship="Self.fk_designationId" FromRole="TblEmployee" ToRole="Designation" />
           <NavigationProperty Name="TblDepartment" Relationship="Self.fk_despartmentId" FromRole="TblEmployee" ToRole="TblDepartment" />
           <Property Name="EntryBy" Type="Int32" />
           <Property Name="EntryDate" Type="DateTime" Precision="0" />
@@ -413,19 +400,8 @@
           <NavigationProperty Name="Attendance" Relationship="MVCProjectModel.fk_EmployeeId" FromRole="TblEmployee" ToRole="Attendance" />
           <NavigationProperty Name="UserMaster" Relationship="MVCProjectModel.fk_empId" FromRole="TblEmployee" ToRole="UserMaster" />
           <Property Name="CompanyMasterId" Type="Int32" />
+          <NavigationProperty Name="Designation" Relationship="MVCProjectModel.fk_designationId" FromRole="TblEmployee" ToRole="Designation" />
         </EntityType>
-        <Association Name="fk_designationId">
-          <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
-          <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Designation">
-              <PropertyRef Name="DesignationId" />
-            </Principal>
-            <Dependent Role="TblEmployee">
-              <PropertyRef Name="DesignationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="fk_despartmentId">
           <End Role="TblDepartment" Type="Self.TblDepartment" Multiplicity="0..1" />
           <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
@@ -439,13 +415,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MVCProjectEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Designations" EntityType="Self.Designation" />
           <EntitySet Name="TblDepartments" EntityType="Self.TblDepartment" />
           <EntitySet Name="TblEmployees" EntityType="Self.TblEmployee" />
-          <AssociationSet Name="fk_designationId" Association="Self.fk_designationId">
-            <End Role="Designation" EntitySet="Designations" />
-            <End Role="TblEmployee" EntitySet="TblEmployees" />
-          </AssociationSet>
           <AssociationSet Name="fk_despartmentId" Association="Self.fk_despartmentId">
             <End Role="TblDepartment" EntitySet="TblDepartments" />
             <End Role="TblEmployee" EntitySet="TblEmployees" />
@@ -464,6 +435,8 @@
           <EntitySet Name="AddSalary" EntityType="MVCProjectModel.AddSalary" />
           <FunctionImport Name="sp_hrms_searchemp" ReturnType="Collection(MVCProjectModel.sp_hrms_searchemp_Result)">
             <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
             <Parameter Name="DepartmentId" Mode="In" Type="Int32" />
             <Parameter Name="DesignationId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -485,6 +458,11 @@
           <EntitySet Name="AllowanceMaster" EntityType="MVCProjectModel.AllowanceMaster" />
           <EntitySet Name="DeductionMaster" EntityType="MVCProjectModel.DeductionMaster" />
           <EntitySet Name="CompanyMaster" EntityType="MVCProjectModel.CompanyMaster" />
+          <EntitySet Name="Designation" EntityType="MVCProjectModel.Designation" />
+          <AssociationSet Name="fk_designationId" Association="MVCProjectModel.fk_designationId">
+            <End Role="Designation" EntitySet="Designation" />
+            <End Role="TblEmployee" EntitySet="TblEmployees" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AttachmentMaster">
           <Key>
@@ -612,6 +590,7 @@
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
           <Property Type="String" Name="BatchNo" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="CompanyMasterId" Nullable="true" />
+          <Property Type="String" Name="CompName" Nullable="false" />
         </ComplexType>
         <ComplexType Name="Sp_HRMS_Attendance_Result">
           <Property Type="Int32" Name="EmployeeId" Nullable="true" />
@@ -677,6 +656,7 @@
           <Property Type="DateTime" Name="EntryDate" Nullable="true" />
           <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
           <Property Type="DateTime" Name="UpdatedDate" Nullable="true" />
+          <Property Type="Int32" Name="CompanyMasterId" Nullable="true" />
         </ComplexType>
         <EntityType Name="UserMaster">
           <Key>
@@ -788,25 +768,36 @@
           <Property Name="UpdateDate" Type="DateTime" Precision="0" />
           <Property Name="ShortCode" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Designation">
+          <Key>
+            <PropertyRef Name="DesignationId" />
+          </Key>
+          <Property Name="DesignationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DesignationName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CompanyMasterId" Type="Int32" />
+          <Property Name="DepartmentId" Type="Int32" />
+          <Property Name="ShortCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblEmployee" Relationship="MVCProjectModel.fk_designationId" FromRole="Designation" ToRole="TblEmployee" />
+        </EntityType>
+        <Association Name="fk_designationId">
+          <End Type="MVCProjectModel.Designation" Role="Designation" Multiplicity="0..1" />
+          <End Type="MVCProjectModel.TblEmployee" Role="TblEmployee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designation">
+              <PropertyRef Name="DesignationId" />
+            </Principal>
+            <Dependent Role="TblEmployee">
+              <PropertyRef Name="DesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MVCProjectModelStoreContainer" CdmEntityContainer="MVCProjectEntities">
-          <EntitySetMapping Name="Designations">
-            <EntityTypeMapping TypeName="MVCProjectModel.Designation">
-              <MappingFragment StoreEntitySet="Designation">
-                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="CompanyMasterId" ColumnName="CompanyMasterId" />
-                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
-                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TblDepartments">
             <EntityTypeMapping TypeName="MVCProjectModel.TblDepartment">
               <MappingFragment StoreEntitySet="TblDepartment">
@@ -986,6 +977,7 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
                 <ScalarProperty Name="CompanyMasterId" ColumnName="CompanyMasterId" />
+                <ScalarProperty Name="CompName" ColumnName="CompName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1060,6 +1052,7 @@
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="CompanyMasterId" ColumnName="CompanyMasterId" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1135,6 +1128,18 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="CompanyMasterId" ColumnName="CompanyMasterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Designation">
+            <EntityTypeMapping TypeName="MVCProjectModel.Designation">
+              <MappingFragment StoreEntitySet="Designation">
+                <ScalarProperty Name="ShortCode" ColumnName="ShortCode" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="CompanyMasterId" ColumnName="CompanyMasterId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

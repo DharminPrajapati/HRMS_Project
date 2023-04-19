@@ -19,12 +19,12 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_designationId", "Designation", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.Designation), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_despartmentId", "TblDepartment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.TblDepartment), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_EmployeeId", "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.TblEmployee), "Attendance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.Attendance), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_empId", "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MVCProject.Api.Models.TblEmployee), "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserMaster), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__UserRole__UserId__0CDAE408", "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserMaster), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserRole), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__UserRole__RoleId__0BE6BFCF", "UserRoleMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserRoleMaster), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserRole), true)]
+[assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_designationId", "Designation", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.Designation), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
 
 #endregion
 
@@ -75,22 +75,6 @@ namespace MVCProject.Api.Models
         #endregion
     
         #region ObjectSet Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Designation> Designations
-        {
-            get
-            {
-                if ((_Designations == null))
-                {
-                    _Designations = base.CreateObjectSet<Designation>("Designations");
-                }
-                return _Designations;
-            }
-        }
-        private ObjectSet<Designation> _Designations;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -299,18 +283,26 @@ namespace MVCProject.Api.Models
             }
         }
         private ObjectSet<CompanyMaster> _CompanyMaster;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Designation> Designation
+        {
+            get
+            {
+                if ((_Designation == null))
+                {
+                    _Designation = base.CreateObjectSet<Designation>("Designation");
+                }
+                return _Designation;
+            }
+        }
+        private ObjectSet<Designation> _Designation;
 
         #endregion
 
         #region AddTo Methods
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Designations EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToDesignations(Designation designation)
-        {
-            base.AddObject("Designations", designation);
-        }
     
         /// <summary>
         /// Deprecated Method for adding a new object to the TblDepartments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
@@ -415,6 +407,14 @@ namespace MVCProject.Api.Models
         {
             base.AddObject("CompanyMaster", companyMaster);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Designation EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDesignation(Designation designation)
+        {
+            base.AddObject("Designation", designation);
+        }
 
         #endregion
 
@@ -448,9 +448,11 @@ namespace MVCProject.Api.Models
         /// No Metadata Documentation available.
         /// </summary>
         /// <param name="firstName">No Metadata Documentation available.</param>
+        /// <param name="email">No Metadata Documentation available.</param>
+        /// <param name="phoneNumber">No Metadata Documentation available.</param>
         /// <param name="departmentId">No Metadata Documentation available.</param>
         /// <param name="designationId">No Metadata Documentation available.</param>
-        public ObjectResult<sp_hrms_searchemp_Result> sp_hrms_searchemp(global::System.String firstName, Nullable<global::System.Int32> departmentId, Nullable<global::System.Int32> designationId)
+        public ObjectResult<sp_hrms_searchemp_Result> sp_hrms_searchemp(global::System.String firstName, global::System.String email, global::System.String phoneNumber, Nullable<global::System.Int32> departmentId, Nullable<global::System.Int32> designationId)
         {
             ObjectParameter firstNameParameter;
             if (firstName != null)
@@ -460,6 +462,26 @@ namespace MVCProject.Api.Models
             else
             {
                 firstNameParameter = new ObjectParameter("FirstName", typeof(global::System.String));
+            }
+    
+            ObjectParameter emailParameter;
+            if (email != null)
+            {
+                emailParameter = new ObjectParameter("Email", email);
+            }
+            else
+            {
+                emailParameter = new ObjectParameter("Email", typeof(global::System.String));
+            }
+    
+            ObjectParameter phoneNumberParameter;
+            if (phoneNumber != null)
+            {
+                phoneNumberParameter = new ObjectParameter("PhoneNumber", phoneNumber);
+            }
+            else
+            {
+                phoneNumberParameter = new ObjectParameter("PhoneNumber", typeof(global::System.String));
             }
     
             ObjectParameter departmentIdParameter;
@@ -482,7 +504,7 @@ namespace MVCProject.Api.Models
                 designationIdParameter = new ObjectParameter("DesignationId", typeof(global::System.Int32));
             }
     
-            return base.ExecuteFunction<sp_hrms_searchemp_Result>("sp_hrms_searchemp", firstNameParameter, departmentIdParameter, designationIdParameter);
+            return base.ExecuteFunction<sp_hrms_searchemp_Result>("sp_hrms_searchemp", firstNameParameter, emailParameter, phoneNumberParameter, departmentIdParameter, designationIdParameter);
         }
 
         #endregion
@@ -2571,30 +2593,6 @@ namespace MVCProject.Api.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Remarks
-        {
-            get
-            {
-                return _Remarks;
-            }
-            set
-            {
-                OnRemarksChanging(value);
-                ReportPropertyChanging("Remarks");
-                _Remarks = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Remarks");
-                OnRemarksChanged();
-            }
-        }
-        private global::System.String _Remarks;
-        partial void OnRemarksChanging(global::System.String value);
-        partial void OnRemarksChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int32> CompanyMasterId
         {
             get
@@ -2674,7 +2672,7 @@ namespace MVCProject.Api.Models
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_designationId", "TblEmployee")]
-        public EntityCollection<TblEmployee> TblEmployees
+        public EntityCollection<TblEmployee> TblEmployee
         {
             get
             {
@@ -4098,44 +4096,6 @@ namespace MVCProject.Api.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_designationId", "Designation")]
-        public Designation Designation
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Designation> DesignationReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_despartmentId", "TblDepartment")]
         public TblDepartment TblDepartment
         {
@@ -4208,6 +4168,44 @@ namespace MVCProject.Api.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserMaster>("MVCProjectModel.fk_empId", "UserMaster", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_designationId", "Designation")]
+        public Designation Designation
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Designation> DesignationReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation", value);
                 }
             }
         }
@@ -4818,11 +4816,13 @@ namespace MVCProject.Api.Models
         /// </summary>
         /// <param name="employeeId">Initial value of the EmployeeId property.</param>
         /// <param name="departmentName">Initial value of the DepartmentName property.</param>
-        public static sp_Emp_GetAllEmployees_Result Createsp_Emp_GetAllEmployees_Result(global::System.Int32 employeeId, global::System.String departmentName)
+        /// <param name="compName">Initial value of the CompName property.</param>
+        public static sp_Emp_GetAllEmployees_Result Createsp_Emp_GetAllEmployees_Result(global::System.Int32 employeeId, global::System.String departmentName, global::System.String compName)
         {
             sp_Emp_GetAllEmployees_Result sp_Emp_GetAllEmployees_Result = new sp_Emp_GetAllEmployees_Result();
             sp_Emp_GetAllEmployees_Result.EmployeeId = employeeId;
             sp_Emp_GetAllEmployees_Result.DepartmentName = departmentName;
+            sp_Emp_GetAllEmployees_Result.CompName = compName;
             return sp_Emp_GetAllEmployees_Result;
         }
 
@@ -5549,6 +5549,30 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.Int32> _CompanyMasterId;
         partial void OnCompanyMasterIdChanging(Nullable<global::System.Int32> value);
         partial void OnCompanyMasterIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CompName
+        {
+            get
+            {
+                return _CompName;
+            }
+            set
+            {
+                OnCompNameChanging(value);
+                ReportPropertyChanging("CompName");
+                _CompName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CompName");
+                OnCompNameChanged();
+            }
+        }
+        private global::System.String _CompName;
+        partial void OnCompNameChanging(global::System.String value);
+        partial void OnCompNameChanged();
 
         #endregion
 
@@ -6576,6 +6600,30 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.DateTime> _UpdatedDate;
         partial void OnUpdatedDateChanging(Nullable<global::System.DateTime> value);
         partial void OnUpdatedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CompanyMasterId
+        {
+            get
+            {
+                return _CompanyMasterId;
+            }
+            set
+            {
+                OnCompanyMasterIdChanging(value);
+                ReportPropertyChanging("CompanyMasterId");
+                _CompanyMasterId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CompanyMasterId");
+                OnCompanyMasterIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CompanyMasterId;
+        partial void OnCompanyMasterIdChanging(Nullable<global::System.Int32> value);
+        partial void OnCompanyMasterIdChanged();
 
         #endregion
 

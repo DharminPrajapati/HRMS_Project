@@ -4,11 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="38aa63bf35444fa596ab19b6a878178b" Name="Diagram1" ZoomLevel="80">
-        <EntityTypeShape EntityType="MVCProjectModel.Designation" Width="1.5" PointX="1.25" PointY="3.625" IsExpanded="true" />
+      <Diagram DiagramId="38aa63bf35444fa596ab19b6a878178b" Name="Diagram1" ZoomLevel="69">
         <EntityTypeShape EntityType="MVCProjectModel.TblDepartment" Width="1.5" PointX="1.25" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="MVCProjectModel.TblEmployee" Width="1.5" PointX="4.25" PointY="0.625" IsExpanded="true" />
-        <AssociationConnector Association="MVCProjectModel.fk_designationId" ManuallyRouted="false" />
         <AssociationConnector Association="MVCProjectModel.fk_despartmentId" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MVCProjectModel.AttachmentMaster" Width="1.5" PointX="10.125" PointY="1" />
         <EntityTypeShape EntityType="MVCProjectModel.AttachmentType" Width="1.5" PointX="7.125" PointY="5.625" />
@@ -25,6 +23,8 @@
         <EntityTypeShape EntityType="MVCProjectModel.AllowanceMaster" Width="1.5" PointX="0.75" PointY="6.75" />
         <EntityTypeShape EntityType="MVCProjectModel.DeductionMaster" Width="1.5" PointX="2.75" PointY="9.75" />
         <EntityTypeShape EntityType="MVCProjectModel.CompanyMaster" Width="1.5" PointX="11.375" PointY="7.75" />
+        <EntityTypeShape EntityType="MVCProjectModel.Designation" Width="1.5" PointX="9.375" PointY="12" />
+        <AssociationConnector Association="MVCProjectModel.fk_designationId" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

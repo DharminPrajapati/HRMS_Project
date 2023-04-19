@@ -48,7 +48,7 @@ namespace MVCProject.Api.Controllers.Configuration
         [HttpGet]
         public ApiResponse GetForDropDown()
         {
-            var data = this.entities.Designations.Where(x => x.IsActive.Value).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
+            var data = this.entities.Designation.Where(x => x.IsActive.Value).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
             return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
         }
 
@@ -92,8 +92,8 @@ namespace MVCProject.Api.Controllers.Configuration
                 designationDetailParams.Search = string.Empty;
             }
 
-            var designationList = (from s in this.entities.Designations.AsEnumerable().Where(x => x.DesignationName.Trim().ToLower().Contains(designationDetailParams.Search.Trim().ToLower()))
-                                   let TotalRecords = this.entities.Designations.AsEnumerable().Where(x => x.DesignationName.Trim().ToLower().Contains(designationDetailParams.Search.Trim().ToLower())).Count()
+            var designationList = (from s in this.entities.Designation.AsEnumerable().Where(x => x.DesignationName.Trim().ToLower().Contains(designationDetailParams.Search.Trim().ToLower()))
+                                   let TotalRecords = this.entities.Designation.AsEnumerable().Where(x => x.DesignationName.Trim().ToLower().Contains(designationDetailParams.Search.Trim().ToLower())).Count()
                                    select new
                                    {
                                        DesignationId = s.DesignationId,
@@ -102,7 +102,7 @@ namespace MVCProject.Api.Controllers.Configuration
                                       
                                        CompanyMasterId = s.CompanyMasterId,
                                        IsActive = s.IsActive,
-                                       Remarks = s.Remarks,
+                                       //Remarks = s.Remarks,
                                        TotalRecords
                                    }).AsQueryable().OrderByField(designationDetailParams.OrderByColumn, designationDetailParams.IsAscending).Skip((designationDetailParams.CurrentPageNumber - 1) * designationDetailParams.PageSize).Take(designationDetailParams.PageSize);
 
@@ -117,7 +117,7 @@ namespace MVCProject.Api.Controllers.Configuration
         [HttpGet]
         public ApiResponse GetDesignationList(bool isGetAll = false)
         {
-            var result = this.entities.Designations.Where(x => (isGetAll || x.IsActive.Value)).Select(x => new { Id = x.DesignationId, Name = x.DesignationName }).OrderBy(y => y.Name).ToList();
+            var result = this.entities.Designation.Where(x => (isGetAll || x.IsActive.Value)).Select(x => new { Id = x.DesignationId, Name = x.DesignationName }).OrderBy(y => y.Name).ToList();
             return this.Response(MessageTypes.Success, string.Empty, result);
         }
 
@@ -129,7 +129,7 @@ namespace MVCProject.Api.Controllers.Configuration
         [HttpGet]
         public ApiResponse GetDesignationById(int designationId)
         {
-            var designationDetail = this.entities.Designations.Where(a => a.DesignationId == designationId)
+            var designationDetail = this.entities.Designation.Where(a => a.DesignationId == designationId)
                         .Select(g => new
                         {
                             DesignationId = g.DesignationId,
@@ -137,7 +137,7 @@ namespace MVCProject.Api.Controllers.Configuration
                             DepartmentId = g.DepartmentId,
                             CompanyMasterId = g.CompanyMasterId,
                             IsActive = g.IsActive,
-                            Remarks = g.Remarks,
+                            //Remarks = g.Remarks,
                             // EntryBy = g.EntryBy,
                             //EntryDate = g.EntryDate,
                         }).SingleOrDefault();
@@ -165,12 +165,12 @@ namespace MVCProject.Api.Controllers.Configuration
             //}
             //else
             //{
-                Designation existingDesignationDetail = this.entities.Designations.Where(a => a.DesignationId == designationDetail.DesignationId).FirstOrDefault();
+                Designation existingDesignationDetail = this.entities.Designation.Where(a => a.DesignationId == designationDetail.DesignationId).FirstOrDefault();
                 if (existingDesignationDetail == null)
                 {
                     //designationDetail.EntryDate = DateTime.UtcNow;
                     //designationDetail.EntryBy = UserContext.EmployeeId;
-                    this.entities.Designations.AddObject(designationDetail);
+                    this.entities.Designation.AddObject(designationDetail);
                     if (!(this.entities.SaveChanges() > 0))
                     {
                         return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Designation));
@@ -186,10 +186,10 @@ namespace MVCProject.Api.Controllers.Configuration
                     existingDesignationDetail.DepartmentId = designationDetail.DepartmentId;
 
                     existingDesignationDetail.IsActive = designationDetail.IsActive;
-                    existingDesignationDetail.Remarks = designationDetail.Remarks;
+                    //existingDesignationDetail.Remarks = designationDetail.Remarks;
                     //existingDesignationDetail.UpdateBy = UserContext.EmployeeId;
                     //existingDesignationDetail.UpdateDate = DateTime.UtcNow;
-                    this.entities.Designations.ApplyCurrentValues(existingDesignationDetail);
+                    this.entities.Designation.ApplyCurrentValues(existingDesignationDetail);
                     if (!(this.entities.SaveChanges() > 0))
                     {
                         return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError), Resource.Designation);
@@ -234,11 +234,11 @@ namespace MVCProject.Api.Controllers.Configuration
 
         public ApiResponse CreateEmployeeListReport()
         {
-            var designationDetails = this.entities.Designations.Select(d => new
+            var designationDetails = this.entities.Designation.Select(d => new
             {
                 DesignationId = d.DesignationId,
                 DesignationName = d.DesignationName,
-                Remarks = d.Remarks,
+                //Remarks = d.Remarks,
                 IsActive = d.IsActive != null ? d.IsActive == true ? "Active" : "InActive" : string.Empty
             }).ToList();
 
@@ -273,7 +273,7 @@ namespace MVCProject.Api.Controllers.Configuration
                 IRow row = sheet.CreateRow(rowNumber++);
                 row.CreateCell(0).SetCellValue(de.DesignationId);
                 row.CreateCell(1).SetCellValue(de.DesignationName);
-                row.CreateCell(2).SetCellValue(de.Remarks);
+                //row.CreateCell(2).SetCellValue(de.Remarks);
                 row.CreateCell(3).SetCellValue(de.IsActive);
             }
 

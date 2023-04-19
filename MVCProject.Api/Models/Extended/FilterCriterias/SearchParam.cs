@@ -11,6 +11,10 @@ namespace MVCProject.Api.Models.Extended.FilterCriterias
        [DataMember]
         public string FirstName { get; set; }
 
+        public string Email { get; set; }
+
+        public string PhoneNumber{ get; set; }
+
         public int? DepartmentId { get; set; }
 
         public int? DesignationId { get; set; }

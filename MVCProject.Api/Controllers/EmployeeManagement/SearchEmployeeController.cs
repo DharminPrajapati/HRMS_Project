@@ -32,7 +32,7 @@
         [HttpPost]
         public ApiResponse AdvancedSearchEmployee([FromBody] PagingParams SearchEmployeeDetailsParams, [FromUri] SearchParam searchParam)
         {
-            var result = this.entities.sp_hrms_searchemp(searchParam.FirstName, searchParam.DepartmentId, searchParam.DesignationId).ToList();
+            var result = this.entities.sp_hrms_searchemp(searchParam.FirstName, searchParam.Email, searchParam.PhoneNumber, searchParam.DepartmentId, searchParam.DesignationId).ToList();
             var TotalRecords = result.Count();
             var searchemployee = result.Select(g => new
             {
