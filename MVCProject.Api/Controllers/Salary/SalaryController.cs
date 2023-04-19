@@ -41,7 +41,7 @@ namespace MVCProject.Api.Controllers.Salary
         [HttpGet]
         public ApiResponse GetDesignationDropDown()
         {
-            var data = this.entities.Designation.Where(x => x.IsActive.Value).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
+            var data = this.entities.Designations.Where(x => x.IsActive.Value).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
             return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
         }
 
@@ -233,7 +233,7 @@ namespace MVCProject.Api.Controllers.Salary
         [HttpGet]
         public ApiResponse GetFullName(bool isActive, string searchText)
         {
-            var data = this.entities.TblEmployees.Where(x => x.IsActive.Value == isActive && x.FirstName.Contains(searchText)).Select(x => new { Name = x.FirstName + " " + x.LastName, Id = x.EmployeeId, DepartmentId = x.DepartmentId, DepartmentName = this.entities.TblDepartments.FirstOrDefault(d => d.DepartmentId == x.DepartmentId).DepartmentName, DesignationName = this.entities.Designation.FirstOrDefault(d => d.DesignationId == x.DesignationId).DesignationName }).OrderBy(x => x.Name).ToList();
+            var data = this.entities.TblEmployees.Where(x => x.IsActive.Value == isActive && x.FirstName.Contains(searchText)).Select(x => new { Name = x.FirstName + " " + x.LastName, Id = x.EmployeeId, DepartmentId = x.DepartmentId, DepartmentName = this.entities.TblDepartments.FirstOrDefault(d => d.DepartmentId == x.DepartmentId).DepartmentName, DesignationName = this.entities.Designations.FirstOrDefault(d => d.DesignationId == x.DesignationId).DesignationName }).OrderBy(x => x.Name).ToList();
             return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
 
         }
