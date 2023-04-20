@@ -447,41 +447,19 @@ namespace MVCProject.Api.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        /// <param name="firstName">No Metadata Documentation available.</param>
-        /// <param name="email">No Metadata Documentation available.</param>
-        /// <param name="phoneNumber">No Metadata Documentation available.</param>
+        /// <param name="searchText">No Metadata Documentation available.</param>
         /// <param name="departmentId">No Metadata Documentation available.</param>
         /// <param name="designationId">No Metadata Documentation available.</param>
-        public ObjectResult<sp_hrms_searchemp_Result> sp_hrms_searchemp(global::System.String firstName, global::System.String email, global::System.String phoneNumber, Nullable<global::System.Int32> departmentId, Nullable<global::System.Int32> designationId)
+        public ObjectResult<sp_hrms_searchemp_Result> sp_hrms_searchemp(global::System.String searchText, Nullable<global::System.Int32> departmentId, Nullable<global::System.Int32> designationId)
         {
-            ObjectParameter firstNameParameter;
-            if (firstName != null)
+            ObjectParameter searchTextParameter;
+            if (searchText != null)
             {
-                firstNameParameter = new ObjectParameter("FirstName", firstName);
+                searchTextParameter = new ObjectParameter("SearchText", searchText);
             }
             else
             {
-                firstNameParameter = new ObjectParameter("FirstName", typeof(global::System.String));
-            }
-    
-            ObjectParameter emailParameter;
-            if (email != null)
-            {
-                emailParameter = new ObjectParameter("Email", email);
-            }
-            else
-            {
-                emailParameter = new ObjectParameter("Email", typeof(global::System.String));
-            }
-    
-            ObjectParameter phoneNumberParameter;
-            if (phoneNumber != null)
-            {
-                phoneNumberParameter = new ObjectParameter("PhoneNumber", phoneNumber);
-            }
-            else
-            {
-                phoneNumberParameter = new ObjectParameter("PhoneNumber", typeof(global::System.String));
+                searchTextParameter = new ObjectParameter("SearchText", typeof(global::System.String));
             }
     
             ObjectParameter departmentIdParameter;
@@ -504,7 +482,7 @@ namespace MVCProject.Api.Models
                 designationIdParameter = new ObjectParameter("DesignationId", typeof(global::System.Int32));
             }
     
-            return base.ExecuteFunction<sp_hrms_searchemp_Result>("sp_hrms_searchemp", firstNameParameter, emailParameter, phoneNumberParameter, departmentIdParameter, designationIdParameter);
+            return base.ExecuteFunction<sp_hrms_searchemp_Result>("sp_hrms_searchemp", searchTextParameter, departmentIdParameter, designationIdParameter);
         }
 
         #endregion
@@ -5740,30 +5718,6 @@ namespace MVCProject.Api.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 EmployeeId
-        {
-            get
-            {
-                return _EmployeeId;
-            }
-            set
-            {
-                OnEmployeeIdChanging(value);
-                ReportPropertyChanging("EmployeeId");
-                _EmployeeId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("EmployeeId");
-                OnEmployeeIdChanged();
-            }
-        }
-        private global::System.Int32 _EmployeeId;
-        partial void OnEmployeeIdChanging(global::System.Int32 value);
-        partial void OnEmployeeIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String FirstName
@@ -5784,54 +5738,6 @@ namespace MVCProject.Api.Models
         private global::System.String _FirstName;
         partial void OnFirstNameChanging(global::System.String value);
         partial void OnFirstNameChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> DepartmentId
-        {
-            get
-            {
-                return _DepartmentId;
-            }
-            set
-            {
-                OnDepartmentIdChanging(value);
-                ReportPropertyChanging("DepartmentId");
-                _DepartmentId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DepartmentId");
-                OnDepartmentIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _DepartmentId;
-        partial void OnDepartmentIdChanging(Nullable<global::System.Int32> value);
-        partial void OnDepartmentIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> DesignationId
-        {
-            get
-            {
-                return _DesignationId;
-            }
-            set
-            {
-                OnDesignationIdChanging(value);
-                ReportPropertyChanging("DesignationId");
-                _DesignationId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DesignationId");
-                OnDesignationIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _DesignationId;
-        partial void OnDesignationIdChanging(Nullable<global::System.Int32> value);
-        partial void OnDesignationIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -5880,6 +5786,78 @@ namespace MVCProject.Api.Models
         private global::System.String _DesignationName;
         partial void OnDesignationNameChanging(global::System.String value);
         partial void OnDesignationNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Email
+        {
+            get
+            {
+                return _Email;
+            }
+            set
+            {
+                OnEmailChanging(value);
+                ReportPropertyChanging("Email");
+                _Email = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Email");
+                OnEmailChanged();
+            }
+        }
+        private global::System.String _Email;
+        partial void OnEmailChanging(global::System.String value);
+        partial void OnEmailChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PhoneNumber
+        {
+            get
+            {
+                return _PhoneNumber;
+            }
+            set
+            {
+                OnPhoneNumberChanging(value);
+                ReportPropertyChanging("PhoneNumber");
+                _PhoneNumber = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PhoneNumber");
+                OnPhoneNumberChanged();
+            }
+        }
+        private global::System.String _PhoneNumber;
+        partial void OnPhoneNumberChanging(global::System.String value);
+        partial void OnPhoneNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 EmployeeId
+        {
+            get
+            {
+                return _EmployeeId;
+            }
+            set
+            {
+                OnEmployeeIdChanging(value);
+                ReportPropertyChanging("EmployeeId");
+                _EmployeeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EmployeeId");
+                OnEmployeeIdChanged();
+            }
+        }
+        private global::System.Int32 _EmployeeId;
+        partial void OnEmployeeIdChanging(global::System.Int32 value);
+        partial void OnEmployeeIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -5958,30 +5936,6 @@ namespace MVCProject.Api.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String Email
-        {
-            get
-            {
-                return _Email;
-            }
-            set
-            {
-                OnEmailChanging(value);
-                ReportPropertyChanging("Email");
-                _Email = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("Email");
-                OnEmailChanged();
-            }
-        }
-        private global::System.String _Email;
-        partial void OnEmailChanging(global::System.String value);
-        partial void OnEmailChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String Password
         {
             get
@@ -6024,30 +5978,6 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.DateTime> _JoiningDate;
         partial void OnJoiningDateChanging(Nullable<global::System.DateTime> value);
         partial void OnJoiningDateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String PhoneNumber
-        {
-            get
-            {
-                return _PhoneNumber;
-            }
-            set
-            {
-                OnPhoneNumberChanging(value);
-                ReportPropertyChanging("PhoneNumber");
-                _PhoneNumber = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("PhoneNumber");
-                OnPhoneNumberChanged();
-            }
-        }
-        private global::System.String _PhoneNumber;
-        partial void OnPhoneNumberChanging(global::System.String value);
-        partial void OnPhoneNumberChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6102,6 +6032,30 @@ namespace MVCProject.Api.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DesignationId
+        {
+            get
+            {
+                return _DesignationId;
+            }
+            set
+            {
+                OnDesignationIdChanging(value);
+                ReportPropertyChanging("DesignationId");
+                _DesignationId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DesignationId");
+                OnDesignationIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DesignationId;
+        partial void OnDesignationIdChanging(Nullable<global::System.Int32> value);
+        partial void OnDesignationIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String ProfileImageName
         {
             get
@@ -6120,6 +6074,54 @@ namespace MVCProject.Api.Models
         private global::System.String _ProfileImageName;
         partial void OnProfileImageNameChanging(global::System.String value);
         partial void OnProfileImageNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CompanyMasterId
+        {
+            get
+            {
+                return _CompanyMasterId;
+            }
+            set
+            {
+                OnCompanyMasterIdChanging(value);
+                ReportPropertyChanging("CompanyMasterId");
+                _CompanyMasterId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CompanyMasterId");
+                OnCompanyMasterIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CompanyMasterId;
+        partial void OnCompanyMasterIdChanging(Nullable<global::System.Int32> value);
+        partial void OnCompanyMasterIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DepartmentId
+        {
+            get
+            {
+                return _DepartmentId;
+            }
+            set
+            {
+                OnDepartmentIdChanging(value);
+                ReportPropertyChanging("DepartmentId");
+                _DepartmentId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DepartmentId");
+                OnDepartmentIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DepartmentId;
+        partial void OnDepartmentIdChanging(Nullable<global::System.Int32> value);
+        partial void OnDepartmentIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -6600,30 +6602,6 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.DateTime> _UpdatedDate;
         partial void OnUpdatedDateChanging(Nullable<global::System.DateTime> value);
         partial void OnUpdatedDateChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> CompanyMasterId
-        {
-            get
-            {
-                return _CompanyMasterId;
-            }
-            set
-            {
-                OnCompanyMasterIdChanging(value);
-                ReportPropertyChanging("CompanyMasterId");
-                _CompanyMasterId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CompanyMasterId");
-                OnCompanyMasterIdChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _CompanyMasterId;
-        partial void OnCompanyMasterIdChanging(Nullable<global::System.Int32> value);
-        partial void OnCompanyMasterIdChanged();
 
         #endregion
 

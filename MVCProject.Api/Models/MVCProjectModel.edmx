@@ -292,9 +292,7 @@
         <Function Name="sp_Emp_GetAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sp_HRMS_Attendance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_hrms_searchemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
-          <Parameter Name="Email" Type="nvarchar" Mode="In" />
-          <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="SearchText" Type="nvarchar" Mode="In" />
           <Parameter Name="DepartmentId" Type="int" Mode="In" />
           <Parameter Name="DesignationId" Type="int" Mode="In" />
         </Function>
@@ -434,9 +432,7 @@
           <FunctionImport Name="Sp_HRMS_Attendance" ReturnType="Collection(MVCProjectModel.Sp_HRMS_Attendance_Result)" />
           <EntitySet Name="AddSalary" EntityType="MVCProjectModel.AddSalary" />
           <FunctionImport Name="sp_hrms_searchemp" ReturnType="Collection(MVCProjectModel.sp_hrms_searchemp_Result)">
-            <Parameter Name="FirstName" Mode="In" Type="String" />
-            <Parameter Name="Email" Mode="In" Type="String" />
-            <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+            <Parameter Name="SearchText" Mode="In" Type="String" />
             <Parameter Name="DepartmentId" Mode="In" Type="Int32" />
             <Parameter Name="DesignationId" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -620,22 +616,23 @@
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
         </EntityType>
         <ComplexType Name="sp_hrms_searchemp_Result">
-          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
           <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
-          <Property Type="Int32" Name="DesignationId" Nullable="true" />
           <Property Type="String" Name="DepartmentName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="DesignationName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="Email" Nullable="true" />
+          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="EmployeeId" Nullable="false" />
           <Property Type="Int32" Name="SrNo" Nullable="true" />
           <Property Type="String" Name="BatchNo" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Email" Nullable="true" />
           <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
           <Property Type="DateTime" Name="JoiningDate" Nullable="true" />
-          <Property Type="String" Name="PhoneNumber" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="AlternatePhoneNumber" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="IsActive" Nullable="true" />
+          <Property Type="Int32" Name="DesignationId" Nullable="true" />
           <Property Type="String" Name="ProfileImageName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="CompanyMasterId" Nullable="true" />
+          <Property Type="Int32" Name="DepartmentId" Nullable="true" />
           <Property Type="DateTime" Name="BirthDate" Nullable="true" />
           <Property Type="String" Name="PermanentAddress" Nullable="true" />
           <Property Type="String" Name="TemporaryAddress" Nullable="true" />
@@ -656,8 +653,7 @@
           <Property Type="DateTime" Name="EntryDate" Nullable="true" />
           <Property Type="Int32" Name="UpdatedBy" Nullable="true" />
           <Property Type="DateTime" Name="UpdatedDate" Nullable="true" />
-          <Property Type="Int32" Name="CompanyMasterId" Nullable="true" />
-        </ComplexType>
+          </ComplexType>
         <EntityType Name="UserMaster">
           <Key>
             <PropertyRef Name="UserId" />
@@ -1016,22 +1012,23 @@
           <FunctionImportMapping FunctionImportName="sp_hrms_searchemp" FunctionName="MVCProjectModel.Store.sp_hrms_searchemp">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MVCProjectModel.sp_hrms_searchemp_Result">
-                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
                 <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
                 <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
                 <ScalarProperty Name="SrNo" ColumnName="SrNo" />
                 <ScalarProperty Name="BatchNo" ColumnName="BatchNo" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="AlternatePhoneNumber" ColumnName="AlternatePhoneNumber" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
                 <ScalarProperty Name="ProfileImageName" ColumnName="ProfileImageName" />
+                <ScalarProperty Name="CompanyMasterId" ColumnName="CompanyMasterId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
                 <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
                 <ScalarProperty Name="PermanentAddress" ColumnName="PermanentAddress" />
                 <ScalarProperty Name="TemporaryAddress" ColumnName="TemporaryAddress" />
@@ -1052,8 +1049,7 @@
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-                <ScalarProperty Name="CompanyMasterId" ColumnName="CompanyMasterId" />
-              </ComplexTypeMapping>
+                </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <EntitySetMapping Name="UserMaster">
