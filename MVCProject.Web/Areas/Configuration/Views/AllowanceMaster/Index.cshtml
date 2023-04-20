@@ -27,6 +27,11 @@
         min-width: 50px !important;
         max-width: 50px !important;
     }
+    .coldes {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
 </style>
 <div ng-controller="AllowanceMasterCtrl" novalidate>
     <!--Start Title Section-->
@@ -51,24 +56,24 @@
                                 <label>
                                     @Resource.Description <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="txtDescription" id="txtDescription" required ng-focus="true" ng-model="AllowanceDetailScope.Description" tabindex="1" placeholder="@Resource.Description" maxlength="250" />
+                                <input type="text" class="form-control" name="txtDescription" id="txtDescription" required ng-focus="true" ng-model="AllowanceDetailScope.Description" tabindex="1" placeholder=" Allowance @Resource.Description" maxlength="250" />
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmAllowanceMaster.txtDescription.$dirty && frmAllowanceMaster.txtDescription.$invalid">
-                                    <span data-ng-show="frmAllowanceMaster.txtDescription.$error.required">@Resource.Description</span>
+                                    <span data-ng-show="frmAllowanceMaster.txtDescription.$error.required"> @Resource.Description</span>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
-                                    @Resource.ShortCode<span class="required-field">*</span>
+                                    @Resource.Short_Code<span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="txtShortCode" id="txtShortCode" required ng-focus="true" ng-model="AllowanceDetailScope.ShortCode" tabindex="1" placeholder="@Resource.ShortCode" maxlength="250" />
+                                <input type="text" class="form-control" name="txtShortCode" id="txtShortCode" required ng-focus="true" ng-model="AllowanceDetailScope.ShortCode" tabindex="1" placeholder="@Resource.Short_Code" maxlength="250" />
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmAllowanceMaster.txtShortCode.$dirty && frmAllowanceMaster.txtShortCode.$invalid">
-                                    <span data-ng-show="frmAllowanceMaster.txtShortCode.$error.required">@Resource.ShortCode</span>
+                                    <span data-ng-show="frmAllowanceMaster.txtShortCode.$error.required">@Resource.Short_Code</span>
                                 </div>
                             </div>
                         </div>
@@ -124,12 +129,12 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-7">
-                                <h3 class="strip">
-                                    <i class="fa fa-gears" aria-hidden="true"></i>
+                                <h2>
+                                    @*<i class="fa fa-gears" aria-hidden="true"></i>*@
                                     <label class="table-title">
                                         @Resource.Allowance_Master @Resource.Details
                                     </label>
-                                </h3>
+                                </h2>
                             </div>
                             <div class="col-md-5">
                                 <div class="input-group">
@@ -153,10 +158,10 @@
                                             <td data-title="'@Resource.Description'" sortable="'Description'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.Description}}">
                                                 {{dt.Description}}
                                             </td>
-                                            <td data-title="'@Resource.ShortCode'" sortable="'ShortCode'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.ShortCode}}">
+                                            <td data-title="'@Resource.Short_Code'" sortable="'ShortCode'" header-class="'coldes'" ng-class="'coldes breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.ShortCode}}">
                                                 {{dt.ShortCode}}
                                             </td>
-                                            <td data-title="'Value(%)'" sortable="'ShortCode'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.Value}}">
+                                            <td data-title="'Value(%)'" sortable="'ShortCode'" header-class="'coldes'" ng-class="'coldes breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.Value}}">
                                                 {{dt.Value}}
                                             </td>
                                             <td data-title="'@Resource.Active'" sortable="'IsActive'" header-class="'colActive'" ng-class="'colActive text-center'">

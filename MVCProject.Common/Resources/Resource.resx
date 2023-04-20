@@ -930,8 +930,8 @@
   <data name="Allowance Master" xml:space="preserve">
     <value>Allowance Master</value>
   </data>
-  <data name="ShortCode" xml:space="preserve">
-    <value>ShortCode</value>
+  <data name="Short Code" xml:space="preserve">
+    <value>Short Code</value>
   </data>
   <data name="Value" xml:space="preserve">
     <value>Value</value>
@@ -939,8 +939,8 @@
   <data name="Deduction" xml:space="preserve">
     <value>Deduction</value>
   </data>
-  <data name="DeductionMaster" xml:space="preserve">
-    <value>DeductionMaster</value>
+  <data name="Deduction Master" xml:space="preserve">
+    <value>Deduction Master</value>
   </data>
   <data name="Company" xml:space="preserve">
     <value>Company</value>

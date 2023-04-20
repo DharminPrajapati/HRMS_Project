@@ -55,10 +55,10 @@ namespace System.Web.Mvc
                     menuString.Append("<ul class='nav child_menu'>");
                     menuString.Append(GetSubMenu(Resource.Salary, "", "/Configuration/Salary"));
                     menuString.Append(GetSubMenu(Resource.Allowance_Master, "", "/Configuration/AllowanceMaster"));
-                    menuString.Append(GetSubMenu(Resource.DeductionMaster, "", "/Configuration/DeductionMaster"));
+                    menuString.Append(GetSubMenu(Resource.Deduction_Master, "", "/Configuration/DeductionMaster"));
                     menuString.Append("</ul></li>");
 
-            menuString.Append("<li>");
+                    menuString.Append("<li>");
                     menuString.AppendFormat(GetParentMenu(Resource.EmployeeManagement, "fa fa-user"));
                     menuString.Append("<ul class='nav child_menu'>");
                     menuString.Append(GetSubMenu(Resource.Employee_Details, "", "/EmployeeManagement/Employee"));

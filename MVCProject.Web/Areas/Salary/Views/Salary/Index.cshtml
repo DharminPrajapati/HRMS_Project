@@ -218,10 +218,10 @@
                                                 </div>
                                                 <form class="form-inline">
 
-                                                    <div class="form-group" ng-repeat="a in Allowances" style="margin-top:12px;">
+                                                    <div @*class="form-group"*@ ng-repeat="a in Allowances" style="margin-top:12px;">
 
-                                                        <input type="text" placeholder="" ng-model="a.Amount" ng-change="UpdateTotalAllowances()" />
-                                                        <input type="text" placeholder="0" ng-disabled="true" />
+                                                        <input type="text" class="form-group" placeholder="" ng-model="a.Amount" ng-change="UpdateTotalAllowances()" />
+                                                        <input type="text" class="form-group" placeholder="0" ng-disabled="true" />
                                                     </div>
 
                                                 </form>

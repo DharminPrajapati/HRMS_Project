@@ -610,11 +610,11 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DeductionMaster.
+        ///   Looks up a localized string similar to Deduction Master.
         /// </summary>
-        public static string DeductionMaster {
+        public static string Deduction_Master {
             get {
-                return ResourceManager.GetString("DeductionMaster", resourceCulture);
+                return ResourceManager.GetString("Deduction Master", resourceCulture);
             }
         }
         
@@ -2113,11 +2113,11 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ShortCode.
+        ///   Looks up a localized string similar to Short Code.
         /// </summary>
-        public static string ShortCode {
+        public static string Short_Code {
             get {
-                return ResourceManager.GetString("ShortCode", resourceCulture);
+                return ResourceManager.GetString("Short Code", resourceCulture);
             }
         }
         
