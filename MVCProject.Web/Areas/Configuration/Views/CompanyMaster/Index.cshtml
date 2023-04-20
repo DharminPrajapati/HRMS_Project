@@ -32,7 +32,7 @@
     <!--Start Title Section-->
     <div class="main-page-title title-icon relative l">
         <i class="fa fa-gears icon-position" style="padding-top:8px;"></i>
-        <h4 class="header-title-sub l">@Resource.Company_Name</h4>
+        <h4 class="header-title-sub l">@Resource.Company_Master</h4>
         <div class="pull-right">
 
         </div>
@@ -62,13 +62,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
-                                    @Resource.ShortCode<span class="required-field">*</span>
+                                    @Resource.Short_Code<span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="txtShortCode" id="txtShortCode" required ng-focus="true" ng-model="CompanyDetailScope.ShortCode" tabindex="1" placeholder="@Resource.ShortCode" maxlength="250" />
+                                <input type="text" class="form-control" name="txtShortCode" id="txtShortCode" required ng-focus="true" ng-model="CompanyDetailScope.ShortCode" tabindex="1" placeholder="@Resource.Short_Code" maxlength="250" />
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmCompanyMaster.txtShortCode.$dirty && frmCompanyMaster.txtShortCode.$invalid">
-                                    <span data-ng-show="frmCompanyMaster.txtShortCode.$error.required">@Resource.ShortCode</span>
+                                    <span data-ng-show="frmCompanyMaster.txtShortCode.$error.required">@Resource.Short_Code</span>
                                 </div>
                             </div>
                         </div>
@@ -112,12 +112,12 @@
                     <div class="col-md-12">
                         <div class="row">
                             <div class="col-md-7">
-                                <h3 class="strip">
-                                    <i class="fa fa-gears" aria-hidden="true"></i>
+                                <h2>
+                                    @*<i class="fa fa-gears" aria-hidden="true"></i>*@
                                     <label class="table-title">
                                         @Resource.Company_Master @Resource.Details
                                     </label>
-                                </h3>
+                                </h2>
                             </div>
                             <div class="col-md-5">
                                 <div class="input-group">
@@ -141,7 +141,7 @@
                                             <td data-title="'@Resource.Company_Name'" sortable="'Companyname'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.CompanyName}}">
                                                 {{dt.CompanyName}}
                                             </td>
-                                            <td data-title="'@Resource.ShortCode'" sortable="'ShortCode'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.ShortCode}}">
+                                            <td data-title="'@Resource.Short_Code'" sortable="'ShortCode'" header-class="'colPosition'" ng-class="'colPosition breakword overflow-ellipsis cursor-pointer'" angular-tooltip data-side="bottom" data-content="{{dt.ShortCode}}">
                                                 {{dt.ShortCode}}
                                             </td>
                                             <td data-title="'@Resource.Active'" sortable="'IsActive'" header-class="'colActive'" ng-class="'colActive text-center'">
