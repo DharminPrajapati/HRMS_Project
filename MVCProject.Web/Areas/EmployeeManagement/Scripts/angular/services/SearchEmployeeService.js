@@ -6,21 +6,22 @@ angular.module('MVCApp')
 
         //Get designationlist 
         list.GetDesignationlist = function () {
-            
+            debugger
             return $http({
                 methd: 'GET',
-                url: $rootScope.apiURL + '/Employee/GetDesignationDropDown'
+                url: $rootScope.apiURL + '/SearchEmployee/GetDesignationDropDown'
             });
         };
 
         //Get Department DropDown
         list.GetDepartmentlist = function () {
-
+            debugger
             return $http({
                 methd: 'GET',
-                url: $rootScope.apiURL + '/Employee/GetDepartmentDropDown'
+                url: $rootScope.apiURL + '/SearchEmployee/GetDepartmentDropDown'
             });
         };
+
 
         // Get Employee List using Sp
         list.GetEmployeeDetails = function (SearchEmployeeDetailsParams) {
@@ -39,7 +40,7 @@ angular.module('MVCApp')
         }
 
         list.SearchEmp = function (SearchEmployeeDetailsParams, searchDetail) {
-            
+            debugger
             return $http({
                 method: 'POST',
                 url: $rootScope.apiURL + "/SearchEmployee/AdvancedSearchEmployee?FirstName=" + searchDetail.FirstName + "&DepartmentId=" + searchDetail.DepartmentId + "&DesignationId=" + searchDetail.DesignationId,

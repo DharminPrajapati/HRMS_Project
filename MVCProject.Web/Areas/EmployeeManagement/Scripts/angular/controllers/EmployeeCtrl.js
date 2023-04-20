@@ -216,6 +216,9 @@
                         $scope.emplyeeDetailScope = data.Result;
                         var attachmentData = data.Result.Attachment;
                         output.src = attachmentData.RelativePath;
+
+                        $scope.departmentsScope($scope.emplyeeDetailScope.CompanyMasterId);
+                        $scope.designationScope($scope.emplyeeDetailScope.DepartmentId);
                     }
                     else if (data.MessageType == messageTypes.Error) {
                         toastr.error(data.Message, errorTitle);

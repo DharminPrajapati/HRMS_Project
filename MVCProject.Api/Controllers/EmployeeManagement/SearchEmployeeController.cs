@@ -32,7 +32,7 @@
         [HttpPost]
         public ApiResponse AdvancedSearchEmployee([FromBody] PagingParams SearchEmployeeDetailsParams, [FromUri] SearchParam searchParam)
         {
-            var result = this.entities.sp_hrms_searchemp(searchParam.FirstName, searchParam.Email, searchParam.PhoneNumber, searchParam.DepartmentId, searchParam.DesignationId).ToList();
+            var result = this.entities.sp_hrms_searchemp(searchParam.FirstName, searchParam.DepartmentId, searchParam.DesignationId).ToList();
             var TotalRecords = result.Count();
             var searchemployee = result.Select(g => new
             {
@@ -70,6 +70,29 @@
             .Skip((SearchEmployeeDetailsParams.CurrentPageNumber - 1) * SearchEmployeeDetailsParams.PageSize).Take(SearchEmployeeDetailsParams.PageSize);
             return this.Response(MessageTypes.Success, string.Empty, searchemployee);
 
+        }
+
+
+
+
+        /// <summary>
+        /// Get All Designation dropdown
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ApiResponse GetDesignationDropDown()
+        {
+            var data = this.entities.Designation.Where(x => x.IsActive.Value).Select(x => new { Name = x.DesignationName, Id = x.DesignationId }).OrderBy(x => x.Name).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
+        }
+
+        /// Get All Departments dropdown
+        /// Get All Departments dropdown
+        [HttpGet]
+        public ApiResponse GetDepartmentDropDown()
+        {
+            var data = this.entities.TblDepartments.Where(x => x.IsActive.Value).Select(x => new { DeptName = x.DepartmentName, DeptId = x.DepartmentId }).OrderBy(x => x.DeptName).ToList();
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: data);
         }
 
         //[HttpPost]

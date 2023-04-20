@@ -96,7 +96,7 @@
 
         //for designation dropdown
         $scope.designationScope = function () {
-
+            debugger
             
             SearchEmployeeService.GetDesignationlist().then(function (res) {
                 $scope.Designation = res.data.Result;
@@ -104,6 +104,8 @@
         };
 
         $scope.departmentsScope = function () {
+            debugger
+            
             SearchEmployeeService.GetDepartmentlist().then(function (res) {
                 $scope.Departments = res.data.Result;
             });
@@ -145,10 +147,10 @@
         //});
 
         $scope.searchemployee = function (searchDetail) {
-          
+          debugger
             console.log(searchDetail);
             $scope.searchDetail = searchDetail;
-
+            debugger
             searchDetail.FirstName = searchDetail.FirstName;
             searchDetail.DepartmentId = searchDetail.DepartmentId;
             searchDetail.DesignationId = searchDetail.DesignationId;
