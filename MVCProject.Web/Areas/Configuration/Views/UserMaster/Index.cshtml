@@ -64,11 +64,11 @@
                         </label>
 
                         @*<select name="Rolename" ng-init="namelist()"  class="form-control" ng-model="userMasterDetailScope.FirstName">
-                <option>Select fullname</option>
+                    <option>Select fullname</option>
 
-                <option ng-repeat="Namelists in name" value="{{Namelists.Id}}" >{{Namelists.Name}}</option>
+                    <option ng-repeat="Namelists in name" value="{{Namelists.Id}}" >{{Namelists.Name}}</option>
 
-                </select>*@
+                    </select>*@
                         @*<input type="text" class="form-control" ng-focus="true" required tabindex="1" placeholder="@Resource.FirstName" maxlength="250">*@
                         @*{{userMasterDetailScope.FirstName}}*@
 
@@ -90,7 +90,7 @@
                              minlength="3"
                              input-class="form-control form-control-small"
                              match-class="highligh">
-                           
+
                         </div>
 
                         <div class="c">
@@ -137,13 +137,13 @@
                             @Resource.UserRole <span class="required-field">*</span>
                         </label>
                         @*<select name="Rolename" ng-init="rolelist()" class="form-control">
-                    <option>Select role</option>
+                        <option>Select role</option>
 
-                    <option ng-repeat="Rolelists in role">{{Rolelists.Name}}</option>
+                        <option ng-repeat="Rolelists in role">{{Rolelists.Name}}</option>
 
-                </select>*
+                    </select>*
 
-                            @*<input type="text" class="form-control" id="txtUserMaster" ng-focus="true" name="txtUserMaster" ng-focus="true" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">*@
+                                @*<input type="text" class="form-control" id="txtUserMaster" ng-focus="true" name="txtUserMaster" ng-focus="true" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">*@
 
                         <div ng-dropdown-multiselect=""
                              ng-model="userMasterDetailScope.UserRole"
@@ -162,42 +162,43 @@
                         </div>
                     </div>
                 </div>
-                </form>
-                </div>
 
 
-        <div class="row">
-        <div class="col-md-3">
-            <!--IsActive -->
-            <div class="form-group">
-                <label>
-                </label>
-                <div class="form-control-static">
-                    <div class="checkbox checkbox-info">
-                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="userMasterDetailScope.IsActive" tabindex="5" />
-                        <label for="chkDesignationActive">
-                            @Resource.IsActive
-                        </label>
+
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <!--IsActive -->
+                        <div class="form-group">
+                            <label>
+                            </label>
+                            <div class="form-control-static">
+                                <div class="checkbox checkbox-info">
+                                    <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="userMasterDetailScope.IsActive" tabindex="5" />
+                                    <label for="chkDesignationActive">
+                                        @Resource.IsActive
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-            </div>
-        <div class="row">
-            <div class="col-md-10">
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
-                            ng-disabled="frmUserMaster.txtUserMaster.$invalid" tabindex="6">
-                        {{userMasterDetailScope.UserId > 0 ? '@Resource.Update' : '@Resource.Save'}}
-                    </button>
-                    <button type="button" ng-click="ClearFormData()" class="btn btn-info waves-effect w-md waves-light m-b-5"
-                            tabindex="5">
-                        @Resource.Clear
-                    </button>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                                    ng-disabled="frmUserMaster.txtUserMaster.$invalid" tabindex="6">
+                                {{userMasterDetailScope.UserId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                            </button>
+                            <button type="button" ng-click="ClearFormData()" class="btn btn-info waves-effect w-md waves-light m-b-5"
+                                    tabindex="5">
+                                @Resource.Clear
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
-        
         <!-- end usermaster form -->
         <hr />
         <!-- start usermaster details list -->
