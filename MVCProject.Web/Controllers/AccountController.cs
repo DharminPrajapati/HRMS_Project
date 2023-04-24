@@ -110,16 +110,29 @@ namespace MVCProject.Controllers
             }
             else
             {
-                int roleId = ((UserContext)this.Session["UserContext"]).RoleId;
-                if (roleId == 1)
+                if (this.Session["LastUrl"] != null )
                 {
-                    return RedirectToAction("Index", "Employee", new { area = "EmployeeManagement" });
+                    string url = this.Session["LastUrl"].ToString();
+                    this.Session["LastUrl"] = null;
+                    Response.Redirect(url);
                 }
-                else
-                {
-                    return RedirectToAction("EmployeeAttendanceView", "Attendance", new { area = "Attendance" });
-                }
+
+              //  UserContext userContext = (UserContext)this.Session["UserContext"];
+              // // UserContext.PagePermission generalPermission = userContext.PageAccess.Where(p => p.PageId == Pages.General.Designation || p.PageId == Pages.General.CommonConfiguartion).FirstOrDefault();
+              ////  bool hasGeneralAccess = generalPermission.CanWrite || generalPermission.CanRead;
+
+              //  if (hasGeneralAccess)
+              //  {
+              //      return RedirectToAction("Index", "Designation", new { area = "Configuration" });
+              //  }
+              //  else
+              //  {
+              //      return this.RedirectToAction("ServerError", "Error", new { id = 404 });
+              //  }
+                //}
             }
+
+            return RedirectToAction("Index", "Employee", new { area = "EmployeeManagement" });
         }
 
         /// <summary>
