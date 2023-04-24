@@ -40,7 +40,7 @@ namespace MVCProject.Api.Controllers.Common
             else
             {
                 UserContext userContext = new UserContext();
-                userContext.EmployeeId = (int)emp.EmployeeId;               
+                userContext.EmployeeId = (int)emp.EmployeeId;
                 userContext.UserId = emp.UserId;
                 userContext.UserName = emp.UserName;
                 userContext.EmployeeName = emp.TblEmployee.FirstName + " " + emp.TblEmployee.LastName;
@@ -67,6 +67,14 @@ namespace MVCProject.Api.Controllers.Common
             UserContext.Token = null;
             return this.Response(Utilities.MessageTypes.Success);
         }
+
+        [HttpPut]
+        public ApiResponse ChangeRole(int RoleId)
+
+        {
+            UserContext.RoleId = RoleId;
+            return this.Response(Utilities.MessageTypes.Success, responseToReturn: "Updated");
+    }
     }
 }
 

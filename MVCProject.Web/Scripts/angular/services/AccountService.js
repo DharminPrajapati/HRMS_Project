@@ -33,6 +33,13 @@
             data: JSON.stringify(response)
         });
     }
+    //for create session
+    list.Relativepath = function (employeeId) {
+        return $http({
+            method: 'GET',
+            url: $rootScope.apiURL + '/Employee/GetEmployeeById?employeeId=' + employeeId
+        });
+    }
 
     //for display role
     list.GetRoles = function (UserId) {

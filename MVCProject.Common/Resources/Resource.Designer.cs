@@ -2014,6 +2014,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Salary Management.
+        /// </summary>
+        public static string Salary_Management {
+            get {
+                return ResourceManager.GetString("Salary Management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string Save {

@@ -64,7 +64,15 @@
             url: $rootScope.apiURL + '/SiteMaster/GetSitesByVertical?VerticalId=' + verticalId + '&isGetAll=' + (angular.isDefined(isGetAll) ? isGetAll : false)
         });
     };
-
+    list.CreateSession = function (response) {
+        return $http({
+            method: 'POST',
+            url: '/Account/CreateSession',
+            data: JSON.stringify(response)
+        });
+    }
+    //for create session
+    
     list.downloadReportFile = function (name, filename) {
         $http({
             method: 'GET',

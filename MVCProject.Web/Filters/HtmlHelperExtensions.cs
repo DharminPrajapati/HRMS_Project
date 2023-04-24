@@ -27,7 +27,7 @@ namespace System.Web.Mvc
         /// <param name="helper">Html Helper</param>
         /// <param name="permission">Page Permission</param>
         /// <returns>MVC Html String</returns>
-        public static MvcHtmlString Menu(this HtmlHelper helper, List<UserContext.PagePermission> permission)
+        public static MvcHtmlString Menu(this HtmlHelper helper, UserContext userContext)
         {
             //if (permission != null)
             //{
@@ -35,53 +35,66 @@ namespace System.Web.Mvc
                 menuString.Append("<div id='sidebar-menu' class='main_menu_side hidden-print main_menu'>");
                 menuString.Append("<div class='menu_section'>");
                 menuString.Append("<ul class='nav side-menu'>");
-
-              
-                    menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Configuration, "fa fa-gears"));
-                    menuString.Append("<ul class='nav child_menu'>");
-
-                    menuString.Append(GetSubMenu(Resource.Designations, "", "/Configuration/Designation"));
-                    menuString.Append(GetSubMenu(Resource.Department, "", "/Configuration/Department"));
-                    //menuString.Append(GetSubMenu(Resource.Salary, "", "/Configuration/Salary"));
-                    menuString.Append(GetSubMenu(Resource.User_Master, "", "/Configuration/UserMaster"));
-                   // menuString.Append(GetSubMenu(Resource.Allowance_Master, "", "/Configuration/AllowanceMaster"));
-                    //menuString.Append(GetSubMenu(Resource.DeductionMaster, "", "/Configuration/DeductionMaster"));
-                    menuString.Append(GetSubMenu(Resource.Company_Master, "", "/Configuration/CompanyMaster"));
-                    menuString.Append("</ul></li>");
-
-                    menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Salary_Configuration, "fa fa-gears"));
-                    menuString.Append("<ul class='nav child_menu'>");
-                    menuString.Append(GetSubMenu(Resource.Salary, "", "/Configuration/Salary"));
-                    menuString.Append(GetSubMenu(Resource.Allowance_Master, "", "/Configuration/AllowanceMaster"));
-                    menuString.Append(GetSubMenu(Resource.Deduction_Master, "", "/Configuration/DeductionMaster"));
-                    menuString.Append("</ul></li>");
-
-                    menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.EmployeeManagement, "fa fa-user"));
-                    menuString.Append("<ul class='nav child_menu'>");
-                    menuString.Append(GetSubMenu(Resource.Employee_Details, "", "/EmployeeManagement/Employee"));
-                    menuString.Append(GetSubMenu(Resource.Employee_Search, "", "/EmployeeManagement/SearchEmployee"));
-                    menuString.Append("</ul></li>");
-
-                    menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Attendance_Management, "fa fa-check-square"));
-                    menuString.Append("<ul class='nav child_menu'>");
-                    menuString.Append(GetSubMenu(Resource.EmployeeAttendance, "", "/Attendance/Attendance/EmployeeAttendanceView"));
-                    menuString.Append(GetSubMenu(Resource.Attendance, "", "/Attendance/Attendance/HRAttendanceView"));
-                    menuString.Append("</ul></li>");
-
-                    menuString.Append("<li>");
-                    menuString.AppendFormat(GetParentMenu(Resource.Salary, "fa fa-inr"));
-                    menuString.Append("<ul class='nav child_menu'>");
-                    menuString.Append(GetSubMenu(Resource.Add_Salary, "", "/Salary/Salary/Index"));
-                    menuString.Append("</ul></li>");
-                    menuString.Append("</ul></div></div>");
+            if (userContext.RoleId == 1)
+            {
 
 
+                menuString.Append("<li>");
+                menuString.AppendFormat(GetParentMenu(Resource.Configuration, "fa fa-gears"));
+                menuString.Append("<ul class='nav child_menu'>");
 
-                string menu = menuString.ToString();
+                menuString.Append(GetSubMenu(Resource.Designations, "", "/Configuration/Designation"));
+                menuString.Append(GetSubMenu(Resource.Department, "", "/Configuration/Department"));
+                //menuString.Append(GetSubMenu(Resource.Salary, "", "/Configuration/Salary"));
+                menuString.Append(GetSubMenu(Resource.User_Master, "", "/Configuration/UserMaster"));
+                // menuString.Append(GetSubMenu(Resource.Allowance_Master, "", "/Configuration/AllowanceMaster"));
+                //menuString.Append(GetSubMenu(Resource.DeductionMaster, "", "/Configuration/DeductionMaster"));
+                menuString.Append(GetSubMenu(Resource.Company_Master, "", "/Configuration/CompanyMaster"));
+                menuString.Append("</ul></li>");
+
+                menuString.Append("<li>");
+                menuString.AppendFormat(GetParentMenu(Resource.Salary_Configuration, "fa fa-gears"));
+                menuString.Append("<ul class='nav child_menu'>");
+                menuString.Append(GetSubMenu(Resource.Salary, "", "/Configuration/Salary"));
+                menuString.Append(GetSubMenu(Resource.Allowance_Master, "", "/Configuration/AllowanceMaster"));
+                menuString.Append(GetSubMenu(Resource.Deduction_Master, "", "/Configuration/DeductionMaster"));
+                menuString.Append("</ul></li>");
+
+                menuString.Append("<li>");
+                menuString.AppendFormat(GetParentMenu(Resource.EmployeeManagement, "fa fa-user"));
+                menuString.Append("<ul class='nav child_menu'>");
+                menuString.Append(GetSubMenu(Resource.Employee_Details, "", "/EmployeeManagement/Employee"));
+                menuString.Append(GetSubMenu(Resource.Employee_Search, "", "/EmployeeManagement/SearchEmployee"));
+                menuString.Append("</ul></li>");
+
+                menuString.Append("<li>");
+                menuString.AppendFormat(GetParentMenu(Resource.Salary_Management, "fa fa-inr"));
+                menuString.Append("<ul class='nav child_menu'>");
+                menuString.Append(GetSubMenu(Resource.Add_Salary, "", "/Salary/Salary/Index"));
+                menuString.Append("</ul></li>");
+
+                menuString.Append("<li>");
+                menuString.AppendFormat(GetParentMenu(Resource.Attendance_Management, "fa fa-check-square"));
+                menuString.Append("<ul class='nav child_menu'>");
+                menuString.Append(GetSubMenu(Resource.EmployeeAttendance, "", "/Attendance/Attendance/EmployeeAttendanceView"));
+                menuString.Append(GetSubMenu(Resource.Attendance, "", "/Attendance/Attendance/HRAttendanceView"));
+                menuString.Append("</ul></li>");
+                menuString.Append("</ul></div></div>");
+
+            }
+            if (userContext.RoleId == 2)
+            {
+                menuString.Append("<li>");
+                menuString.AppendFormat(GetParentMenu(Resource.Attendance_Management, "fa fa-check-square"));
+                menuString.Append("<ul class='nav child_menu'>");
+                menuString.Append(GetSubMenu(Resource.EmployeeAttendance, "", "/Attendance/Attendance/EmployeeAttendanceView"));
+               // menuString.Append(GetSubMenu(Resource.Attendance, "", "/Attendance/Attendance/HRAttendanceView"));
+                menuString.Append("</ul></li>");
+                menuString.Append("</ul></div></div>");
+
+            }
+
+            string menu = menuString.ToString();
                 return new MvcHtmlString(menu);
             
         }

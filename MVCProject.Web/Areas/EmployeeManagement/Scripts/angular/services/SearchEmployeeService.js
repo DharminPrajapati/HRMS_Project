@@ -6,7 +6,7 @@ angular.module('MVCApp')
 
         //Get designationlist 
         list.GetDesignationlist = function () {
-            debugger
+            
             return $http({
                 methd: 'GET',
                 url: $rootScope.apiURL + '/SearchEmployee/GetDesignationDropDown'
@@ -15,7 +15,7 @@ angular.module('MVCApp')
 
         //Get Department DropDown
         list.GetDepartmentlist = function () {
-            debugger
+            
             return $http({
                 methd: 'GET',
                 url: $rootScope.apiURL + '/SearchEmployee/GetDepartmentDropDown'
@@ -40,7 +40,7 @@ angular.module('MVCApp')
         }
 
         list.SearchEmp = function (SearchEmployeeDetailsParams, searchDetail) {
-            debugger
+    
             return $http({
                 method: 'POST',
                 url: $rootScope.apiURL + "/SearchEmployee/AdvancedSearchEmployee?FirstName=" + searchDetail.FirstName + "&DepartmentId=" + searchDetail.DepartmentId + "&DesignationId=" + searchDetail.DesignationId,

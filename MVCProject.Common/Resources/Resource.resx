@@ -966,4 +966,7 @@
   <data name="Salary Configuration" xml:space="preserve">
     <value>Salary Configuration</value>
   </data>
+  <data name="Salary Management" xml:space="preserve">
+    <value>Salary Management</value>
+  </data>
 </root>

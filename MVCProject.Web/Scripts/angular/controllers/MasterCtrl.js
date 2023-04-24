@@ -148,7 +148,12 @@
         // Check user session
         $scope.CheckUserSession = function () {
             $rootScope.userContext = userContext;
-            $rootScope.userContext.ProfilePicturePath = $scope.GetProfilePicturePath(userContext.CompanyDB, userContext.ProfilePicturePath);
+
+            AccountService.Relativepath(userContext.EmployeeId)
+                .then(function (res) {
+                    $rootScope.userContext.ProfilePicturePath = res.data.Result.Attachment.FileRelativePath;
+
+                    });
             $rootScope.userContext.ApplicationLogo = userContext.ApplicationLogo || "/Content/images/company-logo.png";
 
             AccountService.GetRoles($rootScope.userContext.UserId).then(function (res) {
@@ -177,9 +182,10 @@
                 if (res) {
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
-                        CommonService.CreateSession(data.Result).then(function (response) {
+                        CommonService.CreateSession($rootScope.userContext).then(function (response) {
                             $rootScope.isAjaxLoadingMaster = true;
                             CommonFunctions.RedirectToDefaultUrl();
+                            $window.location.reload();
                         });
                     }
                     else {
