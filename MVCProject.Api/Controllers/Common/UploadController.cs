@@ -211,5 +211,86 @@ namespace MVCProject.Api.Controllers.Common
             return this.Response(MessageTypes.Error, responseToReturn: null);
         }
 
+        /// <summary>
+        /// Upload file in temp folder and return thumbnail image base64.
+        /// </summary>
+        /// <param name="databaseName">Name of database.</param>
+        /// <param name="directoryPathEnumName">Directory Path Enum Name for get Attachment Folder</param>
+        /// <returns>Returns response of type <see cref="ApiResponse"/> class.</returns>
+        [HttpPost]
+        public ApiResponse UploadAttendanceImage(string directoryPathEnumName = "Attachment_Attendance")
+        {
+            try
+            {
+                string FileURL = string.Empty;
+                string directoryPath = string.Empty;
+                DirectoryPath enumDirectoryPath = new DirectoryPath();
+                if (Enum.IsDefined(typeof(DirectoryPath), directoryPathEnumName))
+                {
+                    Enum.TryParse(directoryPathEnumName, out enumDirectoryPath);
+                    directoryPath = AppUtility.GetDirectoryPath(enumDirectoryPath, UserContext.CompanyDB, false, FileURL);
+                }
+
+                string originalFileName = string.Empty;
+                string fileName = string.Empty;
+                string filePath = string.Empty;
+
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+
+                // Get Files from request
+                if (HttpContext.Current.Request.Files.AllKeys.Any())
+                {
+                    var httpPostedFile = HttpContext.Current.Request.Files["file"];
+                    originalFileName = httpPostedFile.FileName;
+                    fileName = Guid.NewGuid().ToString() + Path.GetExtension(originalFileName);
+                    filePath = Path.Combine(directoryPath, fileName);
+                    try
+                    {
+                        // Delete file if exists
+                        FileInfo fileInfo = new FileInfo(filePath);
+                        if (fileInfo.Exists)
+                        {
+                            fileInfo.Delete();
+                        }
+
+                        // Save File
+                        httpPostedFile.SaveAs(filePath);
+                    }
+                    catch (Exception ex)
+                    {
+                        AppUtility.ElmahErrorLog(ex);
+                        return this.Response(MessageTypes.Error, Resource.SomethingWrong);
+                    }
+                }
+                else
+                    throw new Exception("error");
+
+                // Set object for response 
+                var attachments = new
+                {
+                    OriginalFileName = originalFileName,
+                    FileName = fileName,
+                    IsDeleted = false,
+                    FilePath = filePath,
+                    Size = File.Exists(new FileInfo(filePath).ToString()) ? new FileInfo(filePath).Length : 0,
+                    FileRelativePath = string.Format("{0}{1}", AppUtility.GetDirectoryPath(enumDirectoryPath, UserContext.CompanyDB, true), fileName),
+                    Thumbnail = AppUtility.CreateThumbnail(filePath, 116, 116)
+                };
+
+                return this.Response(MessageTypes.Success, responseToReturn: attachments);
+            }
+            catch (Exception ex)
+            {
+                AppUtility.ElmahErrorLog(ex);
+            }
+
+
+            return this.Response(MessageTypes.Error, responseToReturn: null);
+        }
+
+
     }
 }

@@ -100,7 +100,11 @@ namespace MVCProject.Api.Utilities
         [Description(@"Attachments\Temp\")]
         Attachment_Temp = 2,
 
-       
+        /// <summary>
+        /// Attachment Attendance directoryPath
+        /// </summary>
+        [Description(@"Attachments\Attendance\")]
+        Attachment_Attendance = 3,
 
         /// <summary>
         /// Application Logo directoryPath

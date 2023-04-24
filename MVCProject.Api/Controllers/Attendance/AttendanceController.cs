@@ -8,6 +8,7 @@ namespace MVCProject.Api.Controllers.Attendance
     using System.Data.EntityClient;
     using System.Data.SqlClient;
     using System.Globalization;
+    using System.IO;
     using System.Linq;
     using System.Net;
     using System.Net.Http;
@@ -93,6 +94,45 @@ namespace MVCProject.Api.Controllers.Attendance
 
             return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Attendance), AttendanceDetail.EmployeeId);
         }
+
+
+        [HttpPost]
+        public ApiResponse UploadImage([FromBody] AttachmentMaster data, int EmployeeId, string databaseName = "HRMS", string directoryPathEnumName = "Attachment_Attendance")
+        {
+            string FileURL = string.Empty;
+            string directoryPath = string.Empty;
+            DirectoryPath enumDirectoryPath = new DirectoryPath();
+            if (Enum.IsDefined(typeof(DirectoryPath), directoryPathEnumName))
+            {
+                Enum.TryParse(directoryPathEnumName, out enumDirectoryPath);
+                directoryPath = AppUtility.GetDirectoryPath(enumDirectoryPath, databaseName, false, FileURL);
+            }
+            File.Copy(Path.Combine(directoryPath, data.FileName), Path.Combine(AppUtility.GetDirectoryPath(DirectoryPath.Attachment, databaseName, false, FileURL), data.FileName), true);
+
+
+            string filePath = Path.Combine(AppUtility.GetDirectoryPath(DirectoryPath.Attachment, databaseName, false, FileURL), data.FileName);
+            string fileRelativePath = string.Format("{0}{1}", AppUtility.GetDirectoryPath(DirectoryPath.Attachment, databaseName, true, FileURL), data.FileName);
+
+            entities.AttachmentMaster.AddObject(new AttachmentMaster()
+            {
+                FileName = data.FileName,
+                Filepath = filePath,
+                FileRelativePath = fileRelativePath,
+                OriginalFileName = data.OriginalFileName,
+                IsDeleted = false,
+                RefrencedId = EmployeeId,
+                FileAttachmentType = "4"
+            });
+            if (!(this.entities.SaveChanges() > 0))
+            {
+                return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.File));
+            }
+
+            return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.File), data);
+        }
+
+
+
         //[HttpPost]
         //public ApiResponse SaveAttendanceDetails([FromBody] Attendance AttendanceDetail)
         //{

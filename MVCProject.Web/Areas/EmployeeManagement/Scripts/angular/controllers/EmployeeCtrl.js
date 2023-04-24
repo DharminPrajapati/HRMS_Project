@@ -435,7 +435,7 @@
             if (id == undefined) {
                 return
             }
-            debugger
+          
             EmployeeService.GetDesignationlist(id).then(function (res) {
                 $scope.Designation = res.data.Result;
             });

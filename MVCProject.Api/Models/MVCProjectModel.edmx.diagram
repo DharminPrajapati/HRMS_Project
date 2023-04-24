@@ -25,6 +25,10 @@
         <EntityTypeShape EntityType="MVCProjectModel.CompanyMaster" Width="1.5" PointX="11.375" PointY="7.75" />
         <EntityTypeShape EntityType="MVCProjectModel.Designation" Width="1.5" PointX="9.375" PointY="12" />
         <AssociationConnector Association="MVCProjectModel.fk_designationId" />
+        <EntityTypeShape EntityType="MVCProjectModel.SalaryAllowance" Width="1.5" PointX="3" PointY="19.125" />
+        <EntityTypeShape EntityType="MVCProjectModel.SalaryDeduction" Width="1.5" PointX="5" PointY="16.125" />
+        <AssociationConnector Association="MVCProjectModel.fk_allowanceId" />
+        <AssociationConnector Association="MVCProjectModel.fk_deductionId" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

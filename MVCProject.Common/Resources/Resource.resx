@@ -969,4 +969,7 @@
   <data name="Salary Management" xml:space="preserve">
     <value>Salary Management</value>
   </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
 </root>

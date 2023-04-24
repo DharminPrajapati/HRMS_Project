@@ -24,6 +24,8 @@
           <Property Name="EntryDate" Type="date" />
           <Property Name="UpdateBy" Type="int" />
           <Property Name="UpdatedDate" Type="date" />
+          <Property Name="TotalAllowance" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TotalDeductoin" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="AllowanceMaster">
           <Key>
@@ -121,6 +123,16 @@
           <Property Name="DepartmentId" Type="int" />
           <Property Name="ShortCode" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="SalaryAllowance">
+          <Key>
+            <PropertyRef Name="SalaryAllowanceId" />
+          </Key>
+          <Property Name="SalaryAllowanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AllowanceId" Type="int" />
+          <Property Name="AllowanceAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="SalaryId" Type="int" />
+        </EntityType>
         <EntityType Name="SalaryConfiguration">
           <Key>
             <PropertyRef Name="SalaryConfigurationId" />
@@ -134,6 +146,16 @@
           <Property Name="UpdateBy" Type="int" />
           <Property Name="UpdatedDate" Type="date" />
           <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="SalaryDeduction">
+          <Key>
+            <PropertyRef Name="SalaryDeductionId" />
+          </Key>
+          <Property Name="SalaryDeductionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeductionId" Type="int" />
+          <Property Name="DeductionAmount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="SalaryId" Type="int" />
         </EntityType>
         <EntityType Name="TblDepartment">
           <Key>
@@ -241,6 +263,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_allowanceId">
+          <End Role="AllowanceMaster" Type="Self.AllowanceMaster" Multiplicity="0..1" />
+          <End Role="SalaryAllowance" Type="Self.SalaryAllowance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AllowanceMaster">
+              <PropertyRef Name="AllowanceId" />
+            </Principal>
+            <Dependent Role="SalaryAllowance">
+              <PropertyRef Name="AllowanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_deductionId">
+          <End Role="DeductionMaster" Type="Self.DeductionMaster" Multiplicity="0..1" />
+          <End Role="SalaryDeduction" Type="Self.SalaryDeduction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeductionMaster">
+              <PropertyRef Name="DeductionId" />
+            </Principal>
+            <Dependent Role="SalaryDeduction">
+              <PropertyRef Name="DeductionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_designationId">
           <End Role="Designation" Type="Self.Designation" Multiplicity="0..1" />
           <End Role="TblEmployee" Type="Self.TblEmployee" Multiplicity="*" />
@@ -306,7 +352,9 @@
           <EntitySet Name="CompanyMaster" EntityType="Self.CompanyMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeductionMaster" EntityType="Self.DeductionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalaryAllowance" EntityType="Self.SalaryAllowance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalaryConfiguration" EntityType="Self.SalaryConfiguration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalaryDeduction" EntityType="Self.SalaryDeduction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblDepartment" EntityType="Self.TblDepartment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblEmployee" EntityType="Self.TblEmployee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
@@ -319,6 +367,14 @@
           <AssociationSet Name="FK__UserRole__UserId__0CDAE408" Association="Self.FK__UserRole__UserId__0CDAE408">
             <End Role="UserMaster" EntitySet="UserMaster" />
             <End Role="UserRole" EntitySet="UserRole" />
+          </AssociationSet>
+          <AssociationSet Name="fk_allowanceId" Association="Self.fk_allowanceId">
+            <End Role="AllowanceMaster" EntitySet="AllowanceMaster" />
+            <End Role="SalaryAllowance" EntitySet="SalaryAllowance" />
+          </AssociationSet>
+          <AssociationSet Name="fk_deductionId" Association="Self.fk_deductionId">
+            <End Role="DeductionMaster" EntitySet="DeductionMaster" />
+            <End Role="SalaryDeduction" EntitySet="SalaryDeduction" />
           </AssociationSet>
           <AssociationSet Name="fk_designationId" Association="Self.fk_designationId">
             <End Role="Designation" EntitySet="Designation" />
@@ -459,6 +515,16 @@
             <End Role="Designation" EntitySet="Designation" />
             <End Role="TblEmployee" EntitySet="TblEmployees" />
           </AssociationSet>
+          <EntitySet Name="SalaryAllowance" EntityType="MVCProjectModel.SalaryAllowance" />
+          <EntitySet Name="SalaryDeduction" EntityType="MVCProjectModel.SalaryDeduction" />
+          <AssociationSet Name="fk_allowanceId" Association="MVCProjectModel.fk_allowanceId">
+            <End Role="AllowanceMaster" EntitySet="AllowanceMaster" />
+            <End Role="SalaryAllowance" EntitySet="SalaryAllowance" />
+          </AssociationSet>
+          <AssociationSet Name="fk_deductionId" Association="MVCProjectModel.fk_deductionId">
+            <End Role="DeductionMaster" EntitySet="DeductionMaster" />
+            <End Role="SalaryDeduction" EntitySet="SalaryDeduction" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AttachmentMaster">
           <Key>
@@ -554,6 +620,8 @@
           <Property Type="String" Name="HRAamt" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="PFamt" Nullable="true" MaxLength="50" />
           <Property Type="Decimal" Name="netSalary" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalAllowance" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="TotalDeductoin" Nullable="true" Precision="18" Scale="0" />
         </ComplexType>
         <ComplexType Name="sp_Emp_GetAllEmployees_Result">
           <Property Type="Int32" Name="EmployeeId" Nullable="false" />
@@ -614,6 +682,8 @@
           <Property Name="EntryDate" Type="DateTime" Precision="0" />
           <Property Name="UpdateBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <Property Name="TotalAllowance" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TotalDeductoin" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <ComplexType Name="sp_hrms_searchemp_Result">
           <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
@@ -736,6 +806,7 @@
           <Property Name="UpdateBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SalaryAllowance" Relationship="MVCProjectModel.fk_allowanceId" FromRole="AllowanceMaster" ToRole="SalaryAllowance" />
         </EntityType>
         <EntityType Name="DeductionMaster">
           <Key>
@@ -750,6 +821,7 @@
           <Property Name="UpdateBy" Type="Int32" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="SalaryDeduction" Relationship="MVCProjectModel.fk_deductionId" FromRole="DeductionMaster" ToRole="SalaryDeduction" />
         </EntityType>
         <EntityType Name="CompanyMaster">
           <Key>
@@ -785,6 +857,52 @@
             </Principal>
             <Dependent Role="TblEmployee">
               <PropertyRef Name="DesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SalaryAllowance">
+          <Key>
+            <PropertyRef Name="SalaryAllowanceId" />
+          </Key>
+          <Property Name="SalaryAllowanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AllowanceId" Type="Int32" />
+          <Property Name="AllowanceAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="SalaryId" Type="Int32" />
+          <NavigationProperty Name="AllowanceMaster" Relationship="MVCProjectModel.fk_allowanceId" FromRole="SalaryAllowance" ToRole="AllowanceMaster" />
+        </EntityType>
+        <EntityType Name="SalaryDeduction">
+          <Key>
+            <PropertyRef Name="SalaryDeductionId" />
+          </Key>
+          <Property Name="SalaryDeductionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeductionId" Type="Int32" />
+          <Property Name="DeductionAmount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="SalaryId" Type="Int32" />
+          <NavigationProperty Name="DeductionMaster" Relationship="MVCProjectModel.fk_deductionId" FromRole="SalaryDeduction" ToRole="DeductionMaster" />
+        </EntityType>
+        <Association Name="fk_allowanceId">
+          <End Type="MVCProjectModel.AllowanceMaster" Role="AllowanceMaster" Multiplicity="0..1" />
+          <End Type="MVCProjectModel.SalaryAllowance" Role="SalaryAllowance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AllowanceMaster">
+              <PropertyRef Name="AllowanceId" />
+            </Principal>
+            <Dependent Role="SalaryAllowance">
+              <PropertyRef Name="AllowanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_deductionId">
+          <End Type="MVCProjectModel.DeductionMaster" Role="DeductionMaster" Multiplicity="0..1" />
+          <End Type="MVCProjectModel.SalaryDeduction" Role="SalaryDeduction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeductionMaster">
+              <PropertyRef Name="DeductionId" />
+            </Principal>
+            <Dependent Role="SalaryDeduction">
+              <PropertyRef Name="DeductionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -937,6 +1055,8 @@
                 <ScalarProperty Name="HRAamt" ColumnName="HRAamt" />
                 <ScalarProperty Name="PFamt" ColumnName="PFamt" />
                 <ScalarProperty Name="netSalary" ColumnName="netSalary" />
+                <ScalarProperty Name="TotalAllowance" ColumnName="TotalAllowance" />
+                <ScalarProperty Name="TotalDeductoin" ColumnName="TotalDeductoin" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -991,6 +1111,8 @@
           <EntitySetMapping Name="AddSalary">
             <EntityTypeMapping TypeName="MVCProjectModel.AddSalary">
               <MappingFragment StoreEntitySet="AddSalary">
+                <ScalarProperty Name="TotalDeductoin" ColumnName="TotalDeductoin" />
+                <ScalarProperty Name="TotalAllowance" ColumnName="TotalAllowance" />
                 <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
                 <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
@@ -1136,6 +1258,28 @@
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
                 <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalaryAllowance">
+            <EntityTypeMapping TypeName="MVCProjectModel.SalaryAllowance">
+              <MappingFragment StoreEntitySet="SalaryAllowance">
+                <ScalarProperty Name="SalaryId" ColumnName="SalaryId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="AllowanceAmount" ColumnName="AllowanceAmount" />
+                <ScalarProperty Name="AllowanceId" ColumnName="AllowanceId" />
+                <ScalarProperty Name="SalaryAllowanceId" ColumnName="SalaryAllowanceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalaryDeduction">
+            <EntityTypeMapping TypeName="MVCProjectModel.SalaryDeduction">
+              <MappingFragment StoreEntitySet="SalaryDeduction">
+                <ScalarProperty Name="SalaryId" ColumnName="SalaryId" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="DeductionAmount" ColumnName="DeductionAmount" />
+                <ScalarProperty Name="DeductionId" ColumnName="DeductionId" />
+                <ScalarProperty Name="SalaryDeductionId" ColumnName="SalaryDeductionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

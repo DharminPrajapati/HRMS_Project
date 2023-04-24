@@ -25,6 +25,8 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__UserRole__UserId__0CDAE408", "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserMaster), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserRole), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__UserRole__RoleId__0BE6BFCF", "UserRoleMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserRoleMaster), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserRole), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_designationId", "Designation", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.Designation), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
+[assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_allowanceId", "AllowanceMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.AllowanceMaster), "SalaryAllowance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.SalaryAllowance), true)]
+[assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_deductionId", "DeductionMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.DeductionMaster), "SalaryDeduction", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.SalaryDeduction), true)]
 
 #endregion
 
@@ -299,6 +301,38 @@ namespace MVCProject.Api.Models
             }
         }
         private ObjectSet<Designation> _Designation;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SalaryAllowance> SalaryAllowance
+        {
+            get
+            {
+                if ((_SalaryAllowance == null))
+                {
+                    _SalaryAllowance = base.CreateObjectSet<SalaryAllowance>("SalaryAllowance");
+                }
+                return _SalaryAllowance;
+            }
+        }
+        private ObjectSet<SalaryAllowance> _SalaryAllowance;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SalaryDeduction> SalaryDeduction
+        {
+            get
+            {
+                if ((_SalaryDeduction == null))
+                {
+                    _SalaryDeduction = base.CreateObjectSet<SalaryDeduction>("SalaryDeduction");
+                }
+                return _SalaryDeduction;
+            }
+        }
+        private ObjectSet<SalaryDeduction> _SalaryDeduction;
 
         #endregion
 
@@ -414,6 +448,22 @@ namespace MVCProject.Api.Models
         public void AddToDesignation(Designation designation)
         {
             base.AddObject("Designation", designation);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SalaryAllowance EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSalaryAllowance(SalaryAllowance salaryAllowance)
+        {
+            base.AddObject("SalaryAllowance", salaryAllowance);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SalaryDeduction EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSalaryDeduction(SalaryDeduction salaryDeduction)
+        {
+            base.AddObject("SalaryDeduction", salaryDeduction);
         }
 
         #endregion
@@ -880,6 +930,54 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.DateTime> _UpdatedDate;
         partial void OnUpdatedDateChanging(Nullable<global::System.DateTime> value);
         partial void OnUpdatedDateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TotalAllowance
+        {
+            get
+            {
+                return _TotalAllowance;
+            }
+            set
+            {
+                OnTotalAllowanceChanging(value);
+                ReportPropertyChanging("TotalAllowance");
+                _TotalAllowance = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TotalAllowance");
+                OnTotalAllowanceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TotalAllowance;
+        partial void OnTotalAllowanceChanging(Nullable<global::System.Decimal> value);
+        partial void OnTotalAllowanceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TotalDeductoin
+        {
+            get
+            {
+                return _TotalDeductoin;
+            }
+            set
+            {
+                OnTotalDeductoinChanging(value);
+                ReportPropertyChanging("TotalDeductoin");
+                _TotalDeductoin = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TotalDeductoin");
+                OnTotalDeductoinChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TotalDeductoin;
+        partial void OnTotalDeductoinChanging(Nullable<global::System.Decimal> value);
+        partial void OnTotalDeductoinChanged();
 
         #endregion
 
@@ -1141,6 +1239,32 @@ namespace MVCProject.Api.Models
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_allowanceId", "SalaryAllowance")]
+        public EntityCollection<SalaryAllowance> SalaryAllowance
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SalaryAllowance>("MVCProjectModel.fk_allowanceId", "SalaryAllowance");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SalaryAllowance>("MVCProjectModel.fk_allowanceId", "SalaryAllowance", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -2464,6 +2588,32 @@ namespace MVCProject.Api.Models
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_deductionId", "SalaryDeduction")]
+        public EntityCollection<SalaryDeduction> SalaryDeduction
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SalaryDeduction>("MVCProjectModel.fk_deductionId", "SalaryDeduction");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SalaryDeduction>("MVCProjectModel.fk_deductionId", "SalaryDeduction", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -2661,6 +2811,201 @@ namespace MVCProject.Api.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<TblEmployee>("MVCProjectModel.fk_designationId", "TblEmployee", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MVCProjectModel", Name="SalaryAllowance")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SalaryAllowance : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SalaryAllowance object.
+        /// </summary>
+        /// <param name="salaryAllowanceId">Initial value of the SalaryAllowanceId property.</param>
+        public static SalaryAllowance CreateSalaryAllowance(global::System.Int32 salaryAllowanceId)
+        {
+            SalaryAllowance salaryAllowance = new SalaryAllowance();
+            salaryAllowance.SalaryAllowanceId = salaryAllowanceId;
+            return salaryAllowance;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SalaryAllowanceId
+        {
+            get
+            {
+                return _SalaryAllowanceId;
+            }
+            set
+            {
+                if (_SalaryAllowanceId != value)
+                {
+                    OnSalaryAllowanceIdChanging(value);
+                    ReportPropertyChanging("SalaryAllowanceId");
+                    _SalaryAllowanceId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SalaryAllowanceId");
+                    OnSalaryAllowanceIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _SalaryAllowanceId;
+        partial void OnSalaryAllowanceIdChanging(global::System.Int32 value);
+        partial void OnSalaryAllowanceIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> AllowanceId
+        {
+            get
+            {
+                return _AllowanceId;
+            }
+            set
+            {
+                OnAllowanceIdChanging(value);
+                ReportPropertyChanging("AllowanceId");
+                _AllowanceId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AllowanceId");
+                OnAllowanceIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _AllowanceId;
+        partial void OnAllowanceIdChanging(Nullable<global::System.Int32> value);
+        partial void OnAllowanceIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> AllowanceAmount
+        {
+            get
+            {
+                return _AllowanceAmount;
+            }
+            set
+            {
+                OnAllowanceAmountChanging(value);
+                ReportPropertyChanging("AllowanceAmount");
+                _AllowanceAmount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AllowanceAmount");
+                OnAllowanceAmountChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _AllowanceAmount;
+        partial void OnAllowanceAmountChanging(Nullable<global::System.Decimal> value);
+        partial void OnAllowanceAmountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> EmployeeId
+        {
+            get
+            {
+                return _EmployeeId;
+            }
+            set
+            {
+                OnEmployeeIdChanging(value);
+                ReportPropertyChanging("EmployeeId");
+                _EmployeeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EmployeeId");
+                OnEmployeeIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _EmployeeId;
+        partial void OnEmployeeIdChanging(Nullable<global::System.Int32> value);
+        partial void OnEmployeeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SalaryId
+        {
+            get
+            {
+                return _SalaryId;
+            }
+            set
+            {
+                OnSalaryIdChanging(value);
+                ReportPropertyChanging("SalaryId");
+                _SalaryId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SalaryId");
+                OnSalaryIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SalaryId;
+        partial void OnSalaryIdChanging(Nullable<global::System.Int32> value);
+        partial void OnSalaryIdChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_allowanceId", "AllowanceMaster")]
+        public AllowanceMaster AllowanceMaster
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AllowanceMaster>("MVCProjectModel.fk_allowanceId", "AllowanceMaster").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AllowanceMaster>("MVCProjectModel.fk_allowanceId", "AllowanceMaster").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<AllowanceMaster> AllowanceMasterReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<AllowanceMaster>("MVCProjectModel.fk_allowanceId", "AllowanceMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<AllowanceMaster>("MVCProjectModel.fk_allowanceId", "AllowanceMaster", value);
                 }
             }
         }
@@ -2916,6 +3261,201 @@ namespace MVCProject.Api.Models
         #endregion
 
     
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MVCProjectModel", Name="SalaryDeduction")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SalaryDeduction : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SalaryDeduction object.
+        /// </summary>
+        /// <param name="salaryDeductionId">Initial value of the SalaryDeductionId property.</param>
+        public static SalaryDeduction CreateSalaryDeduction(global::System.Int32 salaryDeductionId)
+        {
+            SalaryDeduction salaryDeduction = new SalaryDeduction();
+            salaryDeduction.SalaryDeductionId = salaryDeductionId;
+            return salaryDeduction;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 SalaryDeductionId
+        {
+            get
+            {
+                return _SalaryDeductionId;
+            }
+            set
+            {
+                if (_SalaryDeductionId != value)
+                {
+                    OnSalaryDeductionIdChanging(value);
+                    ReportPropertyChanging("SalaryDeductionId");
+                    _SalaryDeductionId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SalaryDeductionId");
+                    OnSalaryDeductionIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _SalaryDeductionId;
+        partial void OnSalaryDeductionIdChanging(global::System.Int32 value);
+        partial void OnSalaryDeductionIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DeductionId
+        {
+            get
+            {
+                return _DeductionId;
+            }
+            set
+            {
+                OnDeductionIdChanging(value);
+                ReportPropertyChanging("DeductionId");
+                _DeductionId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DeductionId");
+                OnDeductionIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DeductionId;
+        partial void OnDeductionIdChanging(Nullable<global::System.Int32> value);
+        partial void OnDeductionIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> DeductionAmount
+        {
+            get
+            {
+                return _DeductionAmount;
+            }
+            set
+            {
+                OnDeductionAmountChanging(value);
+                ReportPropertyChanging("DeductionAmount");
+                _DeductionAmount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DeductionAmount");
+                OnDeductionAmountChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _DeductionAmount;
+        partial void OnDeductionAmountChanging(Nullable<global::System.Decimal> value);
+        partial void OnDeductionAmountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> EmployeeId
+        {
+            get
+            {
+                return _EmployeeId;
+            }
+            set
+            {
+                OnEmployeeIdChanging(value);
+                ReportPropertyChanging("EmployeeId");
+                _EmployeeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EmployeeId");
+                OnEmployeeIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _EmployeeId;
+        partial void OnEmployeeIdChanging(Nullable<global::System.Int32> value);
+        partial void OnEmployeeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SalaryId
+        {
+            get
+            {
+                return _SalaryId;
+            }
+            set
+            {
+                OnSalaryIdChanging(value);
+                ReportPropertyChanging("SalaryId");
+                _SalaryId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SalaryId");
+                OnSalaryIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SalaryId;
+        partial void OnSalaryIdChanging(Nullable<global::System.Int32> value);
+        partial void OnSalaryIdChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_deductionId", "DeductionMaster")]
+        public DeductionMaster DeductionMaster
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DeductionMaster>("MVCProjectModel.fk_deductionId", "DeductionMaster").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DeductionMaster>("MVCProjectModel.fk_deductionId", "DeductionMaster").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<DeductionMaster> DeductionMasterReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<DeductionMaster>("MVCProjectModel.fk_deductionId", "DeductionMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<DeductionMaster>("MVCProjectModel.fk_deductionId", "DeductionMaster", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
     
     /// <summary>
@@ -7161,6 +7701,54 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.Decimal> _netSalary;
         partial void OnnetSalaryChanging(Nullable<global::System.Decimal> value);
         partial void OnnetSalaryChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TotalAllowance
+        {
+            get
+            {
+                return _TotalAllowance;
+            }
+            set
+            {
+                OnTotalAllowanceChanging(value);
+                ReportPropertyChanging("TotalAllowance");
+                _TotalAllowance = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TotalAllowance");
+                OnTotalAllowanceChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TotalAllowance;
+        partial void OnTotalAllowanceChanging(Nullable<global::System.Decimal> value);
+        partial void OnTotalAllowanceChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Decimal> TotalDeductoin
+        {
+            get
+            {
+                return _TotalDeductoin;
+            }
+            set
+            {
+                OnTotalDeductoinChanging(value);
+                ReportPropertyChanging("TotalDeductoin");
+                _TotalDeductoin = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TotalDeductoin");
+                OnTotalDeductoinChanged();
+            }
+        }
+        private Nullable<global::System.Decimal> _TotalDeductoin;
+        partial void OnTotalDeductoinChanging(Nullable<global::System.Decimal> value);
+        partial void OnTotalDeductoinChanged();
 
         #endregion
 

@@ -23,6 +23,23 @@
             });
         }
 
+        list.SaveAllowanceDetails = function (SalaryDetails) {
+            return $http({
+                method: 'POST',
+                url: $rootScope.apiURL + '/Salary/SaveAllowanceDetails',
+                data: JSON.stringify(SalaryDetails)
+            });
+        }
+
+        list.SaveDeductionDetails = function (Salarydetails) {
+            return $http({
+                method: 'POST',
+                url: $rootScope.apiURL + '/Salary/SaveDeductionDetails',
+                data: JSON.stringify(Salarydetails)
+            });
+        }
+
+
         // Get Employees By Salary Id
         list.GetSalaryById = function (salaryId) {
             return $http({
@@ -85,7 +102,6 @@
             });
         }
 
-        // Get Allowances Descirption and Value
         list.Allowances = function () {
             return $http({
                 method: 'GET',
@@ -93,7 +109,6 @@
             });
         };
 
-        //Get Deduction Description and Value
         list.Deductions = function () {
             return $http({
                 method: 'GET',

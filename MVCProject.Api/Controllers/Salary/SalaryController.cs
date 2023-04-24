@@ -70,6 +70,14 @@ namespace MVCProject.Api.Controllers.Salary
 
         public ApiResponse GetSalaryById(int salaryId)
         {
+            var AllowanceAmount = this.entities.SalaryAllowance
+            .Where(x => x.SalaryId == salaryId)
+            .Select(x => new { AllowanceAmount = x.AllowanceAmount == null ? 0 : x.AllowanceAmount, SalaryAllowanceId = x.AllowanceAmount == null ? 0 : x.SalaryAllowanceId })
+            .ToList();
+            var DeductionAmount = this.entities.SalaryDeduction
+           .Where(x => x.SalaryId == salaryId)
+           .Select(x => new { DeductionAmount = x.DeductionAmount == null ? 0 : x.DeductionAmount, SalaryDeductionId = x.DeductionAmount == null ? 0 : x.SalaryDeductionId })
+           .ToList();
             var salaryDetail = this.entities.Sp_Salary_DisplayAllEmployees().Where(x => x.SalaryId == salaryId)
                 .Select(d => new
                 {
@@ -88,7 +96,11 @@ namespace MVCProject.Api.Controllers.Salary
                     HRAamt = d.HRAamt,
                     PFamt = d.PFamt,
                     netSalary = d.netSalary,
-                    IsActive = d.IsActive
+                    IsActive = d.IsActive,
+                    TotalAllowance = d.TotalAllowance,
+                    TotalDeductoin = d.TotalDeductoin,
+                    AllowanceAmount,
+                    DeductionAmount
                 }).SingleOrDefault();
 
             if (salaryDetail != null)
@@ -100,6 +112,44 @@ namespace MVCProject.Api.Controllers.Salary
                 return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
             }
         }
+
+        // /// <summary>
+        ///// Get Employees By Id
+        ///// </summary>
+        //[HttpGet]
+
+        //public ApiResponse GetSalaryById(int salaryId)
+        //{
+        //    var salaryDetail = this.entities.Sp_Salary_DisplayAllEmployees().Where(x => x.SalaryId == salaryId)
+        //        .Select(d => new
+        //        {
+        //            SalaryId = d.SalaryId,
+        //            EmployeeId = d.EmployeeId,
+        //            Name = d.FirstName + ' ' + d.LastName,
+        //            DepartmentId = d.DepartmentId,
+        //            DesignationId = d.DepartmentId,
+        //            DesignationName = d.DesignationName,
+        //            DepartmentName = d.DepartmentName,
+        //            BasicSalary = d.BasicSalary,
+        //            DA = d.DA,
+        //            HRA = d.HRA,
+        //            PF = d.PF,
+        //            DAamt = d.DAamt,
+        //            HRAamt = d.HRAamt,
+        //            PFamt = d.PFamt,
+        //            netSalary = d.netSalary,
+        //            IsActive = d.IsActive
+        //        }).SingleOrDefault();
+
+        //    if (salaryDetail != null)
+        //    {
+        //        return this.Response(Utilities.MessageTypes.Success, string.Empty, salaryDetail);
+        //    }
+        //    else
+        //    {
+        //        return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
+        //    }
+        //}
 
         /// <summary>
         /// Get Employees By Id
@@ -199,7 +249,8 @@ namespace MVCProject.Api.Controllers.Salary
                 existingSalaryDetail.PFamt = SalaryDetail.PFamt;
                 existingSalaryDetail.netSalary = SalaryDetail.netSalary;
                 existingSalaryDetail.IsActive = SalaryDetail.IsActive;
-
+                existingSalaryDetail.TotalAllowance = SalaryDetail.TotalAllowance;
+                existingSalaryDetail.TotalDeductoin = SalaryDetail.TotalDeductoin;
 
 
                 this.entities.AddSalary.ApplyCurrentValues(existingSalaryDetail);
@@ -211,8 +262,67 @@ namespace MVCProject.Api.Controllers.Salary
                 return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Salary));
             }
 
-
         }
+
+        [HttpPost]
+        public ApiResponse SaveAllowanceDetails([FromBody] List<SalaryAllowance> SalaryDetail)
+        {
+            foreach (var allow in SalaryDetail)
+            {
+                SalaryAllowance existingSalaryDetail = this.entities.SalaryAllowance.Where(x => x.SalaryAllowanceId == allow.SalaryAllowanceId).FirstOrDefault();
+                if (existingSalaryDetail == null)
+                {
+                    this.entities.SalaryAllowance.AddObject(allow);
+                }
+
+                // For Update
+
+                else
+                {
+                    existingSalaryDetail.AllowanceAmount = allow.AllowanceAmount;
+                    this.entities.SalaryAllowance.ApplyCurrentValues(existingSalaryDetail);
+                }
+            }
+            if (!(this.entities.SaveChanges() > 0))
+            {
+                return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Salary));
+            }
+
+            return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Salary));
+        }
+
+        [HttpPost]
+        public ApiResponse SaveDeductionDetails([FromBody] List<SalaryDeduction> SalaryDetail)
+        {
+            foreach (var allow in SalaryDetail)
+            {
+                SalaryDeduction existingSalaryDetail = this.entities.SalaryDeduction.Where(x => x.SalaryDeductionId == allow.SalaryDeductionId).FirstOrDefault();
+                if (existingSalaryDetail == null)
+                {
+                    this.entities.SalaryDeduction.AddObject(allow);
+                }
+
+                // For Update
+
+                else
+                {
+                    existingSalaryDetail.DeductionAmount = allow.DeductionAmount;
+                    this.entities.SalaryDeduction.ApplyCurrentValues(existingSalaryDetail);
+                }
+            }
+            if (!(this.entities.SaveChanges() > 0))
+            {
+                return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Salary));
+            }
+
+            return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Salary));
+        }
+
+
+
+
+
+
 
 
         [HttpPost]

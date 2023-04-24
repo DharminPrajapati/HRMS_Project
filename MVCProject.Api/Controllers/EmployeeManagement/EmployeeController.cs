@@ -460,6 +460,7 @@
             var attachfile = employeeDetail.Attachment;
             attachfile.RefrencedId = employeeDetail.EmployeeId;
             attachfile.IsActive = employeeDetail.IsActive;
+            attachfile.FileAttachmentType = "1";
             this.entities.AttachmentMaster.AddObject(attachfile);
             this.entities.SaveChanges();
 
