@@ -2,14 +2,14 @@
     'use strict';
 
     angular.module("MVCApp").controller('SalaryCtrl', [
-        '$scope', '$rootScope', '$location', 'ngTableParams', 'CommonFunctions', 'FileService', 'SalaryService', SalaryCtrl
+        '$scope', '$rootScope', '$location', '$window', 'ngTableParams', 'CommonFunctions', 'FileService', 'SalaryService', SalaryCtrl
     ]);
 
-    function SalaryCtrl($scope, $rootScope, $location, ngTableParams, CommonFunctions, FileService, SalaryService) {
+    function SalaryCtrl($scope, $rootScope, $location, $window, ngTableParams, CommonFunctions, FileService, SalaryService) {
         //Initial Declaration
         var salaryDetailsParams = {};
 
-
+        $scope.AllowancesDetailScope = {};
 
 
         $scope.salaryDetailScope = {
@@ -37,13 +37,14 @@
 
         $scope.SaveSalaryDetails = function (salaryDetailScope, frmSalary) {
             if (frmSalary.$valid) {
-
+                
                 SalaryService.SaveSalaryDetails(salaryDetailScope).then(function (res) {
+                    
                     if (res) {
                         // Save Salary Allowance
                         for (var i = 0; i < $scope.AllowancesDetailScope.length; i++) {
                             $scope.AllowancesDetailScope[i].EmployeeId = salaryDetailScope.EmployeeId;
-                            $scope.AllowancesDetailScope[i].SalaryId = salaryDetailScope.SalaryId;
+                            $scope.AllowancesDetailScope[i].SalaryId = res.data.Result;
                             if (salaryDetailScope.AllowanceAmount && salaryDetailScope.AllowanceAmount[i]) {
                                 $scope.AllowancesDetailScope[i].SalaryAllowanceId = salaryDetailScope.AllowanceAmount[i].SalaryAllowanceId;
                             } else {
@@ -55,7 +56,7 @@
                         // Save Salary Deduction
                         for (var i = 0; i < $scope.DeductionDetailScope.length; i++) {
                             $scope.DeductionDetailScope[i].EmployeeId = salaryDetailScope.EmployeeId;
-                            $scope.DeductionDetailScope[i].SalaryId = salaryDetailScope.SalaryId;
+                            $scope.DeductionDetailScope[i].SalaryId = res.data.Result;
                             if (salaryDetailScope.DeductionAmount && salaryDetailScope.DeductionAmount[i]) {
                                 $scope.DeductionDetailScope[i].SalaryDeductionId = salaryDetailScope.DeductionAmount[i].SalaryDeductionId;
                             } else {
@@ -68,13 +69,17 @@
                         SalaryService.SaveAllowanceDetails($scope.AllowancesDetailScope).then(function (res) {
                             // Deducion Details Api
                             SalaryService.SaveDeductionDetails($scope.DeductionDetailScope).then(function (res) {
-
+                                
                                 var data = res.data;
                                 if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
 
                                     $scope.ClearFormData(frmSalary);
                                     toastr.success(data.Message, successTitle);
                                     $scope.tableParams.reload();
+                                    // set Timeout and then Redirect To Salary Details Page
+                                    setTimeout(function () {
+                                        $window.location.href = "/Salary/Salary/SalaryDetails";
+                                    }, 2000);
                                 }
                                 else if (data.MessageType == messageTypes.Error) {
                                     toastr.error(data.Message, errorTitle);
@@ -101,20 +106,23 @@
 
 
             SalaryService.GetSalaryById(salaryId).then(function (res) {
-                debugger
+                
                 if (res) {
                     var data = res.data;
                     if (data.MessageType == messageTypes.Success) {
                         $scope.FullnameURL = SalaryService.GetFullName(true);
                         $scope.salaryDetailScope = data.Result;
                         // Allowance Amount
+                        
                         for (var i = 0; i < $scope.salaryDetailScope.AllowanceAmount.length; i++) {
+
                             $scope.AllowancesDetailScope[i].AllowanceAmount = $scope.salaryDetailScope.AllowanceAmount[i].AllowanceAmount;
                         }
                         // Deduction Amount
                         for (var i = 0; i < $scope.salaryDetailScope.DeductionAmount.length; i++) {
                             $scope.DeductionDetailScope[i].DeductionAmount = $scope.salaryDetailScope.DeductionAmount[i].DeductionAmount;
                         }
+
 
                         $scope.lastStorageAudit = angular.copy(data.Result);
                         $scope.$broadcast('angucomplete-alt:changeInput', 'txtEmp', $scope.salaryDetailScope.Name);
@@ -188,12 +196,12 @@
         }
 
 
-        $scope.AllowancesDetailScope = {};
+
         $scope.DeductionDetailScope = {};
         $scope.TotalAllowance = 0;
         // Calculate Total Salary
         $scope.CalculateSalary = function () {
-
+            
             var totalAllowance = 0;
             //Total Allowances
             for (var i = 0; i < $scope.AllowancesDetailScope.length; i++) {
@@ -204,7 +212,6 @@
             }
 
             $scope.salaryDetailScope.TotalAllowance = totalAllowance;
-           
 
 
             //Total Deduction
@@ -256,11 +263,11 @@
 
         //Salary Allowance 
         $scope.Allowance = function () {
-
+            
             SalaryService.Allowances().then(function (res) {
-
                 $scope.Allowances = res.data.Result;
                 $scope.AllowancesDetailScope = $scope.Allowances;
+                $scope.EditSalaryDetails($location.search().Id);
             })
         }
         $scope.Allowance();
@@ -275,7 +282,7 @@
         $scope.Deduction();
 
         $scope.Init = function () {
-
+            
             $scope.SalaryDetails();
             $scope.Allowance();
             $scope.Deduction();

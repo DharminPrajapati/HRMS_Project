@@ -1744,6 +1744,24 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payroll.
+        /// </summary>
+        public static string PayRoll {
+            get {
+                return ResourceManager.GetString("PayRoll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PayRollManagement.
+        /// </summary>
+        public static string PayRollManagement {
+            get {
+                return ResourceManager.GetString("PayRollManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note: This is electronic system generated report..
         /// </summary>
         public static string PDFFooterText {
@@ -2028,6 +2046,15 @@ namespace MVCProject.Common.Resources {
         public static string Salary_Management {
             get {
                 return ResourceManager.GetString("Salary Management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salary Details.
+        /// </summary>
+        public static string SalaryDetails {
+            get {
+                return ResourceManager.GetString("SalaryDetails", resourceCulture);
             }
         }
         

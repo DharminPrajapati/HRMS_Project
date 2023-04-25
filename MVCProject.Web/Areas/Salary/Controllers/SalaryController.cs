@@ -17,7 +17,35 @@ namespace MVCProject.Areas.Salary.Controllers
         //
         // GET: /Salary/Salary/
         public string ApiUrl = ConfigurationManager.AppSettings["apiurl"];
+
+        /// <summary>
+        /// Add Salary Page
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
+        {
+            string Id = Request.QueryString["Id"];
+            if (Id != null)
+            {
+                ViewBag.Id = Id;
+            }
+            return View();
+        }
+        /// <summary>
+        /// Payroll View
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Payroll()
+        {
+            return View();
+        }
+
+
+        /// <summary>
+        /// Display Salary Details
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult SalaryDetails()
         {
             return View();
         }

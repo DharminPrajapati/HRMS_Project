@@ -530,6 +530,8 @@
     <Content Include="Areas\Configuration\Views\AllowanceMaster\Index.cshtml" />
     <Content Include="Areas\Configuration\Views\DeductionMaster\Index.cshtml" />
     <Content Include="Areas\Configuration\Views\CompanyMaster\Index.cshtml" />
+    <Content Include="Areas\Salary\Views\Salary\Payroll.cshtml" />
+    <Content Include="Areas\Salary\Views\Salary\SalaryDetails.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />

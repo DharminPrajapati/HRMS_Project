@@ -28,7 +28,6 @@
         min-width: 70px !important;
         max-width: 70px !important;
     }
-
 </style>
 
 <div ng-controller="SalaryCtrl" novalidate>
@@ -120,8 +119,218 @@
 
                             </div>
                         </div>
-                       
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label>
+                                    Salary Month <span class="required-field">*</span>
+                                </label>
+                                <div style="display: flex; align-items: center;">
+                                    <input type="text" class="form-control" id="displayMonth" style="width: 100px;">
+                                    <input type="date" class="datepicker" id="salaryMonth" name="salaryMonth">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Salary Issue Date <span class="required-field">*</span>
+                                </label>
+                                <input type="date" required class="form-control" name="salaryIssueDate" id="salaryIssueDate" />
+                                <div class="c">
+                                </div>
+
+                            </div>
+                        </div>
+
                     </div>
+                    @*</div>*@
+
+                    @*<button  class="accordion">Allowances </button>
+                        <div class="panel">*@
+
+                    <!--Leaves Process Starts-->
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Working Days
+                                </label>
+                                <input type="text" class="form-control" id="workingDays" name="workingDays" placeholder="0" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Balance Casual Leaves
+                                </label>
+                                <input type="text" class="form-control" ng-disabled="true" id="balanceCasualLeaves" name="balanceCasualLeaves" placeholder="0" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Balance Sick Leaves
+                                </label>
+                                <input type="text" class="form-control" ng-disabled="true" id="balanceSickLeaves" name="balanceSickLeaves" placeholder="0" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Day Present
+                                </label>
+                                <input type="text" ng-disabled="true" class="form-control" id=" dayPresent" name=" dayPresent" placeholder="0" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Day Present Casual Leaves
+                                </label>
+                                <input type="text" class="form-control" id="daybalanceCasualLeaves" name="daybalanceCasualLeaves" placeholder="0" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Day Present Sick Leaves
+                                </label>
+                                <input type="text" class="form-control" id="daybalanceSickLeaves" name="daybalanceSickLeaves" placeholder="0" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Casual Sanctioned Leave
+                                </label>
+                                <input type="text" class="form-control" id="CasualSanLeaves" name="CasualSanLeaves" placeholder="0" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Sick Sanctioned Leave
+                                </label>
+                                <input type="text" class="form-control" id="SickSanLeaves" name="SickSanLeaves" placeholder="0" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label>
+                                    Leave Without Pay
+                                </label>
+                                <div style="display: flex; align-items: center;">
+                                    <input type="text" ng-disabled="true" class="form-control" id="leaveWithoutPay" placeholder="0">
+                                    <input type="text" ng-disabled="true" class="form-control" id="leaveWithoutPayAmt" name="leaveWithoutPayAmt" placeholder="0.00 &#8377;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Leaves Process Ends-->
+                    <!--OverTime Process Starts-->
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label>
+                                    Over Time In Hours
+                                </label>
+                                <div style="display: flex; align-items: center;">
+                                    <input type="text" class="form-control" id="overtimeHours" placeholder="0">
+                                    <input type="text" ng-disabled="true" class="form-control" id="overtimeHoursamt" name="overtimeHoursamt" placeholder="0.00 &#8377;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label>
+                                    Over Time In Minute
+                                </label>
+                                <div style="display: flex; align-items: center;">
+                                    <input type="text" class="form-control" id="overtimeMinute" placeholder="0">
+                                    <input type="text" ng-disabled="true" class="form-control" id="overtimeMinuteamt" name="overtimeMinuteamt" placeholder="0.00 &#8377;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label>
+                                    Over Time In Days
+                                </label>
+                                <div style="display: flex; align-items: center;">
+                                    <input type="text" class="form-control" id="overtimeDays" placeholder="0">
+                                    <input type="text" ng-disabled="true" class="form-control" id="overtimeDaysamt" name="overtimeDaysamt" placeholder="0.00 &#8377;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Total OverTime
+                                </label>
+                                <input type="text" ng-disabled="true" class="form-control" id="totalOvertime" name="totalOvertime" placeholder="0.00 &#8377;" />@*&#8377;*@
+                            </div>
+                        </div>
+                    </div>
+                    <!--OverTime Process Ends-->
+                    <!--Late Coming Process Starts-->
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label>
+                                    Late Coming In Hours
+                                </label>
+                                <div style="display: flex; align-items: center;">
+                                    <input type="text" class="form-control" id="lateComingHours" placeholder="0">
+                                    <input type="text" ng-disabled="true" class="form-control" id="lateComingHoursamt" name="lateComingHoursamt" placeholder="0.00 &#8377;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label>
+                                    Late Coming In Minute
+                                </label>
+                                <div style="display: flex; align-items: center;">
+                                    <input type="text" class="form-control" id="lateComingMinute" placeholder="0">
+                                    <input type="text" ng-disabled="true" class="form-control" id="lateComingMinuteAmt" name="lateComingMinuteAmt" placeholder="0.00 &#8377;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>
+                                    Total Late Coming
+                                </label>
+                                <input type="text" ng-disabled="true" class="form-control" id="totalLatecoming" name="totalLatecoming" placeholder="0.00 &#8377;" />@*&#8377;*@
+                            </div>
+                        </div>
+                    </div>
+                    <!--Late Coming Process Ends-->
                     <!--Allowances Process Starts-->
                     <div class="container">
                         <div class="row">
@@ -299,6 +508,14 @@
     }
 
 
+    const salaryMonthInput = document.getElementById('salaryMonth');
+    const displayMonthInput = document.getElementById('displayMonth');
+
+    salaryMonthInput.addEventListener('change', (event) => {
+        const selectedDate = new Date(event.target.value);
+        const selectedMonth = selectedDate.toLocaleString('default', { month: 'long' });
+        displayMonthInput.value = selectedMonth;
+    });
 
 </script>
 

@@ -972,4 +972,13 @@
   <data name="File" xml:space="preserve">
     <value>File</value>
   </data>
+  <data name="PayRoll" xml:space="preserve">
+    <value>Payroll</value>
+  </data>
+  <data name="PayRollManagement" xml:space="preserve">
+    <value>PayRollManagement</value>
+  </data>
+  <data name="SalaryDetails" xml:space="preserve">
+    <value>Salary Details</value>
+  </data>
 </root>
