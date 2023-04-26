@@ -54,8 +54,9 @@
                                 <input type="text" class="form-control" name="txtCompanyName" id="txtCompanyName" required ng-focus="true" ng-model="CompanyDetailScope.CompanyName" tabindex="1" placeholder="@Resource.Company_Name" maxlength="250" />
                                 <div class="c">
                                 </div>
+                               
                                 <div class="label label-danger" data-ng-show="frmCompanyMaster.txtCompanyName.$dirty && frmCompanyMaster.txtCompanyName.$invalid">
-                                    <span data-ng-show="frmCompanyMaster.txtDescription.$error.required">@Resource.Company_Name</span>
+                                    <span data-ng-show="frmCompanyMaster.txtCompanyName.$error.required">Company Name is required</span>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +69,7 @@
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmCompanyMaster.txtShortCode.$dirty && frmCompanyMaster.txtShortCode.$invalid">
-                                    <span data-ng-show="frmCompanyMaster.txtShortCode.$error.required">@Resource.Short_Code</span>
+                                    <span data-ng-show="frmCompanyMaster.txtShortCode.$error.required">Short_Code is required </span>
                                 </div>
                             </div>
                         </div>
@@ -87,6 +88,9 @@
                                         </label>
                                     </div>
                                 </div>
+
+                                
+
                             </div>
                         </div>
                     </div>

@@ -30,6 +30,21 @@
 
         //Begin For Add /Update Department Details
         $scope.SaveAllowanceDetails = function (AllowanceDetailScope, frmAllowanceMaster) {
+            if (AllowanceDetailScope.Description == null || AllowanceDetailScope.Description == "") {
+                toastr.warning("Description is  Required", warningTitle);
+                $("#txtDescription").focus();
+                return;
+            }
+            else if (AllowanceDetailScope.ShortCode == null || AllowanceDetailScope.ShortCode == "") {
+                toastr.warning("ShortCode is  Required", warningTitle);
+                $("#txtShortCode").focus();
+                return;
+            }
+            else if (AllowanceDetailScope.Value == null || AllowanceDetailScope.Value == "") {
+                toastr.warning("Value is  Required", warningTitle);
+                $("#txtShortCode").focus();
+                return;
+            }
             if (frmAllowanceMaster.$valid) {
                 AllowanceMasterService.SaveAllowanceDetails(AllowanceDetailScope).then(function (res) {
                     if (res) {

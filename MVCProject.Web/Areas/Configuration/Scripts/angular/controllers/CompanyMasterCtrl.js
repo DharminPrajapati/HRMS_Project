@@ -18,7 +18,7 @@
             EntryDate: null,
             UpdateBy: null,
             UpdateDate: null,
-            IsActive: true
+            IsActive : true
         };
         $scope.isSearchClicked = false;
         // For Edit
@@ -29,7 +29,16 @@
 
         //Begin For Add /Update Department Details
         $scope.SaveCompanyMasterDetails = function (CompanyDetailScope, frmCompanyMaster) {
-
+            if (CompanyDetailScope.CompanyName == null || CompanyDetailScope.CompanyName == "") {
+                toastr.warning("Company Name is  Required", warningTitle);
+                $("#txtCompanyName").focus();
+                return;
+            }
+            else if (CompanyDetailScope.ShortCode == null || CompanyDetailScope.ShortCode == "") {
+                toastr.warning("Short Code is  Required", warningTitle);
+                $("#txtShortCode").focus();
+                return;
+            }
             if (frmCompanyMaster.$valid) {
                 CompanyMasterService.SaveCompanyMasterDetails(CompanyDetailScope).then(function (res) {
                     if (res) {

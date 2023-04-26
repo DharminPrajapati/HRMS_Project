@@ -26,7 +26,7 @@
         {
             if (this.entities.AllowanceMaster.Any(x => x.AllowanceId != AllowanceDetail.AllowanceId && x.Description.Trim() == AllowanceDetail.Description.Trim()))
             {
-                return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Department));
+                return this.Response(Utilities.MessageTypes.Warning, string.Format(Resource.AlreadyExists, Resource.Description));
             }
             else
             {
@@ -36,10 +36,10 @@
                     this.entities.AllowanceMaster.AddObject(AllowanceDetail);
                     if (!(this.entities.SaveChanges() > 0))
                     {
-                        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Department));
+                        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Description));
                     }
 
-                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Department));
+                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Description));
                 }
 
                 // For Update

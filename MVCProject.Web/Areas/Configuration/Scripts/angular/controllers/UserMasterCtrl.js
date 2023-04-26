@@ -81,11 +81,21 @@
         console.log($scope.userMasterDetailScope);
         // BEGIN Add/Update UserMaster details
         $scope.SaveuserMasterDetails = function (userMasterDetailScope, frmUserMaster, employee) {
+
+            if (CompanyDetailScope.CompanyName == null || CompanyDetailScope.CompanyName == "") {
+                toastr.warning("CompanyName is  Required", warningTitle);
+                $("#txtCompanyName").focus();
+                return;
+            }
+            else if (CompanyDetailScope.ShortCode == null || CompanyDetailScope.ShortCode == "") {
+                toastr.warning("ShortCode is  Required", warningTitle);
+                $("#txtShortCode").focus();
+                return;
+            }
             //if (!$rootScope.permission.CanWrite) { return; }
             if (frmUserMaster.$valid) {
                 UserMasterService.SaveuserMasterDetails(userMasterDetailScope).then(function (res) {
                     if (res) {
-                        
                         var data = res.data;
                         if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
                             $scope.ClearFormData(frmUserMaster);

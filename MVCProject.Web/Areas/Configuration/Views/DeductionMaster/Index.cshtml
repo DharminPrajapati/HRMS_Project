@@ -65,7 +65,7 @@
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmDeduction.txtDeduction.$dirty && frmDeduction.txtDeduction.$invalid">
-                                    <span data-ng-show="frmDeduction.txtDeduction.$error.required">@Resource.Description</span>
+                                    <span data-ng-show="frmDeduction.txtDeduction.$error.required">@Resource.Description Required</span>
                                 </div>
                             </div>
                         </div>
@@ -74,11 +74,11 @@
                                 <label>
                                   @Resource.Short_Code <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="txtShortCode" id="txtShortCode" required ng-focus="true" @*onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)"*@  ng-model="deductionDetailScope.ShortCode" tabindex="1" placeholder="ShortCode" maxlength="250" />
+                                <input type="text" class="form-control" name="txtShortCode" id="txtShortCode" required ng-focus="true" @*onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)"*@  ng-model="deductionDetailScope.ShortCode" tabindex="2" placeholder="ShortCode" maxlength="250" />
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmDeduction.txtDeduction.$dirty && frmDeduction.txtShortCode.$invalid">
-                                    <span data-ng-show="frmDeduction.txtShortCode.$error.required">@Resource.Short_Code</span>
+                                    <span data-ng-show="frmDeduction.txtShortCode.$error.required">@Resource.Short_Code Required</span>
                                 </div>
                             </div>
                         </div>
@@ -88,11 +88,11 @@
                                 <label>
                                     Value <span>(%)</span><span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="txtValue" id="txtValue" required ng-focus="true" @*onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)"*@ placeholder="@Resource.Value" ng-model="deductionDetailScope.Value" tabindex="1"  maxlength="250" />
+                                <input type="text" class="form-control" name="txtValue" id="txtValue" required ng-focus="true" @*onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)"*@ placeholder="@Resource.Value" ng-model="deductionDetailScope.Value" tabindex="3"  maxlength="250" />
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmDeduction.txtValue.$dirty && frmDeduction.txtValue.$invalid">
-                                    <span data-ng-show="frmDeduction.txtValue.$error.required">@Resource.Value</span>
+                                    <span data-ng-show="frmDeduction.txtValue.$error.required">@Resource.Value Required</span>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,7 @@
                                 <div class="form-control-static">
                                     <div class="checkbox checkbox-info">
                                         <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="deductionDetailScope.IsActive"
-                                               tabindex="2" />
+                                               tabindex="4" />
                                         <label for="chkDesignationActive">
                                             @Resource.IsActive
                                         </label>
@@ -117,7 +117,7 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
-                                        ng-disabled="frmDeduction.txtDeduction.$invalid" tabindex="3">
+                                        ng-disabled="frmDeduction.txtDeduction.$invalid" tabindex="5">
                                     {{deductionDetailScope.DeductionId > 0 ? '@Resource.Update' : '@Resource.Save'}}
                                 </button>
                                 <button type="button" ng-click="ClearFormData(frmDeduction)" class="btn btn-info waves-effect w-md waves-light m-b-5"
@@ -145,7 +145,7 @@
                             <div class="col-md-5">
                                 <div class="input-group">
                                     <input type="text" tabindex="104" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1} {2}",Resource.Search,Resource.Deduction,Resource.Details)" />
-                                    <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked=true;tableParams.page(1);tableParams.reload();"> <i class="fa fa-search"></i></a>
+                                    <a href class="input-group-addon cursor-pointer" tabindex="6" ng-click="isSearchClicked=true;tableParams.page(1);tableParams.reload();"> <i class="fa fa-search"></i></a>
                                 </div>
                             </div>
                         </div>

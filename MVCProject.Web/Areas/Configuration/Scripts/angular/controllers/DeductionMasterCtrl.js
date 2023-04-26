@@ -29,7 +29,21 @@
 
         //Begin For Add /Update Department Details
         $scope.SaveDeductionDetails = function (deductionDetailScope, frmDeduction) {
-
+            if (deductionDetailScope.Description == null || deductionDetailScope.Description == "") {
+                toastr.warning("Description is  Required", warningTitle);
+                $("#txtDeduction").focus();
+                return;
+            }
+            else if (deductionDetailScope.ShortCode == null || deductionDetailScope.ShortCode == "") {
+                toastr.warning("Short Code is  Required", warningTitle);
+                $("#txtShortCode").focus();
+                return;
+            }
+            else if (deductionDetailScope.Value == null || deductionDetailScope.Value == "") {
+                toastr.warning("Value is  Required", warningTitle);
+                $("#txtValue").focus();
+                return;
+            }
             if (frmDeduction.$valid) {
                 DeductionMasterService.SaveDeductionDetails(deductionDetailScope).then(function (res) {
 

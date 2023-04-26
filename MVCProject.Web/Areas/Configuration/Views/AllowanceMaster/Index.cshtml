@@ -60,7 +60,7 @@
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmAllowanceMaster.txtDescription.$dirty && frmAllowanceMaster.txtDescription.$invalid">
-                                    <span data-ng-show="frmAllowanceMaster.txtDescription.$error.required"> @Resource.Description</span>
+                                    <span data-ng-show="frmAllowanceMaster.txtDescription.$error.required"> @Resource.Description Required</span>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmAllowanceMaster.txtShortCode.$dirty && frmAllowanceMaster.txtShortCode.$invalid">
-                                    <span data-ng-show="frmAllowanceMaster.txtShortCode.$error.required">@Resource.Short_Code</span>
+                                    <span data-ng-show="frmAllowanceMaster.txtShortCode.$error.required">@Resource.Short_Code required</span>
                                 </div>
                             </div>
                         </div>
@@ -82,11 +82,11 @@
                                 <label>
                                     Value <span>(%)</span><span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" name="txtValue" id="txtValue" required ng-focus="true" ng-model="AllowanceDetailScope.Value" tabindex="1" placeholder="@Resource.Value" maxlength="250" />
+                                <input type="text" class="form-control" name="txtValue" id="txtValue" required ng-focus="true" ng-model="AllowanceDetailScope.Value" tabindex="2" placeholder="@Resource.Value" maxlength="250" />
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmAllowanceMaster.txtValue.$dirty && frmAllowanceMaster.txtValue.$invalid">
-                                    <span data-ng-show="frmAllowanceMaster.txtValue.$error.required">@Resource.Value</span>
+                                    <span data-ng-show="frmAllowanceMaster.txtValue.$error.required">Value required</span>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                                 <div class="form-control-static">
                                     <div class="checkbox checkbox-info">
                                         <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="AllowanceDetailScope.IsActive"
-                                               tabindex="2" />
+                                               tabindex="3" />
                                         <label for="chkDesignationActive">
                                             @Resource.IsActive
                                         </label>
@@ -138,7 +138,7 @@
                             </div>
                             <div class="col-md-5">
                                 <div class="input-group">
-                                    <input type="text" tabindex="104" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1}",Resource.Allowance_Master,Resource.Details)" />
+                                    <input type="text" tabindex="5" ng-model="search" class="form-control" ng-change="isSearchClicked = false;" placeholder="@string.Format("{0} {1}",Resource.Allowance_Master,Resource.Details)" />
                                     <a href class="input-group-addon cursor-pointer" tabindex="105" ng-click="isSearchClicked=true;tableParams.page(1);tableParams.reload();"> <i class="fa fa-search"></i></a>
                                 </div>
                             </div>
