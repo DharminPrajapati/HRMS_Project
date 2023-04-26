@@ -79,7 +79,8 @@ namespace MVCProject.Controllers
         /// <param name="userId">user Id</param>
         /// <param name="resetPasswordToken">reset password token</param>
         /// <returns>ActionResult object</returns>
-        public ActionResult ResetPassword(int userId, string resetPasswordToken)
+        public ActionResult SendResetPassword(int userId, string resetPasswordToken)
+           
         {
             ViewBag.userId = userId;
             ViewBag.resetPasswordToken = resetPasswordToken;
@@ -132,7 +133,7 @@ namespace MVCProject.Controllers
                 //}
             }
 
-            return RedirectToAction("Index", "Employee", new { area = "EmployeeManagement" });
+            return RedirectToAction("EmployeeAttendanceView", "Attendance", new { area = "Attendance" });
         }
 
         /// <summary>
