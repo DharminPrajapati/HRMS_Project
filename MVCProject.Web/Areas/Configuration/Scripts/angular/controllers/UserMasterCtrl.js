@@ -82,15 +82,24 @@
         // BEGIN Add/Update UserMaster details
         $scope.SaveuserMasterDetails = function (userMasterDetailScope, frmUserMaster, employee) {
 
-            if (CompanyDetailScope.CompanyName == null || CompanyDetailScope.CompanyName == "") {
-                toastr.warning("CompanyName is  Required", warningTitle);
-                $("#txtCompanyName").focus();
+
+            if (userMasterDetailScope.FirstName == null || userMasterDetailScope.FirstName == "") {
+                toastr.warning("First Name is  Required", warningTitle);
+                $("#txtUserMaster").focus();
                 return;
             }
-            else if (CompanyDetailScope.ShortCode == null || CompanyDetailScope.ShortCode == "") {
-                toastr.warning("ShortCode is  Required", warningTitle);
-                $("#txtShortCode").focus();
+            else if (userMasterDetailScope.UserName == null || userMasterDetailScope.UserName == "") {
+                toastr.warning("User Name is  Required", warningTitle);
+                $("#txtUserMaster").focus();
                 return;
+            }
+            else if (userMasterDetailScope.UserPassword == null || userMasterDetailScope.UserPassword == "") {
+                toastr.warning("Password is Required", warningTitle);
+                $("#txtUserMaster").focus();
+            }
+            else if (userMasterDetailScope.UserRole == null || userMasterDetailScope.UserRole == "") {
+                toastr.warning("UserRole is Required", warningTitle);
+                $("#txtUserRole").focus();
             }
             //if (!$rootScope.permission.CanWrite) { return; }
             if (frmUserMaster.$valid) {
