@@ -103,6 +103,7 @@
 
     //BEGIN AccountCtrl
     function ResetPasswordModel($scope, $rootScope, $filter, $uibModalInstance, AccountService) {
+        debugger
         $scope.user = { UserName: '' };
 
         $scope.SendResetPasswordMail = function (frmResetPassword) {

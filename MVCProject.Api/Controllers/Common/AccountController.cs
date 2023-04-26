@@ -68,6 +68,26 @@ namespace MVCProject.Api.Controllers.Common
             return this.Response(Utilities.MessageTypes.Success);
         }
 
+        //[HttpPost]
+        //public ApiResponse SendResetPassword(UserMaster user)
+        //{
+        //    var emp = entities.UserMaster.Where(u => u.UserName == user.UserName && u.UserPassword == user.UserPassword).FirstOrDefault();
+        //    if (emp == null)
+        //    {
+        //        //return new ApiResponse { Status = "Error", Message = "Invalid username or password." };
+        //        return this.Response(Utilities.MessageTypes.Warning, string.Format("Invalid username or password"));
+        //    }
+        //    else
+        //    {
+        //        UserContext userContext = new UserContext();
+                
+        //        userContext.UserId = emp.UserId;
+        //        userContext.UserName = emp.UserName;
+               
+        //        return this.Response(Utilities.MessageTypes.Success, responseToReturn: userContext);
+        //    }
+        //}
+
         [HttpPut]
         public ApiResponse ChangeRole(int RoleId)
 
