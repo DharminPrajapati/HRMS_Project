@@ -981,4 +981,7 @@
   <data name="SalaryDetails" xml:space="preserve">
     <value>Salary Details</value>
   </data>
+  <data name="profile" xml:space="preserve">
+    <value>profile</value>
+  </data>
 </root>

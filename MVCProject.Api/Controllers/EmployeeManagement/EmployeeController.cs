@@ -325,6 +325,7 @@
                    .Select(d => new
                    {
                        EmployeeId = d.EmployeeId,
+                       BatchNo = d.BatchNo,
                        CompanyMasterId = d.CompanyMasterId,
                        FirstName = d.FirstName,
                        LastName = d.LastName,

@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = Resource.profile;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .colSrno {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+
+    .colPosition {
+        width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
+    }
+
+    .colActive {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+    }
+
+    .colAction {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+    }
+</style>
+
+<div ng-controller="ProfileCtrl">
+
+
+    <div class="container settings-tabs">
+
+
+        <table class="table">
+            <tr>
+                <img ng-src="{{userContext.ProfilePicturePath}}" alt="@Resource.ProfilePicture" fallback-src="/Content/images/avatar-1.jpg" src="../../Content/images/avatar-1.jpg" class="img-circle user-img profile-img thumb-sm" />
+
+            </tr>
+            <tr>
+
+                <td>Personal Informations</td>
+            </tr>
+            <tr>
+                <td>Employee Id</td>
+                <td> {{eventmasterlist.BatchNo }}</td>
+            </tr>
+            <tr>
+                <td>Employee Name</td>
+                <td> {{eventmasterlist.FirstName}}  {{eventmasterlist.LastName}}</td>
+            </tr>
+            <tr>
+                <td>Date Of Birth</td>
+                <td> {{eventmasterlist.BirthDate | date:'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td> {{eventmasterlist.Gender === 2 ? 'Female' : 'Male'}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td> {{eventmasterlist.Email}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td> {{eventmasterlist.PermanentAddress}}</td>
+            </tr>
+
+            <tr>
+                <td>Department Name</td>
+                <td> {{eventmasterlist.DepartmentName}}</td>
+            </tr>
+            <tr>
+                <td>Designation Name</td>
+                <td> {{eventmasterlist.DesignationName}}</td>
+            </tr>
+
+            <tr>
+                <td>Date Of Joining</td>
+                <td> {{eventmasterlist.JoiningDate | date:'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr>
+                <td>Contact No</td>
+                <td>{{eventmasterlist.PhoneNumber}}</td>
+            </tr>
+
+
+
+        </table>
+
+        <table class="table">
+            <tr>
+
+                <td>Education Informations</td>
+            </tr>
+            <tr>
+                <td>Institution Name </td>
+                <td> {{eventmasterlist.InstitutionName }}</td>
+            </tr>
+            <tr>
+                <td>Course Name </td>
+                <td> {{eventmasterlist.CourseName}}</td>
+            </tr>
+            <tr>
+                <td>Degree</td>
+                <td> {{eventmasterlist.Degree}}</td>
+            </tr>
+
+        </table>
+
+        <table class="table">
+            <tr>
+
+                <td>Experience</td>
+            </tr>
+            <tr>
+                <td>Company Name </td>
+                <td> {{eventmasterlist.CompanyName }}</td>
+            </tr>
+            <tr>
+                <td>Last Job Location</td>
+                <td> {{eventmasterlist.LastJobLocation}}</td>
+            </tr>
+            <tr>
+                <td>Job Position</td>
+                <td> {{eventmasterlist.JobPosition}}</td>
+            </tr>
+
+        </table>
+
+    </div>
+</div>
+
+<!--<div ng-init="GetUserDetails()" class="right" ng-show="ProfilePage">
+
+    <div class="row">
+        <div class="col-md-6 mb-3">
+                        <!--Slider Image View
+                        <!--<div class="form-group">
+            <img id="output" ng-model="output" class="img-fluid" />
+            <div class="c">
+            </div>
+            <div class="label label-danger" data-ng-show="">
+                <span data-ng-show="frmEmployeeMaster.txtEmployeeMaster.$error.required">@Resource.ProfilePicture</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">-->
+<!--Select Image  -->
+<!--<div class="form-group">
+        <input type="file" class="form-control" id="file" name="file" ng-focus="true" ng-model="file" tabindex="1" placeholder="@Resource.UploadImage" maxlength="250" accept="image/*" onchange="angular.element(this).scope().loadFile(event)">
+        @Resource.UploadImage
+        <div class="label label-danger" data-ng-show="frmSlider.file.$dirty && frmSlider.file.$invalid">
+            <span data-ng-show="frmSlider.file.$error.pattern">@Resource.ProfilePicture</span>
+        </div>
+    </div>
+</div>
+<div class="col-md-4">-->
+<!--Upload Image Button -->
+<!--<div class="form-group">
+            <button type="button" class="btn btn-info waves-effect w-md waves-light m-b-5" id="imu" ng-click="uploadProfilePic(file)"
+                    tabindex="4">
+                <i class="fa fa-upload me-2"></i>
+                @Resource.UploadImage
+            </button>
+        </div>
+    </div>
+</div>
+    </table>
+</div>-->
+@*</div>
+    </div>*@
+
+<!--<button class="btn btn-success" type="submit">Submit</button>
+    </form>
+
+</div>-->
+
+
+
+
+
+
+
+@section scripts {
+    @Scripts.Render("~/bundles/EmployeeManagement/Profile")
+}
+<script src="https://kit.fontawesome.com/73e0cf2663.js" crossorigin="anonymous"></script>
