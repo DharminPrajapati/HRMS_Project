@@ -79,7 +79,7 @@ namespace System.Web.Mvc
                 menuString.AppendFormat(GetParentMenu(Resource.Reports, "fa fa-file-text"));
                 menuString.Append("<ul class='nav child_menu'>");
                 menuString.Append(GetSubMenu(Resource.Employee_Report, "", "/Reports/Reports"));
-                menuString.Append(GetSubMenu(Resource.SalaryDetails, "", "/Salary/Salary/SalaryDetails"));
+                menuString.Append(GetSubMenu(Resource.Salary_Report, "", "/Salary/Salary/SalaryDetails"));
 
                 menuString.Append("</ul></li>");
 

@@ -990,4 +990,7 @@
   <data name="Employee_Report" xml:space="preserve">
     <value>Employee_Report</value>
   </data>
+  <data name="Salary_Report" xml:space="preserve">
+    <value>Salary_Report</value>
+  </data>
 </root>

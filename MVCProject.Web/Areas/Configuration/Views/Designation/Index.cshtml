@@ -34,7 +34,7 @@
         <h4 class="header-title-sub l">@Resource.Designation</h4>
         <!-- start button-->
         <div class="pull-right">
-            <button type="button" class="btn btn-success btn-xs waves-effect" ng-click="Export()">
+            <button type="button" class="btn btn-success" ng-click="Export()">
                 <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
             </button>
         </div>
@@ -82,7 +82,7 @@
                                 <label>
                                     @Resource.Designation <span class="required-field">*</span>
                                 </label>
-                                <input type="text" class="form-control" id="txtDesignation" ng-focus="true" name="txtDesignation" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">
+                                <input type="text" class="form-control" id="txtDesignation" ng-focus="true" name="txtDesignation" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122 || event.charCode==32)" ng-model="designationDetailScope.DesignationName" required tabindex="1" placeholder="@Resource.Designation" maxlength="250">
                                 <div class="c">
                                 </div>
                                 <div class="label label-danger" data-ng-show="frmDesignations.txtDesignation.$dirty && frmDesignations.txtDesignation.$invalid">

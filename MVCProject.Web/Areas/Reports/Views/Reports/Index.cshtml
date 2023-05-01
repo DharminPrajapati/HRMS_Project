@@ -36,11 +36,11 @@
     </h4>
     <div ng-controller="ReportsCtrl">
 
-        <button type="button" class="btn btn-success btn-xs waves-effect" ng-click="ExportPDF()"style=" margin-left: 834px;">
-            <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToPDF
+        <button type="button" class="btn btn-danger" ng-click="ExportPDF()"style=" margin-left: 700px;">
+            <i class="fa fa-file-pdf-o m-r-5"></i>@Resource.ExportToPDF
         </button>
-        <button type="button" class="btn btn-danger btn-xs waves-effect " ng-click="Export()">
-            <i class="fa fa-file-pdf-o m-r-5"></i>@Resource.ExportToExcel
+        <button type="button" class="btn btn-success" @*style="background :#ff9b44"*@ ng-click="Export()">
+            <i class="fa fa-file-excel-o m-r-5"></i>@Resource.ExportToExcel
         </button>
     </div>
 </div>
