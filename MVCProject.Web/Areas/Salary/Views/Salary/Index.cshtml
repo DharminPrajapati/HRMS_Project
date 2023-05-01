@@ -28,7 +28,6 @@
         min-width: 70px !important;
         max-width: 70px !important;
     }
-
 </style>
 
 <div ng-controller="SalaryCtrl" novalidate>
@@ -54,7 +53,8 @@
                 <!-- start Salary form -->
                 <form name="frmSalary" novalidate ng-init="Init()">
                     @*<button class="accordion"> Employee </button>
-                        <div class="panel">*@
+                        <div class="panel">
+                    *@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
@@ -89,7 +89,7 @@
                                 <label>
                                     Designation
                                 </label>
-                                <input type="text" class="form-control" ng-disabled="true" ng-model="salaryDetailScope.DesignationName" ng-change="getEmployeebyId(Id)" placeholder="@Resource.Designation" @*placeholder="{{data.DesignationName}}"*@ maxlength="250" />
+                                <input type="text" class="form-control" ng-disabled="true" ng-model="salaryDetailScope.DesignationName" ng-change="getEmployeebyId(Id)" placeholder="@Resource.Designation" @*placeholder="{{data.DesignationName}}" *@ maxlength="250" />
                                 <div class="c">
                                 </div>
 
@@ -120,167 +120,207 @@
 
                             </div>
                         </div>
-                       
+
                     </div>
                     <!--Allowances Process Starts-->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Allowances</label>
+                    <div class="panel">
+
+                        <div class="container demo">
 
 
-                                <div class="form-group" ng-repeat="a in Allowances">
-                                    <label>{{a.Description}} ({{a.Value}}%)</label>
+                            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 
-                                </div>
-                                <div class="form-group">
-                                    <label>Total Allowances</label>
-                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="background: #d6d6f2;">
+                                                <i class="more-less glyphicon glyphicon-plus"></i>
+                                                Allowances
+                                            </a>
+                                        </h4>
 
-                            </div>
-                            <div class="col-md-6">
+                                        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                                            <div class="panel-body">
+                                                <label>Allowances</label>
+                                                @*First column*@
+                                                <form class="form-inline">
+                                                    <div class="form-group" ng-repeat="a in Allowances" style="margin-top:4px">
+                                                        <label>{{a.Description}} ({{a.Value}}%)</label>
 
-                                <label>Debit</label>
-                                <div class="col-md-6">
-                                    <label>Credit</label>
-                                </div>
-                                <div class="form-group" ng-repeat="a in AllowancesDetailScope">
-                                    <input type="text" placeholder="0" ng-model="a.AllowanceAmount" ng-change="UpdateTotalAllowance()" />
-                                    <input type="text" placeholder="0" @*ng-model="a.AllowanceAmount"*@ ng-disabled="true" />
-                                </div>
-                                <div class="form-group">
-                                    = <input type="text" placeholder="Total Allowance" ng-disabled="true" ng-model="salaryDetailScope.TotalAllowance" />
-                                </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Total Allowances</label>
+                                                    </div>
+                                                </form>
 
-                            </div>
-                        </div>
-                    </div>
-                    <!--Allowances Process Ends-->
-                    <!--Dedeuction Process Starts-->
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Deduction</label>
+                                                <div class="col-md-6" style=" margin-left: 480px; margin-top: -267px; ">
+                                                    @*Second column*@
+                                                    <label>Debit</label>
+                                                    <div class="col-md-6">
+                                                        <label>Credit</label>
+                                                    </div>
+                                                    <form class="form-inline">
 
-                                <div class="form-group" ng-repeat="d in Deductions">
-                                    <label>{{d.Description}} ({{d.Value}}%)</label>
+                                                        <div class="form-group" ng-repeat="a in AllowancesDetailScope"style=" margin-top: 10px;">
+                                                            <input type="text" placeholder="0" ng-model="a.AllowanceAmount" ng-change="UpdateTotalAllowance()" />
+                                                            <input type="text" placeholder="0" @*ng-model="a.AllowanceAmount"*@ ng-disabled="true" />
+                                                        </div>
 
-                                </div>
-                                <div class="form-group">
-                                    <label>Total Deduction</label>
-                                </div>
-
-                            </div>
-                            <div class="col-md-6">
-
-                                <label>Debit</label>
-                                <div class="col-md-6">
-                                    <label>Credit</label>
-                                </div>
-
-                                <div class="form-group" ng-repeat="d in DeductionDetailScope">
-                                    <input type="text" placeholder="0" ng-disabled="true" />
-                                    <input type="text" placeholder="0" ng-model="d.DeductionAmount" ng-change="UpdateTotalDeduction()" />
-                                </div>
-                                <div class="form-group">
-                                    = <input type="text" placeholder="Total Deduction" ng-disabled="true" ng-model="salaryDetailScope.TotalDeductoin" />
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <!--Dedeuction Process Starts-->
-                    <!--Salary Calculation Starts -->
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>
-                                    Gross Salary<span>(₹)</span>
-                                </label>
-                                <div class="row">
-                                    @*<div class="col-md-4">*@
-                                    <input type="text" name="grossSalary" id="grossSalary" ng-disabled="true" ng-model="GrossSalary" value="{{CalGrossSalary()}}" placeholder="Gross Salary" maxlength="250" /> -
-                                    <div class="c">
+                                                    </form>
+                                                    <div class="form-group">
+                                                        = <input type="text" placeholder="Total Allowance" ng-disabled="true" ng-model="salaryDetailScope.TotalAllowance" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    @*</div>*@
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-
-                            <div class="form-group">
-                                <label>
-                                    Total Deductions <span>(₹)</span>
-                                </label>
-                                <div class="row">
-
-                                    <input type="text" name="totalDeduction" id="totalDeduction" ng-disabled="true" ng-model="salaryDetailScope.TotalDeductoin" placeholder="Total Deduction" maxlength="250" /> =
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                Net Salary<span>(₹)</span>
-                            </label>
-                            <div class="row">
-                                <input type="text" name="netsalary" id="netsalary" ng-disabled="true" ng-model="salaryDetailScope.netSalary" value="{{CalNetSalary()}}" placeholder="Net Salary" maxlength="250" />
-                                <div class="c">
                                 </div>
                             </div>
-
                         </div>
-                        <!--Salary Calculation Ends -->
 
-                        <div class="col-md-4">
-                            <!--IsActive -->
-                            <div class="form-group">
-                                <label>
-                                </label>
-                                <div class="form-control-static">
-                                    <div class="checkbox checkbox-info">
-                                        <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="salaryDetailScope.IsActive"
-                                               tabindex="2" />
-                                        <label for="chkDesignationActive">
+                        <!--Allowances Process Ends-->
+                        <!--Dedeuction Process Starts-->
 
-                                            @Resource.IsActive
-                                        </label>
+
+                        <div class="panel panel-default" style=" margin-top: -10px;">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="background: #d6d6f2;">
+                                        <i class="more-less glyphicon glyphicon-plus"></i>
+                                        Deduction
+                                    </a>
+                                </h4>
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="panel-body">
+                                        <label>Deduction</label>
+
+                                        <form class="form-control-static">
+                                            <div class="form-group" ng-repeat="d in Deductions" style="margin-top:4px">
+                                                <label>{{d.Description}} ({{d.Value}}%)</label>
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Total Deduction</label>
+                                            </div>
+                                        </form>
+
+                                        <div class="col-md-6" style=" margin-left: 480px; margin-top: -238px;">
+
+                                            <label>Debit</label>
+                                            <div class="col-md-6">
+                                                <label>Credit</label>
+                                            </div>
+
+                                            <div class="form-group" ng-repeat="d in DeductionDetailScope">
+                                                <input type="text" placeholder="0" ng-disabled="true" />
+                                                <input type="text" placeholder="0" ng-model="d.DeductionAmount" ng-change="UpdateTotalDeduction()" />
+                                            </div>
+                                            <div class="form-group">
+                                                = <input type="text" placeholder="Total Deduction" ng-disabled="true" ng-model="salaryDetailScope.TotalDeductoin" />
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
-                                        @*ng-disabled="frmSalary.txtSalary.$invalid" *@ tabindex="5" ng-click="SaveSalaryDetails(salaryDetailScope,frmSalary)">
-                                    {{salaryDetailScope.SalaryId > 0 ? '@Resource.Update' : '@Resource.Save'}}
-                                </button>
-                                <button type="button" ng-click="ClearFormData(frmSalary)" class="btn btn-info waves-effect w-md waves-light m-b-5"
-                                        tabindex="4">
-                                    @Resource.Clear
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </form>
-
-                <!-- End Salary form -->
-                <hr />
-               
             </div>
-            <!--End Salary Details List-->
-
         </div>
+
+
+
+        <!--Dedeuction Process Starts-->
+        <!--Salary Calculation Starts -->
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>
+                        Gross Salary<span>(₹)</span>
+                    </label>
+                    <div class="row">
+                        @*<div class="col-md-4">
+                        *@
+                        <input type="text" name="grossSalary" id="grossSalary" ng-disabled="true" ng-model="GrossSalary" value="{{CalGrossSalary()}}" placeholder="Gross Salary" maxlength="250" /> -
+                        <div class="c">
+                        </div>
+                        @*
+                            </div>*@
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+
+                <div class="form-group">
+                    <label>
+                        Total Deductions <span>(₹)</span>
+                    </label>
+                    <div class="row">
+
+                        <input type="text" name="totalDeduction" id="totalDeduction" ng-disabled="true" ng-model="salaryDetailScope.TotalDeductoin" placeholder="Total Deduction" maxlength="250" /> =
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label>
+                    Net Salary<span>(₹)</span>
+                </label>
+                <div class="row">
+                    <input type="text" name="netsalary" id="netsalary" ng-disabled="true" ng-model="salaryDetailScope.netSalary" value="{{CalNetSalary()}}" placeholder="Net Salary" maxlength="250" />
+                    <div class="c">
+                    </div>
+                </div>
+
+            </div>
+            <!--Salary Calculation Ends -->
+
+            <div class="col-md-4">
+                <!--IsActive -->
+                <div class="form-group">
+                    <label>
+                    </label>
+                    <div class="form-control-static">
+                        <div class="checkbox checkbox-info">
+                            <input type="checkbox" id="chkIsActive" name="chkIsActive" ng-model="salaryDetailScope.IsActive"
+                                   tabindex="2" />
+                            <label for="chkDesignationActive">
+
+                                @Resource.IsActive
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-10">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success waves-effect w-md waves-light m-b-5"
+                            @*ng-disabled="frmSalary.txtSalary.$invalid" *@ tabindex="5" ng-click="SaveSalaryDetails(salaryDetailScope,frmSalary)">
+                        {{salaryDetailScope.SalaryId > 0 ? '@Resource.Update' : '@Resource.Save'}}
+                    </button>
+                    <button type="button" ng-click="ClearFormData(frmSalary)" class="btn btn-info waves-effect w-md waves-light m-b-5"
+                            tabindex="4">
+                        @Resource.Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        </form>
+
+        <!-- End Salary form -->
+        <hr />
+
     </div>
 </div>
+<!--End Salary Details List-->
 <!--End Body Section-->
 <script>
     var acc = document.getElementsByClassName("accordion");
