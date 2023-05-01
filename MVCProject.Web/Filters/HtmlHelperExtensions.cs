@@ -70,7 +70,7 @@ namespace System.Web.Mvc
                 menuString.Append("<li>");
                 menuString.AppendFormat(GetParentMenu(Resource.Salary_Management, "fa fa-inr"));
                 menuString.Append("<ul class='nav child_menu'>");
-                menuString.Append(GetSubMenu(Resource.PayRoll, "", "/Salary/Salary/Payroll"));
+                //menuString.Append(GetSubMenu(Resource.PayRoll, "", "/Salary/Salary/Payroll"));
                 menuString.Append(GetSubMenu(Resource.Add_Salary, "", "/Salary/Salary/Index"));
                 menuString.Append(GetSubMenu(Resource.SalaryDetails, "", "/Salary/Salary/SalaryDetails"));
                 menuString.Append("</ul></li>");
