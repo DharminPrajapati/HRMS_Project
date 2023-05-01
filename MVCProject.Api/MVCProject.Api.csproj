@@ -198,6 +198,7 @@
     <Compile Include="Controllers\Configuration\UserMastersController.cs" />
     <Compile Include="Controllers\EmployeeManagement\EmployeeController.cs" />
     <Compile Include="Controllers\EmployeeManagement\SearchEmployeeController.cs" />
+    <Compile Include="Controllers\Reports\ReportsController.cs" />
     <Compile Include="Controllers\Salary\SalaryController.cs" />
     <Compile Include="Filters\CompressContentAttribute.cs" />
     <Compile Include="Filters\ContactNumberAnnotation.cs" />

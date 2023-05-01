@@ -984,4 +984,10 @@
   <data name="profile" xml:space="preserve">
     <value>profile</value>
   </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="Employee_Report" xml:space="preserve">
+    <value>Employee_Report</value>
+  </data>
 </root>

@@ -179,6 +179,8 @@
     <Compile Include="Areas\EmployeeManagement\Controllers\SearchEmployeeController.cs" />
     <Compile Include="Areas\EmployeeManagement\EmployeeManagementAreaRegistration.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
+    <Compile Include="Areas\Reports\Controllers\ReportsController.cs" />
+    <Compile Include="Areas\Reports\ReportsAreaRegistration.cs" />
     <Compile Include="Areas\Salary\Controllers\SalaryController.cs" />
     <Compile Include="Areas\Salary\SalaryAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -270,6 +272,8 @@
     <Content Include="Areas\Public\Scripts\js\layerslider.kreaturamedia.jquery.js" />
     <Content Include="Areas\Public\Scripts\js\layerslider.transitions.js" />
     <Content Include="Areas\Public\Views\Web.config" />
+    <Content Include="Areas\Reports\Scripts\angular\controllers\ReportsCtrl.js" />
+    <Content Include="Areas\Reports\Scripts\angular\services\ReportsService.js" />
     <Content Include="Areas\Salary\Scripts\angular\controllers\SalaryCtrl.js" />
     <Content Include="Areas\Salary\Scripts\angular\services\SalaryService.js" />
     <Content Include="Content\css\angucomplete-alt.css" />
@@ -489,6 +493,8 @@
     <Folder Include="Areas\Public\Scripts\angular\controllers\" />
     <Folder Include="Areas\Public\Scripts\angular\services\" />
     <Folder Include="Areas\Public\Views\Shared\" />
+    <Folder Include="Areas\Reports\Models\" />
+    <Folder Include="Areas\Reports\Views\Shared\" />
     <Folder Include="Areas\Salary\Models\" />
     <Folder Include="Areas\Salary\Views\Shared\" />
     <Folder Include="Reports\" />
@@ -544,6 +550,8 @@
     <Content Include="Areas\Doument\Views\Web.config" />
     <Content Include="Areas\Doument\Views\Document\Index.cshtml" />
     <Content Include="Areas\EmployeeManagement\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\Reports\Views\Web.config" />
+    <Content Include="Areas\Reports\Views\Reports\Index.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />

@@ -844,6 +844,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee_Report.
+        /// </summary>
+        public static string Employee_Report {
+            get {
+                return ResourceManager.GetString("Employee_Report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee Search.
         /// </summary>
         public static string Employee_Search {
@@ -1893,6 +1902,15 @@ namespace MVCProject.Common.Resources {
         public static string ReportDate {
             get {
                 return ResourceManager.GetString("ReportDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reports.
+        /// </summary>
+        public static string Reports {
+            get {
+                return ResourceManager.GetString("Reports", resourceCulture);
             }
         }
         
