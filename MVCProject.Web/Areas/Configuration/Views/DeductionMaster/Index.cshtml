@@ -77,8 +77,8 @@
                                 <input type="text" class="form-control" name="txtShortCode" id="txtShortCode" required ng-focus="true" @*onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122)"*@  ng-model="deductionDetailScope.ShortCode" tabindex="2" placeholder="ShortCode" maxlength="250" />
                                 <div class="c">
                                 </div>
-                                <div class="label label-danger" data-ng-show="frmDeduction.txtDeduction.$dirty && frmDeduction.txtShortCode.$invalid">
-                                    <span data-ng-show="frmDeduction.txtShortCode.$error.required">@Resource.Short_Code Required</span>
+                                <div class="label label-danger" data-ng-show="frmDeduction.txtShortCode.$dirty && frmDeduction.txtShortCode.$invalid">
+                                    <span data-ng-show="frmDeduction.txtShortCode.$error.required">@Resource.Description Required</span>
                                 </div>
                             </div>
                         </div>

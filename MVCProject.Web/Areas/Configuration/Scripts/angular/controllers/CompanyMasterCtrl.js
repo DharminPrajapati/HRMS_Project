@@ -10,7 +10,7 @@
         var CompanyMasterDetailsParams = {};
 
 
-        $scope.CompanyMasterDetailsParams = {
+        $scope.CompanyDetailScope = {
             CompanyMasterId: 0,
             CompanyName: '',
             ShortCode: '',
