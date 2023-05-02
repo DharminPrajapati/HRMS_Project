@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace MVCProject.Areas.Doument.Controllers
+namespace MVCProject.Areas.Documents.Controllers
 {
     public class DocumentController : Controller
     {
         //
-        // GET: /Doument/Document/
+        // GET: /Documents/Document/
 
         public ActionResult Index()
         {

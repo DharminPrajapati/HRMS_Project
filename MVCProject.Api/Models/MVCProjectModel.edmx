@@ -123,6 +123,26 @@
           <Property Name="DepartmentId" Type="int" />
           <Property Name="ShortCode" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="DocumentTypeMaster">
+          <Key>
+            <PropertyRef Name="DocumentId" />
+          </Key>
+          <Property Name="DocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentName" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="EmployeeDocumentMaster">
+          <Key>
+            <PropertyRef Name="EmpDocumentId" />
+          </Key>
+          <Property Name="EmpDocumentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocumentType" Type="int" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="FileName" Type="nvarchar(max)" />
+          <Property Name="FilePath" Type="nvarchar(max)" />
+          <Property Name="OriginalName" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
         <EntityType Name="SalaryAllowance">
           <Key>
             <PropertyRef Name="SalaryAllowanceId" />
@@ -352,6 +372,8 @@
           <EntitySet Name="CompanyMaster" EntityType="Self.CompanyMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DeductionMaster" EntityType="Self.DeductionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DocumentTypeMaster" EntityType="Self.DocumentTypeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeDocumentMaster" EntityType="Self.EmployeeDocumentMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalaryAllowance" EntityType="Self.SalaryAllowance" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalaryConfiguration" EntityType="Self.SalaryConfiguration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalaryDeduction" EntityType="Self.SalaryDeduction" Schema="dbo" store:Type="Tables" />
@@ -525,6 +547,8 @@
             <End Role="DeductionMaster" EntitySet="DeductionMaster" />
             <End Role="SalaryDeduction" EntitySet="SalaryDeduction" />
           </AssociationSet>
+          <EntitySet Name="DocumentTypeMaster" EntityType="MVCProjectModel.DocumentTypeMaster" />
+          <EntitySet Name="EmployeeDocumentMaster" EntityType="MVCProjectModel.EmployeeDocumentMaster" />
         </EntityContainer>
         <EntityType Name="AttachmentMaster">
           <Key>
@@ -906,6 +930,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DocumentTypeMaster">
+          <Key>
+            <PropertyRef Name="DocumentId" />
+          </Key>
+          <Property Name="DocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="EmployeeDocumentMaster">
+          <Key>
+            <PropertyRef Name="EmpDocumentId" />
+          </Key>
+          <Property Name="EmpDocumentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocumentType" Type="Int32" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OriginalName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1280,6 +1324,28 @@
                 <ScalarProperty Name="DeductionAmount" ColumnName="DeductionAmount" />
                 <ScalarProperty Name="DeductionId" ColumnName="DeductionId" />
                 <ScalarProperty Name="SalaryDeductionId" ColumnName="SalaryDeductionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DocumentTypeMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.DocumentTypeMaster">
+              <MappingFragment StoreEntitySet="DocumentTypeMaster">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DocumentName" ColumnName="DocumentName" />
+                <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeDocumentMaster">
+            <EntityTypeMapping TypeName="MVCProjectModel.EmployeeDocumentMaster">
+              <MappingFragment StoreEntitySet="EmployeeDocumentMaster">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="OriginalName" ColumnName="OriginalName" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+                <ScalarProperty Name="EmpDocumentId" ColumnName="EmpDocumentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -167,10 +167,11 @@
     <Compile Include="Areas\Configuration\Controllers\DeductionMasterController.cs" />
     <Compile Include="Areas\Configuration\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Configuration\Controllers\DesignationController.cs" />
+    <Compile Include="Areas\Configuration\Controllers\DocumentMasterController.cs" />
     <Compile Include="Areas\Configuration\Controllers\SalaryConfigController.cs" />
     <Compile Include="Areas\Configuration\Controllers\UserMasterController.cs" />
-    <Compile Include="Areas\Doument\Controllers\DocumentController.cs" />
-    <Compile Include="Areas\Doument\DoumentAreaRegistration.cs" />
+    <Compile Include="Areas\Documents\Controllers\DocumentController.cs" />
+    <Compile Include="Areas\Documents\DocumentsAreaRegistration.cs" />
     <Compile Include="Areas\EmployeeManagement\Controllers\EmployeeController.cs" />
     <Compile Include="Areas\Configuration\Controllers\ResetLoginController.cs" />
     <Compile Include="Areas\Configuration\Controllers\RoleController.cs" />
@@ -231,6 +232,7 @@
     <Content Include="Areas\Attendance\Scripts\angular\services\AttendanceService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\AllowanceMasterCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\ApplicationCtrl.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\controllers\DocumentMasterCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\CompanyMasterCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DeductionMasterCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\controllers\DepartmentCtrl.js" />
@@ -240,6 +242,7 @@
     <Content Include="Areas\Configuration\Scripts\angular\controllers\UserMasterCtrl.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\AllowanceMasterService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\ApplicationService.js" />
+    <Content Include="Areas\Configuration\Scripts\angular\services\DocumentMasterService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\CompanyMasterService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DeductionMasterService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\DepartmentService.js" />
@@ -247,8 +250,8 @@
     <Content Include="Areas\Configuration\Scripts\angular\services\ResetToLoginService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\SalaryConfigService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\UserMasterService.js" />
-    <Content Include="Areas\Doument\Scripts\angular\controllers\DocumentCtrl.js" />
-    <Content Include="Areas\Doument\Scripts\angular\services\DocumentService.js" />
+    <Content Include="Areas\Documents\Scripts\angular\controllers\DocumentCtrl.js" />
+    <Content Include="Areas\Documents\Scripts\angular\services\DocumentService.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\angular\controllers\EmployeeCtrl.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\angular\controllers\ProfileCtrl.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\angular\controllers\SearchEmployeeCtrl.js" />
@@ -484,8 +487,8 @@
     <Folder Include="Areas\Attendance\Views\Shared\" />
     <Folder Include="Areas\Configuration\Models\" />
     <Folder Include="Areas\Configuration\Views\Shared\" />
-    <Folder Include="Areas\Doument\Models\" />
-    <Folder Include="Areas\Doument\Views\Shared\" />
+    <Folder Include="Areas\Documents\Models\" />
+    <Folder Include="Areas\Documents\Views\Shared\" />
     <Folder Include="Areas\EmployeeManagement\Models\" />
     <Folder Include="Areas\EmployeeManagement\Views\Shared\" />
     <Folder Include="Areas\Public\Controllers\" />
@@ -547,11 +550,12 @@
     <Content Include="Areas\Configuration\Views\CompanyMaster\Index.cshtml" />
     <Content Include="Areas\Salary\Views\Salary\Payroll.cshtml" />
     <Content Include="Areas\Salary\Views\Salary\SalaryDetails.cshtml" />
-    <Content Include="Areas\Doument\Views\Web.config" />
-    <Content Include="Areas\Doument\Views\Document\Index.cshtml" />
     <Content Include="Areas\EmployeeManagement\Views\Profile\Index.cshtml" />
     <Content Include="Areas\Reports\Views\Web.config" />
     <Content Include="Areas\Reports\Views\Reports\Index.cshtml" />
+    <Content Include="Areas\Configuration\Views\DocumentMaster\Index.cshtml" />
+    <Content Include="Areas\Documents\Views\Web.config" />
+    <Content Include="Areas\Documents\Views\Document\Index.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />

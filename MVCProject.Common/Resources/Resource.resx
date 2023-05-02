@@ -993,4 +993,22 @@
   <data name="Salary_Report" xml:space="preserve">
     <value>Salary_Report</value>
   </data>
+  <data name="Document" xml:space="preserve">
+    <value>Document</value>
+  </data>
+  <data name="DocumentManagement" xml:space="preserve">
+    <value>Document Management</value>
+  </data>
+  <data name="DocumentRequired" xml:space="preserve">
+    <value>Document Name is required</value>
+  </data>
+  <data name="DocumentMaster" xml:space="preserve">
+    <value>Document Master</value>
+  </data>
+  <data name="DocumentType" xml:space="preserve">
+    <value>Document Type</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add New</value>
+  </data>
 </root>

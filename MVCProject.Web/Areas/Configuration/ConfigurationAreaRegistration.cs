@@ -114,6 +114,11 @@ namespace MVCProject.Areas.Configuration
                 .Include("~/Areas/Configuration/Scripts/angular/services/CompanyMasterService.js")
                 .Include("~/Areas/Configuration/Scripts/angular/controllers/CompanyMasterCtrl.js"));
 
+            // DocumentMaster
+            bundles.Add(new ScriptBundle("~/bundles/Configuration/DocumentMaster")
+                .Include("~/Areas/Configuration/Scripts/angular/services/DocumentMasterService.js")
+                .Include("~/Areas/Configuration/Scripts/angular/controllers/DocumentMasterCtrl.js"));
+
         }
     }
 }

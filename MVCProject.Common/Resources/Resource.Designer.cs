@@ -106,6 +106,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add New.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Salary.
         /// </summary>
         public static string Add_Salary {
@@ -723,6 +732,51 @@ namespace MVCProject.Common.Resources {
         public static string DidNotMatchAnyRecord {
             get {
                 return ResourceManager.GetString("DidNotMatchAnyRecord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document.
+        /// </summary>
+        public static string Document {
+            get {
+                return ResourceManager.GetString("Document", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document Management.
+        /// </summary>
+        public static string DocumentManagement {
+            get {
+                return ResourceManager.GetString("DocumentManagement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document Master.
+        /// </summary>
+        public static string DocumentMaster {
+            get {
+                return ResourceManager.GetString("DocumentMaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document Name is required.
+        /// </summary>
+        public static string DocumentRequired {
+            get {
+                return ResourceManager.GetString("DocumentRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Document Type.
+        /// </summary>
+        public static string DocumentType {
+            get {
+                return ResourceManager.GetString("DocumentType", resourceCulture);
             }
         }
         

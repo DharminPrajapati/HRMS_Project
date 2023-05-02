@@ -333,6 +333,38 @@ namespace MVCProject.Api.Models
             }
         }
         private ObjectSet<SalaryDeduction> _SalaryDeduction;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<DocumentTypeMaster> DocumentTypeMaster
+        {
+            get
+            {
+                if ((_DocumentTypeMaster == null))
+                {
+                    _DocumentTypeMaster = base.CreateObjectSet<DocumentTypeMaster>("DocumentTypeMaster");
+                }
+                return _DocumentTypeMaster;
+            }
+        }
+        private ObjectSet<DocumentTypeMaster> _DocumentTypeMaster;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<EmployeeDocumentMaster> EmployeeDocumentMaster
+        {
+            get
+            {
+                if ((_EmployeeDocumentMaster == null))
+                {
+                    _EmployeeDocumentMaster = base.CreateObjectSet<EmployeeDocumentMaster>("EmployeeDocumentMaster");
+                }
+                return _EmployeeDocumentMaster;
+            }
+        }
+        private ObjectSet<EmployeeDocumentMaster> _EmployeeDocumentMaster;
 
         #endregion
 
@@ -464,6 +496,22 @@ namespace MVCProject.Api.Models
         public void AddToSalaryDeduction(SalaryDeduction salaryDeduction)
         {
             base.AddObject("SalaryDeduction", salaryDeduction);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the DocumentTypeMaster EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToDocumentTypeMaster(DocumentTypeMaster documentTypeMaster)
+        {
+            base.AddObject("DocumentTypeMaster", documentTypeMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the EmployeeDocumentMaster EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToEmployeeDocumentMaster(EmployeeDocumentMaster employeeDocumentMaster)
+        {
+            base.AddObject("EmployeeDocumentMaster", employeeDocumentMaster);
         }
 
         #endregion
@@ -2822,6 +2870,312 @@ namespace MVCProject.Api.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MVCProjectModel", Name="DocumentTypeMaster")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class DocumentTypeMaster : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new DocumentTypeMaster object.
+        /// </summary>
+        /// <param name="documentId">Initial value of the DocumentId property.</param>
+        public static DocumentTypeMaster CreateDocumentTypeMaster(global::System.Int32 documentId)
+        {
+            DocumentTypeMaster documentTypeMaster = new DocumentTypeMaster();
+            documentTypeMaster.DocumentId = documentId;
+            return documentTypeMaster;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 DocumentId
+        {
+            get
+            {
+                return _DocumentId;
+            }
+            set
+            {
+                if (_DocumentId != value)
+                {
+                    OnDocumentIdChanging(value);
+                    ReportPropertyChanging("DocumentId");
+                    _DocumentId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("DocumentId");
+                    OnDocumentIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _DocumentId;
+        partial void OnDocumentIdChanging(global::System.Int32 value);
+        partial void OnDocumentIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DocumentName
+        {
+            get
+            {
+                return _DocumentName;
+            }
+            set
+            {
+                OnDocumentNameChanging(value);
+                ReportPropertyChanging("DocumentName");
+                _DocumentName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DocumentName");
+                OnDocumentNameChanged();
+            }
+        }
+        private global::System.String _DocumentName;
+        partial void OnDocumentNameChanging(global::System.String value);
+        partial void OnDocumentNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsActive;
+        partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsActiveChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MVCProjectModel", Name="EmployeeDocumentMaster")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class EmployeeDocumentMaster : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new EmployeeDocumentMaster object.
+        /// </summary>
+        /// <param name="empDocumentId">Initial value of the EmpDocumentId property.</param>
+        public static EmployeeDocumentMaster CreateEmployeeDocumentMaster(global::System.Int32 empDocumentId)
+        {
+            EmployeeDocumentMaster employeeDocumentMaster = new EmployeeDocumentMaster();
+            employeeDocumentMaster.EmpDocumentId = empDocumentId;
+            return employeeDocumentMaster;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 EmpDocumentId
+        {
+            get
+            {
+                return _EmpDocumentId;
+            }
+            set
+            {
+                if (_EmpDocumentId != value)
+                {
+                    OnEmpDocumentIdChanging(value);
+                    ReportPropertyChanging("EmpDocumentId");
+                    _EmpDocumentId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("EmpDocumentId");
+                    OnEmpDocumentIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _EmpDocumentId;
+        partial void OnEmpDocumentIdChanging(global::System.Int32 value);
+        partial void OnEmpDocumentIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DocumentType
+        {
+            get
+            {
+                return _DocumentType;
+            }
+            set
+            {
+                OnDocumentTypeChanging(value);
+                ReportPropertyChanging("DocumentType");
+                _DocumentType = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DocumentType");
+                OnDocumentTypeChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DocumentType;
+        partial void OnDocumentTypeChanging(Nullable<global::System.Int32> value);
+        partial void OnDocumentTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> EmployeeId
+        {
+            get
+            {
+                return _EmployeeId;
+            }
+            set
+            {
+                OnEmployeeIdChanging(value);
+                ReportPropertyChanging("EmployeeId");
+                _EmployeeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EmployeeId");
+                OnEmployeeIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _EmployeeId;
+        partial void OnEmployeeIdChanging(Nullable<global::System.Int32> value);
+        partial void OnEmployeeIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FileName
+        {
+            get
+            {
+                return _FileName;
+            }
+            set
+            {
+                OnFileNameChanging(value);
+                ReportPropertyChanging("FileName");
+                _FileName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FileName");
+                OnFileNameChanged();
+            }
+        }
+        private global::System.String _FileName;
+        partial void OnFileNameChanging(global::System.String value);
+        partial void OnFileNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String FilePath
+        {
+            get
+            {
+                return _FilePath;
+            }
+            set
+            {
+                OnFilePathChanging(value);
+                ReportPropertyChanging("FilePath");
+                _FilePath = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("FilePath");
+                OnFilePathChanged();
+            }
+        }
+        private global::System.String _FilePath;
+        partial void OnFilePathChanging(global::System.String value);
+        partial void OnFilePathChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String OriginalName
+        {
+            get
+            {
+                return _OriginalName;
+            }
+            set
+            {
+                OnOriginalNameChanging(value);
+                ReportPropertyChanging("OriginalName");
+                _OriginalName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("OriginalName");
+                OnOriginalNameChanged();
+            }
+        }
+        private global::System.String _OriginalName;
+        partial void OnOriginalNameChanging(global::System.String value);
+        partial void OnOriginalNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> IsActive
+        {
+            get
+            {
+                return _IsActive;
+            }
+            set
+            {
+                OnIsActiveChanging(value);
+                ReportPropertyChanging("IsActive");
+                _IsActive = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IsActive");
+                OnIsActiveChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _IsActive;
+        partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
+        partial void OnIsActiveChanged();
+
+        #endregion
+
+    
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="MVCProjectModel", Name="SalaryAllowance")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -4964,7 +5318,7 @@ namespace MVCProject.Api.Models
             }
             set
             {
-                if ((value != null) && UserRole == null)
+                if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserRole>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserRole", value);
                 }
