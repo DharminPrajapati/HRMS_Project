@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = Resource.Dashboard;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .colSrno {
+        width: 50px !important;
+        min-width: 50px !important;
+        max-width: 50px !important;
+    }
+
+    .colPosition {
+        width: 200px !important;
+        min-width: 200px !important;
+        max-width: 200px !important;
+    }
+
+    .colActive {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+    }
+
+    .colAction {
+        width: 60px !important;
+        min-width: 60px !important;
+        max-width: 60px !important;
+    }
+</style>
+
+<div ng-controller="DashboardCtrl" ng-init="Init()">
+    <div class="container settings-tabs">
+        Total Employees:{{employee}}
+        Total Departments:{{department}}
+        Total Active Users:{{active_employee}}
+    </div>
+    <div id="gender-chart" style="height:400px;width:360px">
+        <svg></svg>
+    </div>
+
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/Dashboard/Dashboard/Index")
+}
+<script src="https://kit.fontawesome.com/73e0cf2663.js" crossorigin="anonymous"></script>
+

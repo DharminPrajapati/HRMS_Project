@@ -357,6 +357,8 @@
         </Association>
         <Function Name="sp_Emp_GetAllEmployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Sp_HRMS_Attendance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_hrms_countemployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_hrms_genderchart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_hrms_searchemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SearchText" Type="nvarchar" Mode="In" />
           <Parameter Name="DepartmentId" Type="int" Mode="In" />
@@ -549,6 +551,8 @@
           </AssociationSet>
           <EntitySet Name="DocumentTypeMaster" EntityType="MVCProjectModel.DocumentTypeMaster" />
           <EntitySet Name="EmployeeDocumentMaster" EntityType="MVCProjectModel.EmployeeDocumentMaster" />
+          <FunctionImport Name="sp_hrms_countemployees" ReturnType="Collection(MVCProjectModel.sp_hrms_countemployees_Result)" />
+          <FunctionImport Name="sp_hrms_genderchart" ReturnType="Collection(MVCProjectModel.sp_hrms_genderchart_Result)" />
         </EntityContainer>
         <EntityType Name="AttachmentMaster">
           <Key>
@@ -950,6 +954,15 @@
           <Property Name="OriginalName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
         </EntityType>
+        <ComplexType Name="sp_hrms_countemployees_Result">
+          <Property Type="Int32" Name="EmployeeCount" Nullable="true" />
+          <Property Type="Int32" Name="DepartmentCount" Nullable="true" />
+          <Property Type="Int32" Name="ActiveEmployeeCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_hrms_genderchart_Result">
+          <Property Type="String" Name="Gender" Nullable="false" MaxLength="6" />
+          <Property Type="Int32" Name="Count" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1349,6 +1362,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_hrms_countemployees" FunctionName="MVCProjectModel.Store.sp_hrms_countemployees">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.sp_hrms_countemployees_Result">
+                <ScalarProperty Name="EmployeeCount" ColumnName="EmployeeCount" />
+                <ScalarProperty Name="DepartmentCount" ColumnName="DepartmentCount" />
+                <ScalarProperty Name="ActiveEmployeeCount" ColumnName="ActiveEmployeeCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_hrms_genderchart" FunctionName="MVCProjectModel.Store.sp_hrms_genderchart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.sp_hrms_genderchart_Result">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

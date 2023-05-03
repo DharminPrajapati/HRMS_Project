@@ -556,6 +556,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        public static string Dashboard {
+            get {
+                return ResourceManager.GetString("Dashboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string Date {
@@ -1254,6 +1263,15 @@ namespace MVCProject.Common.Resources {
         public static string HR_Attendance {
             get {
                 return ResourceManager.GetString("HR Attendance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HR_Dashboard.
+        /// </summary>
+        public static string HR_Dashboard {
+            get {
+                return ResourceManager.GetString("HR_Dashboard", resourceCulture);
             }
         }
         

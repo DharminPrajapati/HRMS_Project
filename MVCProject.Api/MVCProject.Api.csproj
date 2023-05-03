@@ -197,6 +197,7 @@
     <Compile Include="Controllers\Configuration\DocumentMasterController.cs" />
     <Compile Include="Controllers\Configuration\SalaryConfigController.cs" />
     <Compile Include="Controllers\Configuration\UserMastersController.cs" />
+    <Compile Include="Controllers\Dashboard\DashboardController.cs" />
     <Compile Include="Controllers\DocumentManagement\DocumentController.cs" />
     <Compile Include="Controllers\EmployeeManagement\EmployeeController.cs" />
     <Compile Include="Controllers\EmployeeManagement\SearchEmployeeController.cs" />

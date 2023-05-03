@@ -582,6 +582,22 @@ namespace MVCProject.Api.Models
     
             return base.ExecuteFunction<sp_hrms_searchemp_Result>("sp_hrms_searchemp", searchTextParameter, departmentIdParameter, designationIdParameter);
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectResult<sp_hrms_countemployees_Result> sp_hrms_countemployees()
+        {
+            return base.ExecuteFunction<sp_hrms_countemployees_Result>("sp_hrms_countemployees");
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectResult<sp_hrms_genderchart_Result> sp_hrms_genderchart()
+        {
+            return base.ExecuteFunction<sp_hrms_genderchart_Result>("sp_hrms_genderchart");
+        }
 
         #endregion
 
@@ -6579,6 +6595,169 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.Boolean> _IsActive;
         partial void OnIsActiveChanging(Nullable<global::System.Boolean> value);
         partial void OnIsActiveChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MVCProjectModel", Name="sp_hrms_countemployees_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class sp_hrms_countemployees_Result : ComplexObject
+    {
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> EmployeeCount
+        {
+            get
+            {
+                return _EmployeeCount;
+            }
+            set
+            {
+                OnEmployeeCountChanging(value);
+                ReportPropertyChanging("EmployeeCount");
+                _EmployeeCount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("EmployeeCount");
+                OnEmployeeCountChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _EmployeeCount;
+        partial void OnEmployeeCountChanging(Nullable<global::System.Int32> value);
+        partial void OnEmployeeCountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> DepartmentCount
+        {
+            get
+            {
+                return _DepartmentCount;
+            }
+            set
+            {
+                OnDepartmentCountChanging(value);
+                ReportPropertyChanging("DepartmentCount");
+                _DepartmentCount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DepartmentCount");
+                OnDepartmentCountChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _DepartmentCount;
+        partial void OnDepartmentCountChanging(Nullable<global::System.Int32> value);
+        partial void OnDepartmentCountChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ActiveEmployeeCount
+        {
+            get
+            {
+                return _ActiveEmployeeCount;
+            }
+            set
+            {
+                OnActiveEmployeeCountChanging(value);
+                ReportPropertyChanging("ActiveEmployeeCount");
+                _ActiveEmployeeCount = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ActiveEmployeeCount");
+                OnActiveEmployeeCountChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ActiveEmployeeCount;
+        partial void OnActiveEmployeeCountChanging(Nullable<global::System.Int32> value);
+        partial void OnActiveEmployeeCountChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MVCProjectModel", Name="sp_hrms_genderchart_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class sp_hrms_genderchart_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new sp_hrms_genderchart_Result object.
+        /// </summary>
+        /// <param name="gender">Initial value of the Gender property.</param>
+        public static sp_hrms_genderchart_Result Createsp_hrms_genderchart_Result(global::System.String gender)
+        {
+            sp_hrms_genderchart_Result sp_hrms_genderchart_Result = new sp_hrms_genderchart_Result();
+            sp_hrms_genderchart_Result.Gender = gender;
+            return sp_hrms_genderchart_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Gender
+        {
+            get
+            {
+                return _Gender;
+            }
+            set
+            {
+                OnGenderChanging(value);
+                ReportPropertyChanging("Gender");
+                _Gender = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Gender");
+                OnGenderChanged();
+            }
+        }
+        private global::System.String _Gender;
+        partial void OnGenderChanging(global::System.String value);
+        partial void OnGenderChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Count
+        {
+            get
+            {
+                return _Count;
+            }
+            set
+            {
+                OnCountChanging(value);
+                ReportPropertyChanging("Count");
+                _Count = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Count");
+                OnCountChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Count;
+        partial void OnCountChanging(Nullable<global::System.Int32> value);
+        partial void OnCountChanged();
 
         #endregion
 

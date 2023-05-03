@@ -170,6 +170,8 @@
     <Compile Include="Areas\Configuration\Controllers\DocumentMasterController.cs" />
     <Compile Include="Areas\Configuration\Controllers\SalaryConfigController.cs" />
     <Compile Include="Areas\Configuration\Controllers\UserMasterController.cs" />
+    <Compile Include="Areas\Dashboard\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Dashboard\DashboardAreaRegistration.cs" />
     <Compile Include="Areas\Documents\Controllers\DocumentController.cs" />
     <Compile Include="Areas\Documents\DocumentsAreaRegistration.cs" />
     <Compile Include="Areas\EmployeeManagement\Controllers\EmployeeController.cs" />
@@ -250,6 +252,8 @@
     <Content Include="Areas\Configuration\Scripts\angular\services\ResetToLoginService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\SalaryConfigService.js" />
     <Content Include="Areas\Configuration\Scripts\angular\services\UserMasterService.js" />
+    <Content Include="Areas\Dashboard\Scripts\angular\Controllers\DashboardCtrl.js" />
+    <Content Include="Areas\Dashboard\Scripts\angular\Services\DashboardService.js" />
     <Content Include="Areas\Documents\Scripts\angular\controllers\DocumentCtrl.js" />
     <Content Include="Areas\Documents\Scripts\angular\services\DocumentService.js" />
     <Content Include="Areas\EmployeeManagement\Scripts\angular\controllers\EmployeeCtrl.js" />
@@ -487,6 +491,8 @@
     <Folder Include="Areas\Attendance\Views\Shared\" />
     <Folder Include="Areas\Configuration\Models\" />
     <Folder Include="Areas\Configuration\Views\Shared\" />
+    <Folder Include="Areas\Dashboard\Models\" />
+    <Folder Include="Areas\Dashboard\Views\Shared\" />
     <Folder Include="Areas\Documents\Models\" />
     <Folder Include="Areas\Documents\Views\Shared\" />
     <Folder Include="Areas\EmployeeManagement\Models\" />
@@ -556,6 +562,8 @@
     <Content Include="Areas\Configuration\Views\DocumentMaster\Index.cshtml" />
     <Content Include="Areas\Documents\Views\Web.config" />
     <Content Include="Areas\Documents\Views\Document\Index.cshtml" />
+    <Content Include="Areas\Dashboard\Views\Web.config" />
+    <Content Include="Areas\Dashboard\Views\Dashboard\Index.cshtml" />
     <None Include="Content\fonts\fontawesome-webfont.eot" />
     <None Include="Content\fonts\fontawesome-webfont.ttf" />
     <None Include="Content\fonts\fontawesome-webfont.woff" />

@@ -1011,4 +1011,10 @@
   <data name="Add" xml:space="preserve">
     <value>Add New</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="HR_Dashboard" xml:space="preserve">
+    <value>HR_Dashboard</value>
+  </data>
 </root>

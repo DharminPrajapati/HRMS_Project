@@ -38,6 +38,11 @@ namespace System.Web.Mvc
             if (userContext.RoleId == 1)
             {
 
+                menuString.Append("<li>");
+                menuString.AppendFormat(GetParentMenu(Resource.Dashboard, "fa fa-user"));
+                menuString.Append("<ul class='nav child_menu'>");
+                menuString.Append(GetSubMenu(Resource.HR_Dashboard, "", "/Dashboard/Dashboard/Index"));
+                menuString.Append("</ul></li>");
 
                 menuString.Append("<li>");
                 menuString.AppendFormat(GetParentMenu(Resource.Configuration, "fa fa-gears"));
