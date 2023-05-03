@@ -29,21 +29,96 @@
 </style>
 
 <div ng-controller="DashboardCtrl" ng-init="Init()">
+    <hr />
     <div class="container settings-tabs">
-        Total Employees:{{employee}}
-        Total Departments:{{department}}
-        Total Active Users:{{active_employee}}
+        <div class="col-md-3 col-sm-3 col-lg-3 col-xl-2">
+            <div class="card dash-widget">
+                <div class="card-body" Background="#FF9B4433">
+                    <span class="dash-widget-icon">
+                        <i class="fa fa-user">
+                        </i>
+                    </span>
+                    <div class="dash-widget-info">
+                        <h2> {{employee}}</h2>
+                        <span>Total Employees</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-lg-3 col-xl-2">
+            <div class="card dash-widget">
+                <div class="card-body">
+                    <span class="dash-widget-icon"><i class="fa fa-usd"></i></span>
+
+                    <div class="dash-widget-info">
+                        <h2> {{department}}</h2>
+                        <span>Total Departments</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-sm-3 col-lg-3 col-xl-2">
+            <div class="card dash-widget">
+                <div class="card-body">
+                    <span class="dash-widget-icon"><i class="fa fa-user"></i></span>
+                    <div class="dash-widget-info">
+                        <h2> {{active_employee}}</h2>
+                        <span>Total Active Users</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-   
-    <div id="gender-chart" style="height:400px;width:360px">
+    @*<div class="container settings-tabs">
+            Total Employees:{{employee}}
+            Total Departments:{{department}}
+            Total Active Users:{{active_employee}}
+        </div>*@
+
+    <hr /><hr />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="row-md-6 text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">Total Employees</h2>
+                            <div id="gender-chart" style="height:400px;width:360px">
+                                <svg></svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-md-6">
+        <div class="row">
+            <div class="row-md-6 text-center">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">Total Roles</h2>
+                        <div id="role-chart" style="height:400px;width:360px">
+                            <svg></svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div id="gender-chart" style="height:400px;width:360px">
 
         <svg></svg>
     </div>
     <div id="role-chart" style="height:400px;width:360px">
         <svg></svg>
-    </div>
+    </div>*@
 
-</div>
+ </div>
 
 @section scripts {
     @Scripts.Render("~/bundles/Dashboard/Dashboard/Index")
