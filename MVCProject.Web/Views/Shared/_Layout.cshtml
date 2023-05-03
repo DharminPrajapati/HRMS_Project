@@ -112,18 +112,19 @@
                                 </i>
                                     @Resource.NotificationSetting
                                 </a></li>*@
-                                <li>
+                                
+                                 <li>
+                                     <a ng-click="EmployeeProfile()" href="~/EmployeeManagement/Profile/Index">
+                                    <i class="ti-user m-r-5"></i>
+                                    @*@Resource.Logout*@
+                                    My Profile
+                                     </a>
+                                </li>
+                             <li>
                                     <a ng-click="Logout()" href="javascript:void(0)">
                                         <i class="ti-power-off m-r-5"></i>
                                         @Resource.Logout
                                     </a>
-                                </li>
-                            <li>
-                                <a ng-click="EmployeeProfile()" href="~/EmployeeManagement/Profile/Index">
-                                    <i class="ti-user m-r-5"></i>
-                                    @*@Resource.Logout*@
-                                    Employee Profile
-                                </a>
                                 </li>
                             </ul>
                         </li>

@@ -29,14 +29,7 @@
 </style>
 
 <div ng-controller="ProfileCtrl">
-
-
-    <div class="container settings-tabs">
-
-
-
-
-
+<div class="container settings-tabs">
         @*<table class="table">
                     <tr>
                         <img ng-src="{{userContext.ProfilePicturePath}}" alt="@Resource.ProfilePicture" fallback-src="/Content/images/avatar-1.jpg" src="../../Content/images/avatar-1.jpg" class="img-circle user-img profile-img thumb-sm" />
@@ -149,10 +142,10 @@
                                 <div class="col-md-5">
                                     <div class="profile-info-left">
                                         <h2 class="user-name m-t-0 mb-0">{{eventmasterlist.FirstName}}  {{eventmasterlist.LastName}}</h2>
-                                        <h6 class="text-muted">{{eventmasterlist.DepartmentName}}</h6>
-                                        <small class="text-muted">{{eventmasterlist.DesignationName}}</small>
+                                        <div class="staff-id">Department : {{eventmasterlist.DepartmentName}}</div>
+                                        <div class="staff-id">Designation : {{eventmasterlist.DesignationName}}</div>
                                         <div class="staff-id">Employee ID : {{eventmasterlist.BatchNo }}</div>
-                                        <div class="small doj text-muted">Date of Join : {{eventmasterlist.JoiningDate | date:'dd/MM/yyyy'}}</div>
+                                        <div class=" staff-id">Date of Join : {{eventmasterlist.JoiningDate | date:'dd/MM/yyyy'}}</div>
                                     </div>
                                 </div>
                                 <div class="col-md-7">
