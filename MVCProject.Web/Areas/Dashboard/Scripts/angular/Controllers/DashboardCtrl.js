@@ -58,13 +58,52 @@
             });
         };
 
+        // Load role chart data
+        $scope.roleChartData = [];
+        $scope.roleChartLabels = [];
+        $scope.roleChartOptions = {
+            legend: {
+                display: true,
+                position: 'bottom'
+            }
+        };
+        $scope.roleChartColors = ['#FF6384', '#36A2EB'];
 
+        $scope.roleChart = function () {
+       
+            DashboardService.RoleChart().then(function (res) {
+
+                var data = res.data.Result;
+                var chartData = [];
+                for (var i = 0; i < data.length; i++) {
+                    var label = data[i].UserRoleName === "HR" ? "HR" : "Employee";
+                    chartData.push({ label: label, value: data[i].Count });
+                }
+            
+                nv.addGraph(function () {
+                    var chart = nv.models.pieChart()
+                        .x(function (d) { return d.label; })
+                        .y(function (d) { return d.value; })
+                        .showLabels(true)
+                        .width(400)
+                        .height(400)
+                        .color(['#FF6384', '#36A2EB', '#FFCE56', '#33FF99'])
+
+                    d3.select('#role-chart svg')
+                        .datum(chartData)
+                        /*.transition().duration(350)*/
+                        .call(chart);
+                    return chart;
+                });
+            });
+        };
 
 
 
         $scope.Init = function () {
             $scope.countemployee();
             $scope.loadGenderChart();
+            $scope.roleChart();
 
         }
 

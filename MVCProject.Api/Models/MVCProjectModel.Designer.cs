@@ -598,6 +598,14 @@ namespace MVCProject.Api.Models
         {
             return base.ExecuteFunction<sp_hrms_genderchart_Result>("sp_hrms_genderchart");
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectResult<sp_hrms_rolechart_Result> sp_hrms_rolechart()
+        {
+            return base.ExecuteFunction<sp_hrms_rolechart_Result>("sp_hrms_rolechart");
+        }
 
         #endregion
 
@@ -6734,6 +6742,83 @@ namespace MVCProject.Api.Models
         private global::System.String _Gender;
         partial void OnGenderChanging(global::System.String value);
         partial void OnGenderChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Count
+        {
+            get
+            {
+                return _Count;
+            }
+            set
+            {
+                OnCountChanging(value);
+                ReportPropertyChanging("Count");
+                _Count = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Count");
+                OnCountChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Count;
+        partial void OnCountChanging(Nullable<global::System.Int32> value);
+        partial void OnCountChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmComplexTypeAttribute(NamespaceName="MVCProjectModel", Name="sp_hrms_rolechart_Result")]
+    [DataContractAttribute(IsReference=true)]
+    [Serializable()]
+    public partial class sp_hrms_rolechart_Result : ComplexObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new sp_hrms_rolechart_Result object.
+        /// </summary>
+        /// <param name="userRoleName">Initial value of the UserRoleName property.</param>
+        public static sp_hrms_rolechart_Result Createsp_hrms_rolechart_Result(global::System.String userRoleName)
+        {
+            sp_hrms_rolechart_Result sp_hrms_rolechart_Result = new sp_hrms_rolechart_Result();
+            sp_hrms_rolechart_Result.UserRoleName = userRoleName;
+            return sp_hrms_rolechart_Result;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserRoleName
+        {
+            get
+            {
+                return _UserRoleName;
+            }
+            set
+            {
+                OnUserRoleNameChanging(value);
+                ReportPropertyChanging("UserRoleName");
+                _UserRoleName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("UserRoleName");
+                OnUserRoleNameChanged();
+            }
+        }
+        private global::System.String _UserRoleName;
+        partial void OnUserRoleNameChanging(global::System.String value);
+        partial void OnUserRoleNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

@@ -20,6 +20,15 @@
 
         }
 
+        list.RoleChart = function () {
+           
+            return $http({
+                method: 'GET',
+                url: $rootScope.apiURL + '/Dashboard/RoleChart'
+            });
+
+        }
+
 
         return list;
     }]);

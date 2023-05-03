@@ -52,5 +52,19 @@ namespace MVCProject.Api.Controllers.Dashboard
                 return this.Response(Utilities.MessageTypes.Error);
             }
         }
+
+        [HttpGet]
+        public ApiResponse RoleChart()
+        {
+            try
+            {
+                var records = this.entities.sp_hrms_rolechart();
+                return this.Response(Utilities.MessageTypes.Success, string.Empty, records);
+            }
+            catch
+            {
+                return this.Response(Utilities.MessageTypes.Error);
+            }
+        }
     }
 }

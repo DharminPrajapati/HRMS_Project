@@ -359,6 +359,7 @@
         <Function Name="Sp_HRMS_Attendance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_hrms_countemployees" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_hrms_genderchart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_hrms_rolechart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_hrms_searchemp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="SearchText" Type="nvarchar" Mode="In" />
           <Parameter Name="DepartmentId" Type="int" Mode="In" />
@@ -553,6 +554,7 @@
           <EntitySet Name="EmployeeDocumentMaster" EntityType="MVCProjectModel.EmployeeDocumentMaster" />
           <FunctionImport Name="sp_hrms_countemployees" ReturnType="Collection(MVCProjectModel.sp_hrms_countemployees_Result)" />
           <FunctionImport Name="sp_hrms_genderchart" ReturnType="Collection(MVCProjectModel.sp_hrms_genderchart_Result)" />
+          <FunctionImport Name="sp_hrms_rolechart" ReturnType="Collection(MVCProjectModel.sp_hrms_rolechart_Result)" />
         </EntityContainer>
         <EntityType Name="AttachmentMaster">
           <Key>
@@ -961,6 +963,10 @@
         </ComplexType>
         <ComplexType Name="sp_hrms_genderchart_Result">
           <Property Type="String" Name="Gender" Nullable="false" MaxLength="6" />
+          <Property Type="Int32" Name="Count" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_hrms_rolechart_Result">
+          <Property Type="String" Name="UserRoleName" Nullable="false" MaxLength="8" />
           <Property Type="Int32" Name="Count" Nullable="true" />
         </ComplexType>
       </Schema>
@@ -1375,6 +1381,14 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="MVCProjectModel.sp_hrms_genderchart_Result">
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_hrms_rolechart" FunctionName="MVCProjectModel.Store.sp_hrms_rolechart">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.sp_hrms_rolechart_Result">
+                <ScalarProperty Name="UserRoleName" ColumnName="UserRoleName" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
               </ComplexTypeMapping>
             </ResultMapping>
