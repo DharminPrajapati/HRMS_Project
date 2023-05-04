@@ -28,6 +28,26 @@ namespace MVCProject.Api.Controllers.Attendance
         }
 
         [HttpGet]
+        public ApiResponse GetInTimeByEmployeeId(int employeeId)
+        {
+            var AttendanceIntime = this.entities.Attendance.Where(x => x.EmployeeId == employeeId && x.Date == DateTime.Today)
+                .Select(d => new
+                {
+                    EmployeeId = d.EmployeeId,
+                    InTime = d.InTime
+                }).ToList();
+            if (AttendanceIntime != null)
+            {
+                return this.Response(Utilities.MessageTypes.Success, string.Empty, AttendanceIntime);
+            }
+            else
+            {
+                return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
+
+            }
+        }
+
+        [HttpGet]
         public ApiResponse GetAttendance(int employeeId)
         {
             var attendanceDetail = this.entities.Sp_HRMS_Attendance().Where(x => x.EmployeeId == employeeId)
