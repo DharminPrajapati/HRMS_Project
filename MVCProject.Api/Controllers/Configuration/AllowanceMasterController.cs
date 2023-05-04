@@ -36,10 +36,10 @@
                     this.entities.AllowanceMaster.AddObject(AllowanceDetail);
                     if (!(this.entities.SaveChanges() > 0))
                     {
-                        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Description));
+                        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Allowance));
                     }
 
-                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Description));
+                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.CreatedSuccessfully, Resource.Allowance));
                 }
 
                 // For Update
@@ -58,10 +58,10 @@
                     this.entities.AllowanceMaster.ApplyCurrentValues(existingAllowanceDetail);
                     if (!(this.entities.SaveChanges() > 0))
                     {
-                        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Department));
+                        return this.Response(Utilities.MessageTypes.Error, string.Format(Resource.SaveError, Resource.Allowance));
                     }
 
-                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Department));
+                    return this.Response(Utilities.MessageTypes.Success, string.Format(Resource.UpdatedSuccessfully, Resource.Allowance));
                 }
             }
         }

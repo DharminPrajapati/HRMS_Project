@@ -1023,4 +1023,7 @@
   <data name="MyAttendance" xml:space="preserve">
     <value>My Attendance</value>
   </data>
+  <data name="Allowance" xml:space="preserve">
+    <value>Allowance</value>
+  </data>
 </root>
