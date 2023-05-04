@@ -3,238 +3,7 @@
     ViewBag.Title = "Payslip";
     Layout = "~/Views/Shared/_LayoutPayslip.cshtml";
 }
-@*<html>
-    <head>
-        <style>
-            .payslip-title {
-                text-align: center;
-                text-decoration: underline;
-                text-transform: uppercase;
-                margin: 0 0 20px;
-            }
 
-            .inv-logo {
-                height: auto;
-                max-height: 100px;
-                width: auto;
-                margin: 0 0 20px;
-                padding: inherit;
-            }
-
-            .invoice-details {
-                float: right;
-                text-align: right;
-            }
-
-            table {
-                border-collapse: collapse;
-                width: 100%;
-            }
-
-            th, td {
-                text-align: left;
-                padding: 8px;
-                border-bottom: 1px solid #ddd;
-            }
-
-            tr:nth-child(even) {
-                background-color: #f2f2f2;
-            }
-        </style>
-    </head>
-    <body>
-
-        <div class="page-wrapper" ng-controller="SalaryCtrl" ng-init="GetData('@ViewBag.EmployeeId')">
-
-            <div class="container-fluid">
-
-
-
-
-
-                <div class="row">
-
-                    <div class="col-md-12">
-
-                        <div class="card">
-
-                            <div class="card-body">
-                                <center>
-                                    <span>
-                                        <strong>Payslip</strong>
-                                    </span>
-                                </center>
-
-
-                                <div class="row">
-
-                                    <div class="col-sm-6 m-b-20">
-
-                                        <img src="~/Content/images/Group 11.png" class="inv-logo" alt="">
-
-                                        <ul class="list-unstyled mb-0">
-
-                                            <li>Ask E-Solution Pvt.Limited</li>
-
-                                            <li>214 to 217,Luxuria Bussiness Hub</li>
-
-                                            <li>Beside Dumas Resort, Dumas Road, Surat-395007</li>
-
-                                        </ul>
-
-                                    </div>
-
-                                    <div class="col-sm-6 m-b-20">
-
-                                        <div class="invoice-details">
-
-                                            <h3 class="text-uppercase">Payslip #49029</h3>
-
-
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-lg-12 m-b-20">
-
-                                        <ul class="list-unstyled">
-
-                                            <li>Employee : <span>@Model.Result.Name</span></li>
-
-                                            <li>Department : <span>@Model.Result.DepartmentName</span></li>
-
-                                            <li>Employee ID: @Model.Result.BatchNo</li>
-
-
-
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-sm-6">
-
-                                        <div>
-
-                                            <h4 class="m-b-10"><strong>Earnings</strong></h4>
-
-                                            <table class="table table-bordered">
-
-                                                <tbody>
-
-                                                    <tr>
-
-                                                        <td><strong>Basic Salary</strong> <span class="float-end">&#8377; @Model.Result.BasicSalary</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>House Rent Allowance (H.R.A.)</strong> <span class="float-end">&#8377; @Model.Result.HRAamt</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>Conveyance</strong> <span class="float-end">$55</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>Other Allowance</strong> <span class="float-end">$55</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>Total Earnings</strong> <span class="float-end"><strong>$55</strong></span></td>
-
-                                                    </tr>
-
-                                                </tbody>
-
-                                            </table>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-sm-6">
-
-                                        <div>
-
-                                            <h4 class="m-b-10"><strong>Deductions</strong></h4>
-
-                                            <table class="table table-bordered">
-
-                                                <tbody>
-
-                                                    <tr>
-
-                                                        <td><strong>Tax Deducted at Source (T.D.S.)</strong> <span class="float-end">$0</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>Provident Fund</strong> <span class="float-end">&#8377; @Model.Result.PFamt</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>ESI</strong> <span class="float-end">$0</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>Loan</strong> <span class="float-end" '>$300</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>Total Deductions</strong> <span class="float-end"><strong></strong></span></td>
-
-                                                    </tr>
-
-                                                </tbody>
-
-                                            </table>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-sm-12">
-                                        <p><strong>Net Salary: &#8377;  @Model.Result.netSalary </strong></p>
-
-                                    </div>
-
-
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>*@
 <html>
 <head>
 
@@ -279,7 +48,7 @@
     <div ng-controller="SalaryCtrl" novalidate ng-init="GetData('@ViewBag.EmployeeId')">
         <div><hr /><hr /></div>
         <!--Start Body Section-->
-        <div class="card-box">
+        <div class="card">
             <div class="row">
                 <div class="col-md-12">
                     <!-- start Salary form -->
@@ -303,7 +72,7 @@
                         </div>
 
                         <div class="col-md-4">
-                       
+
                             <div class="form-group">
                                 <center>
                                     <span>
@@ -313,7 +82,7 @@
                             </div>
 
                         </div>
-                 
+
                         <div class="col-sm-6 m-b-20">
 
                             <div class="invoice-details">
@@ -344,52 +113,125 @@
                     <hr />
 
                     <div class="row">
-                        <div class="col-md-12">
+                        
+                        <table>
+                            <tr>
+                                <td>
+                                    <h2><strong style="margin: 23px;">Earnings</strong></h2>
+                                    <div style="display: flex;">
+                                        <table class="table table-bordered" style=" width: 90%; margin-left: 20px; ">
+                                            <thead>
+                                                <tr>
 
-                            <div class="form-control-static">
+                                                    <td> Description</td>
 
-                                <table class="table table-striped table-bordered table-hover">
-                                    <tr>
-                                        <th>
-                                            Earning
-                                        </th>
-                                        <th>
-                                            Deduction
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Basic Salary: <span class="end">&#8377; @Model.Result.BasicSalary</span>
-                                        </td>
-                                        <td>
-                                            Provident Fund : <span class="start">&#8377; @Model.Result.PFamt</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            House Rent Allowance (H.R.A.) : <span class="end">&#8377; @Model.Result.HRAamt</span>
-                                        </td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        Basic Salary
+                                                    </td>
+                                                </tr>
+                                                @foreach (var allowance in @Model.Result.Allowances)
+                                                {
+                                                    <tr>
+                                                        <td><strong>@allowance.Description</strong>(@allowance.Value%)</td>
 
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <strong> Net Salary: &#8377;  @Model.Result.netSalary </strong>
-                                        </td>
-                                    </tr>
-                                </table>
+                                                    </tr>
+                                                }
+                                                <tr>
+                                                    <td><strong>Total Allowances</strong>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table table-bordered" style=" width: 90%; ">
+                                            <thead>
+                                                <tr>
 
-                            </div>
+                                                    <td> Amount</td>
 
-                        </div>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var allowance1 in @Model.Result.AllowanceAmounts)
+                                                {
+                                                    <tr>
+                                                        <td><strong>&#8377;@allowance1.AllowanceAmount</strong></td>
+                                                    </tr>
+                                                }
+                                                <tr>
+                                                    <td> @*<span class="float-end">*@<strong>&#8377;@Model.Result.TotalAllowance</strong>@*</span>*@</td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h2><strong style="margin: 23px;">Deductions</strong></h2>
+                                    <div style="display: flex;">
+                                        <table class="table table-bordered" style=" width: 50%;">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Description @*<span class="float-end">Value</span>*@</td>
+                                                </tr>
+
+                                                @foreach (var deduction in @Model.Result.Deductions)
+                                                {
+                                                    <tr>
+                                                        <td><strong>@deduction.Description</strong>(@deduction.Value%)</td>
+                                                    </tr>
+                                                }
+                                                <tr>
+                                                    <td><strong>Total Deductions</strong>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                        <table class="table table-bordered" style=" width: 50%;">
+                                            <tbody>
+                                                <tr>
+                                                    <td>Amount</td>
+                                                </tr>
+
+                                                @foreach (var deductionamt in @Model.Result.DeductionAmounts)
+                                                {
+                                                    <tr>
+                                                        <td><strong>&#8377;@deductionamt.DeductionAmount</strong></td>
+                                                    </tr>
+                                                }
+
+                                                <tr>
+                                                    <td> @*<span class="float-end">*@<strong>&#8377;@Model.Result.TotalDeductoin</strong>@*</span>*@</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        </table>
                     </div>
-
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <strong> Net Salary: &#8377;  @Model.Result.netSalary </strong>
+                            </td>
+                        </tr>
+                    </table>
 
                 </div>
+
             </div>
         </div>
-        <!--End Body Section-->
+
 
     </div>
+    </div>
+    <!--</div>-->
+    <!--End Body Section-->
+    <!--</div>-->
 
 
 
@@ -398,245 +240,3 @@
 @section scripts {
     @Scripts.Render("~/bundles/Salary/Salary")
 }
-
-
-
-
-
-
-@*@model  MVCProject.Web.Models.EmployeeData
-    @{
-        ViewBag.Title = "Payslip";
-        Layout = "~/Views/Shared/_LayoutPayslip.cshtml";
-    }
-
-    <html>
-    <head>
-        <style>
-            .payslip-title {
-                text-align: center;
-                text-decoration: underline;
-                text-transform: uppercase;
-                margin: 0 0 20px;
-            }
-
-            .inv-logo {
-                height: auto;
-                max-height: 100px;
-                width: auto;
-                margin: 0 0 20px;
-            }
-
-            .invoice-details {
-                float: right;
-                text-align: right;
-            }
-
-            .float-end {
-                /*  margin-left: 91%;*/
-                float: right !important;
-            }
-        </style>
-    </head>
-    <body>
-
-        <div class="page-wrapper" ng-controller="SalaryCtrl" ng-init="GetData('@ViewBag.EmployeeId')">
-
-            <div class="container-fluid">
-
-
-
-
-
-                <div class="row">
-
-                    <div class="col-md-12">
-
-                        <div class="card" style="height:670px;">
-
-                            <div class="card-body">
-                                <center>
-                                    <span>
-                                        <strong>Payslip</strong>
-                                    </span>
-                                </center>
-
-
-                                <div class="row">
-
-                                    <div class="col-sm-6 m-b-20">
-
-                                        <img src="~/Content/images/Group 11.png" class="inv-logo" alt="">
-
-                                        <ul class="list-unstyled mb-0" style="margin-left: 15px;">
-
-                                            <li>Ask E-Solution Pvt.Limited</li>
-
-                                            <li>214 to 217,Luxuria Bussiness Hub</li>
-
-                                            <li>Beside Dumas Resort, Dumas Road, Surat-395007</li>
-
-                                        </ul>
-
-                                    </div>
-
-                                    <div class="col-sm-6 m-b-20">
-
-                                        <div class="invoice-details">
-
-                                            <h2 class="text-uppercase">Payslip #49029</h2>
-
-
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-lg-12 m-b-20">
-
-                                        <ul class="list-unstyled" style="margin-left: 15px;">
-
-                                            <li>Employee : <span>@Model.Result.Name</span></li>
-
-                                            <li>Department : <span>@Model.Result.DepartmentName</span></li>
-
-                                            <li>Employee ID:@Model.Result.BatchNo</li>
-
-
-
-                                        </ul>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="row">
-
-                                    <div class="col-sm-6">
-
-                                        <div>
-
-                                            <h4 class="m-b-10"><strong>Earnings</strong></h4>
-
-                                            <table class="table table-bordered" style=" width: 90%; margin-left: 20px; ">
-
-                                                <tbody>
-
-                                                    <tr>
-
-                                                        <td><strong>Basic Salary</strong> <span class="float-end">&#8377; @Model.Result.BasicSalary</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>House Rent Allowance (H.R.A.)</strong> <span class="float-end">&#8377; @Model.Result.HRAamt</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>Conveyance</strong> <span class="float-end">$55</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>Other Allowance</strong> <span class="float-end">$55</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>Total Earnings</strong> <span class="float-end"><strong>$55</strong></span></td>
-
-                                                    </tr>
-
-                                                </tbody>
-
-                                            </table>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-sm-6">
-
-                                        <div>
-
-                                            <h4 class="m-b-10"><strong>Deductions</strong></h4>
-
-                                            <table class="table table-bordered" style=" width: 90%; margin-left: 50px;">
-
-                                                <tbody>
-
-                                                    <tr>
-
-                                                        <td><strong>Tax Deducted at Source (T.D.S.)</strong> <span class="float-end">$0</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>Provident Fund</strong> <span class="float-end">&#8377; @Model.Result.PFamt</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>ESI</strong> <span class="float-end">$0</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>Loan</strong> <span class="float-end">$300</span></td>
-
-                                                    </tr>
-
-                                                    <tr>
-
-                                                        <td><strong>Total Deductions</strong> <span class="float-end"><strong></strong></span></td>
-
-                                                    </tr>
-
-                                                </tbody>
-
-                                            </table>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="col-sm-12">
-
-                                        <p style="margin-left: 12px;"><strong>Net Salary: &#8377; @Model.Result.netSalary</strong> </p>
-
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-        </div>
-    </body>
-    </html>
-    @section scripts {
-        @Scripts.Render("~/bundles/Salary/Salary")
-    }*@

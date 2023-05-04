@@ -26,16 +26,17 @@
         min-width: 60px !important;
         max-width: 60px !important;
     }
+    
 </style>
 
 <div ng-controller="DashboardCtrl" ng-init="Init()">
     <hr />
-    <div class="container settings-tabs">
+    <!--<div class="row container settings-tabs"style="margin-top:50px">
         <div class="col-md-3 col-sm-3 col-lg-3 col-xl-2">
-            <div class="card dash-widget">
-                <div class="card-body" Background="#FF9B4433">
+            <div class="card-box dash-widget"style="width:125%">
+                <div class="card-body"style="background: linear-gradient(135deg,#289cf5,#4f8bb7) !important; color: #fff; ">
                     <span class="dash-widget-icon">
-                        <i class="fa fa-user">
+                        <i class="fa fa-user"style="">
                         </i>
                     </span>
                     <div class="dash-widget-info">
@@ -47,7 +48,7 @@
         </div>
 
         <div class="col-md-3 col-sm-3 col-lg-3 col-xl-2">
-            <div class="card dash-widget">
+            <div class="card-box dash-widget"style="width: 135%; margin-left: 110px; ">
                 <div class="card-body">
                     <span class="dash-widget-icon"><i class="fa fa-usd"></i></span>
 
@@ -60,7 +61,7 @@
         </div>
 
         <div class="col-md-3 col-sm-3 col-lg-3 col-xl-2">
-            <div class="card dash-widget">
+            <div class="card-box dash-widget"style="width: 135%; margin-left: 250px; ">
                 <div class="card-body">
                     <span class="dash-widget-icon"><i class="fa fa-user"></i></span>
                     <div class="dash-widget-info">
@@ -70,22 +71,37 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     @*<div class="container settings-tabs">
             Total Employees:{{employee}}
             Total Departments:{{department}}
             Total Active Users:{{active_employee}}
         </div>*@
 
-    <hr /><hr />
-    <div class="row">
-        <div class="col-md-6">
+    <!--<hr /><hr />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="row-md-6 text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="card-title">Total Employees</h2>
+                                <div id="gender-chart" style="height:400px;width:360px">
+                                    <svg></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
             <div class="row">
                 <div class="row-md-6 text-center">
                     <div class="card">
                         <div class="card-body">
-                            <h2 class="card-title">Total Employees</h2>
-                            <div id="gender-chart" style="height:400px;width:360px">
+                            <h2 class="card-title">Total Roles</h2>
+                            <div id="role-chart" style="height:400px;width:360px">
                                 <svg></svg>
                             </div>
                         </div>
@@ -93,32 +109,133 @@
                 </div>
             </div>
         </div>
-    
-        <div class="col-md-6">
-        <div class="row">
-            <div class="row-md-6 text-center">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title">Total Roles</h2>
-                        <div id="role-chart" style="height:400px;width:360px">
-                            <svg></svg>
-                        </div>
+    </div>-->
+    <div class="col-xl-3 col-lg-6" style=" -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; width: 25%;">
+        <div class="card l-bg-blue-dark" style=" min-height: 50px; box-shadow: none; border: 0; position: relative; margin-bottom: 24px; -webkit-border-radius: 10px; -moz-border-radius: 10px; -ms-border-radius: 10px; border-radius: 10px; background: linear-gradient(135deg,#6b19be,#9090b6) !important; color: #fff;width:130% ">
+            <div class="info-box-5 p-4" style="padding: 1.5rem !important;">
+                <div class="card-icon card-icon-large" style="text-align: center; line-height: 50px; margin-left: 15px; color: #000; position: absolute; right: 15px; top: 20px; opacity: 0.5; "><i class="fas fa-users" style=" font-weight: 900;font-size:90px;color:white;"></i></div>
+                <div class="mb-4">
+                    <h5 class="font-20 mb-0" style="font-size:20px;font-weight:600;">Total Employees</h5>
+                </div>
+                <div class="row align-items-center mb-2 d-flex">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center mb-0" style=" font-size: 40px; color: white; font-weight: 600; /* text-align: -webkit-match-parent; */ margin-left: 11px;">
+                            {{employee}}
+                        </h2>
+                    </div>
+
+                </div>
+                <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                    <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%; background-color: #1b90d3;">
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="col-xl-3 col-lg-6" style=" -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; width: 25%;">
+        <div class="card l-bg-blue-dark" style=" min-height: 50px; box-shadow: none; border: 0; position: relative; margin-bottom: 24px; -webkit-border-radius: 10px; -moz-border-radius: 10px; -ms-border-radius: 10px; border-radius: 10px; background: linear-gradient(135deg,#23bdb8 0,#65a986 100%) !important; color: #fff; width: 130%; margin-left: 110px; ">
+            <div class="info-box-5 p-4" style="padding: 1.5rem !important;">
+                <div class="card-icon card-icon-large" style="text-align: center; line-height: 50px; margin-left: 15px; color: #000; position: absolute; right: 15px; top: 20px; opacity: 0.5; "><i class="far fa-window-restore" style=" font-weight: 900;font-size:90px;color:white;"></i></div>
+                <div class="mb-4">
+                    <h5 class="font-20 mb-0" style="font-size:20px;font-weight:600;">Total Departments</h5>
+                </div>
+                <div class="row align-items-center mb-2 d-flex">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center mb-0" style=" font-size: 40px; color: white; font-weight: 600; /* text-align: -webkit-match-parent; */ margin-left: 11px;">
+                            {{department}}
+                        </h2>
+                    </div>
 
-@*<div id="gender-chart" style="height:400px;width:360px">
-
-        <svg></svg>
+                </div>
+                <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                    <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%; background-color: #d07d1c;">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="role-chart" style="height:400px;width:360px">
-        <svg></svg>
-    </div>*@
+    <div class="col-xl-3 col-lg-6" style=" -webkit-box-flex: 0; -ms-flex: 0 0 auto; flex: 0 0 auto; width: 25%;">
+        <div class="card l-bg-blue-dark" style=" min-height: 50px; box-shadow: none; border: 0; position: relative; margin-bottom: 24px; -webkit-border-radius: 10px; -moz-border-radius: 10px; -ms-border-radius: 10px; border-radius: 10px; background: linear-gradient(135deg,#f48665 0,#d68e41 100%) !important; color: #fff; width: 130%; margin-left: 220px; ">
+            <div class="info-box-5 p-4" style="padding: 1.5rem !important;">
+                <div class="card-icon card-icon-large" style="text-align: center; line-height: 50px; margin-left: 15px; color: #000; position: absolute; right: 15px; top: 20px; opacity: 0.5; "><i class="fa fa-user-plus" style=" font-weight: 900;font-size:90px;color:white;"></i></div>
+                <div class="mb-4">
+                    <h5 class="font-20 mb-0" style="font-size:20px;font-weight:600;">Active Employees</h5>
+                </div>
+                <div class="row align-items-center mb-2 d-flex">
+                    <div class="col-8">
+                        <h2 class="d-flex align-items-center mb-0" style=" font-size: 40px; color: white; font-weight: 600; /* text-align: -webkit-match-parent; */ margin-left: 11px;">
+                            {{active_employee}}
+                        </h2>
+                    </div>
 
- </div>
+                </div>
+                <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                    <div class="progress-bar l-bg-green" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%; background-color: #711ac8;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr /><hr />
+          <div class="row">
+              <div class="col-md-4">
+                  <div class="row">
+                      <div class="row text-center">
+                          <div class="card-box1" style="background-color: #fff !important; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px; margin-left: 30px;width:85%">
+                              <div class="card-body">
+                                  <h2 class="card-title"style="font-size: 30px; margin-left: -170px;">Employees</h2>
+                                  <div id="gender-chart" style="height:400px;width:360px">
+                                      <svg></svg>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="row">
+                      <div class="row text-center">
+                          <div class="card_desh" style=" -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px;margin-left: 30px; width: 85%; height: 460px; @*background-color: #eee5ff*@;background-size: cover;background-position: top right; background-repeat: no-repeat;">
+                              <div class="card-body"style=" background-image: url('../images/animated shape (5).svg'); ">
+                                  <h2 style=" font-family: mulish,sans-serif; font-weight: 700; font-size: 18px; color:white; ">HUMAN RESOURCE MANAGEMENT SYSTEM</h2>
+                                  <div class="card-body">
+                                      <img src="~/Content/images/media (1).svg" style=" margin-left: -100px; margin-top: 40px; width: 280px; }">
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col-md-4">
+                  <div class="row">
+                      <div class="row text-center">
+                          <div class="card-box1" style="background-color: #fff !important; -webkit-border-radius: 15px; -moz-border-radius: 15px; border-radius: 15px; margin-left: 30px;width:85%">
+                              <div class="card-body">
+
+                                  <div class="card-body">
+                                      <h2 class="card-title"style="font-size: 30px; margin-left: -170px;">Roles</h2>
+                                      <div id="role-chart" style="height:400px;width:360px">
+                                          <svg></svg>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+              @*<div id="gender-chart" style="height:400px;width:360px">
+
+            <svg></svg>
+        </div>
+        <div id="role-chart" style="height:400px;width:360px">
+            <svg></svg>
+        </div>*@
+
+          </div>
 
 @section scripts {
     @Scripts.Render("~/bundles/Dashboard/Dashboard/Index")

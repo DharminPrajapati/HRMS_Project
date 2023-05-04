@@ -19,7 +19,7 @@ namespace MVCProject.Common.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resource {
@@ -246,6 +246,15 @@ namespace MVCProject.Common.Resources {
         public static string Attendance_Management {
             get {
                 return ResourceManager.GetString("Attendance Management", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Attendance Detail.
+        /// </summary>
+        public static string AttendanceDetail {
+            get {
+                return ResourceManager.GetString("AttendanceDetail", resourceCulture);
             }
         }
         
@@ -907,7 +916,7 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Employee_Report.
+        ///   Looks up a localized string similar to Employee Report.
         /// </summary>
         public static string Employee_Report {
             get {
@@ -1672,6 +1681,15 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to My Attendance.
+        /// </summary>
+        public static string MyAttendance {
+            get {
+                return ResourceManager.GetString("MyAttendance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to My SOPs.
         /// </summary>
         public static string MySOP {
@@ -2149,7 +2167,7 @@ namespace MVCProject.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Salary_Report.
+        ///   Looks up a localized string similar to Salary Report.
         /// </summary>
         public static string Salary_Report {
             get {

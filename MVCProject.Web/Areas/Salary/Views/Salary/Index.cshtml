@@ -36,7 +36,7 @@
     <div class="main-page-title title-icon relative l">
         <i class="fa fa-inr icon-position" style="padding-top:8px;"></i>
         <h4 class="header-title-sub l">
-            @Resource.Salary
+            @Resource.PayRoll
 
         </h4>
         <div class="pull-right">
@@ -87,9 +87,9 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
-                                    Designation
+                                    Department
                                 </label>
-                                <input type="text" class="form-control" ng-disabled="true" ng-model="salaryDetailScope.DesignationName" ng-change="getEmployeebyId(Id)" placeholder="@Resource.Designation" @*placeholder="{{data.DesignationName}}" *@ maxlength="250" />
+                                <input type="text" class="form-control" ng-disabled="true" ng-model="salaryDetailScope.DepartmentName" ng-change="getEmployeebyId(Id)" placeholder="@Resource.Department" maxlength="250" />
                                 <div class="c">
                                 </div>
 
@@ -99,9 +99,9 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>
-                                    Department
+                                    Designation
                                 </label>
-                                <input type="text" class="form-control" ng-disabled="true" ng-model="salaryDetailScope.DepartmentName" ng-change="getEmployeebyId(Id)" placeholder="@Resource.Department" maxlength="250" />
+                                <input type="text" class="form-control" ng-disabled="true" ng-model="salaryDetailScope.DesignationName" ng-change="getEmployeebyId(Id)" placeholder="@Resource.Designation" @*placeholder="{{data.DesignationName}}" *@ maxlength="250" />
                                 <div class="c">
                                 </div>
 
@@ -234,7 +234,7 @@
         <!--Salary Calculation Starts -->
 
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4"style=" margin-left: 20px;">
                 <div class="form-group">
                     <label>
                         Gross Salary<span>(₹)</span>

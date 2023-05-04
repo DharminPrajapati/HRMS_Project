@@ -363,7 +363,7 @@
                                     <label>
                                         Institution Name <span class="required-field">*</span>
                                     </label>
-                                    <input type="text" class="form-control" id="institutename" @*ng-focus="true"*@ name="institutename" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122) || (event.charCode == 95) || (event.charCode == 46)" ng-model="emplyeeDetailScope.InstitutionName" required tabindex="15" placeholder="Institution Name" maxlength="250">
+                                    <input type="text" class="form-control" id="institutename" @*ng-focus="true"*@ name="institutename" onkeypress="return (event.charCode >=65 && event.charCode <=90) || (event.charCode >=97 && event.charCode <=122) || (event.charCode == 95) || (event.charCode == 46)||(event.charCode==32)" ng-model="emplyeeDetailScope.InstitutionName" required tabindex="15" placeholder="Institution Name" maxlength="250">
                                     <div class="c">
                                     </div>
                                     <div class="label label-danger" data-ng-show="frmEmployees.institutename.$dirty && frmEmployees.institutename.$invalid">

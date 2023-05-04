@@ -46,7 +46,7 @@
 
                 <div class="col-md-12">
 
-                    <div class="card" style="height:670px;">
+                    <div class="card" style="height:670px;background:">
 
                         <div class="card-body">
                             <center>
@@ -109,109 +109,105 @@
                             </div>
 
                             <div class="row">
+                                <div style="display: flex;">
+                                    <table class="table table-bordered" style=" width: 37%;margin-left:50px;">
+                                        <tbody>
+                                            <tr>
+                                                <td>Description @*<span class="float-end">Value</span>*@</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <strong>
+                                                        Basic Salary
+                                                    </strong>
+                                                </td>
+                                            </tr>
 
-                                <div class="col-sm-6">
-
-                                    <div>
-
-                                        <h4 class="m-b-10"><strong>Earnings</strong></h4>
-
-                                        <table class="table table-bordered" style=" width: 90%; margin-left: 20px; ">
-
-                                            <tbody>
-
+                                            @foreach (var deduction in @Model.Result.Allowances)
+                                            {
                                                 <tr>
-
-                                                    <td><strong>Basic Salary</strong> <span class="float-end">&#8377; @Model.Result.BasicSalary</span></td>
-
+                                                    <td><strong>@deduction.Description</strong>(@deduction.Value%)</td>
                                                 </tr>
+                                            }
+                                            <tr>
+                                                <td><strong>Total Allowances</strong> </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
+                                    <table class="table table-bordered" style=" width: 8%;">
+                                        <tbody>
+                                            <tr>
+                                                <td>Amount</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>&#8377;@Model.Result.BasicSalary</strong></td>
+                                            </tr>
+                                            @foreach (var allowanceamt in @Model.Result.AllowanceAmounts)
+                                            {
                                                 <tr>
-
-                                                    <td><strong>House Rent Allowance (H.R.A.)</strong> <span class="float-end">&#8377; @Model.Result.HRAamt</span></td>
-
+                                                    <td><strong>&#8377;@allowanceamt.AllowanceAmount</strong></td>
                                                 </tr>
+                                            }
 
-                                                <tr>
-
-                                                    <td><strong>Conveyance</strong> <span class="float-end">$55</span></td>
-
-                                                </tr>
-
-                                                <tr>
-
-                                                    <td><strong>Other Allowance</strong> <span class="float-end">$55</span></td>
-
-                                                </tr>
-
-                                                <tr>
-
-                                                    <td><strong>Total Earnings</strong> <span class="float-end"><strong>$55</strong></span></td>
-
-                                                </tr>
-
-                                            </tbody>
-
-                                        </table>
-
-                                    </div>
-
+                                            <tr>
+                                                <td><strong>&#8377;@Model.Result.TotalAllowance</strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
 
-                                <div class="col-sm-6">
 
-                                    <div>
 
-                                        <h4 class="m-b-10"><strong>Deductions</strong></h4>
+                                <div style="display: block; margin-left: 570px; margin-top: -310px;">
+                                    <table class="table table-bordered" style="width: 65%; margin-left: 114px; margin-top: -690px; ">
+                                        <tbody>
+                                            <tr>
+                                                <td>Description @*<span class="float-end">Value</span>*@</td>
+                                            </tr>
 
-                                        <table class="table table-bordered" style=" width: 90%; margin-left: 50px;">
-
-                                            <tbody>
-
+                                            @foreach (var deduction in @Model.Result.Deductions)
+                                            {
                                                 <tr>
-
-                                                    <td><strong>Tax Deducted at Source (T.D.S.)</strong> <span class="float-end">$0</span></td>
-
+                                                    <td><strong>@deduction.Description</strong>(@deduction.Value%)</td>
                                                 </tr>
+                                            }
+                                            <tr>
+                                                <td><strong>Total Deductions</strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
+                                    <table class="table table-bordered" style="width: 13%; margin-left: 554px; margin-top: -231px;">
+                                        <tbody>
+                                            <tr>
+                                                <td>Amount</td>
+                                            </tr>
+
+                                            @foreach (var deductionamt in @Model.Result.DeductionAmounts)
+                                            {
                                                 <tr>
-
-                                                    <td><strong>Provident Fund</strong> <span class="float-end">&#8377; @Model.Result.PFamt</span></td>
-
+                                                    <td><strong>&#8377;@deductionamt.DeductionAmount</strong></td>
                                                 </tr>
+                                            }
 
-                                                <tr>
-
-                                                    <td><strong>ESI</strong> <span class="float-end">$0</span></td>
-
-                                                </tr>
-
-                                                <tr>
-
-                                                    <td><strong>Loan</strong> <span class="float-end">$300</span></td>
-
-                                                </tr>
-
-                                                <tr>
-
-                                                    <td><strong>Total Deductions</strong> <span class="float-end"><strong></strong></span></td>
-
-                                                </tr>
-
-                                            </tbody>
-
-                                        </table>
-
-                                    </div>
-
+                                            <tr>
+                                                <td><strong>&#8377;@Model.Result.TotalDeductoin</strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
 
+                            </div>
+                            <div class="row">
                                 <div class="col-sm-12">
 
-                                    <p style="margin-left: 12px;"><strong>Net Salary: &#8377; @Model.Result.netSalary</strong>  (<span id="netSalaryInWords"></span>) </p>
+                                    <p style="margin-left: 706px; margin-top: 55px; "><strong>Net Salary: &#8377; @Model.Result.netSalary</strong>  (<span id="netSalaryInWords"></span>) </p>
 
                                 </div>
-                                <script>
+                            </div>
+
+                            <script>
 
                                     const netSalaryInWords = convertToWords(@Model.Result.netSalary);
                                     document.getElementById("netSalaryInWords").innerHTML = netSalaryInWords;
@@ -244,11 +240,11 @@
                                         result += "Rupeeys Only.";
                                         return result.trim();
                                     }
-                                </script>
+                            </script>
 
-                            </div>
+
                             <div class="row col-sm-12">
-                              
+
                                 <center>
                                     <a class="btn btn-white fa fa-print fa-lg  " href="/Salary/Salary/SaveAboutPage?employeeId=@Model.Result.EmployeeId" download="Payslip_@Model.Result.BatchNo _.pdf">PDF</a>
                                     <a class="btn btn-white fa fa-print fa-lg  " href="/Salary/Salary/PrintAboutPage?employeeId=@Model.Result.EmployeeId" target="_blank">Print</a>

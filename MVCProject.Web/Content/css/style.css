@@ -8158,3 +8158,25 @@ img#output {
     padding-top: 60px;
     padding-bottom: 60px;
 }
+
+
+.card.l-bg-blue-dark-dept {
+    min-height: 50px;
+    box-shadow: none;
+    border: 0;
+    position: relative;
+    margin-bottom: 24px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    border-radius: 10px;
+    background: linear-gradient(135deg,#6b19be,#9090b6) !important;
+    color: #fff;
+    width: 130%;
+    margin-left: 110px;
+    
+}
+.card_desh {
+    /*background-image: url('../images/animated shape (4).svg');*/
+    background-image: url('../images/animated shape (5).svg');
+}

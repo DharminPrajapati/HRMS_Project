@@ -287,6 +287,8 @@
     <Content Include="Content\css\animate.css" />
     <Content Include="Content\css\bootstrap.css" />
     <Content Include="Content\images\3314330.svg" />
+    <Content Include="Content\images\Animated Shape %284%29.svg" />
+    <Content Include="Content\images\Animated Shape %285%29.svg" />
     <Content Include="Content\images\Animated Shape.svg" />
     <Content Include="Content\images\arrow-1.jpg" />
     <Content Include="Content\css\bootstrap.min.css" />
@@ -344,6 +346,7 @@
     <Content Include="Content\images\liquid-cheese %281%29.svg" />
     <Content Include="Content\images\loading.gif" />
     <Content Include="Content\images\logo-mix.png" />
+    <Content Include="Content\images\media %281%29.svg" />
     <Content Include="Content\images\multiple-arrow.png" />
     <Content Include="Content\images\node.png" />
     <Content Include="Content\images\NoDefaultImage.gif" />
@@ -361,6 +364,7 @@
     <Content Include="Content\images\Safty2.jpg" />
     <Content Include="Content\images\Safty3.jpg" />
     <Content Include="Content\images\selectimage.png" />
+    <Content Include="Content\images\shape_2.svg" />
     <Content Include="Content\images\SHORT.svg" />
     <Content Include="Content\images\skin.png" />
     <Content Include="Content\images\sprit.png" />

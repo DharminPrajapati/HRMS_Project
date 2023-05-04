@@ -258,8 +258,7 @@ namespace MVCProject.Api.Controllers.Configuration
             IRow headerRow = sheet.CreateRow(0);
             headerRow.CreateCell(0).SetCellValue("Designation Id");
             headerRow.CreateCell(1).SetCellValue("Designation Name");
-            headerRow.CreateCell(2).SetCellValue("Remarks");
-            headerRow.CreateCell(3).SetCellValue("IsActive");
+            headerRow.CreateCell(2).SetCellValue("IsActive");
 
             // Set the cell style for the header row
             foreach (var cell in headerRow.Cells)
@@ -274,7 +273,7 @@ namespace MVCProject.Api.Controllers.Configuration
                 row.CreateCell(0).SetCellValue(de.DesignationId);
                 row.CreateCell(1).SetCellValue(de.DesignationName);
                 //row.CreateCell(2).SetCellValue(de.Remarks);
-                row.CreateCell(3).SetCellValue(de.IsActive);
+                row.CreateCell(2).SetCellValue(de.IsActive);
             }
 
             for (int i = 0; i < headerRow.LastCellNum; i++)

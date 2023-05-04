@@ -30,7 +30,7 @@
                 position: 'bottom'
             }
         };
-        $scope.genderChartColors = ['#FF6384', '#36A2EB'];
+        $scope.genderChartColors = ['#9afdd2', '#8950fc'];
 
         $scope.loadGenderChart = function () {
 
@@ -48,7 +48,8 @@
                         .y(function (d) { return d.value; })
                         .showLabels(true)
                         .width(400)
-                        .height(400); // set width and height here;
+                        .height(400)// set width and height here;
+                        .color(['#f43f5e', '#60a5fa', '#f43f5e', '#60a5fa']);
                     d3.select('#gender-chart svg')
                         .datum(chartData)
                         /*.transition().duration(350)*/
@@ -67,7 +68,7 @@
                 position: 'bottom'
             }
         };
-        $scope.roleChartColors = ['#FF6384', '#36A2EB'];
+        $scope.roleChartColors = ['#9afdd2', '#8950fc'];
 
         $scope.roleChart = function () {
        
@@ -87,7 +88,7 @@
                         .showLabels(true)
                         .width(400)
                         .height(400)
-                        .color(['#FF6384', '#36A2EB', '#FFCE56', '#33FF99'])
+                        .color(['#ffca60', '#65a986 ', '#ffca60', '#65a986 '])
 
                     d3.select('#role-chart svg')
                         .datum(chartData)

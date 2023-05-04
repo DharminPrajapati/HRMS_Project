@@ -988,10 +988,10 @@
     <value>Reports</value>
   </data>
   <data name="Employee_Report" xml:space="preserve">
-    <value>Employee_Report</value>
+    <value>Employee Report</value>
   </data>
   <data name="Salary_Report" xml:space="preserve">
-    <value>Salary_Report</value>
+    <value>Salary Report</value>
   </data>
   <data name="Document" xml:space="preserve">
     <value>Document</value>
@@ -1016,5 +1016,11 @@
   </data>
   <data name="HR_Dashboard" xml:space="preserve">
     <value>HR_Dashboard</value>
+  </data>
+  <data name="AttendanceDetail" xml:space="preserve">
+    <value>Attendance Detail</value>
+  </data>
+  <data name="MyAttendance" xml:space="preserve">
+    <value>My Attendance</value>
   </data>
 </root>

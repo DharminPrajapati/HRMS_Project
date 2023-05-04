@@ -25,13 +25,48 @@ namespace MVCProject.Web.Models
         public string DesignationName { get; set; }
         public bool IsActive { get; set; }
         public decimal BasicSalary { get; set; }
-        public decimal HRA { get; set; }
-        public decimal DA { get; set; }
-        public decimal PF { get; set; }
-        public decimal HRAamt { get; set; }
-        public decimal DAamt { get; set; }
-        public decimal PFamt { get; set; }
+        //public decimal HRA { get; set; }
+        //public decimal DA { get; set; }
+        //public decimal PF { get; set; }
+        //public decimal HRAamt { get; set; }
+        //public decimal DAamt { get; set; }
+        //public decimal PFamt { get; set; }
         public decimal netSalary { get; set; }
+        public decimal TotalAllowance { get; set; }
+        public decimal TotalDeductoin { get; set; }
+        public List<Allowance> Allowances { get; set; }
+        public List<Deduction> Deductions { get; set; }
+        public List<AllowanceAmounts> AllowanceAmounts { get; set; }
+        public List<DeductionAmounts> DeductionAmounts { get; set; }
+    }
 
+
+    public class Allowance
+    {
+        public int AllowanceId { get; set; }
+        public string Description { get; set; }
+        public decimal Value { get; set; }
+    }
+
+    public class Deduction
+    {
+        public int DeductionId { get; set; }
+        public string Description { get; set; }
+        public decimal Value { get; set; }
+    }
+
+    public class AllowanceAmounts
+    {
+        public int EmployeeId { get; set; }
+        public int AllowanceId { get; set; }
+        public int SalaryAllowanceId { get; set; }
+        public decimal AllowanceAmount { get; set; }
+    }
+
+    public class DeductionAmounts
+    {
+        public int EmployeeId { get; set; }
+        public int SalaryDeductionsId { get; set; }
+        public decimal DeductionAmount { get; set; }
     }
 }

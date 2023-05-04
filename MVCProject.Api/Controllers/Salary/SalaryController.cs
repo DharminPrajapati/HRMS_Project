@@ -120,14 +120,16 @@ namespace MVCProject.Api.Controllers.Salary
 
         public ApiResponse GetEmployeeById(int employeeId)
         {
-            var AllowanceAmount = this.entities.SalaryAllowance
+            var AllowanceAmounts = this.entities.SalaryAllowance
            .Where(x => x.EmployeeId == employeeId)
-           .Select(x => new { AllowanceAmount = x.AllowanceAmount == null ? 0 : x.AllowanceAmount, SalaryAllowanceId = x.AllowanceAmount == null ? 0 : x.SalaryAllowanceId })
+           .Select(x => new { EmployeeId = x.EmployeeId, AllowanceAmount = x.AllowanceAmount == null ? 0 : x.AllowanceAmount, SalaryAllowanceId = x.AllowanceAmount == null ? 0 : x.SalaryAllowanceId })
            .ToList();
-            var DeductionAmount = this.entities.SalaryDeduction
+            var DeductionAmounts = this.entities.SalaryDeduction
            .Where(x => x.EmployeeId == employeeId)
-           .Select(x => new { DeductionAmount = x.DeductionAmount == null ? 0 : x.DeductionAmount, SalaryDeductionId = x.DeductionAmount == null ? 0 : x.SalaryDeductionId })
+           .Select(x => new { EmployeeId = x.EmployeeId, DeductionAmount = x.DeductionAmount == null ? 0 : x.DeductionAmount, SalaryDeductionId = x.DeductionAmount == null ? 0 : x.SalaryDeductionId })
            .ToList();
+            var Allowances = this.entities.AllowanceMaster.Select(x => new { Description = x.Description, Value = x.Value }).ToList();
+            var Deductions = this.entities.DeductionMaster.Select(x => new { Description = x.Description, Value = x.Value }).ToList();
             var salaryDetail = this.entities.Sp_Salary_DisplayAllEmployees().Where(x => x.EmployeeId == employeeId)
                 .Select(d => new
                 {
@@ -140,18 +142,20 @@ namespace MVCProject.Api.Controllers.Salary
                     DesignationName = d.DesignationName,
                     DepartmentName = d.DepartmentName,
                     BasicSalary = d.BasicSalary,
-                    DA = d.DA,
-                    HRA = d.HRA,
-                    PF = d.PF,
-                    DAamt = d.DAamt,
-                    HRAamt = d.HRAamt,
-                    PFamt = d.PFamt,
+                    //DA = d.DA,
+                    //HRA = d.HRA,
+                    //PF = d.PF,
+                    //DAamt = d.DAamt,
+                    //HRAamt = d.HRAamt,
+                    //PFamt = d.PFamt,
                     netSalary = d.netSalary,
                     IsActive = d.IsActive,
                     TotalAllowance = d.TotalAllowance,
                     TotalDeductoin = d.TotalDeductoin,
-                    AllowanceAmount,
-                    DeductionAmount
+                    Allowances,
+                    Deductions,
+                    AllowanceAmounts,
+                    DeductionAmounts
                 }).SingleOrDefault();
 
             if (salaryDetail != null)
@@ -163,6 +167,8 @@ namespace MVCProject.Api.Controllers.Salary
                 return this.Response(Utilities.MessageTypes.NotFound, string.Empty);
             }
         }
+
+
         ///Get All Salary Details
         [HttpPost]
         public ApiResponse GetAllSalary(PagingParams salaryDetailsParams)

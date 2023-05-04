@@ -39,19 +39,21 @@ namespace System.Web.Mvc
             {
 
                 menuString.Append("<li>");
-                menuString.AppendFormat(GetParentMenu(Resource.Dashboard, "fa fa-user"));
-                menuString.Append("<ul class='nav child_menu'>");
-                menuString.Append(GetSubMenu(Resource.HR_Dashboard, "", "/Dashboard/Dashboard/Index"));
-                menuString.Append("</ul></li>");
+                //menuString.AppendFormat(GetParentMenu(Resource.Dashboard, "fa fa-tachometer", "/Dashboard/Dashboard/Index"));
+                //menuString.AppendFormat(GetParentMenu(Resource.Dashboard, "fa fa-tachometer"));
+                //menuString.Append("<ul class='nav child_menu'>");
+                menuString.Append(GetSubMenu(Resource.Dashboard, "fa fa-tachometer", "/Dashboard/Dashboard/Index"));
+                //menuString.Append("</ul></li>");
+                menuString.Append("</li>");
 
                 menuString.Append("<li>");
                 menuString.AppendFormat(GetParentMenu(Resource.Configuration, "fa fa-gears"));
                 menuString.Append("<ul class='nav child_menu'>");
 
+                menuString.Append(GetSubMenu(Resource.User_Master, "", "/Configuration/UserMaster"));
                 menuString.Append(GetSubMenu(Resource.Designations, "", "/Configuration/Designation"));
                 menuString.Append(GetSubMenu(Resource.Department, "", "/Configuration/Department"));
                 //menuString.Append(GetSubMenu(Resource.Salary, "", "/Configuration/Salary"));
-                menuString.Append(GetSubMenu(Resource.User_Master, "", "/Configuration/UserMaster"));
                 menuString.Append(GetSubMenu(Resource.DocumentMaster, "", "/Configuration/DocumentMaster"));
                 // menuString.Append(GetSubMenu(Resource.Allowance_Master, "", "/Configuration/AllowanceMaster"));
                 //menuString.Append(GetSubMenu(Resource.DeductionMaster, "", "/Configuration/DeductionMaster"));
@@ -74,10 +76,17 @@ namespace System.Web.Mvc
                 menuString.Append("</ul></li>");
 
                 menuString.Append("<li>");
+                menuString.AppendFormat(GetParentMenu(Resource.Attendance_Management, "fa fa-check-square"));
+                menuString.Append("<ul class='nav child_menu'>");
+                menuString.Append(GetSubMenu(Resource.MyAttendance, "", "/Attendance/Attendance/EmployeeAttendanceView"));
+                menuString.Append(GetSubMenu(Resource.AttendanceDetail, "", "/Attendance/Attendance/HRAttendanceView"));
+                menuString.Append("</ul></li>");
+
+                menuString.Append("<li>");
                 menuString.AppendFormat(GetParentMenu(Resource.Salary_Management, "fa fa-inr"));
                 menuString.Append("<ul class='nav child_menu'>");
                 //menuString.Append(GetSubMenu(Resource.PayRoll, "", "/Salary/Salary/Payroll"));
-                menuString.Append(GetSubMenu(Resource.Add_Salary, "", "/Salary/Salary/Index"));
+                menuString.Append(GetSubMenu(Resource.PayRoll, "", "/Salary/Salary/Index"));
                // menuString.Append(GetSubMenu(Resource.SalaryDetails, "", "/Salary/Salary/SalaryDetails"));
                 menuString.Append("</ul></li>");
 
@@ -89,15 +98,10 @@ namespace System.Web.Mvc
 
                 menuString.Append("</ul></li>");
 
-                menuString.Append("<li>");
-                menuString.AppendFormat(GetParentMenu(Resource.Attendance_Management, "fa fa-check-square"));
-                menuString.Append("<ul class='nav child_menu'>");
-                menuString.Append(GetSubMenu(Resource.EmployeeAttendance, "", "/Attendance/Attendance/EmployeeAttendanceView"));
-                menuString.Append(GetSubMenu(Resource.Attendance, "", "/Attendance/Attendance/HRAttendanceView"));
-                menuString.Append("</ul></li>");
+               
 
                 menuString.Append("<li>");
-                menuString.AppendFormat(GetParentMenu(Resource.DocumentManagement, "fa fa-check-square"));
+                menuString.AppendFormat(GetParentMenu(Resource.DocumentManagement, "fa fa-paperclip"));
                 menuString.Append("<ul class='nav child_menu'>");
                 menuString.Append(GetSubMenu(Resource.Document, "", "/Documents/Document"));
                 menuString.Append("</ul></li>");

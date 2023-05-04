@@ -111,30 +111,35 @@ namespace MVCProject.Controllers
             }
             else
             {
-                if (this.Session["LastUrl"] != null )
+                UserContext userContext = (UserContext)this.Session["UserContext"];
+                int roleId = userContext.RoleId;
+
+                if (roleId == 1)
                 {
-                    string url = this.Session["LastUrl"].ToString();
-                    this.Session["LastUrl"] = null;
-                    Response.Redirect(url);
+                    return RedirectToAction("Index", "Dashboard", new { area = "Dashboard" });
                 }
-
-              //  UserContext userContext = (UserContext)this.Session["UserContext"];
-              // // UserContext.PagePermission generalPermission = userContext.PageAccess.Where(p => p.PageId == Pages.General.Designation || p.PageId == Pages.General.CommonConfiguartion).FirstOrDefault();
-              ////  bool hasGeneralAccess = generalPermission.CanWrite || generalPermission.CanRead;
-
-              //  if (hasGeneralAccess)
-              //  {
-              //      return RedirectToAction("Index", "Designation", new { area = "Configuration" });
-              //  }
-              //  else
-              //  {
-              //      return this.RedirectToAction("ServerError", "Error", new { id = 404 });
-              //  }
-                //}
+                else if (roleId == 2)
+                {
+                    return RedirectToAction("EmployeeAttendanceView", "Attendance", new { area = "Attendance" });
+                }
+                else
+                {
+                    // Redirect to LastUrl if it exists
+                    if (this.Session["LastUrl"] != null)
+                    {
+                        string url = this.Session["LastUrl"].ToString();
+                        this.Session["LastUrl"] = null;
+                        return this.Redirect(url);
+                    }
+                    else
+                    {
+                        // Redirect to dashboard if LastUrl is not set
+                        return RedirectToAction("Index", "Dashboard", new { area = "Dashboard" });
+                    }
+                }
             }
-
-            return RedirectToAction("EmployeeAttendanceView", "Attendance", new { area = "Attendance" });
         }
+
 
         /// <summary>
         /// Create session 
