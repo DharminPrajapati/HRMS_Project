@@ -59,7 +59,7 @@ namespace MVCProject.Areas.Salary.Controllers
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync($"http://localhost:56562/api/Salary/GetEmployeeById?employeeId={employeeId}");
+                var response = await client.GetAsync($"{ApiUrl}Salary/GetEmployeeById?employeeId={employeeId}");
                 if (response.IsSuccessStatusCode)
                 {
                     var employeeData = await response.Content.ReadAsAsync<EmployeeData>();
@@ -80,7 +80,7 @@ namespace MVCProject.Areas.Salary.Controllers
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync($"http://localhost:56562/api/Salary/GetEmployeeById?employeeId={employeeId}");
+                var response = await client.GetAsync($"{ApiUrl}Salary/GetEmployeeById?employeeId={employeeId}");
                 if (response.IsSuccessStatusCode)
                 {
                     var employeeData = await response.Content.ReadAsAsync<EmployeeData>();
@@ -102,7 +102,7 @@ namespace MVCProject.Areas.Salary.Controllers
         {
             using (var client = new HttpClient())
             {
-                var response = await client.GetAsync($"http://localhost:56562/api/Salary/GetEmployeeById?employeeId={employeeId}");
+                var response = await client.GetAsync($"{ApiUrl}Salary/GetEmployeeById?employeeId={employeeId}");
                 if (response.IsSuccessStatusCode)
                 {
                     var employeeData = await response.Content.ReadAsAsync<EmployeeData>();
@@ -128,8 +128,8 @@ namespace MVCProject.Areas.Salary.Controllers
             //string fullPath = "E:\\New folder\\HRMS_Project\\MVCProject.Api\\Reports\\" + fileName;
             var report = new Rotativa.ActionAsPdf("_Payslip", new { employeeId })
             {
-                PageOrientation = Rotativa.Options.Orientation.Portrait,
-                PageSize = Rotativa.Options.Size.A4,
+                PageOrientation = Rotativa.Options.Orientation.Landscape,
+                PageSize = Rotativa.Options.Size.A3,
                 PageMargins = new Margins(0, 0, 0, 0),
             };
             if (!System.IO.File.Exists(phsicalpath))

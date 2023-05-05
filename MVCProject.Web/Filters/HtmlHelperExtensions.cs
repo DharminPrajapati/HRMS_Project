@@ -40,10 +40,10 @@ namespace System.Web.Mvc
 
                 menuString.Append("<li>");
                 //menuString.AppendFormat(GetParentMenu(Resource.Dashboard, "fa fa-tachometer", "/Dashboard/Dashboard/Index"));
-                //menuString.AppendFormat(GetParentMenu(Resource.Dashboard, "fa fa-tachometer"));
-                //menuString.Append("<ul class='nav child_menu'>");
-                menuString.Append(GetSubMenu(Resource.Dashboard, "fa fa-tachometer", "/Dashboard/Dashboard/Index"));
-                //menuString.Append("</ul></li>");
+                menuString.AppendFormat(GetParentMenu(Resource.Dashboard, "fa fa-tachometer"));
+                menuString.Append("<ul class='nav child_menu'>");
+                menuString.Append(GetSubMenu(Resource.Dashboard, "", "/Dashboard/Dashboard/Index"));
+                menuString.Append("</ul></li>");
                 menuString.Append("</li>");
 
                 menuString.Append("<li>");

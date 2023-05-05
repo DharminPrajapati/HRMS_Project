@@ -290,9 +290,9 @@ td, th {
     content: "\002a"
 }
 
-.glyphicon-plus:before {
+/*.glyphicon-plus:before {
     content: "\002b"
-}
+}*/
 
 .glyphicon-eur:before, .glyphicon-euro:before {
     content: "\20ac"
