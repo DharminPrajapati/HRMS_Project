@@ -127,6 +127,8 @@ namespace MVCProject.Api.Controllers.Attendance
                 Enum.TryParse(directoryPathEnumName, out enumDirectoryPath);
                 directoryPath = AppUtility.GetDirectoryPath(enumDirectoryPath, databaseName, false, FileURL);
             }
+            
+            
             File.Copy(Path.Combine(directoryPath, data.FileName), Path.Combine(AppUtility.GetDirectoryPath(DirectoryPath.Attachment, databaseName, false, FileURL), data.FileName), true);
 
 

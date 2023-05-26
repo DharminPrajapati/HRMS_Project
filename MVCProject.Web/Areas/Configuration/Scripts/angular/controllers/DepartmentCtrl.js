@@ -52,6 +52,7 @@
         //Binding Data to Edit Details
 
         $scope.EditDepartmentDetails = function (departmentId) {
+            debugger
             DepartmentService.GetDepartmentById(departmentId).then(function (res) {
                 if (res) {
                     var data = res.data;
@@ -66,7 +67,10 @@
                 }
                 $rootScope.isAjaxLoadingChild = false;
             });
-        };
+
+
+
+         };
 
         //Reset Details
         $scope.resetDepartmentDetails = function (frmDesignations) {

@@ -228,7 +228,7 @@
 
                 // push event to events array
                 $scope.events.push({
-                    title: 'Present',
+                    title: formatTime(value.InTime) + ' - ' + formatTime(value.OutTime),
                     intimedescription: formatTime(value.InTime),
                     outtimetdescription: formatTime(value.OutTime),
                     indescription: value.InDiscription,
@@ -236,7 +236,7 @@
                     start: $scope.formatDate(value.Date),
                     end: $scope.formatDate(value.Date),
                     IsActive: true,
-                    stick: true
+                    stick: true,
                 });
             });
         });
