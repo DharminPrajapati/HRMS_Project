@@ -5366,7 +5366,7 @@ namespace MVCProject.Api.Models
             }
             set
             {
-                if ((value != null))
+                if ((value != null)&& (UserRole==null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserRole>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserRole", value);
                 }
