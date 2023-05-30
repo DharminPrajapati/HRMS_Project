@@ -14,11 +14,8 @@
         <AssociationConnector Association="MVCProjectModel.fk_EmployeeId" />
         <EntityTypeShape EntityType="MVCProjectModel.SalaryConfiguration" Width="1.5" PointX="10.375" PointY="4.25" />
         <EntityTypeShape EntityType="MVCProjectModel.AddSalary" Width="1.5" PointX="12.625" PointY="0.5" />
-        <EntityTypeShape EntityType="MVCProjectModel.UserMaster" Width="1.5" PointX="16.75" PointY="0.5" />
         <EntityTypeShape EntityType="MVCProjectModel.UserRole" Width="1.5" PointX="16.75" PointY="3.375" />
         <EntityTypeShape EntityType="MVCProjectModel.UserRoleMaster" Width="1.5" PointX="16.875" PointY="6.125" />
-        <AssociationConnector Association="MVCProjectModel.fk_empId" />
-        <AssociationConnector Association="MVCProjectModel.FK__UserRole__UserId__0CDAE408" />
         <AssociationConnector Association="MVCProjectModel.FK__UserRole__RoleId__0BE6BFCF" />
         <EntityTypeShape EntityType="MVCProjectModel.AllowanceMaster" Width="1.5" PointX="10.375" PointY="7.5" />
         <EntityTypeShape EntityType="MVCProjectModel.DeductionMaster" Width="1.5" PointX="14.75" PointY="6.125" />
@@ -31,6 +28,9 @@
         <AssociationConnector Association="MVCProjectModel.fk_deductionId" />
         <EntityTypeShape EntityType="MVCProjectModel.DocumentTypeMaster" Width="1.5" PointX="20" PointY="3.75" />
         <EntityTypeShape EntityType="MVCProjectModel.EmployeeDocumentMaster" Width="1.5" PointX="20" PointY="5.625" />
+        <EntityTypeShape EntityType="MVCProjectModel.UserMaster" Width="1.5" PointX="16.75" PointY="0.5" />
+        <AssociationConnector Association="MVCProjectModel.fk_empId" />
+        <AssociationConnector Association="MVCProjectModel.FK__UserRole__UserId__0CDAE408" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

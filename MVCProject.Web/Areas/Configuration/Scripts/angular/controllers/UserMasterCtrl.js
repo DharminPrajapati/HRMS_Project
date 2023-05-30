@@ -17,10 +17,15 @@
                 $scope.employee = selected.originalObject
                 $scope.getUserbyEmployeeId($scope.employee.Id)
             }
+            else {
+                $scope.employee = {};
+                $scope.userMasterDetailScope = {};
+            }
         }
 
         //get the EmpName from the EmpId
         $scope.getUserbyEmployeeId = function (Id) {
+
             UserMasterService.getUserbyEmployeeId(Id)
                 .then(function (res) {
 
@@ -28,9 +33,11 @@
                     if (!angular.isUndefined(data.Result) && data.Result != '') {
 
                         $scope.userMasterDetailScope = res.data.Result;
+                        $scope.userMasterDetailScope.UserPassword = CommonFunctions.DecryptData(data.Result.UserPassword);
                     } else {
                         $scope.userMasterDetailScope.EmployeeId = $scope.employee.Id;
                         $scope.userMasterDetailScope.FirstName = $scope.employee.Name;
+                        $scope.userMasterDetailScope.UserPassword = CommonFunctions.DecryptData($scope.userMasterDetailScope.UserPassword);
                     }
                 });
         }
@@ -103,8 +110,11 @@
             }
             //if (!$rootScope.permission.CanWrite) { return; }
             if (frmUserMaster.$valid) {
+
+                userMasterDetailScope.UserPassword = CommonFunctions.EncryptData(userMasterDetailScope.UserPassword);
                 UserMasterService.SaveuserMasterDetails(userMasterDetailScope).then(function (res) {
                     if (res) {
+
                         var data = res.data;
                         if (data.MessageType == messageTypes.Success && data.IsAuthenticated) {
                             $scope.ClearFormData(frmUserMaster);
@@ -131,6 +141,7 @@
                     if (data.MessageType == messageTypes.Success) {// Success
                         $scope.userMasterDetailScope = data.Result;
                         $scope.lastStorageAudit = angular.copy(data.Result);
+                        $scope.userMasterDetailScope.UserPassword = CommonFunctions.DecryptData(data.Result.UserPassword)
                         $scope.$broadcast('angucomplete-alt:changeInput', 'txtUserMaster', $scope.userMasterDetailScope.FirstName);
                         CommonFunctions.ScrollUpAndFocus("txtUserMaster");
                     } else if (data.MessageType == messageTypes.Error) {// Error

@@ -598,6 +598,7 @@
     <Content Include="Views\Shared\_CommonScriptOuter.cshtml" />
     <Content Include="Views\Template\_SelectAreaMapPopup.cshtml" />
     <Content Include="Views\Shared\_LayoutPayslip.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

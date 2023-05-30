@@ -21,12 +21,12 @@ using System.Xml.Serialization;
 
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_despartmentId", "TblDepartment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.TblDepartment), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_EmployeeId", "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.TblEmployee), "Attendance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.Attendance), true)]
-[assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_empId", "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MVCProject.Api.Models.TblEmployee), "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserMaster), true)]
-[assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__UserRole__UserId__0CDAE408", "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserMaster), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserRole), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__UserRole__RoleId__0BE6BFCF", "UserRoleMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserRoleMaster), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserRole), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_designationId", "Designation", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.Designation), "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.TblEmployee), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_allowanceId", "AllowanceMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.AllowanceMaster), "SalaryAllowance", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.SalaryAllowance), true)]
 [assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_deductionId", "DeductionMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.DeductionMaster), "SalaryDeduction", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.SalaryDeduction), true)]
+[assembly: EdmRelationshipAttribute("MVCProjectModel", "fk_empId", "TblEmployee", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MVCProject.Api.Models.TblEmployee), "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserMaster), true)]
+[assembly: EdmRelationshipAttribute("MVCProjectModel", "FK__UserRole__UserId__0CDAE408", "UserMaster", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MVCProject.Api.Models.UserMaster), "UserRole", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MVCProject.Api.Models.UserRole), true)]
 
 #endregion
 
@@ -193,22 +193,6 @@ namespace MVCProject.Api.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<UserMaster> UserMaster
-        {
-            get
-            {
-                if ((_UserMaster == null))
-                {
-                    _UserMaster = base.CreateObjectSet<UserMaster>("UserMaster");
-                }
-                return _UserMaster;
-            }
-        }
-        private ObjectSet<UserMaster> _UserMaster;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<UserRole> UserRole
         {
             get
@@ -365,6 +349,22 @@ namespace MVCProject.Api.Models
             }
         }
         private ObjectSet<EmployeeDocumentMaster> _EmployeeDocumentMaster;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<UserMaster> UserMaster
+        {
+            get
+            {
+                if ((_UserMaster == null))
+                {
+                    _UserMaster = base.CreateObjectSet<UserMaster>("UserMaster");
+                }
+                return _UserMaster;
+            }
+        }
+        private ObjectSet<UserMaster> _UserMaster;
 
         #endregion
 
@@ -424,14 +424,6 @@ namespace MVCProject.Api.Models
         public void AddToAddSalary(AddSalary addSalary)
         {
             base.AddObject("AddSalary", addSalary);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the UserMaster EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToUserMaster(UserMaster userMaster)
-        {
-            base.AddObject("UserMaster", userMaster);
         }
     
         /// <summary>
@@ -512,6 +504,14 @@ namespace MVCProject.Api.Models
         public void AddToEmployeeDocumentMaster(EmployeeDocumentMaster employeeDocumentMaster)
         {
             base.AddObject("EmployeeDocumentMaster", employeeDocumentMaster);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the UserMaster EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToUserMaster(UserMaster userMaster)
+        {
+            base.AddObject("UserMaster", userMaster);
         }
 
         #endregion
@@ -5052,28 +5052,6 @@ namespace MVCProject.Api.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_empId", "UserMaster")]
-        public EntityCollection<UserMaster> UserMaster
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserMaster>("MVCProjectModel.fk_empId", "UserMaster");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserMaster>("MVCProjectModel.fk_empId", "UserMaster", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_designationId", "Designation")]
         public Designation Designation
         {
@@ -5102,6 +5080,28 @@ namespace MVCProject.Api.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Designation>("MVCProjectModel.fk_designationId", "Designation", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "fk_empId", "UserMaster")]
+        public EntityCollection<UserMaster> UserMaster
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<UserMaster>("MVCProjectModel.fk_empId", "UserMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserMaster>("MVCProjectModel.fk_empId", "UserMaster", value);
                 }
             }
         }
@@ -5283,6 +5283,30 @@ namespace MVCProject.Api.Models
         private Nullable<global::System.Boolean> _IsLock;
         partial void OnIsLockChanging(Nullable<global::System.Boolean> value);
         partial void OnIsLockChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SecurityCode
+        {
+            get
+            {
+                return _SecurityCode;
+            }
+            set
+            {
+                OnSecurityCodeChanging(value);
+                ReportPropertyChanging("SecurityCode");
+                _SecurityCode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SecurityCode");
+                OnSecurityCodeChanged();
+            }
+        }
+        private global::System.String _SecurityCode;
+        partial void OnSecurityCodeChanging(global::System.String value);
+        partial void OnSecurityCodeChanged();
 
         #endregion
 
@@ -5342,7 +5366,7 @@ namespace MVCProject.Api.Models
             }
             set
             {
-                if ((value != null) && (UserRole == null))
+                if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<UserRole>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserRole", value);
                 }
@@ -5464,44 +5488,6 @@ namespace MVCProject.Api.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "FK__UserRole__UserId__0CDAE408", "UserMaster")]
-        public UserMaster UserMaster
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserMaster").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserMaster").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<UserMaster> UserMasterReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserMaster");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserMaster>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserMaster", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "FK__UserRole__RoleId__0BE6BFCF", "UserRoleMaster")]
         public UserRoleMaster UserRoleMaster
         {
@@ -5530,6 +5516,44 @@ namespace MVCProject.Api.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserRoleMaster>("MVCProjectModel.FK__UserRole__RoleId__0BE6BFCF", "UserRoleMaster", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("MVCProjectModel", "FK__UserRole__UserId__0CDAE408", "UserMaster")]
+        public UserMaster UserMaster
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserMaster").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserMaster").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<UserMaster> UserMasterReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<UserMaster>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserMaster");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<UserMaster>("MVCProjectModel.FK__UserRole__UserId__0CDAE408", "UserMaster", value);
                 }
             }
         }

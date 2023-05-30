@@ -88,6 +88,11 @@ namespace MVCProject.Controllers
             return this.View();
         }
 
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
         /// <summary>
         /// Redirect to home page.
         /// </summary>

@@ -220,6 +220,10 @@ namespace MVCProject
              .Include("~/Scripts/angular/controllers/ResetPasswordCtrl.js")
               .Include("~/Scripts/angular/services/ResetPasswordService.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/LoginMaster")
+             .Include("~/Scripts/angular/controllers/AccountCtrl.js")
+              .Include("~/Scripts/angular/services/AccountService.js"));
+
             // Home
             bundles.Add(new ScriptBundle("~/bundles/Demo")
                .Include("~/Scripts/angular/controllers/DemoCtrl.js"));
