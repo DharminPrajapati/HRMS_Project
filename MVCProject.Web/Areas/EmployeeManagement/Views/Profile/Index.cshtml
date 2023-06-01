@@ -194,10 +194,10 @@
                                     </div>
                                     <div class="experience-content">
                                         <div class="timeline-content">
-                                            <a href="#/" class="name">{{eventmasterlist.InstitutionName }}</a>
-                                            <div>{{eventmasterlist.CourseName}}</div>
-                                            <div>{{eventmasterlist.Degree}}</div>
-                                            <span class="time"> {{eventmasterlist.CourseStartDate| date:'dd/MM/yyyy'}} to {{eventmasterlist.CourseEndDate| date:'dd/MM/yyyy'}}</span>
+                                            <a href="#/" class="name">InstitutionName : {{eventmasterlist.InstitutionName }}</a>
+                                            <div> CourseName : {{eventmasterlist.CourseName}}</div>
+                                            <div>   Degree : {{eventmasterlist.Degree}}</div>
+                                            <span class="time"> CourseDate : {{eventmasterlist.CourseStartDate| date:'dd/MM/yyyy'}} to {{eventmasterlist.CourseEndDate| date:'dd/MM/yyyy'}}</span>
                                         </div>
                                     </div>
                                 </li>
@@ -221,7 +221,7 @@
             <div class="col-md-6 d-flex">
                 <div class="card profile-box flex-fill">
                     <div class="card-box">
-                        <h2 class="card-title">Experience @*<a href="#" class="edit-icon" data-bs-toggle="modal" data-bs-target="#experience_info"><i class="fa fa-pencil"></i></a>*@</h2>
+                        <h2 class="card-title"> Last Job Experience Informations @*<a href="#" class="edit-icon" data-bs-toggle="modal" data-bs-target="#experience_info"><i class="fa fa-pencil"></i></a>*@</h2>
                         <div class="experience-box">
                             <ul class="experience-list">
                                 <li>
@@ -230,10 +230,10 @@
                                     </div>
                                     <div class="experience-content">
                                         <div class="timeline-content">
-                                            <a href="#/" class="name"> {{eventmasterlist.CompanyName }}</a>
-                                            <div>{{eventmasterlist.LastJobLocation}}</div>
-                                            <div>{{eventmasterlist.JobPosition}}</div>
-                                            <span class="time"> {{eventmasterlist.FromPeriod| date:'dd/MM/yyyy'}} to {{eventmasterlist.ToPeriod| date:'dd/MM/yyyy'}}</span>
+                                            <a href="#/" class="name">CompanyName : {{eventmasterlist.CompanyName }}</a>
+                                            <div> Job Location : {{eventmasterlist.LastJobLocation}}</div>
+                                            <div> Job Position : {{eventmasterlist.JobPosition}}</div>
+                                            <span class="time"> Job Period : {{eventmasterlist.FromPeriod| date:'dd/MM/yyyy'}} to {{eventmasterlist.ToPeriod| date:'dd/MM/yyyy'}}</span>
                                         </div>
                                     </div>
                                 </li>
